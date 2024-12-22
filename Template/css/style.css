@@ -376,7 +376,9 @@ button {
 #main_slider .carousel-control-next:focus {
     color: #000;
 }
-
+.hidden {
+    display: none;
+ }
 
 /* banner section end */
 
