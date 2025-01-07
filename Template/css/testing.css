@@ -1,0 +1,50 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fdf5e6;
+    color: #5a3e2b;
+}
+
+header {
+    text-align: center;
+    padding: 20px;
+    background-color: #a0522d;
+    color: white;
+}
+
+.team {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+}
+
+.member {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 20px;
+    text-align: center;
+    width: 250px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.member img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.member h2 {
+    font-size: 1.5em;
+    margin: 10px 0;
+}
+
+.member p {
+    font-size: 1em;
+    line-height: 1.5;
+}
