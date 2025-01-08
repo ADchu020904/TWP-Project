@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <style>
         body {
-            background-color: #f8f9fa;
+            background-color: #bb9180;
             font-family: Arial, sans-serif;
         }
         .checkout-container {
@@ -15,40 +15,45 @@
             margin: 50px auto;
             padding: 20px;
             background-color: #ffffff;
-            border: 1px solid #dee2e6;
+            border: 1px solid #7c2c0c;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         .checkout-container h2 {
-            color: #343a40;
+            color: #bb9180;
             margin-bottom: 20px;
         }
         .form-group label {
-            color: #495057;
+            color: #7c2c0c;
         }
         .form-control {
-            border: 1px solid #ced4da;
+            border: 1px solid #7c2c0c;
             border-radius: 5px;
         }
+        .form-control:focus {
+            border-color: #7c2c0c;
+            box-shadow: 0 0 0 0.2rem rgba(124, 44, 12, 0.25);
+        }
         .btn-primary {
-            background-color: #007bff;
-            border-color: #007bff;
+            background-color: #7c2c0c;
+            border-color: #bb9180;
             width: 100%;
             margin-top: 20px;
         }
         .btn-primary:hover {
-            background-color: #0056b3;
-            border-color: #004085;
+            background-color: #bb9180;
+            border-color: #bb9180;
         }
         .go-back {
             display: block;
             margin-top: 20px;
             text-align: center;
-            color: #007bff;
+            color: #7c2c0c;
             text-decoration: none;
         }
         .go-back:hover {
             text-decoration: underline;
+            color: #bb9180;
         }
     </style>
 </head>
@@ -93,9 +98,9 @@
                     <label for="card-bank">Select Bank</label>
                     <select class="form-control" id="card-bank">
                         <option value="">Select Bank</option>
-                        <option value="bank1">Bank 1</option>
-                        <option value="bank2">Bank 2</option>
-                        <option value="bank3">Bank 3</option>
+                        <option value="bank1">Maybank</option>
+                        <option value="bank2">OCBC Bank</option>
+                        <option value="bank3">CIMB Bank</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -116,9 +121,9 @@
                     <label for="bank-name">Select Bank</label>
                     <select class="form-control" id="bank-name">
                         <option value="">Select Bank</option>
-                        <option value="bank1">Bank 1</option>
-                        <option value="bank2">Bank 2</option>
-                        <option value="bank3">Bank 3</option>
+                        <option value="bank1">Maybank</option>
+                        <option value="bank2">OCBC Bank</option>
+                        <option value="bank3">CIMB Bank</option>
                     </select>
                 </div>
                 <div class="form-group">
