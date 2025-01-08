@@ -32,6 +32,16 @@
 @import url(nice-select.css);
 
 /*--------------------------------------------------------------------- skeleton ---------------------------------------------------------------------*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+}
 
 * {
     box-sizing: border-box !important;
@@ -233,14 +243,16 @@ button {
 /* header section start */
 
 .header_section {
+    margin: 0;
+    padding: 0;
     width: 100%;
     float: left;
     background-image: url(../images/banner-bg.png);
     height: auto;
     background-size: 100%;
     background-repeat: no-repeat;
-    margin: 0;
-    padding: 0;
+    position: relative; /* Add this */
+    top: 0; /* Add this */
 }
 
 .bg-light {
@@ -249,6 +261,9 @@ button {
 
 /* Ensure the navbar uses flexbox */
 .navbar {
+    margin: 0;
+    padding: 0;
+    width: 100%;
     display: flex;
     flex-wrap: nowrap; /* Prevent wrapping to the next line */
     justify-content: space-between; /* Distribute space evenly */
