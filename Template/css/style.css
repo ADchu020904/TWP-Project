@@ -575,7 +575,7 @@ button {
 .image_3 {
     width: 100%;
     text-align: center;
-    padding-top: 30px;
+    padding-top: 195px;
     padding-bottom: 30px;
 }
 
@@ -585,6 +585,18 @@ button {
     padding-top: 120px;
     min-height: 332px;
 }
+
+.image_5 img {
+    max-width: 100%; /* Ensures the image does not exceed its container width */
+    max-height: 300px; /* Restricts the image height to fit the container */
+    width: auto; /* Maintains the image's aspect ratio */
+    height: auto; /* Ensures proportional scaling */
+    display: block; /* Fixes inline spacing issues */
+    margin: 0 auto; /* Centers the image */
+    object-fit: contain; /* Prevents image cropping */
+}
+
+
 
 .buy_bt {
     width: 170px;
