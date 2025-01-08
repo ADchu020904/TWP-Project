@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Basic Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Management</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Favicon -->
+    <link rel="icon" href="images/logo.png" type="image/gif">
+</head>
+<style>
+    body {
+        background-color: #f8f9fa;
+        font-family: Arial, sans-serif;
+    }
+    .dashboard-container {
+        max-width: 1200px;
+        margin: 40px auto 20px auto;
+        padding: 20px;
+        background: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .profile-card {
+        text-align: center;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 20px;
+        background: #f1f1f1;
+    }
+    .profile-card img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+    .nav-tabs .nav-link {
+        font-weight: bold;
+    }
+    .tab-pane {
+        padding: 20px;
+    }
+    .header_section {
+    margin-top: 0;
+    padding-top: 0;
+}
+</style>
+<body>
+    <!-- Header Section Start -->
+    <div class="header_section">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <a class="logo" href="index.html"><img src="images/logo.png" alt="Logo"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="design.html">Our Design</a></li>
+                        <li class="nav-item"><a class="nav-link" href="shop.html">Shop</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
+                        <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+                    </ul>
+                    <div class="dropdown">
+                        <a href="#" class="dropdown-toggle" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img src="images/user-icon.png" alt="User Icon">
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="userDropdown">
+                            <a class="dropdown-item" href="account.html">My Account</a>
+                            <a class="dropdown-item" href="usersignup.html">Log in/Sign up</a>
+                            <a class="dropdown-item" href="index.html">Log Out</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <!-- Header Section End -->
+
+    <!-- Main Content Start -->
+    <div class="container dashboard-container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="profile-card">
+                    <img src="https://via.placeholder.com/100" alt="Profile Picture">
+                    <h5 class="mt-3">John Doe</h5>
+                    <p>Email: john.doe@example.com</p>
+                    <button class="btn btn-primary">Edit Profile</button>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <ul class="nav nav-tabs" id="dashboardTabs" role="tablist">
+                    <li class="nav-item">
+                        <button class="nav-link active" id="overview-tab" data-bs-toggle="tab" data-bs-target="#overview" type="button" role="tab" aria-controls="overview" aria-selected="true">Overview</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link" id="orders-tab" data-bs-toggle="tab" data-bs-target="#orders" type="button" role="tab" aria-controls="orders" aria-selected="false">Orders</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link" id="settings-tab" data-bs-toggle="tab" data-bs-target="#settings" type="button" role="tab" aria-controls="settings" aria-selected="false">Settings</button>
+                    </li>
+                </ul>
+                <div class="tab-content" id="dashboardTabsContent">
+                    <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
+                        <h3>Overview</h3>
+                        <p>Welcome to your dashboard! Here, you can find quick stats about your account.</p>
+                    </div>
+                    <div class="tab-pane fade" id="orders" role="tabpanel" aria-labelledby="orders-tab">
+                        <h3>Your Orders</h3>
+                        <p>No recent orders found.</p>
+                    </div>
+                    <div class="tab-pane fade" id="settings" role="tabpanel" aria-labelledby="settings-tab">
+                        <h3>Account Settings</h3>
+                        <form>
+                            <div class="mb-3">
+                                <label for="currentPassword" class="form-label">Current Password</label>
+                                <input type="password" class="form-control" id="currentPassword">
+                            </div>
+                            <div class="mb-3">
+                                <label for="newPassword" class="form-label">New Password</label>
+                                <input type="password" class="form-control" id="newPassword">
+                            </div>
+                            <button type="submit" class="btn btn-success">Update Password</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Main Content End -->
+
+    <!-- footer section start -->
+    <div class="footer_section">
+        <div class="container">
+           <div class="footer_location_text">
+              <ul>
+                 <li><img src="images/map-icon.png"><span class="padding_left_10"><a href="#">Our Official Website</a></span></li>
+                 <li><img src="images/call-icon.png"><span class="padding_left_10"><a href="#">Call : +1112223334</a></span></li>
+                 <li><img src="images/mail-icon.png"><span class="padding_left_10"><a href="#">demo@gmail.com</a></span></li>
+              </ul>
+           </div>
+           <div class="row">
+              <div class="col-lg-3 col-sm-6">
+                 <h2 class="useful_text">Useful link </h2>
+                 <div class="footer_menu">
+                    <ul>
+                       <li><a href="index.html">Home</a></li>
+                       <li><a href="about.html">About</a></li>
+                       <li><a href="design.html">Our Design</a></li>
+                       <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                 </div>
+              </div>
+              <div class="col-lg-3 col-sm-6">
+                 <h2 class="useful_text">Repair</h2>
+                 <p class="lorem_text">If there're any problems regarding the products please head to our repair center</p>
+              </div>
+              <div class="col-lg-3 col-sm-6">
+                 <h2 class="useful_text">Social Media</h2>
+                 <div id="social">
+                    <a class="facebookBtn smGlobalBtn active" href="#" ></a>
+                    <a class="twitterBtn smGlobalBtn" href="#" ></a>
+                    <a class="googleplusBtn smGlobalBtn" href="#" ></a>
+                    <a class="linkedinBtn smGlobalBtn" href="#" ></a>
+                 </div>
+              </div>
+              <div class="col-sm-6 col-lg-3">
+                 <h1 class="useful_text">Our Repair center</h1>
+                 <p class="footer_text">Jalan Ayer Keroh Lama, 75450 Bukit Beruang, Melaka </p>
+              </div>
+           </div>
+        </div>
+     </div>
+     <!-- footer section end -->
+     <!-- copyright section start -->
+     <div class="copyright_section">
+        <div class="container">
+           <p class="copyright_text">2020 All Rights Reserved. Design by <a href="https://html.design">Free html  Templates</a></p>
+        </div>
+     </div>
+     <!-- copyright section end -->
+     <!-- Javascript files-->
+     <script src="js/jquery.min.js"></script>
+     <script src="js/popper.min.js"></script>
+     <script src="js/bootstrap.bundle.min.js"></script>
+     <script src="js/jquery-3.0.0.min.js"></script>
+     <script src="js/plugin.js"></script>
+     <!-- sidebar -->
+     <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+     <script src="js/custom.js"></script>
+     <!-- javascript --> 
+     <script src="js/owl.carousel.js"></script>
+     <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+  </body>
+</html>
