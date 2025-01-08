@@ -259,21 +259,20 @@ button {
     background-color: #7c2c0c!important;
 }
 
-/* Ensure the navbar uses flexbox */
+/* Ensure the navbar uses flexbox 
 .navbar {
     margin: 0;
     padding: 0;
     width: 100%;
     display: flex;
-    flex-wrap: nowrap; /* Prevent wrapping to the next line */
-    justify-content: space-between; /* Distribute space evenly */
+    flex-wrap: nowrap; /* Prevent wrapping to the next line 
+    justify-content: space-between; /* Distribute space evenly 
+}*/
+
+.navbar {
+    padding: 1rem;
 }
-/*.navbar {
-    padding: .5rem 0px;
-    border-top: 20px solid #efe4d1;
-    border-bottom: 20px solid #efe4d1;
-}
-*/
+
 
 .image_1 {
     width: 100%;
@@ -283,20 +282,6 @@ button {
 .logo {
     width: 30%;
     float: left;
-}
-
-.search_icon {
-    float: left;
-}
-
-.search_icon ul {
-    margin: 0px;
-    padding: 0px;
-}
-
-.search_icon li {
-    float: left;
-    padding-left: 30px;
 }
 
 .navbar-expand-lg .navbar-nav .nav-link {
@@ -409,21 +394,16 @@ button {
  }
 
 /* Ensure consistent image size for slider images
+   The .slider-image class is used to maintain a consistent size for images within sliders,
+   ensuring they do not exceed the container's width and maintain their aspect ratio. */
 .slider-image {
-    width: 100%; /* Adjust the width as needed 
-    height: auto; /* Maintain aspect ratio 
-    max-width: 400px; /* Set a maximum width if needed 
-}
-*/
-
-.slider-image {
-    max-width: 100%; /* Ensure images are responsive */
-    max-height: 300px; /* Set a consistent height */
+    width: 100%; /* Adjust the width as needed*/ 
+    height: auto; /* Maintain aspect ratio */
+    max-width: 400px; /* Set a maximum width if needed */
     margin: 0 auto; /* Center the image */
     object-fit: contain; /* Maintain aspect ratio */
     display: block; /* Ensure block-level alignment */
 }
-
 
 /* banner section end */
 
