@@ -73,6 +73,41 @@
       <div class="design_section layout_padding">
          <div id="my_slider" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
+               <div class="carousel-item">
+                  <div class="container">
+                     <h1 class="design_taital">Our Work Furniture</h1>
+                     <p class="design_text">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteratio</p>
+                     <div class="design_section_2">
+                        <div class="row">
+                           <div class="col-md-4">
+                              <div class="box_main">
+                                 <p class="chair_text">Chair 03</p>
+                                 <div class="image_3" href="#"><img src="images/img-6.png"></div>
+                                 <p class="chair_text">Price $120</p>
+                                 <div class="buy_bt"><a href="#">Buy Now</a></div>
+                              </div>
+                           </div>
+                           <div class="col-md-4">
+                              <div class="box_main">
+                                 <p class="chair_text">Sofa</p>
+                                 <div class="image_4" href="#"><img src="images/img-7.png"></div>
+                                 <p class="chair_text">Price $200</p>
+                                 <div class="buy_bt"><a href="#">Buy Now</a></div>
+                              </div>
+                           </div>
+                           <div class="col-md-4">
+                              <div class="box_main">
+                                 <p class="chair_text">Lamp</p>
+                                 <div class="image_4" href="#"><img src="images/img-8.png"></div>
+                                 <p class="chair_text">Price $50</p>
+                                 <div class="buy_bt"><a href="#">Buy Now</a></div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               
                <div class="carousel-item active">
                   <div class="container">
                      <h1 class="design_taital">Our Work Furniture</h1>
@@ -250,5 +285,15 @@
       <!-- javascript --> 
       <script src="js/owl.carousel.js"></script>
       <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+      <!--Added js-->
+      <script>
+         $(document).ready(function() {
+            $('.carousel').carousel({
+               interval: 3000, // Set interval for auto-slide
+               wrap: true // Ensure the carousel loops back to the start
+            });
+         });
+      </script>
+      
    </body>
 </html>
