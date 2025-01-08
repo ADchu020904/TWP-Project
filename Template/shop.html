@@ -89,69 +89,69 @@
       </div>
       <!-- header section end -->
       <!-- Category Section -->
-      <div class="category_section layout_padding">
-         <div class="container">
-            <h1 class="category_title">Our Chairs</h1>
-            <p class="category_text">Browse through our exclusive collection of chairs.</p>
-            <div class="row">
-               <!-- Chair 01 -->
-             <div class="col-md-4">
-                 <div class="box_main">
-                 <p class="chair_text">Chair 01</p>
-                 <div class="image"><img src="images/img-8.png" alt="Chair 01"></div>
-                 <p class="price_text">Price $100</p>
-                 <div class="buy_bt chair01"><a href="#">Buy Now</a></div>
-                 </div>
-             </div>
-               <!-- Chair 02 -->
-               <div class="col-md-4">
-                  <div class="box_main">
-                     <p class="chair_text">Chair 02</p>
-                     <div class="image"><img src="images/img-4.png" alt="Chair 02"></div>
-                     <p class="price_text">Price $100</p>
-                     <div class="buy_bt"><a href="#">Buy Now</a></div>
-                  </div>
-               </div>
-               <!-- Chair 03 -->
-             <div class="col-md-4">
-                 <div class="box_main">
-                 <p class="chair_text">Chair 03</p>
-                 <div class="image"><img src="images/img-7.png" alt="Chair 03"></div>
-                 <p class="price_text">Price $100</p>
-                 <div class="buy_bt chair03"><a href="#">Buy Now</a></div>
-                 </div>
-             </div>
-               <!-- Chair 04 -->
-               <div class="col-md-4">
-                  <div class="box_main">
-                     <p class="chair_text">Chair 04</p>
-                     <div class="image"><img src="images/img-6.png" alt="Chair 04"></div>
-                     <p class="price_text">Price $120</p>
-                     <div class="buy_bt"><a href="#">Buy Now</a></div>
-                  </div>
-               </div>
-               <!-- Chair 05 -->
-             <div class="col-md-4">
-                 <div class="box_main">
-                 <p class="chair_text">Chair 05</p>
-                 <div class="image"><img src="images/img-whitechair.png" alt="Chair 05"></div>
-                 <p class="price_text">Price $200</p>
-                 <div class="buy_bt chair05"><a href="#">Buy Now</a></div>
-                 </div>
-             </div>
-              <!-- Chair 06 -->
-             <div class="col-md-4">
-                 <div class="box_main">
-                    <p class="chair_text">Chair 06</p>
-                    <div class="image"><img src="images/img-blackchair.png" alt="Chair 06"></div>
-                    <p class="price_text">Price $300</p>
-                    <div class="buy_bt chair06"><a href="#">Buy Now</a></div>
-                 </div>
-              </div>
+<div class="category_section layout_padding">
+   <div class="container">
+      <h1 class="category_title">Our Chairs</h1>
+      <p class="category_text">Browse through our exclusive collection of chairs.</p>
+      <div class="row d-flex flex-wrap">
+         <!-- Chair 01 -->
+         <div class="col-md-4 d-flex">
+            <div class="box_main">
+               <p class="chair_text">Chair 01</p>
+               <div class="image"><img src="images/img-8.png" alt="Chair 01"></div>
+               <p class="price_text">Price $100</p>
+               <div class="buy_bt"><a href="#">Buy Now</a></div>
             </div>
          </div>
-         
-      <!-- Category Section End -->
+         <!-- Chair 02 -->
+         <div class="col-md-4 d-flex">
+            <div class="box_main">
+               <p class="chair_text">Chair 02</p>
+               <div class="image"><img src="images/img-4.png" alt="Chair 02"></div>
+               <p class="price_text">Price $100</p>
+               <div class="buy_bt"><a href="#">Buy Now</a></div>
+            </div>
+         </div>
+         <!-- Chair 03 -->
+         <div class="col-md-4 d-flex">
+            <div class="box_main">
+               <p class="chair_text">Chair 03</p>
+               <div class="image"><img src="images/img-7.png" alt="Chair 03"></div>
+               <p class="price_text">Price $100</p>
+               <div class="buy_bt"><a href="#">Buy Now</a></div>
+            </div>
+         </div>
+         <!-- Chair 04 -->
+         <div class="col-md-4 d-flex">
+            <div class="box_main">
+               <p class="chair_text">Chair 04</p>
+               <div class="image"><img src="images/img-6.png" alt="Chair 04"></div>
+               <p class="price_text">Price $120</p>
+               <div class="buy_bt"><a href="#">Buy Now</a></div>
+            </div>
+         </div>
+         <!-- Chair 05 -->
+         <div class="col-md-4 d-flex">
+            <div class="box_main">
+               <p class="chair_text">Chair 05</p>
+               <div class="image"><img src="images/img-whitechair.png" alt="Chair 05" width="200" height="200"></div>
+               <p class="price_text">Price $200</p>
+               <div class="buy_bt"><a href="#">Buy Now</a></div>
+            </div>
+         </div>
+         <!-- Chair 06 -->
+         <div class="col-md-4 d-flex">
+            <div class="box_main">
+               <p class="chair_text">Chair 06</p>
+               <div class="image"><img src="images/img-blackchair.png" alt="Chair 06"></div>
+               <p class="price_text">Price $300</p>
+               <div class="buy_bt"><a href="#">Buy Now</a></div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- Category Section End -->
       <!-- footer section start -->
       <div class="footer_section">
          <div class="container">
@@ -215,8 +215,22 @@
       <script src="js/owl.carousel.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
       <!--header section problem-->
-      <script>
-         
-      </script>
+      <style>
+         .box_main {
+             display: flex;
+             flex-direction: column;
+             justify-content: space-between;
+             height: 100%;
+         }
+         .d-flex {
+             display: flex;
+         }
+         .flex-wrap {
+             flex-wrap: wrap;
+         }
+         .price_text {
+            text-align: center;
+         }
+         </style>
    </body>
 </html>
