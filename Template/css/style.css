@@ -578,14 +578,14 @@ button {
 
 
 
-.buy_bt {
+.detail_bt {
     width: 170px;
     margin: 0 auto;
     text-align: center;
     padding-top: 30px;
 }
 
-.buy_bt a {
+.detail_bt a {
     width: 100%;
     font-size: 18px;
     color: #ffffff;
@@ -597,7 +597,7 @@ button {
     border-radius: 5px;
 }
 
-.buy_bt a:hover {
+.detail_bt a:hover {
     color: #ffffff;
     background-color: #7c2c0c;
 }
