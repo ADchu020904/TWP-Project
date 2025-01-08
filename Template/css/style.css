@@ -302,7 +302,7 @@ button {
     float: left;
     padding-bottom: 90px;
     background-color: #fae6c4;
-    height: auto;
+    height: 500px;
     box-shadow: 0px 2px 10px 0px;
 }
 
@@ -386,6 +386,23 @@ button {
 .hidden {
     display: none;
  }
+
+/* Ensure consistent image size for slider images
+.slider-image {
+    width: 100%; /* Adjust the width as needed 
+    height: auto; /* Maintain aspect ratio 
+    max-width: 400px; /* Set a maximum width if needed 
+}
+*/
+
+.slider-image {
+    max-width: 100%; /* Ensure images are responsive */
+    max-height: 300px; /* Set a consistent height */
+    margin: 0 auto; /* Center the image */
+    object-fit: contain; /* Maintain aspect ratio */
+    display: block; /* Ensure block-level alignment */
+}
+
 
 /* banner section end */
 
