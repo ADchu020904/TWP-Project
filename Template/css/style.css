@@ -241,11 +241,18 @@ button {
     background-color: #7c2c0c!important;
 }
 
+/* Ensure the navbar uses flexbox */
 .navbar {
+    display: flex;
+    flex-wrap: nowrap; /* Prevent wrapping to the next line */
+    justify-content: space-between; /* Distribute space evenly */
+}
+/*.navbar {
     padding: .5rem 0px;
     border-top: 20px solid #efe4d1;
     border-bottom: 20px solid #efe4d1;
 }
+*/
 
 .image_1 {
     width: 100%;
@@ -253,7 +260,7 @@ button {
 }
 
 .logo {
-    width: 44%;
+    width: 30%;
     float: left;
 }
 
