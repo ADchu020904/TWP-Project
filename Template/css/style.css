@@ -682,43 +682,6 @@ button {
 /* design section end */
 
 /* product-list section start */
-/* General styling for all chair boxes */
-.box_main {
-    height: 400px; /* Ensure all boxes have the same height */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    text-align: center;
-    border: 1px solid #ddd; /* Optional: Add a border for consistency */
-    padding: 20px;
-}
-
-/* Styling for chair images */
-.box_main .image img {
-    max-width: 100%; /* Ensure the image fits within the box */
-    max-height: 250px; /* Limit the height to maintain uniformity */
-    object-fit: contain; /* Maintain aspect ratio without cropping */
-    display: block;
-    margin: 0 auto; /* Center the image */
-}
-
-/* Ensure row alignment */
-.row {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between; /* Distribute space evenly between items */
-    align-items: flex-start; /* Align items to the top of the row */
-}
-
-/* Optional: For small screens */
-@media (max-width: 768px) {
-    .box_main {
-        height: auto; /* Allow boxes to adjust height for small screens */
-        margin-bottom: 20px; /* Add spacing between boxes */
-    }
-}
-
 
 /* product-list section end */
 
