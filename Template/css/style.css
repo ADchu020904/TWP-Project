@@ -40,6 +40,8 @@
 
 html {
     scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;
 }
 
 body {
@@ -49,6 +51,8 @@ body {
     line-height: 1.80857;
     font-weight: normal;
     overflow-x: hidden;
+    margin: 0;
+    padding: 0;
 }
 
 a {
@@ -235,6 +239,8 @@ button {
     height: auto;
     background-size: 100%;
     background-repeat: no-repeat;
+    margin: 0;
+    padding: 0;
 }
 
 .bg-light {
