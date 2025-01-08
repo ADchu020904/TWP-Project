@@ -115,6 +115,12 @@
       opacity: 1; /* Override default opacity */
    }
    </style>
+   <script>
+      function handleLogin(event) {
+         event.preventDefault(); // Prevent the default form submission
+         window.location.href = 'admin-dashboard.html'; // Redirect to admin dashboard
+      }
+   </script>
 </head>
 <body>
    <div class="login-container">
@@ -125,7 +131,7 @@
    <div class="login-right">
       <h2>Welcome</h2>
       <p>PLEASE LOGIN TO ADMIN DASHBOARD</p>
-      <form action="account.html" method="post">
+      <form id="loginForm" onsubmit="handleLogin(event)">
       <div class="form-group">
          <label for="username">Username</label>
          <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username" required>

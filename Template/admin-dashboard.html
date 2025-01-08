@@ -4,43 +4,240 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Admin Dashboard</title>
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
    <link rel="stylesheet" href="css/bootstrap.min.css">
-   <link rel="stylesheet" href="css/style.css">
+   <link rel="stylesheet" href="css/fontawesome.min.css">
+   <style>
+      body {
+         font-family: 'Poppins', sans-serif;
+         background-color: #f4f4f9;
+         margin: 0;
+         display: flex;
+      }
+      .sidebar {
+         width: 250px;
+         background-color: #343a40;
+         color: #fff;
+         height: 100vh;
+         position: fixed;
+         display: flex;
+         flex-direction: column;
+      }
+      .sidebar .logo {
+         padding: 20px;
+         text-align: center;
+         font-size: 1.5rem;
+         font-weight: bold;
+         background-color: #23272b;
+      }
+      .sidebar ul {
+         list-style: none;
+         padding: 0;
+         margin: 0;
+      }
+      .sidebar ul li {
+         padding: 15px 20px;
+         cursor: pointer;
+         display: flex;
+         align-items: center;
+      }
+      .sidebar ul li:hover {
+         background-color: #495057;
+      }
+      .sidebar ul li i {
+         margin-right: 10px;
+      }
+      .header {
+         width: calc(100% - 250px);
+         margin-left: 250px;
+         background-color: #fff;
+         padding: 15px 20px;
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      .header .search-bar {
+         flex: 1;
+         margin-left: 20px;
+      }
+      .header .search-bar input {
+         width: 100%;
+         padding: 10px;
+         border: 1px solid #ccc;
+         border-radius: 5px;
+      }
+      .header .user-profile {
+         display: flex;
+         align-items: center;
+      }
+      .header .user-profile img {
+         width: 40px;
+         height: 40px;
+         border-radius: 50%;
+         margin-right: 10px;
+      }
+      .main-content {
+         width: calc(100% - 250px);
+         margin-left: 250px;
+         padding: 20px;
+      }
+      .summary-cards {
+         display: flex;
+         justify-content: space-between;
+         margin-bottom: 20px;
+      }
+      .summary-card {
+         background-color: #fff;
+         padding: 20px;
+         border-radius: 8px;
+         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+         flex: 1;
+         margin-right: 20px;
+         text-align: center;
+      }
+      .summary-card:last-child {
+         margin-right: 0;
+      }
+      .summary-card h3 {
+         margin: 0;
+         font-size: 1.5rem;
+         color: #333;
+      }
+      .summary-card p {
+         margin: 10px 0 0;
+         font-size: 1.2rem;
+         color: #666;
+      }
+      .data-table {
+         background-color: #fff;
+         padding: 20px;
+         border-radius: 8px;
+         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      .data-table table {
+         width: 100%;
+         border-collapse: collapse;
+      }
+      .data-table table th, .data-table table td {
+         padding: 15px;
+         text-align: left;
+         border-bottom: 1px solid #ddd;
+      }
+      .data-table table th {
+         background-color: #f8f9fa;
+      }
+      .data-table table tr:hover {
+         background-color: #f1f1f1;
+      }
+      .charts {
+         display: flex;
+         justify-content: space-between;
+         margin-top: 20px;
+      }
+      .chart {
+         background-color: #fff;
+         padding: 20px;
+         border-radius: 8px;
+         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+         flex: 1;
+         margin-right: 20px;
+      }
+      .chart:last-child {
+         margin-right: 0;
+      }
+      .footer {
+         width: calc(100% - 250px);
+         margin-left: 250px;
+         padding: 20px;
+         background-color: #fff;
+         text-align: center;
+         box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+         position: fixed;
+         bottom: 0;
+      }
+   </style>
 </head>
 <body>
-   <div class="container">
-      <h1 class="text-center">Admin Dashboard</h1>
-      <div class="row">
-         <div class="col-md-4">
-            <div class="card">
-               <div class="card-body">
-                  <h5 class="card-title">Total Sales</h5>
-                  <p class="card-text">$0.00</p>
-               </div>
-            </div>
+   <div class="sidebar">
+      <div class="logo">Admin</div>
+      <ul>
+         <li><i class="fas fa-tachometer-alt"></i> Dashboard</li>
+         <li><i class="fas fa-member"></i> Members</li>
+         <li><i class="fas fa-category"></i> Category</li>
+          <li onclick="location.href='admin-product.html'"><i class="fas fa-box"></i> Products</li>
+         <li><i class="fas fa-staff"></i> Staff</li>
+         <li onclick="location.href='admin-orders.html'"><i class="fas fa-shopping-cart"></i> Orders</li>
+         <li onclick="location.href='admin-report.html'"><i class="fas fa-chart-line"></i> Reports</li>
+         <li><i class="fas fa-cog"></i> Settings</li>
+      </ul>
+   </div>
+   <div class="header">
+      <div class="search-bar">
+         <input type="text" placeholder="Search...">
+      </div>
+      <button onclick="location.href='index.html'" class="btn btn-secondary">Return to Home</button>
+      <div class="user-profile">
+         <img src="images/user-profile.jpg" alt="User Profile">
+         <span>Admin</span>
+      </div>
+   </div>
+   <div class="main-content">
+      <div class="summary-cards">
+         <div class="summary-card">
+            <h3>Total Sales</h3>
+            <p>$50,000</p>
          </div>
-         <div class="col-md-4">
-            <div class="card">
-               <div class="card-body">
-                  <h5 class="card-title">Number of Orders</h5>
-                  <p class="card-text">0</p>
-               </div>
-            </div>
+         <div class="summary-card">
+            <h3>Active Users</h3>
+            <p>1,200</p>
+         </div>
+         <div class="summary-card">
+            <h3>Pending Orders</h3>
+            <p>45</p>
          </div>
       </div>
-      <nav class="mt-4">
-         <ul class="nav nav-pills">
-            <li class="nav-item">
-               <a class="nav-link" href="orders.html">Manage Orders</a>
-            </li>
-            <li class="nav-item">
-               <a class="nav-link" href="report.html">View/Print Sales Report</a>
-            </li>
-         </ul>
-      </nav>
-      <div class="mt-4">
-         <a href="index.html" class="btn btn-secondary">Return to Home</a>
+      <div class="data-table">
+         <h3>Users</h3>
+         <table>
+            <thead>
+               <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Status</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  <td>1</td>
+                  <td>John Doe</td>
+                  <td>john@example.com</td>
+                  <td>Active</td>
+               </tr>
+               <tr>
+                  <td>2</td>
+                  <td>Jane Smith</td>
+                  <td>jane@example.com</td>
+                  <td>Pending</td>
+               </tr>
+               <!-- Add more rows as needed -->
+            </tbody>
+         </table>
       </div>
+      <div class="charts">
+         <div class="chart">
+            <h3>Sales Trends</h3>
+            <!-- Add chart here -->
+         </div>
+         <div class="chart">
+            <h3>User Activity</h3>
+            <!-- Add chart here -->
+         </div>
+      </div>
+   </div>
+   <div class="footer">
+      &copy; 2023 Your Company. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
    </div>
 </body>
 </html>
