@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
+    <title>Add Product</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #efe4d1;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 450px;
+        }
+
+        .login-left {
+         background-color: #c3baab;
+         padding: 10px 0;
+         display: flex;
+         flex-direction: column;
+         justify-content: center;
+         align-items: center;
+         color: #fff;
+         width: 100%;
+         text-align: center;
+         position: relative;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"], input[type="number"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #FF6600;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #FF4500;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="login-left">
+            <img src="images/logo.png" alt="Company Logo">
+            <h2>A Moder Furtinure Shop</h2>
+        </div>
+        <h1>Add Product</h1>
+        <br>   
+
+        <form>
+            <label for="product-name">Product Name</label>
+            <input type="text" id="product-name" name="product-name">
+            <br>
+            <label for="product-price">Product Price</label>
+            <input type="number" id="product-price" name="product-price">
+            <br>
+            <label for ="">Quantity</label>
+            <input type="number" id="product-quantity" name="product-quantity" min="1" max="40">
+            <label for="product-description">Product Description</label>
+            <textarea id="product-description" name="product-description" rows="4"></textarea>
+            <br>
+            <input type="file" name="product-image" id="product-image">
+            <br>
+            <br>
+            <button type="submit">Add Product</button>
+        </form>
+    </div>
+</body>
+</html>
