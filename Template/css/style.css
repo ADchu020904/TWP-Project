@@ -281,7 +281,7 @@ button {
 
 .logo {
     width: 30%;
-    float: left;
+    float: left
 }
 
 .navbar-expand-lg .navbar-nav .nav-link {
@@ -531,7 +531,6 @@ button {
     float: left;
     padding-top: 50px;
 }
-
 .box_main {
     width: 100%;
     border: 1px solid #aa7662;
@@ -598,6 +597,30 @@ button {
 }
 
 .buy_bt a:hover {
+    color: #ffffff;
+    background-color: #7c2c0c;
+}
+
+.detail_bt {
+    width: 170px;
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 30px;
+}
+
+.detail_bt a {
+    width: 100%;
+    font-size: 18px;
+    color: #ffffff;
+    background-color: #7c2c0c;
+    padding: 8px 25px;
+    text-align: center;
+    text-transform: uppercase;
+    margin-top: 40px;
+    border-radius: 5px;
+}
+
+.detail_bt a:hover {
     color: #ffffff;
     background-color: #7c2c0c;
 }
