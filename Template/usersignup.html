@@ -37,7 +37,7 @@
 
     <!-- Sign-Up Form -->
     <div class="form-container hidden" id="signup-form">
-      <form id="signup-form-element"></form>
+      <form id="signup-form-element">
         <h2>Sign Up</h2>
         <div class="form-group">
           <label for="new-username">Username</label>
@@ -55,11 +55,12 @@
           <label for="confirm-password">Confirm Password</label>
           <input type="password" id="confirm-password" name="confirm-password" class="form-control" placeholder="Confirm your password" required>
         </div>
-        <button type="submit" class="btn-custom">Sign Up</button>
-        <div class="form-footer">
-          <p>Already have an account? <a href="#" id="switch-to-login">Login</a></p>
-        </div>
-      </form>
+          <button type="submit" class="btn-custom">Sign Up</button>
+          <div class="form-footer">
+            <p>Already have an account? <a href="#" id="switch-to-login">Login</a></p>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 
@@ -87,19 +88,5 @@
     });
   </script>
 
-  <script>
-    // Switch between Login and Sign-Up Forms
-    document.getElementById('switch-to-signup').addEventListener('click', function (e) {
-      e.preventDefault();
-      document.getElementById('login-form').classList.add('hidden');
-      document.getElementById('signup-form').classList.remove('hidden');
-    });
-
-    document.getElementById('switch-to-login').addEventListener('click', function (e) {
-      e.preventDefault();
-      document.getElementById('signup-form').classList.add('hidden');
-      document.getElementById('login-form').classList.remove('hidden');
-    });
-  </script>
 </body>
 </html>
