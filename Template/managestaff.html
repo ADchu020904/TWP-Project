@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Staff</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #efe4d1;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+
+        } 
+        
+        .login-left {
+         background-color: #c3baab;
+         padding: 40px;
+         display: flex;
+         flex-direction: column;
+         justify-content: center;
+         align-items: center;
+         color: #fff;
+         width: 50%;
+         text-align: center;
+         position: relative;
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        form {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+        }
+        input[type="text"],
+        input[type="email"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-left">
+        <img src="images/logo.png" alt="Company Logo" style="max-width: 200px;">
+       <h2>A Moder Furtinure Shop</h2>
+    </div>
+    <h1>Add New Staff Member</h1>
+    <form action="/addstaff" method="POST">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+        
+        <label for="position">Position:</label>
+        <input type="text" id="position" name="position" required><br><br>
+        
+        <label for="department">Department:</label>
+        <input type="text" id="department" name="department" required><br><br>
+        
+        <button type="submit">Add Staff</button>
+    </form>
+</body>
+</html>
