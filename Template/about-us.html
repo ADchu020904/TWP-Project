@@ -4,78 +4,150 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/about-us.css">
     <link rel="icon" href="images/vik.ico" type="image/x-icon" />
+    <style>
+        .team_section {
+            padding: 50px 0;
+        }
+        .team_member {
+            text-align: center;
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            padding: 30px;
+            margin: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .team_image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
+        .team_member h3 {
+            color: #343a40;
+            margin-bottom: 10px;
+        }
+        .team_member p {
+            color: #495057;
+            margin-bottom: 5px;
+        }
+        .team_member .bio {
+            margin-top: 10px;
+            color: #6c757d;
+        }
+    </style>
 </head>
 <body>
     <!-- header section start -->
     <div class="header_section">
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-         <div class="container">
-            <a class="logo" href="index.html"><img src="images/vik.ico" alt="Logo"></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-               <ul class="navbar-nav mr-auto">
-                  <li class="nav-item">
-                     <a class="nav-link" href="index.html">Home</a>
-                  </li>
-                  <li class="nav-item">
-                     <a class="nav-link" href="about.html">About</a>
-                  </li>
-                  <li class="nav-item">
-                     <a class="nav-link" href="design.html">Our Design</a>
-                  </li>
-                  <li class="nav-item">
-                     <a class="nav-link" href="shop.html">Shop</a>
-                  </li>
-                  <li class="nav-item">
-                     <a class="nav-link" href="contact.html">Contact Us</a>
-                  </li>
-                  <li class="nav-item">
-                     <a class="nav-link" href="dashboard.html">Dashboard</a>
-                  </li>
-                  <li class="nav-item">
-                     <a class="nav-link" href="cart.html"><img src="images/cart.png" alt="Cart Icon" style="width: 24px; height: 24px;"></a>
-                  </li>
-               </ul>
-               <div class="dropdown">
-                  <a href="#" class="dropdown-toggle" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                     <img src="images/user-icon.png" alt="User Icon">
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="userDropdown">
-                     <a class="dropdown-item" href="account.html">My Account</a>
-                     <a class="dropdown-item" href="usersignup.html">Log in/Sign up</a>
-                     <a class="dropdown-item" href="index.html">Log Out</a>
-               </div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <a class="logo" href="index.html"><img src="images/vik.ico" alt="Logo"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="about.html">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="design.html">Our Design</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="shop.html">Shop</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact.html">Contact Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="dashboard.html">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="cart.html"><img src="images/cart.png" alt="Cart Icon" style="width: 24px; height: 24px;"></a>
+                        </li>
+                    </ul>
+                    <div class="dropdown">
+                        <a href="#" class="dropdown-toggle" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img src="images/user.png" alt="User Icon" style="width: 24px; height: 24px;">
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                            <a class="dropdown-item" href="profile.html">Profile</a>
+                            <a class="dropdown-item" href="logout.html">Logout</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-         </div>
-      </nav>
-      </div>
-   </div>
-   <!-- header section end -->
-    <main class="about-container">
-        <div class="member">
-            <img src="images/jeremy.jpg" alt="Jeremy" class="member-photo">
-            <h2>Jeremy</h2>
-            <p>The leader of the team, Jeremy oversees the project and ensures everything runs smoothly.</p>
+        </nav>
+    </div>
+    <!-- header section end -->
+
+    <!-- about us section start -->
+    <div class="about_us_section layout_padding">
+        <div class="container">
+            <h1 class="about_us_title">About Us</h1>
+            <p class="about_us_text">Welcome to our company. We are dedicated to providing the best products and services to our customers. Our team works hard to ensure customer satisfaction and we are always here to help you with any questions or concerns you may have.</p>
+            <p class="about_us_text">Our mission is to deliver high-quality products that meet the needs and expectations of our customers. We believe in innovation, quality, and customer service. Thank you for choosing us!</p>
+            <h2 class="team_title">Meet Our Team</h2>
+            <div class="row team_section">
+                <div class="col-md-6 col-lg-3">
+                    <div class="team_member">
+                        <img src="images/jeremy.jpg" alt="Jeremy" class="team_image">
+                        <h3>Jeremy</h3>
+                        <p>Role: Developer</p>
+                        <p class="bio">Jeremy is a skilled developer with over 5 years of experience in web development. He specializes in front-end technologies and is passionate about creating interactive user experiences.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="team_member">
+                        <img src="images/eddie.jpg" alt="Eddie" class="team_image">
+                        <h3>Eddie</h3>
+                        <p>Role: Designer</p>
+                        <p class="bio">Eddie is a creative designer with a keen eye for detail. He has a background in graphic design and is responsible for the visual aesthetics of our products.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="team_member">
+                        <img src="images/goh.jpg" alt="Goh" class="team_image">
+                        <h3>Goh</h3>
+                        <p>Role: Project Manager</p>
+                        <p class="bio">Goh is an experienced project manager who ensures that all projects are completed on time and within budget. He has a strong background in project management and team leadership.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="team_member">
+                        <img src="images/tong.jpg" alt="Tong" class="team_image">
+                        <h3>Tong</h3>
+                        <p>Role: QA Engineer</p>
+                        <p class="bio">Tong is a dedicated QA engineer who is responsible for ensuring the quality of our products. She has a meticulous approach to testing and is committed to delivering bug-free software.</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="member">
-            <img src="images/eddie.jpg" alt="Eddie" class="member-photo">
-            <h2>Eddie</h2>
-            <p>Eddie is the creative designer who crafts the visual aspects of the website.</p>
-        </div>
-        <div class="member">
-            <img src="images/goh.jpg" alt="Goh" class="member-photo">
-            <h2>Goh</h2>
-            <p>Goh specializes in backend development, handling the technical functionalities.</p>
-        </div>
-        <div class="member">
-            <img src="images/tong.jpg" alt="Tong" class="member-photo">
-            <h2>Tong</h2>
-            <p>Tong is in charge of content and quality assurance, ensuring everything looks perfect.</p>
-        </div>
-    </main>
+    </div>
+    <!-- about us section end -->
+
+    <!-- footer section start -->
+ 
+    <!-- footer section end -->
+
+    <!-- Javascript files-->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery-3.0.0.min.js"></script>
+    <script src="js/plugin.js"></script>
+    <!-- sidebar -->
+    <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="js/custom.js"></script>
+    <!-- javascript --> 
+    <script src="js/owl.carousel.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
 </body>
 </html>
