@@ -6,6 +6,9 @@
     <title>Admin Product Management</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.2.0/dist/css/coreui.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="node_modules/@coreui/icons/css/all.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.2.0/dist/js/coreui.bundle.min.js"></script>
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -119,117 +122,249 @@
             font-size: 24px;
             margin-bottom: 10px;
         }
+        /* Sidebar Styling */
+        .sidebar {
+            width: 250px;
+            overflow-y: auto;
+            min-height: 100vh;
+        }
+        /* Navbar Styling */
+        .navbar {
+            background-color: #f8f8f9;
+            color: black;
+            width: calc(100% - 256px); /* Remaining width after sidebar */
+            margin-left: 256px; /* Align next to the sidebar */
+            position: fixed;
+            z-index: 1040;
+            top: 0;
+            height: 62px; /* Navbar height */
+        }
     </style>
 </head>
-<body>
-    <div class="container">
-        <div class="login-left">
-            <img src="images/logo.png" alt="Company Logo">
-            <h2>A Modern Furniture Shop</h2>
+<body class="bg-body-secondary">
+    <!-- Layout Container -->
+    <div class="d-flex">
+        <!-- Sidebar Start -->
+        <div class="sidebar sidebar-dark border-end">
+            <div class="sidebar-header border-bottom">
+                <img class="sidebar-brand" src="images/Vik.png" alt="Vik Logo" style="width: 30px; height: 30px;">
+            </div>
+            <ul class="sidebar-nav">
+                <li class="nav-title">Navigation</li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="nav-icon cil-speedometer"></i> Dashboard
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="memberDropdown" data-coreui-toggle="dropdown" aria-expanded="false">
+                        <i class="nav-icon cil-people"></i> Member
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="memberDropdown">
+                        <li><a class="dropdown-item" href="admin-member.html#add">Add</a></li>
+                        <li><a class="dropdown-item" href="admin-member.html#view">View</a></li>
+                        <li><a class="dropdown-item" href="admin-member.html#delete">Delete</a></li>
+                        <li><a class="dropdown-item" href="admin-member.html#update">Update</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="productDropdown" data-coreui-toggle="dropdown" aria-expanded="false">
+                        <i class="nav-icon cil-cart"></i> Product
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="productDropdown">
+                        <li><a class="dropdown-item" href="admin-product.html#add">Add</a></li>
+                        <li><a class="dropdown-item" href="admin-product.html#view">View</a></li>
+                        <li><a class="dropdown-item" href="admin-product.html#delete">Delete</a></li>
+                        <li><a class="dropdown-item" href="admin-product.html#update">Update</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="categoryDropdown" data-coreui-toggle="dropdown" aria-expanded="false">
+                        <i class="nav-icon cil-tags"></i> Category
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
+                        <li><a class="dropdown-item" href="#">Add</a></li>
+                        <li><a class="dropdown-item" href="#">View</a></li>
+                        <li><a class="dropdown-item" href="#">Delete</a></li>
+                        <li><a class="dropdown-item" href="#">Update</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="orderDropdown" data-coreui-toggle="dropdown" aria-expanded="false">
+                        <i class="nav-icon cil-notes"></i> Order
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="orderDropdown">
+                        <li><a class="dropdown-item" href="#">Add</a></li>
+                        <li><a class="dropdown-item" href="#">View</a></li>
+                        <li><a class="dropdown-item" href="#">Delete</a></li>
+                        <li><a class="dropdown-item" href="#">Update</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="staffDropdown" data-coreui-toggle="dropdown" aria-expanded="false">
+                        <i class="nav-icon cil-user"></i> Staff
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="staffDropdown">
+                        <li><a class="dropdown-item" href="#">Add</a></li>
+                        <li><a class="dropdown-item" href="#">View</a></li>
+                        <li><a class="dropdown-item" href="#">Delete</a></li>
+                        <li><a class="dropdown-item" href="#">Update</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="nav-icon cil-chart"></i> Reports
+                    </a>
+                </li>
+                <li class="nav-item mt-5">
+                    <a class="nav-link" href="https://coreui.io">
+                        <i class="nav-icon cil-cloud-download"></i> Download CoreUI
+                    </a>
+                </li>
+            </ul>
+            <div class="sidebar-footer border-top d-flex">
+                <button class="sidebar-toggler" type="button"></button>
+            </div>
         </div>
-        <h1>View Products</h1>
-        <a href="#add-product" class="add-btn">Add Product</a>
-        <table>
-            <thead>
-                <tr>
-                    <th>Product Name</th>
-                    <th>Price</th>
-                    <th>Description</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Bed 3351</td>
-                    <td>$426.80</td>
-                    <td>Single Bunk Bed</td>
-                    <td class="actions">
-                        <button class="edit-btn" onclick="location.href='#update-product'">Edit</button>
-                        <button class="delete-btn" onclick="location.href='#delete-product'">Delete</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Bed 3352</td>
-                    <td>$352.00</td>
-                    <td>Single Bunk Bed</td>
-                    <td class="actions">
-                        <button class="edit-btn" onclick="location.href='#update-product'">Edit</button>
-                        <button class="delete-btn" onclick="location.href='#delete-product'">Delete</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>AL013-A/B</td>
-                    <td>$165.00</td>
-                    <td>Single Bed</td>
-                    <td class="actions">
-                        <button class="edit-btn" onclick="location.href='#update-product'">Edit</button>
-                        <button class="delete-btn" onclick="location.href='#delete-product'">Delete</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>DV17809-M</td>
-                    <td>$280.00</td>
-                    <td>5ft Bed</td>
-                    <td class="actions">
-                        <button class="edit-btn" onclick="location.href='#update-product'">Edit</button>
-                        <button class="delete-btn" onclick="location.href='#delete-product'">Delete</button>
-                    </td>
-                </tr>
-                <!-- Repeat for other products -->
-            </tbody>
-        </table>
-    </div>
+        <!-- Sidebar Finish -->
 
-    <div class="container" id="add-product">
-        <h1>Add Product</h1>
-        <form>
-            <label for="product-name">Product Name</label>
-            <input type="text" id="product-name" name="product-name">
-            <label for="product-price">Product Price</label>
-            <input type="number" id="product-price" name="product-price">
-            <label for="product-quantity">Quantity</label>
-            <input type="number" id="product-quantity" name="product-quantity" min="1" max="40">
-            <label for="product-description">Product Description</label>
-            <textarea id="product-description" name="product-description" rows="4"></textarea>
-            <input type="file" name="product-image" id="product-image">
-            <button type="submit">Add Product</button>
-        </form>
-    </div>
+        <!-- Navbar Start -->
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <i class="cil-cloud-download"></i><a class="navbar-brand" href="#" style="color: #5d6061;">Navbar</a>
+                <button class="navbar-toggler" type="button" data-coreui-toggle="collapse" data-coreui-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Features</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Pricing</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Navbar Finish -->
 
-    <div class="container" id="update-product">
-        <h1>Update Product</h1>
-        <form action="updateproduct.php" method="post">
-            <label for="product-select">Select Product to Update</label>
-            <select id="product-select" name="productname" required>
-                <option value="" disabled selected>Select product</option>
-                <option value="Bed 3351">Bed 3351</option>
-                <option value="Bed 3352">Bed 3352</option>
-                <option value="AL013-A/B">AL013-A/B</option>
-                <!-- Add more options as needed -->
-            </select>
-            <label for="product-quantity">Product Quantity</label>
-            <input type="number" id="product-quantity" name="product-quantity" required min="1" max="99">
-            <label for="product-price">Product Price</label>
-            <input type="number" id="product-price" name="product-price" required min="1" max="9999">
-            <label for="product-description">Product Description</label>
-            <textarea id="product-description" name="product-description" rows="4" required></textarea>
-            <button type="submit">Update Product</button>
-        </form>
-    </div>
+        <!-- Main Content Start -->
+        <div class="container">
+            <div class="login-left">
+                <img src="images/logo.png" alt="Company Logo">
+                <h2>A Modern Furniture Shop</h2>
+            </div>
+            <h1>View Products</h1>
+            <a href="#add-product" class="add-btn">Add Product</a>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Price</th>
+                        <th>Description</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Bed 3351</td>
+                        <td>$426.80</td>
+                        <td>Single Bunk Bed</td>
+                        <td class="actions">
+                            <button class="edit-btn" onclick="location.href='#update-product'">Edit</button>
+                            <button class="delete-btn" onclick="location.href='#delete-product'">Delete</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Bed 3352</td>
+                        <td>$352.00</td>
+                        <td>Single Bunk Bed</td>
+                        <td class="actions">
+                            <button class="edit-btn" onclick="location.href='#update-product'">Edit</button>
+                            <button class="delete-btn" onclick="location.href='#delete-product'">Delete</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>AL013-A/B</td>
+                        <td>$165.00</td>
+                        <td>Single Bed</td>
+                        <td class="actions">
+                            <button class="edit-btn" onclick="location.href='#update-product'">Edit</button>
+                            <button class="delete-btn" onclick="location.href='#delete-product'">Delete</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>DV17809-M</td>
+                        <td>$280.00</td>
+                        <td>5ft Bed</td>
+                        <td class="actions">
+                            <button class="edit-btn" onclick="location.href='#update-product'">Edit</button>
+                            <button class="delete-btn" onclick="location.href='#delete-product'">Delete</button>
+                        </td>
+                    </tr>
+                    <!-- Repeat for other products -->
+                </tbody>
+            </table>
+        </div>
 
-    <div class="container" id="delete-product">
-        <h1>Delete Product</h1>
-        <form action="deleteproduct.php" method="post">
-            <label for="product-select">Select Product to Delete</label>
-            <select id="product-select" name="productname">
-                <option value="" disabled selected>Select product</option>
-                <option value="Bed 3351">Bed 3351</option>
-                <option value="Bed 3352">Bed 3352</option>
-                <option value="AL013-A/B">AL013-A/B</option>
-                <!-- Add more options as needed -->
-            </select>
-            <button type="submit">Delete Product</button>
-        </form>
+        <div class="container" id="add-product">
+            <h1>Add Product</h1>
+            <form>
+                <label for="product-name">Product Name</label>
+                <input type="text" id="product-name" name="product-name">
+                <label for="product-price">Product Price</label>
+                <input type="number" id="product-price" name="product-price">
+                <label for="product-quantity">Quantity</label>
+                <input type="number" id="product-quantity" name="product-quantity" min="1" max="40">
+                <label for="product-description">Product Description</label>
+                <textarea id="product-description" name="product-description" rows="4"></textarea>
+                <input type="file" name="product-image" id="product-image">
+                <button type="submit">Add Product</button>
+            </form>
+        </div>
+
+        <div class="container" id="update-product">
+            <h1>Update Product</h1>
+            <form action="updateproduct.php" method="post">
+                <label for="product-select">Select Product to Update</label>
+                <select id="product-select" name="productname" required>
+                    <option value="" disabled selected>Select product</option>
+                    <option value="Bed 3351">Bed 3351</option>
+                    <option value="Bed 3352">Bed 3352</option>
+                    <option value="AL013-A/B">AL013-A/B</option>
+                    <!-- Add more options as needed -->
+                </select>
+                <label for="product-quantity">Product Quantity</label>
+                <input type="number" id="product-quantity" name="product-quantity" required min="1" max="99">
+                <label for="product-price">Product Price</label>
+                <input type="number" id="product-price" name="product-price" required min="1" max="9999">
+                <label for="product-description">Product Description</label>
+                <textarea id="product-description" name="product-description" rows="4" required></textarea>
+                <button type="submit">Update Product</button>
+            </form>
+        </div>
+
+        <div class="container" id="delete-product">
+            <h1>Delete Product</h1>
+            <form action="deleteproduct.php" method="post">
+                <label for="product-select">Select Product to Delete</label>
+                <select id="product-select" name="productname">
+                    <option value="" disabled selected>Select product</option>
+                    <option value="Bed 3351">Bed 3351</option>
+                    <option value="Bed 3352">Bed 3352</option>
+                    <option value="AL013-A/B">AL013-A/B</option>
+                    <!-- Add more options as needed -->
+                </select>
+                <button type="submit">Delete Product</button>
+            </form>
+        </div>
     </div>
 </body>
 </html>
