@@ -19,11 +19,12 @@
             .navbar {
                 background-color: #f8f8f9;
                 color: black;
-                width: calc(100% - 260px); /* Remaining width after sidebar */
-                margin-left: 260px; /* Align next to the sidebar */
+                width: calc(100% - 256px); /* Remaining width after sidebar */
+                margin-left: 256px; /* Align next to the sidebar */
                 position: fixed;
                 z-index: 1040;
                 top: 0;
+                height: 62px; /* Navbar height */
             }
             .navbar .navbar-nav .nav-link {
                 color: #5d6061; /* Navbar text color */
@@ -34,23 +35,6 @@
                 margin-left: 250px; /* Push content next to the sidebar */
                 padding: 20px;
                 background: #f8f9fa;
-            }
-            /* Breadcrumb Styling */
-            .breadcrumb {
-            background: transparent; /* Make breadcrumb background transparent */
-            padding: 0; /* Remove default padding */
-            margin-bottom: 1rem; /* Add spacing below */
-            }
-            .breadcrumb-item a {
-            color: #5d6061; /* Set breadcrumb link color */
-            text-decoration: none; /* Remove underline */
-            }
-            .breadcrumb-item a:hover {
-            text-decoration: underline; /* Underline on hover */
-            color: #007bff; /* Hover color (Bootstrap primary color) */
-            }
-            .breadcrumb-item.active {
-            color: #6c757d; /* Active breadcrumb color */
             }
         </style>
     </head>
@@ -63,43 +47,75 @@
                     <img class="sidebar-brand" src="images/Vik.png" alt="Vik Logo" style="width: 30px; height: 30px;">
                 </div>
                 <ul class="sidebar-nav">
-                    <li class="nav-title">Nav Title</li>
+                    <li class="nav-title">Navigation</li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">
-                        <i class="nav-icon cil-speedometer"></i> Nav item
-                    </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="nav-icon cil-speedometer"></i> With badge
-                            <span class="badge bg-primary ms-auto">NEW</span>
+                            <i class="nav-icon cil-speedometer"></i> Dashboard
                         </a>
                     </li>
-                    <li class="nav-item nav-group show">
-                        <a class="nav-link nav-group-toggle" href="#">
-                            <i class="nav-icon cil-puzzle"></i> Nav dropdown 
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="memberDropdown" data-coreui-toggle="dropdown" aria-expanded="false">
+                            <i class="nav-icon cil-people"></i> Member
                         </a>
-                        <ul class="nav-group-items">
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">
-                                    <span class="nav-icon"><span class="nav-icon-bullet"></span></span> Nav dropdown item
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">
-                                    <span class="nav-icon"><span class="nav-icon-bullet"></span></span> Nav dropdown item
-                                </a>
-                            </li>
+                        <ul class="dropdown-menu" aria-labelledby="memberDropdown">
+                            <li><a class="dropdown-item" href="#">Add</a></li>
+                            <li><a class="dropdown-item" href="#">View</a></li>
+                            <li><a class="dropdown-item" href="#">Delete</a></li>
+                            <li><a class="dropdown-item" href="#">Update</a></li>
                         </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="productDropdown" data-coreui-toggle="dropdown" aria-expanded="false">
+                            <i class="nav-icon cil-cart"></i> Product
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="productDropdown">
+                            <li><a class="dropdown-item" href="#">Add</a></li>
+                            <li><a class="dropdown-item" href="#">View</a></li>
+                            <li><a class="dropdown-item" href="#">Delete</a></li>
+                            <li><a class="dropdown-item" href="#">Update</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="categoryDropdown" data-coreui-toggle="dropdown" aria-expanded="false">
+                            <i class="nav-icon cil-tags"></i> Category
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
+                            <li><a class="dropdown-item" href="#">Add</a></li>
+                            <li><a class="dropdown-item" href="#">View</a></li>
+                            <li><a class="dropdown-item" href="#">Delete</a></li>
+                            <li><a class="dropdown-item" href="#">Update</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="orderDropdown" data-coreui-toggle="dropdown" aria-expanded="false">
+                            <i class="nav-icon cil-notes"></i> Order
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="orderDropdown">
+                            <li><a class="dropdown-item" href="#">Add</a></li>
+                            <li><a class="dropdown-item" href="#">View</a></li>
+                            <li><a class="dropdown-item" href="#">Delete</a></li>
+                            <li><a class="dropdown-item" href="#">Update</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="staffDropdown" data-coreui-toggle="dropdown" aria-expanded="false">
+                            <i class="nav-icon cil-user"></i> Staff
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="staffDropdown">
+                            <li><a class="dropdown-item" href="#">Add</a></li>
+                            <li><a class="dropdown-item" href="#">View</a></li>
+                            <li><a class="dropdown-item" href="#">Delete</a></li>
+                            <li><a class="dropdown-item" href="#">Update</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="nav-icon cil-chart"></i> Reports
+                        </a>
                     </li>
                     <li class="nav-item mt-5">
                         <a class="nav-link" href="https://coreui.io">
-                            <i class="nav-icon cil-cloud-download"></i> Download CoreUI</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="https://coreui.io/pro/">
-                            <i class="nav-icon cil-layers"></i> Try CoreUI
-                            <strong>PRO</strong>
+                            <i class="nav-icon cil-cloud-download"></i> Download CoreUI
                         </a>
                     </li>
                 </ul>
@@ -110,7 +126,7 @@
             <!-- Sidebar Finish -->
 
             <!-- Navbar Start -->
-            <nav class="navbar navbar-expand-lg navbar-dark">
+            <nav class="navbar navbar-expand-lg bg-body-tertiary">
                 <div class="container-fluid">
                     <i class="cil-cloud-download"></i><a class="navbar-brand" href="#" style="color: #5d6061;">Navbar</a>
                     <button class="navbar-toggler" type="button" data-coreui-toggle="collapse" data-coreui-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -135,6 +151,6 @@
                 </div>
             </nav>
             <!-- Navbar Finish -->
-            <!-- Content Start -->
-            <!-- Content Finish -->
+        </div>
+    </body>
 </html>
