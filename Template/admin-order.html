@@ -1,124 +1,269 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Manage Orders</title>
-   <link rel="stylesheet" href="css/bootstrap.min.css">
-   <link href="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.2.0/dist/css/coreui.min.css" rel="stylesheet">
-   <link rel="stylesheet" href="node_modules/@coreui/icons/css/all.min.css">
-   <style>
-      body {
-         font-family: 'Poppins', sans-serif;
-         background-color: #efe4d1;
-         margin: 0;
-         padding: 0;
-      }
-      .container {
-         background-color: white;
-         padding: 20px;
-         border-radius: 8px;
-         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-         margin: 20px auto;
-         width: 80%;
-      }
-      h1 {
-         text-align: center;
-         margin-bottom: 20px;
-      }
-      label {
-         display: block;
-         margin-bottom: 5px;
-         font-weight: bold;
-      }
-      input[type="text"], input[type="email"], input[type="tel"], input[type="number"], textarea, select {
-         width: 100%;
-         padding: 10px;
-         margin-bottom: 10px;
-         border: 1px solid #ccc;
-         border-radius: 4px;
-      }
-      textarea {
-         resize: vertical;
-      }
-      button {
-         width: 100%;
-         padding: 10px;
-         background-color: #FF6600;
-         color: white;
-         border: none;
-         border-radius: 4px;
-         cursor: pointer;
-         font-size: 16px;
-      }
-      button:hover {
-         background-color: #FF4500;
-      }
-      table {
-         width: 100%;
-         border-collapse: collapse;
-         margin-bottom: 20px;
-      }
-      table, th, td {
-         border: 1px solid #ccc;
-      }
-      th, td {
-         padding: 10px;
-         text-align: left;
-      }
-      th {
-         background-color: #f2f2f2;
-      }
-      .actions {
-         display: flex;
-         justify-content: space-around;
-      }
-      .actions button {
-         padding: 5px 10px;
-         border: none;
-         border-radius: 4px;
-         cursor: pointer;
-      }
-      .edit-btn {
-         background-color: #ffc107;
-         color: white;
-      }
-      .delete-btn {
-         background-color: #dc3545;
-         color: white;
-      }
-   </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Order Management</title>
+    <link href="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.2.0/dist/css/coreui.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="node_modules/@coreui/icons/css/all.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.2.0/dist/js/coreui.bundle.min.js"></script>
+    <style>
+        /* Sidebar Styling */
+        .sidebar {
+            width: 250px;
+            overflow-y: auto;
+            min-height: 100vh;
+        }
+        /* Navbar Styling */
+        .navbar {
+            background-color: #f8f8f9;
+            color: black;
+            width: calc(100% - 256px); /* Remaining width after sidebar */
+            margin-left: 256px; /* Align next to the sidebar */
+            position: fixed;
+            z-index: 1040;
+            top: 0;
+            height: 62px; /* Navbar height */
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #efe4d1;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            width: 80%;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="email"], input[type="tel"], input[type="number"], textarea, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        textarea {
+            resize: vertical;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #FF6600;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #FF4500;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .actions {
+            display: flex;
+            justify-content: space-around;
+        }
+        .actions button {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .edit-btn {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .delete-btn {
+            background-color: #f44336;
+            color: white;
+        }
+        .add-btn {
+            background-color: #fff;
+            border: 1px solid black;
+            color: black;
+            margin-bottom: 20px;
+            display: block;
+            width: 100px;
+            text-align: center;
+            text-decoration: none;
+        }
+        .add-btn:hover {
+            background-color: #eadcdc;
+        }
+    </style>
 </head>
-<body>
-   <div class="container">
-      <h1 class="text-center">Manage Orders</h1>
-      <table class="table table-bordered">
-         <thead>
-            <tr>
-               <th>Order ID</th>
-               <th>Customer Name</th>
-               <th>Total Amount</th>
-               <th>Status</th>
-               <th>Action</th>
-            </tr>
-         </thead>
-         <tbody>
-            <!-- Placeholder for dynamic content -->
-            <tr>
-               <td>1</td>
-               <td>John Doe</td>
-               <td>$100.00</td>
-               <td>Pending</td>
-               <td class="actions">
-                  <button class="edit-btn">Edit</button>
-                  <button class="delete-btn">Delete</button>
-               </td>
-            </tr>
-         </tbody>
-      </table>
-      <div class="mt-4">
-         <a href="admin-dashboard.html" class="btn btn-secondary">Return</a>
-      </div>
-   </div>
+<body class="bg-body-secondary">
+    <!-- Layout Container -->
+    <div class="d-flex">
+        <!-- Sidebar Start -->
+        <div class="sidebar sidebar-dark border-end">
+            <div class="sidebar-header border-bottom">
+                <img class="sidebar-brand" src="images/Vik.png" alt="Vik Logo" style="width: 30px; height: 30px;">
+            </div>
+            <ul class="sidebar-nav">
+                <li class="nav-title">Navigation</li>
+                <li class="nav-item">
+                    <a class="nav-link" href="admin-dashboard.html">
+                        <i class="nav-icon cil-speedometer"></i> Dashboard
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="memberDropdown" data-coreui-toggle="dropdown" aria-expanded="false">
+                        <i class="nav-icon cil-people"></i> Member
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="memberDropdown">
+                        <li><a class="dropdown-item" href="admin-member.html#add">Add</a></li>
+                        <li><a class="dropdown-item" href="admin-member.html#view">View</a></li>
+                        <li><a class="dropdown-item" href="admin-member.html#delete">Delete</a></li>
+                        <li><a class="dropdown-item" href="admin-member.html#update">Update</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="productDropdown" data-coreui-toggle="dropdown" aria-expanded="false">
+                        <i class="nav-icon cil-cart"></i> Product
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="productDropdown">
+                        <li><a class="dropdown-item" href="admin-product.html#add">Add</a></li>
+                        <li><a class="dropdown-item" href="admin-product.html#view">View</a></li>
+                        <li><a class="dropdown-item" href="admin-product.html#delete">Delete</a></li>
+                        <li><a class="dropdown-item" href="admin-product.html#update">Update</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="categoryDropdown" data-coreui-toggle="dropdown" aria-expanded="false">
+                        <i class="nav-icon cil-tags"></i> Category
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
+                        <li><a class="dropdown-item" href="admin-category.html#add">Add</a></li>
+                        <li><a class="dropdown-item" href="admin-category.html#view">View</a></li>
+                        <li><a class="dropdown-item" href="admin-category.html#delete">Delete</a></li>
+                        <li><a class="dropdown-item" href="admin-category.html#update">Update</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="orderDropdown" data-coreui-toggle="dropdown" aria-expanded="false">
+                        <i class="nav-icon cil-notes"></i> Order
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="orderDropdown">
+                        <li><a class="dropdown-item" href="admin-order.html#add">Add</a></li>
+                        <li><a class="dropdown-item" href="admin-order.html#view">View</a></li>
+                        <li><a class="dropdown-item" href="admin-order.html#delete">Delete</a></li>
+                        <li><a class="dropdown-item" href="admin-order.html#update">Update</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="staffDropdown" data-coreui-toggle="dropdown" aria-expanded="false">
+                        <i class="nav-icon cil-user"></i> Staff
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="staffDropdown">
+                        <li><a class="dropdown-item" href="admin-staff.html#add">Add</a></li>
+                        <li><a class="dropdown-item" href="admin-staff.html#view">View</a></li>
+                        <li><a class="dropdown-item" href="admin-staff.html#delete">Delete</a></li>
+                        <li><a class="dropdown-item" href="admin-staff.html#update">Update</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="admin-report.html">
+                        <i class="nav-icon cil-chart"></i> Reports
+                    </a>
+                </li>
+                <li class="nav-item mt-5">
+                    <a class="nav-link" href="https://coreui.io">
+                        <i class="nav-icon cil-cloud-download"></i> Download CoreUI
+                    </a>
+                </li>
+            </ul>
+            <div class="sidebar-footer border-top d-flex">
+                <button class="sidebar-toggler" type="button"></button>
+            </div>
+        </div>
+        <!-- Sidebar Finish -->
+
+        <!-- Navbar Start -->
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <i class="cil-menu" style="font-size: 25px;"></i>
+                <button class="navbar-toggler" type="button" data-coreui-toggle="collapse" data-coreui-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Features</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Pricing</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Navbar Finish -->
+
+        <!-- Main Content Start -->
+        <div class="container">
+            <h1>Manage Orders</h1>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Customer Name</th>
+                        <th>Total Amount</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Placeholder for dynamic content -->
+                    <tr>
+                        <td>1</td>
+                        <td>John Doe</td>
+                        <td>$100.00</td>
+                        <td>Pending</td>
+                        <td class="actions">
+                            <button class="edit-btn">Edit</button>
+                            <button class="delete-btn">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="mt-4">
+                <a href="admin-dashboard.html" class="btn btn-secondary">Return</a>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
