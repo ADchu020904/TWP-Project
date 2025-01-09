@@ -11,26 +11,10 @@
             /* Sidebar Styling */
             .sidebar {
                 width: 250px;
-                background-color: #212631; /* Dark sidebar background */
                 overflow-y: auto;
-                color: white;
                 min-height: 100vh;
             }
-            .sidebar .nav-link, .sidebar .nav-title, .sidebar a, .sidebar .sidebar-brand, 
-            .sidebar ul li, .sidebar .badge {
-                color: white !important; /* Default text color */
-            }
-            .sidebar .nav-link:hover, .sidebar a:hover {
-                background-color: #2c343f !important; /* Slightly lighter background on hover */
-                color: #adb5bd !important; /* Subtle light-grey text color on hover */
-                border-radius: 4px; /* Optional: rounded corners for hover effect */
-            }
-            .sidebar .nav-icon {
-                color: white !important; /* Default icon color */
-            }
-            .sidebar .nav-icon:hover {
-                color: #adb5bd !important; /* Subtle light-grey icon color on hover */
-            }
+            
             /* Navbar Styling */
             .navbar {
                 background-color: #f8f8f9;
@@ -74,15 +58,15 @@
         <!-- Layout Container -->
         <div class="d-flex">
             <!-- Sidebar Start -->
-            <div class="sidebar">
+            <div class="sidebar sidebar-dark border-end">
                 <div class="sidebar-header border-bottom">
-                    <div class="sidebar-brand">Vik</div>
+                    <img class="sidebar-brand" src="images/Vik.png" alt="Vik Logo" style="width: 30px; height: 30px;">
                 </div>
                 <ul class="sidebar-nav">
                     <li class="nav-title">Nav Title</li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">
-                        <i class="cil-speedometer"></i> Nav item
+                        <i class="nav-icon cil-speedometer"></i> Nav item
                     </a>
                     </li>
                     <li class="nav-item">
