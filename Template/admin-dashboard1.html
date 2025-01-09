@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Admin Dashboard</title>
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
+   <link rel="stylesheet" href="css/bootstrap.min.css">
+   <link rel="stylesheet" href="css/fontawesome.min.css">
+   <link rel="stylesheet" href="css/coreui.min.css">
+   <style>
+      body {
+         font-family: 'Poppins', sans-serif;
+         background-color: #f4f4f9;
+         margin: 0;
+         display: flex;
+      }
+      .sidebar {
+         width: 250px;
+         background-color: #343a40;
+         color: #fff;
+         height: 100vh;
+         position: fixed;
+         display: flex;
+         flex-direction: column;
+         transition: width 0.3s;
+      }
+      .sidebar.collapsed {
+         width: 80px;
+      }
+      .sidebar .logo {
+         padding: 20px;
+         text-align: center;
+         font-size: 1.5rem;
+         font-weight: bold;
+         background-color: #23272b;
+      }
+      .sidebar ul {
+         list-style: none;
+         padding: 0;
+         margin: 0;
+      }
+      .sidebar ul li {
+         padding: 15px 20px;
+         cursor: pointer;
+         display: flex;
+         align-items: center;
+      }
+      .sidebar ul li:hover {
+         background-color: #495057;
+      }
+      .sidebar ul li i {
+         margin-right: 10px;
+      }
+      .sidebar ul li .badge {
+         margin-left: auto;
+         background-color: #FF6600;
+      }
+      .header {
+         width: calc(100% - 250px);
+         margin-left: 250px;
+         background-color: #fff;
+         padding: 15px 20px;
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+         transition: margin-left 0.3s;
+      }
+      .header.collapsed {
+         margin-left: 80px;
+         width: calc(100% - 80px);
+      }
+      .header .search-bar {
+         flex: 1;
+         margin-left: 20px;
+      }
+      .header .search-bar input {
+         width: 100%;
+         padding: 10px;
+         border: 1px solid #ccc;
+         border-radius: 5px;
+      }
+      .header .user-profile {
+         display: flex;
+         align-items: center;
+      }
+      .header .user-profile img {
+         width: 40px;
+         height: 40px;
+         border-radius: 50%;
+         margin-right: 10px;
+      }
+      .header .user-profile .dropdown-menu {
+         right: 0;
+         left: auto;
+      }
+      .main-content {
+         width: calc(100% - 250px);
+         margin-left: 250px;
+         padding: 20px;
+         transition: margin-left 0.3s;
+      }
+      .main-content.collapsed {
+         margin-left: 80px;
+         width: calc(100% - 80px);
+      }
+      .summary-cards {
+         display: flex;
+         justify-content: space-between;
+         margin-bottom: 20px;
+      }
+      .summary-card {
+         background-color: #fff;
+         padding: 20px;
+         border-radius: 8px;
+         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+         flex: 1;
+         margin-right: 20px;
+         text-align: center;
+         position: relative;
+      }
+      .summary-card:last-child {
+         margin-right: 0;
+      }
+      .summary-card h3 {
+         margin: 0;
+         font-size: 1.5rem;
+         color: #333;
+      }
+      .summary-card p {
+         margin: 10px 0 0;
+         font-size: 1.2rem;
+         color: #666;
+      }
+      .summary-card .trend-icon {
+         position: absolute;
+         top: 10px;
+         right: 10px;
+         font-size: 1.5rem;
+      }
+      .data-table {
+         background-color: #fff;
+         padding: 20px;
+         border-radius: 8px;
+         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      .data-table table {
+         width: 100%;
+         border-collapse: collapse;
+      }
+      .data-table table th, .data-table table td {
+         padding: 15px;
+         text-align: left;
+         border-bottom: 1px solid #ddd;
+      }
+      .data-table table th {
+         background-color: #f8f9fa;
+      }
+      .data-table table tr:hover {
+         background-color: #f1f1f1;
+      }
+      .data-table .action-buttons {
+         display: flex;
+         gap: 10px;
+      }
+      .charts {
+         display: flex;
+         justify-content: space-between;
+         margin-top: 20px;
+      }
+      .chart {
+         background-color: #fff;
+         padding: 20px;
+         border-radius: 8px;
+         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+         flex: 1;
+         margin-right: 20px;
+      }
+      .chart:last-child {
+         margin-right: 0;
+      }
+      .footer {
+         width: calc(100% - 250px);
+         margin-left: 250px;
+         padding: 20px;
+         background-color: #fff;
+         text-align: center;
+         box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+         position: fixed;
+         bottom: 0;
+         transition: margin-left 0.3s;
+      }
+      .footer.collapsed {
+         margin-left: 80px;
+         width: calc(100% - 80px);
+      }
+      @media (max-width: 768px) {
+         .sidebar {
+            width: 80px;
+         }
+         .header, .main-content, .footer {
+            margin-left: 80px;
+            width: calc(100% - 80px);
+         }
+      }
+   </style>
+   <script>
+      function toggleSidebar() {
+         document.querySelector('.sidebar').classList.toggle('collapsed');
+         document.querySelector('.header').classList.toggle('collapsed');
+         document.querySelector('.main-content').classList.toggle('collapsed');
+         document.querySelector('.footer').classList.toggle('collapsed');
+      }
+   </script>
+</head>
+<body>
+   <div class="sidebar">
+      <div class="logo">Admin</div>
+      <ul>
+         <li onclick="location.href='admin-dashboard.html'"><i class="fas fa-tachometer-alt"></i> Dashboard</li>
+         <li onclick="location.href='admin-member.html'"><i class="fas fa-users"></i> Member</li>
+         <li onclick="location.href='admin-product.html'"><i class="fas fa-box"></i> Product</li>
+         <li onclick="location.href='admin-category.html'"><i class="fas fa-chart-line"></i> Category</li>
+         <li onclick="location.href='admin-orders.html'"><i class="fas fa-shopping-cart"></i> Orders</li>
+         <li onclick="location.href='admin-report.html'"><i class="fas fa-chart-line"></i> Reports <span class="badge">NEW</span></li>
+         <li onclick="location.href='admin-staff.html'"><i class="fas fa-user-tie"></i> Staff</li>
+         <li onclick="location.href='admin-settings.html'"><i class="fas fa-cog"></i> Settings</li>
+      </ul>
+   </div>
+   <div class="header">
+      <button onclick="toggleSidebar()" class="btn btn-secondary"><i class="fas fa-bars"></i></button>
+      <div class="search-bar">
+         <input type="text" placeholder="Search...">
+      </div>
+      <div class="user-profile dropdown">
+         <img src="images/user-profile.jpg" alt="User Profile" class="dropdown-toggle" data-toggle="dropdown">
+         <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Profile</a>
+            <a class="dropdown-item" href="#">Settings</a>
+            <a class="dropdown-item" href="#">Logout</a>
+         </div>
+      </div>
+   </div>
+   <div class="main-content">
+      <nav aria-label="breadcrumb">
+         <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+         </ol>
+      </nav>
+      <div class="summary-cards">
+         <div class="summary-card">
+            <h3>Total Sales</h3>
+            <p>$50,000</p>
+            <i class="fas fa-arrow-up trend-icon" style="color: green;"></i>
+         </div>
+         <div class="summary-card">
+            <h3>Active Users</h3>
+            <p>1,200</p>
+            <i class="fas fa-arrow-down trend-icon" style="color: red;"></i>
+         </div>
+         <div class="summary-card">
+            <h3>Pending Orders</h3>
+            <p>45</p>
+            <i class="fas fa-arrow-up trend-icon" style="color: green;"></i>
+         </div>
+      </div>
+      <div class="data-table">
+         <h3>Users</h3>
+         <table>
+            <thead>
+               <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  <td>1</td>
+                  <td>John Doe</td>
+                  <td>john@example.com</td>
+                  <td>Active</td>
+                  <td class="action-buttons">
+                     <button class="btn btn-sm btn-primary">Edit</button>
+                     <button class="btn btn-sm btn-danger">Delete</button>
+                  </td>
+               </tr>
+               <tr>
+                  <td>2</td>
+                  <td>Jane Smith</td>
+                  <td>jane@example.com</td>
+                  <td>Pending</td>
+                  <td class="action-buttons">
+                     <button class="btn btn-sm btn-primary">Edit</button>
+                     <button class="btn btn-sm btn-danger">Delete</button>
+                  </td>
+               </tr>
+               <!-- Add more rows as needed -->
+            </tbody>
+         </table>
+         <nav>
+            <ul class="pagination">
+               <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+               <li class="page-item"><a class="page-link" href="#">1</a></li>
+               <li class="page-item"><a class="page-link" href="#">2</a></li>
+               <li class="page-item"><a class="page-link" href="#">3</a></li>
+               <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            </ul>
+         </nav>
+      </div>
+      <div class="charts">
+         <div class="chart">
+            <h3>Sales Trends</h3>
+            <canvas id="salesChart"></canvas>
+         </div>
+         <div class="chart">
+            <h3>User Activity</h3>
+            <canvas id="userActivityChart"></canvas>
+         </div>
+      </div>
+   </div>
+   <div class="footer">
+      &copy; 2023 Your Company. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+   </div>
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+   <script>
+      const salesCtx = document.getElementById('salesChart').getContext('2d');
+      const salesChart = new Chart(salesCtx, {
+         type: 'line',
+         data: {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+            datasets: [{
+               label: 'Sales',
+               data: [12000, 15000, 10000, 20000, 25000, 30000],
+               borderColor: 'rgba(75, 192, 192, 1)',
+               backgroundColor: 'rgba(75, 192, 192, 0.2)',
+               fill: true
+            }]
+         },
+         options: {
+            responsive: true,
+            scales: {
+               x: {
+                  display: true,
+                  title: {
+                     display: true,
+                     text: 'Month'
+                  }
+               },
+               y: {
+                  display: true,
+                  title: {
+                     display: true,
+                     text: 'Sales'
+                  }
+               }
+            }
+         }
+      });
+
+      const userActivityCtx = document.getElementById('userActivityChart').getContext('2d');
+      const userActivityChart = new Chart(userActivityCtx, {
+         type: 'bar',
+         data: {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+            datasets: [{
+               label: 'User Activity',
+               data: [300, 400, 350, 500, 450, 600],
+               backgroundColor: 'rgba(153, 102, 255, 0.2)',
+               borderColor: 'rgba(153, 102, 255, 1)',
+               borderWidth: 1
+            }]
+         },
+         options: {
+            responsive: true,
+            scales: {
+               x: {
+                  display: true,
+                  title: {
+                     display: true,
+                     text: 'Month'
+                  }
+               },
+               y: {
+                  display: true,
+                  title: {
+                     display: true,
+                     text: 'Activity'
+                  }
+               }
+            }
+         }
+      });
+   </script>
+</body>
+</html>
