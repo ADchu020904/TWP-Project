@@ -4,26 +4,17 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Admin Dashboard</title>
-   <!-- Google Fonts -->
    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
-   <!-- Bootstrap CSS -->
    <link rel="stylesheet" href="css/bootstrap.min.css">
-   <!-- FontAwesome CSS -->
    <link rel="stylesheet" href="css/fontawesome.min.css">
-   <!-- CoreUI CSS -->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/coreui/4.2.0/css/coreui.min.css">
-   <!-- CoreUI Icons CSS -->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/coreui-icons/2.0.0/css/all.min.css">
+   <link rel="stylesheet" href="css/coreui.min.css">
    <style>
-      /* General body styling */
       body {
          font-family: 'Poppins', sans-serif;
          background-color: #f4f4f9;
          margin: 0;
          display: flex;
-         flex-direction: column;
       }
-      /* Sidebar styling */
       .sidebar {
          width: 250px;
          background-color: #343a40;
@@ -34,26 +25,6 @@
          flex-direction: column;
          transition: width 0.3s;
       }
-      .sidebar {
-         --cui-sidebar-zindex: 1035;
-         --cui-sidebar-width: 16rem;
-         --cui-sidebar-bg: var(--cui-body-bg);
-         --cui-sidebar-padding-x: 1rem;
-         --cui-sidebar-padding-y: 1rem;
-         --cui-sidebar-color: var(--cui-body-color);
-         --cui-sidebar-brand-color: var(--cui-body-color);
-         --cui-sidebar-brand-bg: rgba(8, 10, 12, 0.2);
-         position: relative;
-         display: flex;
-         flex: 0 0 var(--cui-sidebar-width);
-         flex-direction: column;
-         order: -1;
-         width: var(--cui-sidebar-width);
-         color: var(--cui-sidebar-color);
-         background: var(--cui-sidebar-bg);
-         box-shadow: none;
-         transition: margin-left 0.15s, margin-right 0.15s, box-shadow 0.075s, transform 0.15s, width 0.15s, z-index 0s ease 0.15s;
-      }
       .sidebar.collapsed {
          width: 80px;
       }
@@ -63,28 +34,6 @@
          font-size: 1.5rem;
          font-weight: bold;
          background-color: #23272b;
-         display: flex;
-         justify-content: space-between;
-         align-items: center;
-      }
-      .sidebar .logo img {
-         max-width: 40px;
-         margin-right: 10px;
-      }
-      .sidebar .search-bar {
-         padding: 10px 20px;
-      }
-      .sidebar .search-bar input {
-         width: 100%;
-         padding: 10px 10px 10px 35px;
-         border: 1px solid #ccc;
-         border-radius: 5px;
-         background: url('images/search-icon.png') no-repeat 10px center;
-         background-size: 20px;
-         color: #666;
-      }
-      .sidebar .search-bar input::placeholder {
-         color: #999;
       }
       .sidebar ul {
          list-style: none;
@@ -96,90 +45,60 @@
          cursor: pointer;
          display: flex;
          align-items: center;
-         transition: padding 0.3s;
-         position: relative;
       }
       .sidebar ul li:hover {
          background-color: #495057;
       }
       .sidebar ul li i {
          margin-right: 10px;
-         transition: margin 0.3s;
       }
       .sidebar ul li .badge {
          margin-left: auto;
          background-color: #FF6600;
       }
-      .sidebar.collapsed ul li {
-         padding: 15px 10px;
-      }
-      .sidebar.collapsed ul li i {
-         margin-right: 0;
-      }
-      .sidebar.collapsed ul li span {
-         display: none;
-      }
-      .sidebar ul li:hover::after {
-         content: attr(data-label);
-         position: absolute;
-         left: 100%;
-         top: 50%;
-         transform: translateY(-50%);
-         background-color: #495057;
-         color: #fff;
-         padding: 5px 10px;
-         border-radius: 5px;
-         white-space: nowrap;
-         display: none;
-      }
-      .sidebar.collapsed ul li:hover::after {
-         display: block;
-      }
-      /* Top navbar styling */
-      .top-navbar {
-         width: 100%;
+      .header {
+         width: calc(100% - 250px);
+         margin-left: 250px;
          background-color: #fff;
          padding: 15px 20px;
-         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
          display: flex;
          justify-content: space-between;
          align-items: center;
-         position: fixed;
-         top: 0;
-         z-index: 1000;
+         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+         transition: margin-left 0.3s;
       }
-      .top-navbar .nav-links {
+      .header.collapsed {
+         margin-left: 80px;
+         width: calc(100% - 80px);
+      }
+      .header .search-bar {
+         flex: 1;
+         margin-left: 20px;
+      }
+      .header .search-bar input {
+         width: 100%;
+         padding: 10px;
+         border: 1px solid #ccc;
+         border-radius: 5px;
+      }
+      .header .user-profile {
          display: flex;
          align-items: center;
       }
-      .top-navbar .nav-links a {
-         margin-right: 20px;
-         color: #333;
-         text-decoration: none;
-      }
-      .top-navbar .nav-links a:hover {
-         text-decoration: underline;
-      }
-      .top-navbar .profile-dropdown {
-         display: flex;
-         align-items: center;
-      }
-      .top-navbar .profile-dropdown img {
+      .header .user-profile img {
          width: 40px;
          height: 40px;
          border-radius: 50%;
          margin-right: 10px;
       }
-      .top-navbar .profile-dropdown .dropdown-menu {
+      .header .user-profile .dropdown-menu {
          right: 0;
          left: auto;
       }
-      /* Main content styling */
       .main-content {
          width: calc(100% - 250px);
          margin-left: 250px;
          padding: 20px;
-         margin-top: 70px; /* Adjust for top navbar height */
          transition: margin-left 0.3s;
       }
       .main-content.collapsed {
@@ -261,7 +180,6 @@
       .chart:last-child {
          margin-right: 0;
       }
-      /* Footer styling */
       .footer {
          width: calc(100% - 250px);
          margin-left: 250px;
@@ -288,24 +206,34 @@
       }
    </style>
    <script>
-      // Function to toggle the sidebar
       function toggleSidebar() {
          document.querySelector('.sidebar').classList.toggle('collapsed');
+         document.querySelector('.header').classList.toggle('collapsed');
          document.querySelector('.main-content').classList.toggle('collapsed');
          document.querySelector('.footer').classList.toggle('collapsed');
       }
    </script>
 </head>
 <body>
-   <!-- Top Navbar -->
-   <div class="top-navbar">
-      <button onclick="toggleSidebar()" class="btn btn-secondary"><i class="cil-menu"></i></button>
-      <div class="nav-links">
-         <a href="#">Dashboard</a>
-         <a href="#">Users</a>
-         <a href="#">Settings</a>
+   <div class="sidebar">
+      <div class="logo">Admin</div>
+      <ul>
+         <li onclick="location.href='admin-dashboard.html'"><i class="fas fa-tachometer-alt"></i> Dashboard</li>
+         <li onclick="location.href='admin-member.html'"><i class="fas fa-users"></i> Member</li>
+         <li onclick="location.href='admin-product.html'"><i class="fas fa-box"></i> Product</li>
+         <li onclick="location.href='admin-category.html'"><i class="fas fa-chart-line"></i> Category</li>
+         <li onclick="location.href='admin-orders.html'"><i class="fas fa-shopping-cart"></i> Orders</li>
+         <li onclick="location.href='admin-report.html'"><i class="fas fa-chart-line"></i> Reports <span class="badge">NEW</span></li>
+         <li onclick="location.href='admin-staff.html'"><i class="fas fa-user-tie"></i> Staff</li>
+         <li onclick="location.href='admin-settings.html'"><i class="fas fa-cog"></i> Settings</li>
+      </ul>
+   </div>
+   <div class="header">
+      <button onclick="toggleSidebar()" class="btn btn-secondary"><i class="fas fa-bars"></i></button>
+      <div class="search-bar">
+         <input type="text" placeholder="Search...">
       </div>
-      <div class="profile-dropdown dropdown">
+      <div class="user-profile dropdown">
          <img src="images/user-profile.jpg" alt="User Profile" class="dropdown-toggle" data-toggle="dropdown">
          <div class="dropdown-menu">
             <a class="dropdown-item" href="#">Profile</a>
@@ -314,27 +242,6 @@
          </div>
       </div>
    </div>
-   <!-- Sidebar -->
-   <div class="sidebar" id="sidebar">
-      <div class="logo">
-         <img src="images/logo.png" alt="Logo">
-         <img src="images/Vik.png" alt="Vik">
-      </div>
-      <div class="search-bar">
-         <input type="text" placeholder="Search...">
-      </div>
-      <ul>
-         <li data-label="Dashboard" onclick="location.href='admin-dashboard.html'"><i class="cil-speedometer"></i> <span>Dashboard</span></li>
-         <li data-label="Member" onclick="location.href='admin-member.html'"><i class="cil-people"></i> <span>Member</span></li>
-         <li data-label="Product" onclick="location.href='admin-product.html'"><i class="cil-box"></i> <span>Product</span></li>
-         <li data-label="Category" onclick="location.href='admin-category.html'"><i class="cil-chart-line"></i> <span>Category</span></li>
-         <li data-label="Orders" onclick="location.href='admin-orders.html'"><i class="cil-cart"></i> <span>Orders</span></li>
-         <li data-label="Reports" onclick="location.href='admin-report.html'"><i class="cil-chart"></i> <span>Reports</span> <span class="badge">NEW</span></li>
-         <li data-label="Staff" onclick="location.href='admin-staff.html'"><i class="cil-user"></i> <span>Staff</span></li>
-         <li data-label="Settings" onclick="location.href='admin-settings.html'"><i class="cil-settings"></i> <span>Settings</span></li>
-      </ul>
-   </div>
-   <!-- Main Content -->
    <div class="main-content">
       <nav aria-label="breadcrumb">
          <ol class="breadcrumb">
@@ -416,14 +323,11 @@
          </div>
       </div>
    </div>
-   <!-- Footer -->
    <div class="footer">
-      &copy; 2023 Tech World Products. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+      &copy; 2023 Your Company. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
    </div>
-   <!-- Chart.js library -->
-   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.0.1/dist/chart.umd.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
    <script>
-      // Sales chart
       const salesCtx = document.getElementById('salesChart').getContext('2d');
       const salesChart = new Chart(salesCtx, {
          type: 'line',
@@ -458,7 +362,6 @@
          }
       });
 
-      // User activity chart
       const userActivityCtx = document.getElementById('userActivityChart').getContext('2d');
       const userActivityChart = new Chart(userActivityCtx, {
          type: 'bar',
