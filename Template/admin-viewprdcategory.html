@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View Products</title>
+    <title>View Product Categories</title>
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -17,16 +17,16 @@
         }
 
         .login-left {
-         background-color: #c3baab;
-         padding: 20px;
-         display: flex;
-         flex-direction: column;
-         justify-content: center;
-         align-items: center;
-         color: #fff;
-         width: 90%;
-         text-align: center;
-         position: relative;
+            background-color: #c3baab;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            width: 90%;
+            text-align: center;
+            position: relative;
         }
 
         .container {
@@ -103,62 +103,54 @@
     <div class="container">
         <div class="login-left">
             <img src="images/logo.png" alt="Company Logo" style="max-width: 200px;">
-           <h2>A Moder Furtinure Shop</h2>
+            <h2>A Modern Furniture Shop</h2>
         </div>
-        <h1><strong>View Products</strong></h1>
-        <a href="admin-add product.html" class="add-btn">Add Product</a>
+        <h1><strong>View Product Categories</strong></h1>
+        <a href="admin-addprdcategory.html" class="add-btn">Add Category</a>
         <table>
             <thead>
                 <tr>
-                    <th>Product Name</th>
-                    <th>Price</th>
+                    <th>Category Name</th>
                     <th>Description</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>Bed 3351</td>
-                    <td>$426.80</td>
-                    <td>Single Bunk Bed</td>
+                    <td>Beds</td>
+                    <td>Various types of beds including single, double, and bunk beds.</td>
                     <td class="actions">
                         <button class="edit-btn">Edit</button>
                         <button class="delete-btn">Delete</button>
                     </td>
                 </tr>
                 <tr>
-                    <td>Bed 3352</td>
-                    <td>$352.00</td>
-                    <td>Single Bunk Bed</td>
+                    <td>Sofas</td>
+                    <td>Comfortable and stylish sofas for your living room.</td>
                     <td class="actions">
                         <button class="edit-btn">Edit</button>
                         <button class="delete-btn">Delete</button>
                     </td>
                 </tr>
                 <tr>
-                    <td>AL013-A/B</td>
-                    <td>$165.00</td>
-                    <td>Single Bed</td>
+                    <td>Tables</td>
+                    <td>Dining tables, coffee tables, and more.</td>
                     <td class="actions">
                         <button class="edit-btn">Edit</button>
                         <button class="delete-btn">Delete</button>
                     </td>
                 </tr>
                 <tr>
-                    <td>DV17809-M</td>
-                    <td>$280.00</td>
-                    <td>5ft Bed</td>
+                    <td>Chairs</td>
+                    <td>Various types of chairs including office chairs and dining chairs.</td>
                     <td class="actions">
                         <button class="edit-btn">Edit</button>
                         <button class="delete-btn">Delete</button>
                     </td>
                 </tr>
-                <!-- Repeat for other products -->
+                <!-- Repeat for other categories -->
             </tbody>
         </table>
-        
-
-
     </div>
 </body>
 </html>

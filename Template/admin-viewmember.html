@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View Products</title>
+    <title>View Members</title>
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -17,16 +17,16 @@
         }
 
         .login-left {
-         background-color: #c3baab;
-         padding: 20px;
-         display: flex;
-         flex-direction: column;
-         justify-content: center;
-         align-items: center;
-         color: #fff;
-         width: 90%;
-         text-align: center;
-         position: relative;
+            background-color: #c3baab;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            width: 90%;
+            text-align: center;
+            position: relative;
         }
 
         .container {
@@ -103,62 +103,44 @@
     <div class="container">
         <div class="login-left">
             <img src="images/logo.png" alt="Company Logo" style="max-width: 200px;">
-           <h2>A Moder Furtinure Shop</h2>
+            <h2>A Modern Furniture Shop</h2>
         </div>
-        <h1><strong>View Products</strong></h1>
-        <a href="admin-add product.html" class="add-btn">Add Product</a>
+        <h1><strong>View Members</strong></h1>
+        <a href="addmember.html" class="add-btn">Add Member</a>
         <table>
             <thead>
                 <tr>
-                    <th>Product Name</th>
-                    <th>Price</th>
-                    <th>Description</th>
+                    <th>Member ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone Number</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>Bed 3351</td>
-                    <td>$426.80</td>
-                    <td>Single Bunk Bed</td>
+                    <td>1</td>
+                    <td>John Doe</td>
+                    <td>john.doe@example.com</td>
+                    <td>123-456-7890</td>
                     <td class="actions">
                         <button class="edit-btn">Edit</button>
                         <button class="delete-btn">Delete</button>
                     </td>
                 </tr>
                 <tr>
-                    <td>Bed 3352</td>
-                    <td>$352.00</td>
-                    <td>Single Bunk Bed</td>
+                    <td>2</td>
+                    <td>Jane Smith</td>
+                    <td>jane.smith@example.com</td>
+                    <td>098-765-4321</td>
                     <td class="actions">
                         <button class="edit-btn">Edit</button>
                         <button class="delete-btn">Delete</button>
                     </td>
                 </tr>
-                <tr>
-                    <td>AL013-A/B</td>
-                    <td>$165.00</td>
-                    <td>Single Bed</td>
-                    <td class="actions">
-                        <button class="edit-btn">Edit</button>
-                        <button class="delete-btn">Delete</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>DV17809-M</td>
-                    <td>$280.00</td>
-                    <td>5ft Bed</td>
-                    <td class="actions">
-                        <button class="edit-btn">Edit</button>
-                        <button class="delete-btn">Delete</button>
-                    </td>
-                </tr>
-                <!-- Repeat for other products -->
+                <!-- Repeat for other members -->
             </tbody>
         </table>
-        
-
-
     </div>
 </body>
 </html>

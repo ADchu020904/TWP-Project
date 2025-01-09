@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Product Category</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #efe4d1;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"], textarea, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #dab9b9;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #d5b7b7;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Update Product Category</h1>
+        <br>
+        <form action="updatecategory.php" method="post">
+            <label for="category-select">Select Category to Update</label>
+            <select id="category-select" name="categoryname" required>
+                <option value="" disabled selected>Select category</option>
+                <option value="Beds">Beds</option>
+                <option value="Sofas">Sofas</option>
+                <option value="Tables">Tables</option>
+                <option value="Chairs">Chairs</option>
+                <!-- Add more options as needed -->
+            </select>
+
+            <label for="category-name">Category Name</label>
+            <input type="text" id="category-name" name="category-name" required>
+
+            <label for="category-description">Category Description</label>
+            <textarea id="category-description" name="category-description" rows="4" required></textarea>
+
+            <button type="submit">Update Category</button>
+        </form>
+    </div>
+</body>
+</html>
