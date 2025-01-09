@@ -4,15 +4,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.2.0/dist/css/coreui.min.css" rel="stylesheet">
-    <title>Sidebar Example</title>
+    <title>CoreUI Sidebar Example</title>
     <script defer src="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.2.0/dist/js/coreui.bundle.min.js"></script>
     
   </head>
-  <body class="p-3 m-0 border-0 docs-example m-0 border-0 bg-body-secondary p-0 rounded-bottom-0 overflow-hidden">
+  <body class="p-3 m-0 border-0 docs-example m-0 border-0 p-0 rounded-bottom-0 overflow-hidden">
     <!-- Example Code Start-->
-    <div class="sidebar border-end">
+    <div class="sidebar sidebar-dark border-end">
       <div class="sidebar-header border-bottom">
-        <div class="sidebar-brand">Vik</div>
+        <div class="sidebar-brand">CoreUI</div>
       </div>
       <ul class="sidebar-nav">
         <li class="nav-title">Nav Title</li>
@@ -27,10 +27,17 @@
             <span class="badge bg-primary ms-auto">NEW</span>
           </a>
         </li>
-        <li class="nav-item nav-group show">
-          <a class="nav-link nav-group-toggle" href="#">
-            <i class="nav-icon cil-puzzle"></i> Nav dropdown
-          </a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-coreui-toggle="dropdown" href="#" role="button" aria-expanded="false">Dropdown </a>
+          
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Separated link</a></li>
+          </ul>
+          
           <ul class="nav-group-items">
             <li class="nav-item">
               <a class="nav-link" href="#">
