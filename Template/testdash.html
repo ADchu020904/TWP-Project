@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.2.0/dist/css/coreui.min.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/@coreui/icons/css/coreui-icons.min.css" rel="stylesheet">
         <title>Testing Dashboard</title>
         <script defer src="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.2.0/dist/js/coreui.bundle.min.js"></script>
         <style>
@@ -65,8 +66,9 @@
                     <li class="nav-title">Nav Title</li>
                     <li class="nav-item">
                         <a class="nav-link active" href="#">
-                        <i class="cil-speedometer"></i>Nav item
-                        </a>
+                        <svg>
+                            <use xlink:href="node_modules/@coreui/icons/spritesfree.svg#cil-airplane-mode"></use>
+                        </svg>Nav item</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">
@@ -111,7 +113,7 @@
             <!-- Navbar Start -->
             <nav class="navbar navbar-expand-lg navbar-dark">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="#" style="color: #5d6061;">Navbar</a>
+                    <i class="cil-cloud-download"></i><a class="navbar-brand" href="#" style="color: #5d6061;">Navbar</a>
                     <button class="navbar-toggler" type="button" data-coreui-toggle="collapse" data-coreui-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -136,10 +138,5 @@
             <!-- Navbar Finish -->
         </div>
 
-        <!-- Main Content -->
-        <div class="content">
-            <h1>Dashboard Content</h1>
-            <p>This is where your dashboard content goes.</p>
-        </div>
     </body>
 </html>
