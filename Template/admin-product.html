@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Product Management</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #efe4d1;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            width: 80%;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="email"], input[type="tel"], input[type="number"], textarea, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        textarea {
+            resize: vertical;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #FF6600;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #FF4500;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .actions {
+            display: flex;
+            justify-content: space-around;
+        }
+        .actions button {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .edit-btn {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .delete-btn {
+            background-color: #f44336;
+            color: white;
+        }
+        .add-btn {
+            background-color: #fff;
+            border: 1px solid black;
+            color: black;
+            margin-bottom: 20px;
+            display: block;
+            width: 100px;
+            text-align: center;
+            text-decoration: none;
+        }
+        .add-btn:hover {
+            background-color: #eadcdc;
+        }
+        .login-left {
+            background-color: #c3baab;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            width: 100%;
+            text-align: center;
+            position: relative;
+        }
+        .login-left img {
+            max-width: 200px;
+            margin-bottom: 20px;
+        }
+        .login-left h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="login-left">
+            <img src="images/logo.png" alt="Company Logo">
+            <h2>A Modern Furniture Shop</h2>
+        </div>
+        <h1>View Products</h1>
+        <a href="#add-product" class="add-btn">Add Product</a>
+        <table>
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Price</th>
+                    <th>Description</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Bed 3351</td>
+                    <td>$426.80</td>
+                    <td>Single Bunk Bed</td>
+                    <td class="actions">
+                        <button class="edit-btn" onclick="location.href='#update-product'">Edit</button>
+                        <button class="delete-btn" onclick="location.href='#delete-product'">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Bed 3352</td>
+                    <td>$352.00</td>
+                    <td>Single Bunk Bed</td>
+                    <td class="actions">
+                        <button class="edit-btn" onclick="location.href='#update-product'">Edit</button>
+                        <button class="delete-btn" onclick="location.href='#delete-product'">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>AL013-A/B</td>
+                    <td>$165.00</td>
+                    <td>Single Bed</td>
+                    <td class="actions">
+                        <button class="edit-btn" onclick="location.href='#update-product'">Edit</button>
+                        <button class="delete-btn" onclick="location.href='#delete-product'">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>DV17809-M</td>
+                    <td>$280.00</td>
+                    <td>5ft Bed</td>
+                    <td class="actions">
+                        <button class="edit-btn" onclick="location.href='#update-product'">Edit</button>
+                        <button class="delete-btn" onclick="location.href='#delete-product'">Delete</button>
+                    </td>
+                </tr>
+                <!-- Repeat for other products -->
+            </tbody>
+        </table>
+    </div>
+
+    <div class="container" id="add-product">
+        <h1>Add Product</h1>
+        <form>
+            <label for="product-name">Product Name</label>
+            <input type="text" id="product-name" name="product-name">
+            <label for="product-price">Product Price</label>
+            <input type="number" id="product-price" name="product-price">
+            <label for="product-quantity">Quantity</label>
+            <input type="number" id="product-quantity" name="product-quantity" min="1" max="40">
+            <label for="product-description">Product Description</label>
+            <textarea id="product-description" name="product-description" rows="4"></textarea>
+            <input type="file" name="product-image" id="product-image">
+            <button type="submit">Add Product</button>
+        </form>
+    </div>
+
+    <div class="container" id="update-product">
+        <h1>Update Product</h1>
+        <form action="updateproduct.php" method="post">
+            <label for="product-select">Select Product to Update</label>
+            <select id="product-select" name="productname" required>
+                <option value="" disabled selected>Select product</option>
+                <option value="Bed 3351">Bed 3351</option>
+                <option value="Bed 3352">Bed 3352</option>
+                <option value="AL013-A/B">AL013-A/B</option>
+                <!-- Add more options as needed -->
+            </select>
+            <label for="product-quantity">Product Quantity</label>
+            <input type="number" id="product-quantity" name="product-quantity" required min="1" max="99">
+            <label for="product-price">Product Price</label>
+            <input type="number" id="product-price" name="product-price" required min="1" max="9999">
+            <label for="product-description">Product Description</label>
+            <textarea id="product-description" name="product-description" rows="4" required></textarea>
+            <button type="submit">Update Product</button>
+        </form>
+    </div>
+
+    <div class="container" id="delete-product">
+        <h1>Delete Product</h1>
+        <form action="deleteproduct.php" method="post">
+            <label for="product-select">Select Product to Delete</label>
+            <select id="product-select" name="productname">
+                <option value="" disabled selected>Select product</option>
+                <option value="Bed 3351">Bed 3351</option>
+                <option value="Bed 3352">Bed 3352</option>
+                <option value="AL013-A/B">AL013-A/B</option>
+                <!-- Add more options as needed -->
+            </select>
+            <button type="submit">Delete Product</button>
+        </form>
+    </div>
+</body>
+</html>
