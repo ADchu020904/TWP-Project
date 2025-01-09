@@ -13,7 +13,6 @@
                 width: 250px;
                 background-color: #212631; /* Dark sidebar background */
                 overflow-y: auto;
-                
                 color: white;
                 min-height: 100vh;
             }
@@ -52,6 +51,23 @@
                 padding: 20px;
                 background: #f8f9fa;
             }
+            /* Breadcrumb Styling */
+            .breadcrumb {
+            background: transparent; /* Make breadcrumb background transparent */
+            padding: 0; /* Remove default padding */
+            margin-bottom: 1rem; /* Add spacing below */
+            }
+            .breadcrumb-item a {
+            color: #5d6061; /* Set breadcrumb link color */
+            text-decoration: none; /* Remove underline */
+            }
+            .breadcrumb-item a:hover {
+            text-decoration: underline; /* Underline on hover */
+            color: #007bff; /* Hover color (Bootstrap primary color) */
+            }
+            .breadcrumb-item.active {
+            color: #6c757d; /* Active breadcrumb color */
+            }
         </style>
     </head>
     <body class="bg-body-secondary">
@@ -65,10 +81,9 @@
                 <ul class="sidebar-nav">
                     <li class="nav-title">Nav Title</li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">
-                            <svg class="nav-icon">
-                                <use xlink:href="node_modules/icons/sprites/free.svg#cil-speedometer"></use>
-                            </svg></i>Nav item</a>
+                        <a class="nav-link" href="#">
+                        <i class="cil-speedometer"></i> Nav item
+                    </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">
@@ -78,7 +93,7 @@
                     </li>
                     <li class="nav-item nav-group show">
                         <a class="nav-link nav-group-toggle" href="#">
-                            <i class="nav-icon cil-puzzle"></i> Nav dropdown
+                            <i class="nav-icon cil-puzzle"></i> Nav dropdown 
                         </a>
                         <ul class="nav-group-items">
                             <li class="nav-item">
@@ -136,26 +151,6 @@
                 </div>
             </nav>
             <!-- Navbar Finish -->
-            <!-- Bread Crumb Start-->
-                <nav aria-label="breadcrumb">
-                  <ol class="breadcrumb">
-                    <li class="breadcrumb-item active" aria-current="page">Home</li>
-                  </ol>
-                </nav>
-            
-                <nav aria-label="breadcrumb">
-                  <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Library</li>
-                  </ol>
-                </nav>
-            
-                <nav aria-label="breadcrumb">
-                  <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item"><a href="#">Library</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Data</li>
-                  </ol>
-                </nav>
-    </body>
+            <!-- Content Start -->
+            <!-- Content Finish -->
 </html>
