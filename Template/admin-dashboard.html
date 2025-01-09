@@ -30,52 +30,78 @@
                 color: #5d6061; /* Navbar text color */
             }
             /* Content Styling */
-            .content {
-            margin-top: 70px;
-            margin-left: 250px;
-            padding: 20px;
+            body {
+                margin: 0;
+                font-family: Arial, sans-serif;
+                background-color: #f8f9fa;
             }
             .stats-section {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: #f8f9fa;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        .stat-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .stat-icon {
-            background-color: #e9ecef;
-            padding: 10px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .stat-value {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin: 0;
-        }
-        .stat-label {
-            color: #6c757d;
-            margin: 0;
-        }
-        .stat-change {
-            font-size: 0.9rem;
-            margin-left: 5px;
-        }
-        .positive {
-            color: #28a745;
-        }
-        .negative {
-            color: #dc3545;
-        }
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 20px 40px;
+                background-color: #ffffff;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                border-radius: 10px;
+                margin: 20px auto;
+                max-width: 1200px;
+                gap: 20px; /* Added gap between stat cards */
+            }
+            .stat-card {
+                display: flex;
+                align-items: center;
+                padding: 20px; /* Increased padding */
+                background-color: #f8f9fa;
+                border-radius: 8px;
+                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+                width: 22%;
+                transition: transform 0.3s ease; /* Added transition for hover effect */
+            }
+            .stat-card:hover {
+                transform: translateY(-5px); /* Hover effect */
+            }
+            .stat-icon {
+                margin-right: 15px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 60px; /* Increased size */
+                height: 60px; /* Increased size */
+                background-color: #e9ecef;
+                border-radius: 50%;
+            }
+            .stat-content {
+                text-align: left;
+            }
+            .stat-value {
+                font-size: 1.75rem; /* Increased font size */
+                font-weight: bold;
+                margin: 0;
+            }
+            .stat-label {
+                font-size: 1rem; /* Increased font size */
+                color: #6c757d;
+                margin: 0;
+            }
+            .stat-change {
+                font-size: 1rem; /* Increased font size */
+                margin-left: 5px;
+            }
+            .positive {
+                color: #28a745;
+            }
+            .negative {
+                color: #dc3545;
+            }
+            @media (max-width: 768px) {
+                .stats-section {
+                    flex-direction: column;
+                    gap: 15px;
+                }
+                .stat-card {
+                    width: 100%;
+                }
+            }
         </style>
     </head>
     <body class="bg-body-secondary">
@@ -192,108 +218,79 @@
             </nav>
             <!-- Navbar Finish -->
             <!-- Main Content Start -->
-            <div class="content"></div>
-                <div class="stats-section" style="font-size: 1.25rem;">
-                    <!-- Revenue -->
-                    <div class="stat-item">
-                        <div class="stat-icon">
-                            <i class="cil-chart" style="font-size: 2rem; color: #17a2b8;"></i>
-                        </div>
-                        <div>
-                            <p class="stat-value" style="font-size: 2rem;">$95k</p>
-                            <p class="stat-label">Revenue</p>
-                            <span class="stat-change positive">↑ 5.2%</span>
-                        </div>
+            <div class="stats-section">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="cil-chart" style="font-size: 1.5rem; color: #17a2b8;"></i>
                     </div>
-                    <!-- Growth Rate -->
-                    <div class="stat-item">
-                        <div class="stat-icon">
-                            <i class="cil-chart-pie" style="font-size: 2rem; color: #ffc107;"></i>
-                        </div>
-                        <div>
-                            <p class="stat-value" style="font-size: 2rem;">18.63%</p>
-                            <p class="stat-label">Growth Rate</p>
-                            <span class="stat-change negative">↓ 2.0%</span>
-                        </div>
-                    </div>
-                    <!-- Sales -->
-                    <div class="stat-item">
-                        <div class="stat-icon">
-                            <i class="cil-graph" style="font-size: 2rem; color: #28a745;"></i>
-                        </div>
-                        <div>
-                            <p class="stat-value" style="font-size: 2rem;">$27k</p>
-                            <p class="stat-label">Sales</p>
-                            <span class="stat-change positive">↑ 10.0%</span>
-                        </div>
-                    </div>
-                    <!-- Orders -->
-                    <div class="stat-item">
-                        <div class="stat-icon">
-                            <i class="cil-cart" style="font-size: 2rem; color: #fd7e14;"></i>
-                        </div>
-                        <div>
-                            <p class="stat-value" style="font-size: 2rem;">13,700</p>
-                            <p class="stat-label">Orders</p>
-                            <span class="stat-change negative">↓ 13.6%</span>
-                        </div>
+                    <div class="stat-content">
+                        <p class="stat-value">$95k</p>
+                        <p class="stat-label">Revenue</p>
+                        <span class="stat-change positive">↑ 5.2%</span>
                     </div>
                 </div>
-                <!-- Visitors Overview Section -->
-                <div class="visitors-overview mt-5">
-                    <h2 class="text-center mb-4">Visitors Overview</h2>
-                    <!-- Statistics Row -->
-                    <div class="d-flex justify-content-around text-center mb-5">
-                        <div>
-                            <h3>23,454</h3>
-                            <p>Page Views</p>
-                            <span class="text-success">↑ 8.16%</span>
-                        </div>
-                        <div>
-                            <h3>6,630</h3>
-                            <p>Unique Visitors</p>
-                            <span class="text-danger">↓ 2.30%</span>
-                        </div>
-                        <div>
-                            <h3>86,578</h3>
-                            <p>Total Visits</p>
-                            <span class="text-success">↑ 4.27%</span>
-                        </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="cil-chart-pie" style="font-size: 1.5rem; color: #ffc107;"></i>
                     </div>
-                    <!-- Area Chart -->
-                    <div style="position: relative; width: 100%; height: 400px;">
-                        <canvas id="visitorsChart"></canvas>
+                    <div class="stat-content">
+                        <p class="stat-value">18.63%</p>
+                        <p class="stat-label">Growth Rate</p>
+                        <span class="stat-change negative">↓ 2.0%</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="cil-graph" style="font-size: 1.5rem; color: #28a745;"></i>
+                    </div>
+                    <div class="stat-content">
+                        <p class="stat-value">$27k</p>
+                        <p class="stat-label">Sales</p>
+                        <span class="stat-change positive">↑ 10.0%</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="cil-cart" style="font-size: 1.5rem; color: #fd7e14;"></i>
+                    </div>
+                    <div class="stat-content">
+                        <p class="stat-value">13,700</p>
+                        <p class="stat-label">Orders</p>
+                        <span class="stat-change negative">↓ 13.6%</span>
                     </div>
                 </div>
             </div>
-            <!-- Main Content End -->
-
-            <!-- Add Chart.js Script -->
+            <!-- VIsitoe overview-->
+                <div class="visitors-overview">
+                    <h2>Visitors Overview</h2>
+                    <canvas id="visitorsChart"></canvas>
+                </div>
+            </div>
             <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
             <script>
                 const ctx = document.getElementById('visitorsChart').getContext('2d');
                 const visitorsChart = new Chart(ctx, {
                     type: 'line',
                     data: {
-                        labels: ['2010', '2011', '2012', '2013', '2014', '2015', '2016'],
+                        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
                         datasets: [
                             {
                                 label: 'Page Views',
-                                data: [10, 20, 15, 30, 50, 40, 20],
+                                data: [100, 200, 150, 300, 500, 400, 200],
                                 backgroundColor: 'rgba(23, 162, 184, 0.2)',
                                 borderColor: 'rgba(23, 162, 184, 1)',
                                 fill: true,
                             },
                             {
                                 label: 'Unique Visitors',
-                                data: [5, 15, 10, 20, 40, 30, 10],
+                                data: [50, 150, 100, 200, 400, 300, 100],
                                 backgroundColor: 'rgba(220, 53, 69, 0.2)',
                                 borderColor: 'rgba(220, 53, 69, 1)',
                                 fill: true,
                             },
                             {
                                 label: 'Total Visits',
-                                data: [15, 25, 20, 35, 60, 50, 30],
+                                data: [150, 250, 200, 350, 600, 500, 300],
                                 backgroundColor: 'rgba(40, 167, 69, 0.2)',
                                 borderColor: 'rgba(40, 167, 69, 1)',
                                 fill: true,
@@ -311,7 +308,7 @@
                             x: {
                                 title: {
                                     display: true,
-                                    text: 'Year',
+                                    text: 'Months',
                                 },
                             },
                             y: {
@@ -324,3 +321,6 @@
                     },
                 });
             </script>
+        </div>
+    </body>
+</html>
