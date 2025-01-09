@@ -12,6 +12,8 @@
    <link rel="stylesheet" href="css/fontawesome.min.css">
    <!-- CoreUI CSS -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/coreui/4.2.0/css/coreui.min.css">
+   <!-- CoreUI Icons CSS -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/coreui-icons/2.0.0/css/all.min.css">
    <style>
       /* General body styling */
       body {
@@ -31,6 +33,26 @@
          display: flex;
          flex-direction: column;
          transition: width 0.3s;
+      }
+      .sidebar {
+         --cui-sidebar-zindex: 1035;
+         --cui-sidebar-width: 16rem;
+         --cui-sidebar-bg: var(--cui-body-bg);
+         --cui-sidebar-padding-x: 1rem;
+         --cui-sidebar-padding-y: 1rem;
+         --cui-sidebar-color: var(--cui-body-color);
+         --cui-sidebar-brand-color: var(--cui-body-color);
+         --cui-sidebar-brand-bg: rgba(8, 10, 12, 0.2);
+         position: relative;
+         display: flex;
+         flex: 0 0 var(--cui-sidebar-width);
+         flex-direction: column;
+         order: -1;
+         width: var(--cui-sidebar-width);
+         color: var(--cui-sidebar-color);
+         background: var(--cui-sidebar-bg);
+         box-shadow: none;
+         transition: margin-left 0.15s, margin-right 0.15s, box-shadow 0.075s, transform 0.15s, width 0.15s, z-index 0s ease 0.15s;
       }
       .sidebar.collapsed {
          width: 80px;
@@ -277,8 +299,7 @@
 <body>
    <!-- Top Navbar -->
    <div class="top-navbar">
-      <button onclick="toggleSidebar()" class="btn btn-secondary">
-      <i class="cil-menu"></i>c</button>
+      <button onclick="toggleSidebar()" class="btn btn-secondary"><i class="cil-menu"></i></button>
       <div class="nav-links">
          <a href="#">Dashboard</a>
          <a href="#">Users</a>
