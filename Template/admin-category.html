@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Category Management</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #efe4d1;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            width: 80%;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="email"], input[type="tel"], input[type="number"], textarea, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        textarea {
+            resize: vertical;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #FF6600;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #FF4500;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .actions {
+            display: flex;
+            justify-content: space-around;
+        }
+        .actions button {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .edit-btn {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .delete-btn {
+            background-color: #f44336;
+            color: white;
+        }
+        .add-btn {
+            background-color: #fff;
+            border: 1px solid black;
+            color: black;
+            margin-bottom: 20px;
+            display: block;
+            width: 100px;
+            text-align: center;
+            text-decoration: none;
+        }
+        .add-btn:hover {
+            background-color: #eadcdc;
+        }
+        .login-left {
+            background-color: #c3baab;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            width: 100%;
+            text-align: center;
+            position: relative;
+        }
+        .login-left img {
+            max-width: 200px;
+            margin-bottom: 20px;
+        }
+        .login-left h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="login-left">
+            <img src="images/logo.png" alt="Company Logo">
+            <h2>A Modern Furniture Shop</h2>
+        </div>
+        <h1>View Product Categories</h1>
+        <a href="#add-category" class="add-btn">Add Category</a>
+        <table>
+            <thead>
+                <tr>
+                    <th>Category Name</th>
+                    <th>Description</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Beds</td>
+                    <td>Various types of beds including single, double, and bunk beds.</td>
+                    <td class="actions">
+                        <button class="edit-btn" onclick="location.href='#update-category'">Edit</button>
+                        <button class="delete-btn" onclick="location.href='#delete-category'">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Sofas</td>
+                    <td>Comfortable and stylish sofas for your living room.</td>
+                    <td class="actions">
+                        <button class="edit-btn" onclick="location.href='#update-category'">Edit</button>
+                        <button class="delete-btn" onclick="location.href='#delete-category'">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Tables</td>
+                    <td>Dining tables, coffee tables, and more.</td>
+                    <td class="actions">
+                        <button class="edit-btn" onclick="location.href='#update-category'">Edit</button>
+                        <button class="delete-btn" onclick="location.href='#delete-category'">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Chairs</td>
+                    <td>Various types of chairs including office chairs and dining chairs.</td>
+                    <td class="actions">
+                        <button class="edit-btn" onclick="location.href='#update-category'">Edit</button>
+                        <button class="delete-btn" onclick="location.href='#delete-category'">Delete</button>
+                    </td>
+                </tr>
+                <!-- Repeat for other categories -->
+            </tbody>
+        </table>
+    </div>
+
+    <div class="container" id="add-category">
+        <h1>Add Product Category</h1>
+        <form>
+            <label for="category-name">Category Name</label>
+            <input type="text" id="category-name" name="category-name">
+            <label for="category-description">Category Description</label>
+            <textarea id="category-description" name="category-description" rows="4"></textarea>
+            <button type="submit">Add Category</button>
+        </form>
+    </div>
+
+    <div class="container" id="update-category">
+        <h1>Update Product Category</h1>
+        <form action="updatecategory.php" method="post">
+            <label for="category-select">Select Category to Update</label>
+            <select id="category-select" name="categoryname" required>
+                <option value="" disabled selected>Select category</option>
+                <option value="Beds">Beds</option>
+                <option value="Sofas">Sofas</option>
+                <option value="Tables">Tables</option>
+                <option value="Chairs">Chairs</option>
+                <!-- Add more options as needed -->
+            </select>
+            <label for="category-name">Category Name</label>
+            <input type="text" id="category-name" name="category-name" required>
+            <label for="category-description">Category Description</label>
+            <textarea id="category-description" name="category-description" rows="4" required></textarea>
+            <button type="submit">Update Category</button>
+        </form>
+    </div>
+
+    <div class="container" id="delete-category">
+        <h1>Delete Product Category</h1>
+        <form action="deletecategory.php" method="post">
+            <label for="category-select">Select Category to Delete</label>
+            <select id="category-select" name="categoryname">
+                <option value="" disabled selected>Select category</option>
+                <option value="Beds">Beds</option>
+                <option value="Sofas">Sofas</option>
+                <option value="Tables">Tables</option>
+                <option value="Chairs">Chairs</option>
+                <!-- Add more options as needed -->
+            </select>
+            <button type="submit">Delete Category</button>
+        </form>
+    </div>
+</body>
+</html>
