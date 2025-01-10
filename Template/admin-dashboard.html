@@ -30,73 +30,83 @@
                 color: #5d6061; /* Navbar text color */
             }
             /* Content Styling */
-            body {
-                margin: 0;
-                font-family: Arial, sans-serif;
+            .main-content {
+                margin-left: 0px;
+                padding: 80px 190px 20px;
                 background-color: #f8f9fa;
+                min-height: 100vh;
             }
             .stats-section {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                padding: 20px 40px;
-                background-color: #ffffff;
-                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-                border-radius: 10px;
-                margin: 20px auto;
-                max-width: 1200px;
-            }
-            .stat-card {
-                display: flex;
-                align-items: center;
-                padding: 10px 20px;
-                background-color: #f8f9fa;
-                border-radius: 8px;
-                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-                width: 22%;
-            }
-            .stat-icon {
-                margin-right: 15px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                width: 50px;
-                height: 50px;
-                background-color: #e9ecef;
-                border-radius: 50%;
-            }
-            .stat-content {
-                text-align: left;
-            }
-            .stat-value {
-                font-size: 1.5rem;
-                font-weight: bold;
-                margin: 0;
-            }
-            .stat-label {
-                font-size: 0.9rem;
-                color: #6c757d;
-                margin: 0;
-            }
-            .stat-change {
-                font-size: 0.9rem;
-                margin-left: 5px;
-            }
-            .positive {
-                color: #28a745;
-            }
-            .negative {
-                color: #dc3545;
-            }
-            @media (max-width: 768px) {
-                .stats-section {
-                    flex-direction: column;
-                    gap: 15px;
-                }
-                .stat-card {
-                    width: 100%;
-                }
-            }
+    display: flex;
+    justify-content: space-between;
+    gap: 80px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin: 20px auto;
+    max-width: 1200px;
+}
+
+.stat-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 30px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    flex: 1; /* Ensures all cards are of equal width */
+}
+
+.stat-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    background-color: #f8f9fa;
+    border-radius: 50%;
+}
+
+.stat-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.stat-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.stat-label {
+    font-size: 1rem;
+    color: #6c757d;
+    margin: 0;
+}
+
+.stat-change {
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+.positive {
+    color: #28a745;
+}
+
+.negative {
+    color: #dc3545;
+}
+
+@media (max-width: 768px) {
+    .stats-section {
+        flex-direction: column;
+    }
+    .stat-card {
+        width: 100%;
+    }
+}
         </style>
     </head>
     <body class="bg-body-secondary">
@@ -213,48 +223,51 @@
             </nav>
             <!-- Navbar Finish -->
             <!-- Main Content Start -->
-            <div class="stats-section">
-                <div class="stat-card">
-                    <div class="stat-icon">
-                        <i class="cil-chart" style="font-size: 1.5rem; color: #17a2b8;"></i>
+            <div class="main-content">
+                <!-- Stat Cards -->
+
+                <div class="stats-section">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="cil-chart" style="font-size: 1.5rem; color: #17a2b8;"></i>
+                        </div>
+                        <div class="stat-content">
+                            <p class="stat-value">$95k</p>
+                            <p class="stat-label">Revenue</p>
+                            <span class="stat-change positive">↑ 5.2%</span>
+                        </div>
                     </div>
-                    <div class="stat-content">
-                        <p class="stat-value">$95k</p>
-                        <p class="stat-label">Revenue</p>
-                        <span class="stat-change positive">↑ 5.2%</span>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="cil-chart-pie" style="font-size: 1.5rem; color: #ffc107;"></i>
+                        </div>
+                        <div class="stat-content">
+                            <p class="stat-value">18.63%</p>
+                            <p class="stat-label">Growth Rate</p>
+                            <span class="stat-change negative">↓ 2.0%</span>
+                        </div>
                     </div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon">
-                        <i class="cil-chart-pie" style="font-size: 1.5rem; color: #ffc107;"></i>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="cil-graph" style="font-size: 1.5rem; color: #28a745;"></i>
+                        </div>
+                        <div class="stat-content">
+                            <p class="stat-value">$27k</p>
+                            <p class="stat-label">Sales</p>
+                            <span class="stat-change positive">↑ 10.0%</span>
+                        </div>
                     </div>
-                    <div class="stat-content">
-                        <p class="stat-value">18.63%</p>
-                        <p class="stat-label">Growth Rate</p>
-                        <span class="stat-change negative">↓ 2.0%</span>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="cil-cart" style="font-size: 1.5rem; color: #fd7e14;"></i>
+                        </div>
+                        <div class="stat-content">
+                            <p class="stat-value">13,700</p>
+                            <p class="stat-label">Orders</p>
+                            <span class="stat-change negative">↓ 13.6%</span>
+                        </div>
                     </div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon">
-                        <i class="cil-graph" style="font-size: 1.5rem; color: #28a745;"></i>
-                    </div>
-                    <div class="stat-content">
-                        <p class="stat-value">$27k</p>
-                        <p class="stat-label">Sales</p>
-                        <span class="stat-change positive">↑ 10.0%</span>
-                    </div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon">
-                        <i class="cil-cart" style="font-size: 1.5rem; color: #fd7e14;"></i>
-                    </div>
-                    <div class="stat-content">
-                        <p class="stat-value">13,700</p>
-                        <p class="stat-label">Orders</p>
-                        <span class="stat-change negative">↓ 13.6%</span>
-                    </div>
-                </div>
-            </div>
+                </div>                
             <!-- VIsitoe overview-->
                 <div class="visitors-overview">
                     <h2>Visitors Overview</h2>
