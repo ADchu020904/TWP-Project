@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="node_modules/@coreui/icons/css/all.min.css">
     <script defer src="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.2.0/dist/js/coreui.bundle.min.js"></script>
     <style>
+        .container h1 {
+            margin-top: 40px; /* 调整这个值来增加或减少距离 */
+        }
         /* Sidebar Styling */
         .sidebar {
             width: 250px;
@@ -118,6 +121,14 @@
             background-color: #eadcdc;
         }
     </style>
+    <script>
+        function showSection(sectionId) {
+            document.querySelectorAll('.container').forEach(container => {
+                container.style.display = 'none';
+            });
+            document.getElementById(sectionId).style.display = 'block';
+        }
+    </script>
 </head>
 <body class="bg-body-secondary">
     <!-- Layout Container -->
@@ -139,10 +150,10 @@
                         <i class="nav-icon cil-people"></i> Member
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="memberDropdown">
-                        <li><a class="dropdown-item" href="admin-member.html#add">Add</a></li>
-                        <li><a class="dropdown-item" href="admin-member.html#view">View</a></li>
-                        <li><a class="dropdown-item" href="admin-member.html#delete">Delete</a></li>
-                        <li><a class="dropdown-item" href="admin-member.html#update">Update</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="showSection('add-category')">Add</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="showSection('view-category')">View</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="showSection('delete-category')">Delete</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="showSection('update-category')">Update</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -150,10 +161,10 @@
                         <i class="nav-icon cil-cart"></i> Product
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="productDropdown">
-                        <li><a class="dropdown-item" href="admin-product.html#add">Add</a></li>
-                        <li><a class="dropdown-item" href="admin-product.html#view">View</a></li>
-                        <li><a class="dropdown-item" href="admin-product.html#delete">Delete</a></li>
-                        <li><a class="dropdown-item" href="admin-product.html#update">Update</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="showSection('add-category')">Add</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="showSection('view-category')">View</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="showSection('delete-category')">Delete</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="showSection('update-category')">Update</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -161,10 +172,10 @@
                         <i class="nav-icon cil-tags"></i> Category
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
-                        <li><a class="dropdown-item" href="admin-category.html#add">Add</a></li>
-                        <li><a class="dropdown-item" href="admin-category.html#view">View</a></li>
-                        <li><a class="dropdown-item" href="admin-category.html#delete">Delete</a></li>
-                        <li><a class="dropdown-item" href="admin-category.html#update">Update</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="showSection('add-category')">Add</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="showSection('view-category')">View</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="showSection('delete-category')">Delete</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="showSection('update-category')">Update</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -235,12 +246,9 @@
 
         <!-- Main Content Start -->
         <div class="container" id="view-category">
-            <div class="login-left">
-                <img src="images/logo.png" alt="Company Logo">
-                <h2>A Modern Furniture Shop</h2>
-            </div>
+            
             <h1>View Product Categories</h1>
-            <a href="#add-category" class="add-btn">Add Category</a>
+            <a href="#" class="add-btn" onclick="showSection('add-category')">Add Category</a>
             <table>
                 <thead>
                     <tr>
@@ -254,32 +262,32 @@
                         <td>Beds</td>
                         <td>Various types of beds including single, double, and bunk beds.</td>
                         <td class="actions">
-                            <button class="edit-btn" onclick="location.href='#update-category'">Edit</button>
-                            <button class="delete-btn" onclick="location.href='#delete-category'">Delete</button>
+                            <button class="edit-btn" onclick="showSection('update-category')">Edit</button>
+                            <button class="delete-btn" onclick="showSection('delete-category')">Delete</button>
                         </td>
                     </tr>
                     <tr>
                         <td>Sofas</td>
                         <td>Comfortable and stylish sofas for your living room.</td>
                         <td class="actions">
-                            <button class="edit-btn" onclick="location.href='#update-category'">Edit</button>
-                            <button class="delete-btn" onclick="location.href='#delete-category'">Delete</button>
+                            <button class="edit-btn" onclick="showSection('update-category')">Edit</button>
+                            <button class="delete-btn" onclick="showSection('delete-category')">Delete</button>
                         </td>
                     </tr>
                     <tr>
                         <td>Tables</td>
                         <td>Dining tables, coffee tables, and more.</td>
                         <td class="actions">
-                            <button class="edit-btn" onclick="location.href='#update-category'">Edit</button>
-                            <button class="delete-btn" onclick="location.href='#delete-category'">Delete</button>
+                            <button class="edit-btn" onclick="showSection('update-category')">Edit</button>
+                            <button class="delete-btn" onclick="showSection('delete-category')">Delete</button>
                         </td>
                     </tr>
                     <tr>
                         <td>Chairs</td>
                         <td>Various types of chairs including office chairs and dining chairs.</td>
                         <td class="actions">
-                            <button class="edit-btn" onclick="location.href='#update-category'">Edit</button>
-                            <button class="delete-btn" onclick="location.href='#delete-category'">Delete</button>
+                            <button class="edit-btn" onclick="showSection('update-category')">Edit</button>
+                            <button class="delete-btn" onclick="showSection('delete-category')">Delete</button>
                         </td>
                     </tr>
                     <!-- Repeat for other categories -->
@@ -287,7 +295,7 @@
             </table>
         </div>
 
-        <div class="container" id="add-category">
+        <div class="container" id="add-category" style="display: none;">
             <h1>Add Product Category</h1>
             <form>
                 <label for="category-name">Category Name</label>
@@ -298,7 +306,7 @@
             </form>
         </div>
 
-        <div class="container" id="update-category">
+        <div class="container" id="update-category" style="display: none;">
             <h1>Update Product Category</h1>
             <form action="updatecategory.php" method="post">
                 <label for="category-select">Select Category to Update</label>
@@ -318,7 +326,7 @@
             </form>
         </div>
 
-        <div class="container" id="delete-category">
+        <div class="container" id="delete-category" style="display: none;">
             <h1>Delete Product Category</h1>
             <form action="deletecategory.php" method="post">
                 <label for="category-select">Select Category to Delete</label>
