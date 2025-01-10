@@ -9,6 +9,9 @@
     <script defer src="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.2.0/dist/js/coreui.bundle.min.js"></script>
     <style>
         /* Sidebar Styling */
+        .container h1 {
+            margin-top: 40px; /* 调整这个值来增加或减少距离 */
+        }
         .sidebar {
             width: 250px;
             overflow-y: auto;
@@ -117,10 +120,15 @@
         .add-btn:hover {
             background-color: #eadcdc;
         }
-        .container {
-            margin-top: 50px; /* Add space above footer */
-        }
     </style>
+    <script>
+        function showSection(sectionId) {
+            document.querySelectorAll('.container').forEach(container => {
+                container.style.display = 'none';
+            });
+            document.getElementById(sectionId).style.display = 'block';
+        }
+    </script>
 </head>
 <body class="bg-body-secondary">
     <!-- Layout Container -->
@@ -175,10 +183,10 @@
                         <i class="nav-icon cil-notes"></i> Order
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="orderDropdown">
-                        <li><a class="dropdown-item" href="admin-order.html#add">Add</a></li>
-                        <li><a class="dropdown-item" href="admin-order.html#view">View</a></li>
-                        <li><a class="dropdown-item" href="admin-order.html#delete">Delete</a></li>
-                        <li><a class="dropdown-item" href="admin-order.html#update">Update</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="showSection('add-order')">Add</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="showSection('view-orders')">View</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="showSection('delete-order')">Delete</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="showSection('update-order')">Update</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -237,35 +245,102 @@
         <!-- Navbar Finish -->
 
         <!-- Main Content Start -->
-        <div class="container">
-            <h1>Manage Orders</h1>
-            <table class="table table-bordered">
+        <div class="container" id="view-orders">
+            <h1>View Orders</h1>
+            <a href="#" class="add-btn" onclick="showSection('add-order')">Add Order</a>
+            <table>
                 <thead>
                     <tr>
                         <th>Order ID</th>
                         <th>Customer Name</th>
                         <th>Total Amount</th>
                         <th>Status</th>
-                        <th>Action</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Placeholder for dynamic content -->
                     <tr>
                         <td>1</td>
                         <td>John Doe</td>
                         <td>$100.00</td>
                         <td>Pending</td>
                         <td class="actions">
-                            <button class="edit-btn">Edit</button>
-                            <button class="delete-btn">Delete</button>
+                            <button class="edit-btn" onclick="showSection('update-order')">Edit</button>
+                            <button class="delete-btn" onclick="showSection('delete-order')">Delete</button>
                         </td>
                     </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Jane Smith</td>
+                        <td>$200.00</td>
+                        <td>Completed</td>
+                        <td class="actions">
+                            <button class="edit-btn" onclick="showSection('update-order')">Edit</button>
+                            <button class="delete-btn" onclick="showSection('delete-order')">Delete</button>
+                        </td>
+                    </tr>
+                    <!-- Repeat for other orders -->
                 </tbody>
             </table>
-            <div class="mt-4">
-                <a href="admin-dashboard.html" class="btn btn-secondary">Return</a>
-            </div>
+        </div>
+
+        <div class="container" id="add-order" style="display: none;">
+            <h1>Add Order</h1>
+            <form>
+                <label for="order-id">Order ID</label>
+                <input type="number" id="order-id" name="order-id">
+                <label for="customer-name">Customer Name</label>
+                <input type="text" id="customer-name" name="customer-name">
+                <label for="total-amount">Total Amount</label>
+                <input type="number" id="total-amount" name="total-amount">
+                <label for="status">Status</label>
+                <select id="status" name="status">
+                    <option value="Pending">Pending</option>
+                    <option value="Completed">Completed</option>
+                    <option value="Cancelled">Cancelled</option>
+                </select>
+                <button type="submit">Add Order</button>
+            </form>
+        </div>
+
+        <div class="container" id="update-order" style="display: none;">
+            <h1>Update Order</h1>
+            <form action="updateorder.php" method="post">
+                <label for="order-select">Select Order to Update</label>
+                <select id="order-select" name="orderid" required>
+                    <option value="" disabled selected>Select order</option>
+                    <option value="1">Order 1</option>
+                    <option value="2">Order 2</option>
+                    <option value="3">Order 3</option>
+                    <!-- Add more options as needed -->
+                </select>
+                <label for="customer-name">Customer Name</label>
+                <input type="text" id="customer-name" name="customer-name" required>
+                <label for="total-amount">Total Amount</label>
+                <input type="number" id="total-amount" name="total-amount" required>
+                <label for="status">Status</label>
+                <select id="status" name="status" required>
+                    <option value="Pending">Pending</option>
+                    <option value="Completed">Completed</option>
+                    <option value="Cancelled">Cancelled</option>
+                </select>
+                <button type="submit">Update Order</button>
+            </form>
+        </div>
+
+        <div class="container" id="delete-order" style="display: none;">
+            <h1>Delete Order</h1>
+            <form action="deleteorder.php" method="post">
+                <label for="order-select">Select Order to Delete</label>
+                <select id="order-select" name="orderid">
+                    <option value="" disabled selected>Select order</option>
+                    <option value="1">Order 1</option>
+                    <option value="2">Order 2</option>
+                    <option value="3">Order 3</option>
+                    <!-- Add more options as needed -->
+                </select>
+                <button type="submit">Delete Order</button>
+            </form>
         </div>
     </div>
 </body>
