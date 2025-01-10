@@ -630,14 +630,14 @@ button {
     position: absolute;
     right: 615px;
     top: 110%;
-    background-color: #7c2c0c;
-    color: #ffffff;
+    
 }
 
 #my_slider a.carousel-control-prev {
     position: absolute;
     left: 615px;
     top: 110%;
+    
 }
 
 #my_slider .carousel-control-prev,
@@ -921,10 +921,6 @@ input.email_text::placeholder {
 
 .facebookBtn:hover {
     color: #fff;
-    background: #7c2c0c;
-}
-
-a.facebookBtn.smGlobalBtn.active {
     background: #7c2c0c;
 }
 
