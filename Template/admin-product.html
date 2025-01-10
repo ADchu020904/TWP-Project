@@ -9,6 +9,9 @@
     <script defer src="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.2.0/dist/js/coreui.bundle.min.js"></script>
     <style>
         /* Sidebar Styling */
+        .container h1 {
+            margin-top: 40px; /* 调整这个值来增加或减少距离 */
+        }
         .sidebar {
             width: 250px;
             overflow-y: auto;
@@ -118,6 +121,14 @@
             background-color: #eadcdc;
         }
     </style>
+    <script>
+        function showSection(sectionId) {
+            document.querySelectorAll('.container').forEach(container => {
+                container.style.display = 'none';
+            });
+            document.getElementById(sectionId).style.display = 'block';
+        }
+    </script>
 </head>
 <body class="bg-body-secondary">
     <!-- Layout Container -->
@@ -139,10 +150,10 @@
                         <i class="nav-icon cil-people"></i> Member
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="memberDropdown">
-                        <li><a class="dropdown-item" href="admin-member.html#add">Add</a></li>
-                        <li><a class="dropdown-item" href="admin-member.html#view">View</a></li>
-                        <li><a class="dropdown-item" href="admin-member.html#delete">Delete</a></li>
-                        <li><a class="dropdown-item" href="admin-member.html#update">Update</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="showSection('add-product')">Add</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="showSection('view-products')">View</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="showSection('delete-product')">Delete</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="showSection('update-product')">Update</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -150,10 +161,10 @@
                         <i class="nav-icon cil-cart"></i> Product
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="productDropdown">
-                        <li><a class="dropdown-item" href="admin-product.html#add">Add</a></li>
-                        <li><a class="dropdown-item" href="admin-product.html#view">View</a></li>
-                        <li><a class="dropdown-item" href="admin-product.html#delete">Delete</a></li>
-                        <li><a class="dropdown-item" href="admin-product.html#update">Update</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="showSection('add-product')">Add</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="showSection('view-products')">View</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="showSection('delete-product')">Delete</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="showSection('update-product')">Update</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -234,13 +245,9 @@
         <!-- Navbar Finish -->
 
         <!-- Main Content Start -->
-        <div class="container">
-            <div class="login-left">
-                <img src="images/logo.png" alt="Company Logo">
-                <h2>A Modern Furniture Shop</h2>
-            </div>
+        <div class="container" id="view-products">
             <h1>View Products</h1>
-            <a href="#add-product" class="add-btn">Add Product</a>
+            <a href="#" class="add-btn" onclick="showSection('add-product')">Add Product</a>
             <table>
                 <thead>
                     <tr>
@@ -256,8 +263,8 @@
                         <td>$426.80</td>
                         <td>Single Bunk Bed</td>
                         <td class="actions">
-                            <button class="edit-btn" onclick="location.href='#update-product'">Edit</button>
-                            <button class="delete-btn" onclick="location.href='#delete-product'">Delete</button>
+                            <button class="edit-btn" onclick="showSection('update-product')">Edit</button>
+                            <button class="delete-btn" onclick="showSection('delete-product')">Delete</button>
                         </td>
                     </tr>
                     <tr>
@@ -265,8 +272,8 @@
                         <td>$352.00</td>
                         <td>Single Bunk Bed</td>
                         <td class="actions">
-                            <button class="edit-btn" onclick="location.href='#update-product'">Edit</button>
-                            <button class="delete-btn" onclick="location.href='#delete-product'">Delete</button>
+                            <button class="edit-btn" onclick="showSection('update-product')">Edit</button>
+                            <button class="delete-btn" onclick="showSection('delete-product')">Delete</button>
                         </td>
                     </tr>
                     <tr>
@@ -274,8 +281,8 @@
                         <td>$165.00</td>
                         <td>Single Bed</td>
                         <td class="actions">
-                            <button class="edit-btn" onclick="location.href='#update-product'">Edit</button>
-                            <button class="delete-btn" onclick="location.href='#delete-product'">Delete</button>
+                            <button class="edit-btn" onclick="showSection('update-product')">Edit</button>
+                            <button class="delete-btn" onclick="showSection('delete-product')">Delete</button>
                         </td>
                     </tr>
                     <tr>
@@ -283,8 +290,8 @@
                         <td>$280.00</td>
                         <td>5ft Bed</td>
                         <td class="actions">
-                            <button class="edit-btn" onclick="location.href='#update-product'">Edit</button>
-                            <button class="delete-btn" onclick="location.href='#delete-product'">Delete</button>
+                            <button class="edit-btn" onclick="showSection('update-product')">Edit</button>
+                            <button class="delete-btn" onclick="showSection('delete-product')">Delete</button>
                         </td>
                     </tr>
                     <!-- Repeat for other products -->
@@ -292,7 +299,7 @@
             </table>
         </div>
 
-        <div class="container" id="add-product">
+        <div class="container" id="add-product" style="display: none;">
             <h1>Add Product</h1>
             <form>
                 <label for="product-name">Product Name</label>
@@ -308,7 +315,7 @@
             </form>
         </div>
 
-        <div class="container" id="update-product">
+        <div class="container" id="update-product" style="display: none;">
             <h1>Update Product</h1>
             <form action="updateproduct.php" method="post">
                 <label for="product-select">Select Product to Update</label>
@@ -329,7 +336,7 @@
             </form>
         </div>
 
-        <div class="container" id="delete-product">
+        <div class="container" id="delete-product" style="display: none;">
             <h1>Delete Product</h1>
             <form action="deleteproduct.php" method="post">
                 <label for="product-select">Select Product to Delete</label>
