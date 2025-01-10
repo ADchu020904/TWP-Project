@@ -118,6 +118,14 @@
             background-color: #eadcdc;
         }
     </style>
+    <script>
+        function showSection(sectionId) {
+            document.querySelectorAll('.container').forEach(container => {
+                container.style.display = 'none';
+            });
+            document.getElementById(sectionId).style.display = 'block';
+        }
+    </script>
 </head>
 <body class="bg-body-secondary">
     <!-- Layout Container -->
@@ -139,10 +147,10 @@
                         <i class="nav-icon cil-people"></i> Member
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="memberDropdown">
-                        <li><a class="dropdown-item" href="admin-member.html#add">Add</a></li>
-                        <li><a class="dropdown-item" href="admin-member.html#view">View</a></li>
-                        <li><a class="dropdown-item" href="admin-member.html#delete">Delete</a></li>
-                        <li><a class="dropdown-item" href="admin-member.html#update">Update</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="showSection('add')">Add</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="showSection('view')">View</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="showSection('delete')">Delete</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="showSection('update')">Update</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -240,7 +248,7 @@
                 <h2>A Modern Furniture Shop</h2>
             </div>
             <h1>View Members</h1>
-            <a href="#add" class="add-btn">Add Member</a>
+            <a href="#" class="add-btn" onclick="showSection('add')">Add Member</a>
             <table>
                 <thead>
                     <tr>
@@ -258,8 +266,8 @@
                         <td>john.doe@example.com</td>
                         <td>123-456-7890</td>
                         <td class="actions">
-                            <button class="edit-btn" onclick="location.href='#update'">Edit</button>
-                            <button class="delete-btn" onclick="location.href='#delete'">Delete</button>
+                            <button class="edit-btn" onclick="showSection('update')">Edit</button>
+                            <button class="delete-btn" onclick="showSection('delete')">Delete</button>
                         </td>
                     </tr>
                     <tr>
@@ -268,8 +276,8 @@
                         <td>jane.smith@example.com</td>
                         <td>098-765-4321</td>
                         <td class="actions">
-                            <button class="edit-btn" onclick="location.href='#update'">Edit</button>
-                            <button class="delete-btn" onclick="location.href='#delete'">Delete</button>
+                            <button class="edit-btn" onclick="showSection('update')">Edit</button>
+                            <button class="delete-btn" onclick="showSection('delete')">Delete</button>
                         </td>
                     </tr>
                     <!-- Repeat for other members -->
@@ -277,7 +285,7 @@
             </table>
         </div>
 
-        <div class="container" id="add">
+        <div class="container" id="add" style="display: none;">
             <h1>Add Member</h1>
             <form>
                 <label for="member-id">Member ID</label>
@@ -292,7 +300,7 @@
             </form>
         </div>
 
-        <div class="container" id="update">
+        <div class="container" id="update" style="display: none;">
             <h1>Update Member</h1>
             <form action="updatemember.php" method="post">
                 <label for="member-select">Select Member to Update</label>
@@ -313,7 +321,7 @@
             </form>
         </div>
 
-        <div class="container" id="delete"></div>
+        <div class="container" id="delete" style="display: none;">
             <h1>Delete Member</h1>
             <form action="deletemember.php" method="post">
                 <label for="member-select">Select Member to Delete</label>
