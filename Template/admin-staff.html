@@ -137,10 +137,18 @@
             font-size: 24px;
             margin-bottom: 10px;
         }
-        .container{
+        .container {
             margin-top: 50px; /* Add space above footer */
         }
     </style>
+    <script>
+        function showSection(sectionId) {
+            document.querySelectorAll('.container').forEach(container => {
+                container.style.display = 'none';
+            });
+            document.getElementById(sectionId).style.display = 'block';
+        }
+    </script>
 </head>
 <body class="bg-body-secondary">
     <!-- Layout Container -->
@@ -206,10 +214,10 @@
                         <i class="nav-icon cil-user"></i> Staff
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="staffDropdown">
-                        <li><a class="dropdown-item" href="admin-staff.html#add">Add</a></li>
-                        <li><a class="dropdown-item" href="admin-staff.html#view">View</a></li>
-                        <li><a class="dropdown-item" href="admin-staff.html#delete">Delete</a></li>
-                        <li><a class="dropdown-item" href="admin-staff.html#update">Update</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="showSection('add-staff')">Add</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="showSection('view-staff')">View</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="showSection('delete-staff')">Delete</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="showSection('update-staff')">Update</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
@@ -257,13 +265,10 @@
         <!-- Navbar Finish -->
 
         <!-- Main Content Start -->
-        <div class="container">
-            <div class="login-left">
-                <img src="images/logo.png" alt="Company Logo">
-                <h2>A Modern Furniture Shop</h2>
-            </div>
+        <div class="container" id="view-staff">
+            
             <h1>View Staff</h1>
-            <a href="#add-staff" class="add-btn">Add Staff</a>
+            <a href="#" class="add-btn" onclick="showSection('add-staff')">Add Staff</a>
             <table>
                 <thead>
                     <tr>
@@ -283,8 +288,8 @@
                         <td>Sales</td>
                         <td>Responsible for managing the sales team.</td>
                         <td class="actions">
-                            <button class="edit-btn" onclick="location.href='#update-staff'">Edit</button>
-                            <button class="delete-btn" onclick="location.href='#delete-staff'">Delete</button>
+                            <button class="edit-btn" onclick="showSection('update-staff')">Edit</button>
+                            <button class="delete-btn" onclick="showSection('delete-staff')">Delete</button>
                         </td>
                     </tr>
                     <tr>
@@ -294,8 +299,8 @@
                         <td>IT</td>
                         <td>Develops and maintains the company website.</td>
                         <td class="actions">
-                            <button class="edit-btn" onclick="location.href='#update-staff'">Edit</button>
-                            <button class="delete-btn" onclick="location.href='#delete-staff'">Delete</button>
+                            <button class="edit-btn" onclick="showSection('update-staff')">Edit</button>
+                            <button class="delete-btn" onclick="showSection('delete-staff')">Delete</button>
                         </td>
                     </tr>
                     <!-- Repeat for other staff members -->
@@ -303,7 +308,7 @@
             </table>
         </div>
 
-        <div class="container" id="add-staff">
+        <div class="container" id="add-staff" style="display: none;">
             <h1>Add Staff Member</h1>
             <form>
                 <label for="staff-name">Name</label>
@@ -321,7 +326,7 @@
             </form>
         </div>
 
-        <div class="container" id="update-staff">
+        <div class="container" id="update-staff" style="display: none;">
             <h1>Update Staff</h1>
             <form action="updatestaff.php" method="post">
                 <label for="staff-select">Select Staff to Update</label>
@@ -344,7 +349,7 @@
             </form>
         </div>
 
-        <div class="container" id="delete-staff">
+        <div class="container" id="delete-staff" style="display: none;">
             <h1>Delete Staff</h1>
             <form action="deletestaff.php" method="post">
                 <label for="staff-select">Select Staff to Delete</label>
