@@ -39,7 +39,7 @@
                <span class="navbar-toggler-icon"></span>
                </button>
                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                  <ul class="navbar-nav mr-auto">
+                  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                      <li class="nav-item">
                         <a class="nav-link" href="index.html">Home</a>
                      </li>
@@ -55,21 +55,25 @@
                      <li class="nav-item">
                         <a class="nav-link" href="contact.html">Contact Us</a>
                      </li>
-                     
+                  </ul>
+                  <ul class="navbar-nav ms-auto">
                      <li class="nav-item">
-                        <a class="nav-link" href="cart.html"><img src="images/cart.png" alt="Cart Icon" style="width: 24px; height: 24px;"></a>
+                        <a class="nav-link" href="cart.html">
+                           <img src="images/cart.png" alt="Cart Icon" class="nav-icon cart-icon">
+                        </a>
+                     </li>
+                     <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                           <img src="images/user-icon.png" alt="User Icon" class="nav-icon user-icon">
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                           <a class="dropdown-item" href="account.html">My Account</a>
+                           <a class="dropdown-item" href="usersignup.html">Log in/Sign up</a>
+                           <a class="dropdown-item" href="index.html">Log Out</a>
+                           <a class="dropdown-item" href="admin-login.html">Admin Login</a>
+                        </div>
                      </li>
                   </ul>
-                  <div class="dropdown">
-                     <a href="#" class="dropdown-toggle" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img src="images/user-icon.png" alt="User Icon">
-                     </a>
-                     <div class="dropdown-menu" aria-labelledby="userDropdown">
-                        <a class="dropdown-item" href="account.html">My Account</a>
-                        <a class="dropdown-item" href="usersignup.html">Log in/Sign up</a>
-                        <a class="dropdown-item" href="index.html">Log Out</a>
-                     </div>
-                  </div>
                </div>
          </nav>
          </div>

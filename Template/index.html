@@ -1,46 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
    <head>
-      <!-- basic -->
+      <!-- Basic Meta Tags -->
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <!-- mobile metas -->
+      <!-- Viewport Settings -->
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <!-- site metas -->
+      
+      <!-- Page Title and SEO Meta Tags -->
       <title>Vik</title>
-      <meta name="keywords" content="">
-      <meta name="description" content="">
-      <meta name="author" content="">
-      <!-- bootstrap css -->
+      <meta name="keywords" content="furniture, modern design, home decor">
+      <meta name="description" content="Premium furniture with contemporary designs">
+      <meta name="author" content="Your Name">
+
+      <!-- CSS Imports -->
+      <!-- Bootstrap Framework -->
       <link rel="stylesheet" href="css/bootstrap.min.css">
-      <!-- style css -->
+      <!-- Custom Styles -->
       <link rel="stylesheet" href="css/style.css">
-      <!-- Responsive-->
+      <!-- Responsive Styles -->
       <link rel="stylesheet" href="css/responsive.css">
-      <!-- fevicon -->
-      <link rel="icon" href="images/vik.ico" type="image/x-icon">
+      <!-- Custom Scrollbar -->
       <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
-      <!-- Tweaks for older IEs-->
+      <!-- Icon Fonts -->
       <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-      <!-- owl stylesheets --> 
+      <!-- Owl Carousel -->
       <link rel="stylesheet" href="css/owl.carousel.min.css">
       <link rel="stylesheet" href="css/owl.theme.default.min.css">
+      <!-- Fancybox -->
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
-      <!-- Special Font -->
+      <!-- Custom Font -->
       <link href="https://fonts.googleapis.com/css2?family=Londrina+Shadow&family=Londrina+Solid:wght@100;300;400;900&display=swap" rel="stylesheet">
-      <link rel="stylesheet" href="node_modules/@coreui/icons/css/all.min.css">
+      
+      <!-- Favicon -->
+      <link rel="icon" href="images/vik.ico" type="image/x-icon">
    </head>
+
    <body>
-      <!-- header section start -->
+      <!-- Header Section -->
       <div class="header_section">
          <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container">
-                  <a class="logo" href="index.html"><img src="images/Vik.png" alt="Vik Logo"></a>
-               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-               <span class="navbar-toggler-icon"></span>
+               <!-- Brand Logo -->
+               <a class="logo" href="index.html"><img src="images/Vik.png"></a>
+
+               <!-- Mobile Menu Toggle -->
+               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" 
+                       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
                </button>
+
+               <!-- Navigation Items -->
                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                  <ul class="navbar-nav mr-auto">
+                  <!-- Left-aligned Navigation Items -->
+                  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                      <li class="nav-item">
                         <a class="nav-link" href="index.html">Home</a>
                      </li>
@@ -56,27 +69,38 @@
                      <li class="nav-item">
                         <a class="nav-link" href="contact.html">Contact Us</a>
                      </li>
-                     
+                  </ul>
+
+                  <!-- Right-aligned Icons -->
+                  <ul class="navbar-nav ms-auto">
+                     <!-- Cart Icon -->
                      <li class="nav-item">
-                        <a class="nav-link" href="cart.html"><img src="images/cart.png" alt="Cart Icon" style="width: 24px; height: 24px;"></a>
+                        <a class="nav-link" href="cart.html">
+                            <!-- Added 'cart-icon' class for specific sizing -->
+                            <img src="images/cart.png" alt="Cart Icon" class="nav-icon cart-icon">
+                        </a>
+                    </li>
+                     
+                     <!-- User Dropdown -->
+                     <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" 
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                         <img src="images/user-icon.png" alt="User Icon" class="nav-icon user-icon">
+                     </a>
+                        <!-- Dropdown Menu -->
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                           <a class="dropdown-item" href="account.html">My Account</a>
+                           <a class="dropdown-item" href="usersignup.html">Log in/Sign up</a>
+                           <a class="dropdown-item" href="index.html">Log Out</a>
+                           <a class="dropdown-item" href="admin-login.html">Admin Login</a>
+                        </div>
                      </li>
                   </ul>
-                  <div class="dropdown">
-                     <a href="#" class="dropdown-toggle" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img src="images/user-icon.png" alt="User Icon">
-                     </a>
-                     <div class="dropdown-menu" aria-labelledby="userDropdown">
-                        <a class="dropdown-item" href="account.html">My Account</a>
-                        <a class="dropdown-item" href="usersignup.html">Log in/Sign up</a>
-                        <a class="dropdown-item" href="index.html">Log Out</a>
-                        <a class="dropdown-item" href="admin-login.html">Admin Login</a>
-                     </div>
-                  </div>
                </div>
+            </div>
          </nav>
-         </div>
       </div>
-      <!-- header section end -->
+      <!-- End Header Section -->     
       <!-- banner section start -->
 <div class="banner_section layout_padding">
    <!-- First Slider -->
@@ -179,7 +203,7 @@
                   <div class="col-md-6">
                      <h1 class="about_taital">About Us</h1>
                      <p class="about_text">Meet the team behind the scene.</p>
-                     <div class="readmore_bt"><a href="about-us.html">Read More</a></div>
+                     <div class="readmore_bt"><a href="about.html">Read More</a></div>
                   </div>
                </div>
             </div>
@@ -367,7 +391,7 @@
                         <input type="text" class="mail_text" placeholder="Name" name="text">
                         <input type="text" class="mail_text" placeholder="Email" name="text">
                         <input type="text" class="mail_text" placeholder="Phone Number" name="text">
-                        <textarea class="massage-bt" placeholder="Massage" rows="5" id="comment" name="Message"></textarea>
+                        <textarea class="massage-bt" placeholder="Message" rows="5" id="comment" name="Message"></textarea>
                         <div class="send_bt"><a href="#">SEND</a></div>
                      </div>
                   </div>
@@ -433,18 +457,21 @@
          </div>
       </div>
       <!-- copyright section end -->
-      <!-- Javascript files-->
+      <!-- JavaScript Files -->
+      <!-- jQuery -->
       <script src="js/jquery.min.js"></script>
+      <!-- Popper.js -->
       <script src="js/popper.min.js"></script>
+      <!-- Bootstrap -->
       <script src="js/bootstrap.bundle.min.js"></script>
+      <!-- Custom Scripts -->
       <script src="js/jquery-3.0.0.min.js"></script>
       <script src="js/plugin.js"></script>
-      <!-- sidebar -->
+      <!-- Scrollbar -->
       <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
-      <script src="js/custom.js"></script>
-      <!-- javascript --> 
+      <!-- Owl Carousel -->
       <script src="js/owl.carousel.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.2.0/dist/js/coreui.bundle.min.js" integrity="sha384-JdRP5GRWP6APhoVS1OM/pOKMWe7q9q8hpl+J2nhCfVJKoS+yzGtELC5REIYKrymn" crossorigin="anonymous"></script>
+      <!-- Fancybox -->
       <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
    </body>
 </html>

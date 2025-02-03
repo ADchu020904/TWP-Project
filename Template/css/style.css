@@ -65,6 +65,42 @@ body {
     padding: 0;
 }
 
+/* Specific cart icon sizing */
+.cart-icon {
+    width: 20px !important;  /* Reduced from 24px */
+    height: 20px !important; /* Reduced from 24px */
+    margin-top: -3px; /* Fine-tune vertical alignment if needed */
+}
+
+/* General navigation icons */
+.nav-icon {
+    /* Base icon styling */
+    transition: opacity 0.3s ease;
+    vertical-align: middle; /* Better alignment */
+}
+
+.nav-icon:hover {
+    opacity: 0.8;
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+    min-width: 200px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.dropdown-item {
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease;
+}
+/* Dropdown user icon */
+.user-icon {
+    width: 22px;
+    height: 22px;
+    margin-left: 15px; /* Space between cart and user icon */
+}
+
 a {
     color: #1f1f1f;
     text-decoration: none !important;
