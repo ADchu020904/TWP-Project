@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <style>
       body {
-         background-color: #efe4d1; /* Updated to match index.html */
+         background-color: #efe4d1; /* Updated to match index.php */
          font-family: 'Poppins', sans-serif;
          color: #fff;
          display: flex;
@@ -131,7 +131,7 @@
                 <input type="submit" class="btn btn-primary btn-block" name="login">LOGIN</input>
                 <a href="#" class="sign-up" onclick="switchToSignUp(event)">SIGN UP</a>
                 <a href="#" class="forgot-password">FORGOTTEN YOUR PASSWORD?</a>
-                <a href="index.html" class="go-back">GO BACK TO HOME</a>
+                <a href="index.php" class="go-back">GO BACK TO HOME</a>
             </form>
             <form id="signUpForm" style="display: none;" method="POST" action="register.php">
                 <h2>Sign Up</h2>
@@ -155,7 +155,7 @@
                 <input type="submit" class="btn btn-primary btn-block" name="signUp">SIGN UP</input>
                 <a href="#" class="sign-up" onclick="switchToLogin(event)">ALREADY HAVE AN ACCOUNT? LOGIN</a>
                 <a href="forgot-password.html" class="forgot-password">FORGOTTEN YOUR PASSWORD?</a>
-                <a href="index.html" class="go-back">GO BACK TO HOME</a>
+                <a href="index.php" class="go-back">GO BACK TO HOME</a>
             </form>
         </div>
     </div>
