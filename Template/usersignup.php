@@ -130,7 +130,7 @@
                 </div>
                 <input type="submit" class="btn btn-primary btn-block" name="login">LOGIN</input>
                 <a href="#" class="sign-up" onclick="switchToSignUp(event)">SIGN UP</a>
-                <a href="forgot-password.html" class="forgot-password">FORGOTTEN YOUR PASSWORD?</a>
+                <a href="#" class="forgot-password">FORGOTTEN YOUR PASSWORD?</a>
                 <a href="index.html" class="go-back">GO BACK TO HOME</a>
             </form>
             <form id="signUpForm" style="display: none;" method="POST" action="Template/register.php">
