@@ -144,8 +144,8 @@
                     <input type="text" class="form-control" id="LNname" name="LName" placeholder="Enter you last name" required>
                 </div>
                 <div class="form-group">
-                    <label for="new-useremail">Email</label>
-                    <input type="text" class="form-control" id="new-username" name="new-useremail" placeholder="Enter your email" required>
+                    <label for="useremail">Email</label>
+                    <input type="text" class="form-control" id="useremail" name="useremail" placeholder="Enter your email" required>
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
