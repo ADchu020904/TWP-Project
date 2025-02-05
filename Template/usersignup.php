@@ -119,7 +119,7 @@
                 <h2>Welcome</h2>
                 <p>PLEASE LOGIN TO YOUR ACCOUNT</p>
             </div>
-            <form id="loginForm" onsubmit="handleLogin(event)" method="POST" action="register.php">
+            <form id="loginForm" method="POST" action="register.php">
                 <div class="form-group">
                     <label for="username">Email</label>
                     <input type="text" class="form-control" id="useremail" name="useremail" placeholder="Enter your email" required>
