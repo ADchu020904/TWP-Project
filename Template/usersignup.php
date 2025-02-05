@@ -119,7 +119,7 @@
                 <h2>Welcome</h2>
                 <p>PLEASE LOGIN TO YOUR ACCOUNT</p>
             </div>
-            <form id="loginForm" onsubmit="handleLogin(event)">
+            <form id="loginForm" onsubmit="handleLogin(event)" method="POST" action="Template/connect.php">
                 <div class="form-group">
                     <label for="username">Email</label>
                     <input type="text" class="form-control" id="useremail" name="useremail" placeholder="Enter your email" required>
@@ -133,7 +133,7 @@
                 <a href="forgot-password.html" class="forgot-password">FORGOTTEN YOUR PASSWORD?</a>
                 <a href="index.html" class="go-back">GO BACK TO HOME</a>
             </form>
-            <form id="signUpForm" style="display: none;">
+            <form id="signUpForm" style="display: none;" method="POST" action="Template/connect.php">
                 <h2>Sign Up</h2>
                 <div class="form-group">
                     <label for="Fname">First Name</label>
