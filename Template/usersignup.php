@@ -128,7 +128,7 @@
                     <label for="password">Password</label>
                     <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
                 </div>
-                <input type="submit" class="btn btn-primary btn-block" name="login">LOGIN</input>
+                <input type="submit" class="btn btn-primary btn-block" name="login"></input>
                 <a href="#" class="sign-up" onclick="switchToSignUp(event)">SIGN UP</a>
                 <a href="#" class="forgot-password">FORGOTTEN YOUR PASSWORD?</a>
                 <a href="index.php" class="go-back">GO BACK TO HOME</a>
@@ -152,7 +152,7 @@
                     <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
                 </div>
                 
-                <input type="submit" class="btn btn-primary btn-block" name="signUp">SIGN UP</input>
+                <input type="submit" class="btn btn-primary btn-block" name="signUp"></input>
                 <a href="#" class="sign-up" onclick="switchToLogin(event)">ALREADY HAVE AN ACCOUNT? LOGIN</a>
                 <a href="forgot-password.html" class="forgot-password">FORGOTTEN YOUR PASSWORD?</a>
                 <a href="index.php" class="go-back">GO BACK TO HOME</a>
