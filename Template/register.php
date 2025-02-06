@@ -1,8 +1,12 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
 include 'connect.php';
 
+// Add debugging statements
 if(isset($_POST['signUp'])){
+    var_dump($_POST); // This will show all POST data
     // Collect and sanitize user input
     $firstName = trim($_POST['FName']);
     $lastName = trim($_POST['LName']);
