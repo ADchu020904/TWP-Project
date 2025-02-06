@@ -144,7 +144,7 @@
                     <input type="text" class="form-control" id="LNname" name="LName" placeholder="Enter you last name" required>
                 </div>
                 <div class="form-group">
-                    <label for="useremail">Email</label>
+                    <label for="useremail">Email Address</label>
                     <input type="text" class="form-control" id="useremail" name="useremail" placeholder="Enter your email" required>
                 </div>
                 <div class="form-group">
