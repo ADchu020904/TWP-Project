@@ -4,46 +4,92 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Login</title>
+
+    <!-- Link to CSS File (Update the path if needed) -->
+    <link rel="stylesheet" href="css/styles.css">
+
     <style>
+        /* Inline CSS (If your external CSS file doesn't load, this will help) */
         body {
             font-family: Arial, sans-serif;
             text-align: center;
+            background-color: #f4f4f4;
             margin: 50px;
         }
-        form {
-            display: inline-block;
-            text-align: left;
+        .login-container {
+            width: 350px;
+            margin: auto;
             padding: 20px;
-            border: 1px solid #ddd;
+            background: white;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
             border-radius: 5px;
+        }
+        .logo {
+            max-width: 150px;
+            margin-bottom: 20px;
         }
         .error {
             color: red;
             margin-bottom: 10px;
         }
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            background-color: orange;
+            color: white;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: darkorange;
+        }
+        a {
+            display: block;
+            margin-top: 10px;
+            color: blue;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
     </style>
+
 </head>
 <body>
 
-    <h2>Welcome</h2>
-    <p>PLEASE LOGIN TO ADMIN DASHBOARD</p>
+    <div class="login-container">
+        <!-- Logo -->
+        <img src="images/logo.png" alt="Logo" class="logo">
 
-    <!-- Display error message only if it exists -->
-    <?php if (isset($_GET['error']) && !empty($_GET['error'])): ?>
-        <p class="error"><?php echo htmlspecialchars($_GET['error']); ?></p>
-    <?php endif; ?>
+        <h2>Welcome</h2>
+        <p>PLEASE LOGIN TO ADMIN DASHBOARD</p>
 
-    <form action="admin_auth.php" method="post">
-        <label for="email">Email</label><br>
-        <input type="email" id="email" name="email" required><br><br>
+        <!-- Display error message (if exists) -->
+        <?php if (isset($_GET['error']) && !empty($_GET['error'])): ?>
+            <p class="error"><?php echo htmlspecialchars($_GET['error']); ?></p>
+        <?php endif; ?>
 
-        <label for="password">Password</label><br>
-        <input type="password" id="password" name="password" required><br><br>
+        <!-- Login Form -->
+        <form action="admin_auth.php" method="post">
+            <label for="email">Email</label><br>
+            <input type="email" id="email" name="email" required><br><br>
 
-        <button type="submit">LOGIN</button>
-    </form>
+            <label for="password">Password</label><br>
+            <input type="password" id="password" name="password" required><br><br>
 
-    <p><a href="#">FORGOTTEN YOUR PASSWORD?</a></p>
+            <button type="submit">LOGIN</button>
+        </form>
+
+        <a href="#">FORGOTTEN YOUR PASSWORD?</a>
+    </div>
 
 </body>
 </html>
