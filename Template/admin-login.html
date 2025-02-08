@@ -24,75 +24,62 @@
          overflow: hidden;
          max-width: 900px;
          width: 100%;
-         position: relative;
       }
       .login-left {
          background-color: #c3baab;
          padding: 40px;
-         display: flex;
-         flex-direction: column;
-         justify-content: center;
-         align-items: center;
-         color: #fff;
-         width: 50%;
          text-align: center;
+         width: 50%;
+         color: #fff;
       }
       .login-left img {
-         max-width: 100px;
-         margin-bottom: 20px;
+         max-width: 200px;
       }
       .login-right {
          padding: 40px;
          flex: 1;
-         background-color: #fff;
          color: #333;
-         display: flex;
-         flex-direction: column;
-         justify-content: center;
-         align-items: center;
          width: 50%;
-      }
-      .error-message {
-         color: red;
-         font-weight: bold;
-         margin-bottom: 10px;
+         text-align: center;
       }
       .btn-primary {
          background-color: #FF6600;
          border: none;
-         transition: background-color 0.3s;
          border-radius: 5px;
       }
-   </style>
-   <script>
-      // Get error message from URL (e.g., ?error=Invalid Credentials)
-      window.onload = function() {
-         const urlParams = new URLSearchParams(window.location.search);
-         const error = urlParams.get('error');
-         if (error) {
-            document.getElementById('error-message').innerText = error;
-         }
+      .btn-primary:hover {
+         background-color: #FF4500;
       }
-   </script>
+      .error-message {
+         color: red;
+         font-size: 14px;
+         margin-bottom: 10px;
+      }
+   </style>
 </head>
 <body>
    <div class="login-container">
       <div class="login-left">
-         <img src="images/logo.png" alt="Company Logo" style="max-width: 200px;">
+         <img src="images/logo.png" alt="Company Logo">
          <h2>A Modern Furniture Shop</h2>
       </div>
       <div class="login-right">
          <h2>Welcome</h2>
          <p>PLEASE LOGIN TO ADMIN DASHBOARD</p>
-         <p id="error-message" class="error-message"></p> <!-- Error Message Here -->
-         <form action="login.php" method="POST">
+         <!-- Display error message if login fails -->
+         <?php 
+         if (isset($_GET['error'])) { 
+             echo '<p style="color: red; font-weight: bold;">' . htmlspecialchars($_GET['error']) . '</p>';
+         } 
+         ?>
+         <form action="staff.php" method="POST">
             <div class="form-group">
                <label for="username">Username</label>
-               <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username" required>
+               <input type="text" class="form-control" id="username" name="username" required>
             </div>
             <div class="form-group">
                <label for="password">Password</label>
-               <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
+               <input type="password" class="form-control" id="password" name="password" required>
             </div>
             <button type="submit" class="btn btn-primary btn-block">LOGIN</button>
             <a href="#" class="forgot-password">FORGOTTEN YOUR PASSWORD?</a>
