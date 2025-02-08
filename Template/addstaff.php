@@ -5,20 +5,20 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $position = $_POST['position'];
-    $department = $_POST['department'];
-    $description = $_POST['description'];
+$name = $_POST['name'];
+$email = $_POST['email'];
+$position = $_POST['position'];
+$department = $_POST['department'];
+$description = $_POST['description'];
 
-    $sql = "INSERT INTO staff (name, email, position, department, description) VALUES ('$name', '$email', '$position', '$department', '$description')";
+// 插入数据到 staff 表
+$sql = "INSERT INTO staff (name, email, position, department, description) 
+        VALUES ('$name', '$email', '$position', '$department', '$description')";
 
-    if ($conn->query($sql) === TRUE) {
-        echo "New record created successfully";
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-    }
+if ($conn->query($sql) === TRUE) {
+    echo json_encode(['status' => 'success']);
+} else {
+    echo json_encode(['status' => 'error', 'message' => $conn->error]);
 }
 
 $conn->close();
