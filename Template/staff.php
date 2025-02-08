@@ -1,6 +1,4 @@
 <?php
-// filepath: /c:/xampp/htdocs/twp_project/TWP-Project/Template/staff.php
-<?php
 session_start();
 include 'connect.php';
 
