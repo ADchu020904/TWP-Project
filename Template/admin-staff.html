@@ -413,6 +413,19 @@
                     select.appendChild(option);
                 });
             });
+    
+        fetch('deletestaff.php')
+            .then(response => response.json())
+            .then(data => {
+                const select = document.getElementById('staff-select');
+                select.innerHTML = ''; // Clear existing options
+                data.forEach(staff => {
+                    const option = document.createElement('option');
+                    option.value = staff.id;
+                    option.textContent = `${staff.name} (${staff.email})`;
+                    select.appendChild(option);
+                });
+            });
     }
 
     document.addEventListener('DOMContentLoaded', function() {
