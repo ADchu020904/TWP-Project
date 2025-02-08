@@ -1,21 +1,21 @@
 <?php
-$conn = new mysqli('localhost', 'root', '', 'userlogin');
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+include 'connect.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $id = $_POST['id'];
 
-    $sql = "DELETE FROM staff WHERE id=$id";
+    $stmt = $conn->prepare("DELETE FROM staff WHERE id = ?");
+    $stmt->bind_param("i", $id);
 
-    if ($conn->query($sql) === TRUE) {
-        echo "Record deleted successfully";
+    if ($stmt->execute()) {
+        echo "Staff member deleted successfully";
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        echo "Error: " . $stmt->error;
     }
-}
 
-$conn->close();
+    $stmt->close();
+    $conn->close();
+} else {
+    echo "Invalid request method.";
+}
 ?>
