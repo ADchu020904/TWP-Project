@@ -128,9 +128,16 @@ function handleAddressForm($conn, $email) {
         
         // If no validation errors, save the address to the database
         if (empty($errors)) {
-            $stmt = $conn->prepare("INSERT INTO addresses (user_id, full_name, country_code, phone_number, address, postal_code) 
-                                      VALUES ((SELECT id FROM users WHERE email = ?), ?, ?, ?, ?, ?)");
-            $stmt->bind_param("ssssss", $email, $full_name, $country_code, $phone_number, $address, $postal_code);
+            if (isset($_POST['address_id']) && !empty($_POST['address_id'])) {
+                // Update existing address
+                $stmt = $conn->prepare("UPDATE addresses SET full_name = ?, country_code = ?, phone_number = ?, address = ?, postal_code = ? WHERE id = ?");
+                $stmt->bind_param("sssssi", $full_name, $country_code, $phone_number, $address, $postal_code, $_POST['address_id']);
+            } else {
+                // Insert new address
+                $stmt = $conn->prepare("INSERT INTO addresses (user_id, full_name, country_code, phone_number, address, postal_code) 
+                                        VALUES ((SELECT id FROM users WHERE email = ?), ?, ?, ?, ?, ?)");
+                $stmt->bind_param("ssssss", $email, $full_name, $country_code, $phone_number, $address, $postal_code);
+            }
             if ($stmt->execute()) {
                 $_SESSION['message'] = '<div class="alert alert-success">Address saved successfully!</div>';
             } else {
@@ -143,6 +150,43 @@ function handleAddressForm($conn, $email) {
         header("Location: account.php"); // Redirect to clear the POST data
         exit();            
     }
+}
+
+// Add a block to handle delete_address requests
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_address'])) {
+    $idToDelete = (int)$_POST['delete_address']; 
+    $stmt = $conn->prepare("DELETE FROM addresses WHERE id = ? AND user_id = (SELECT id FROM users WHERE email = ?)");
+    $stmt->bind_param("is", $idToDelete, $_SESSION['email']);
+    $stmt->execute();
+    // Return a simple success message or appropriate response
+    echo json_encode(['success' => true]);
+    exit();
+}
+
+// Add this to your PHP section at the top where other handlers are
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_profile'])) {
+    $newName = sanitizeInput($_POST['full_name']);
+    $newEmail = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+    
+    if (filter_var($newEmail, FILTER_VALIDATE_EMAIL)) {
+        // Split the full name into first and last name
+        $nameParts = explode(' ', $newName, 2);
+        $firstName = $nameParts[0];
+        $lastName = isset($nameParts[1]) ? $nameParts[1] : '';
+        
+        $stmt = $conn->prepare("UPDATE users SET firstName = ?, lastName = ?, email = ? WHERE email = ?");
+        $stmt->bind_param("ssss", $firstName, $lastName, $newEmail, $_SESSION['email']);
+        
+        if ($stmt->execute()) {
+            $_SESSION['email'] = $newEmail; // Update session with new email
+            echo json_encode(['success' => true]);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Database error']);
+        }
+        exit();
+    }
+    echo json_encode(['success' => false, 'message' => 'Invalid email format']);
+    exit();
 }
 
 // ============================================================================
@@ -278,6 +322,24 @@ $addresses = $addressStmt->get_result();
                     <form method="POST" style="margin-top: 10px;">
                         <button type="submit" name="logout" class="btn btn-outline-danger">Logout</button>
                     </form>
+                    <div class="edit-profile-form" style="display: none; margin-top: 20px;">
+                        <form id="profileEditForm" method="POST" class="text-left">
+                            <div class="form-group mb-3">
+                                <label for="fullName">Full Name</label>
+                                <input type="text" class="form-control" name="full_name" id="fullName" 
+                                       value="<?php echo htmlspecialchars($user['firstName'] . ' ' . $user['lastName']); ?>" required>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="email">Email Address</label>
+                                <input type="email" class="form-control" name="email" id="email" 
+                                       value="<?php echo htmlspecialchars($user['email']); ?>" required>
+                            </div>
+                            <div class="button-group d-flex justify-content-between">
+                                <button type="submit" class="btn btn-outline-danger">Save Changes</button>
+                                <button type="button" class="btn btn-outline-danger" onclick="toggleProfileEdit()">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
             <div class="col-md-8">
@@ -296,9 +358,17 @@ $addresses = $addressStmt->get_result();
 
 <div class="tab-pane fade show active" id="personal-details" role="tabpanel" aria-labelledby="personal-details-tab">
     <h3 class="mt-3">Personal Details</h3>
-    <p>Name: <?php echo htmlspecialchars($user['firstName'] . ' ' . $user['lastName']); ?></p>
-    <p>Email: <?php echo htmlspecialchars($user['email']); ?></p>
-    
+    <div class="personal-info-section mb-4">
+        <div class="info-group">
+            <label>Name:</label>
+            <span class="user-name"><?php echo htmlspecialchars($user['firstName'] . ' ' . $user['lastName']); ?></span>
+        </div>
+        <div class="info-group">
+            <label>Email:</label>
+            <span class="user-email"><?php echo htmlspecialchars($user['email']); ?></span>
+        </div>
+    </div>
+
     <!-- Address Section -->
     <h4 class="mt-4">Addresses</h4>
     
@@ -308,7 +378,15 @@ $addresses = $addressStmt->get_result();
     
     <div id="address-container" class="mb-4">
         <?php while($address = $addresses->fetch_assoc()): ?>
-        <div class="address-card">
+        <div 
+            class="address-card"
+            data-id="<?= $address['id'] ?>"
+            data-full_name="<?= htmlspecialchars($address['full_name']) ?>"
+            data-country_code="<?= htmlspecialchars($address['country_code']) ?>"
+            data-phone_number="<?= htmlspecialchars($address['phone_number']) ?>"
+            data-address="<?= htmlspecialchars($address['address']) ?>"
+            data-postal_code="<?= htmlspecialchars($address['postal_code']) ?>"
+        >
             <div class="card-header">
                 <h5><?= htmlspecialchars($address['full_name']) ?></h5>
                 <div class="icon-group">
@@ -321,13 +399,60 @@ $addresses = $addressStmt->get_result();
                 <p><?= htmlspecialchars($address['postal_code']) ?></p>
                 <p><?= htmlspecialchars($address['country_code'].' '.$address['phone_number']) ?></p>
             </div>
+            <div class="edit-form" style="display: none; margin-top: 1rem;">
+                <form method="POST">
+                    <input type="hidden" name="address_id" value="<?= $address['id'] ?>">
+                    <div class="form-group mb-3">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" class="form-control" name="full_name" value="<?= htmlspecialchars($address['full_name']) ?>" required>
+                        <small class="form-text text-muted">Complete name of the person receiving the order</small>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="phone">Phone Number</label>
+                        <div class="input-group">
+                            <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false" id="countryCodeBtn" style="height: 46px;">
+                                <?= htmlspecialchars($address['country_code']) ?>
+                            </button>
+                            <ul class="dropdown-menu country-dropdown">
+                                <li><a class="dropdown-item" href="#" data-code="+60">MY (+60) Malaysia</a></li>
+                                <li><a class="dropdown-item" href="#" data-code="+66">TH (+66) Thailand</a></li>
+                            </ul>
+                            <input type="hidden" name="country_code" id="countryCode" value="<?= htmlspecialchars($address['country_code']) ?>">
+                            <input type="tel" class="form-control" name="phone_number" pattern="[0-9]*" oninput="this.value = this.value.replace(/[^0-9]/g, '')" value="<?= htmlspecialchars($address['phone_number']) ?>" required>
+                        </div>
+                        <small class="form-text text-muted">Used for order updates and delivery contact</small>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="address">Address</label>
+                        <textarea class="form-control" name="address" rows="3" required><?= htmlspecialchars($address['address']) ?></textarea>
+                        <small class="form-text text-muted">E.g. Unit/building name, street name</small>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="postalCode">Postal Code</label>
+                        <input type="text" 
+                               class="form-control" 
+                               name="postal_code" 
+                               pattern="[0-9]{5}"
+                               oninput="this.value = this.value.replace(/[^0-9]/g, '')" 
+                               maxlength="5"
+                               value="<?= htmlspecialchars($address['postal_code']) ?>" 
+                               required>
+                        <small class="form-text text-muted">Please enter your 5-digit postal code, e.g. 50050</small>
+                    </div>
+                    <div class="button-group d-flex justify-content-between">
+                        <button type="submit" name="save_address" class="btn btn-outline-danger" style="padding: 10px 20px !important; font-size: 16px !important;">Save Changes</button>
+                        <button type="button" class="btn btn-outline-danger cancel-edit-btn" style="padding: 10px 20px !important; font-size: 16px !important;">Cancel</button>
+                    </div>
+                </form>
+            </div>
         </div>
         <?php endwhile; ?>
     </div>
 
-    <button class="btn btn-outline-danger mb-4" onclick="toggleAddressForm()">Add a New Address</button>
+    <button class="btn btn-outline-danger mb-4" style="margin-top: 2rem;" onclick="toggleAddressForm()">Add a New Address</button>
     <div id="addressForm" style="display: none;">
     <form method="POST" class="address-form">
+        <input type="hidden" name="address_id" id="addressId">
         <div class="form-group mb-3">
             <label for="fullName">Full Name</label>
             <input type="text" class="form-control" name="full_name" required>
@@ -344,7 +469,7 @@ $addresses = $addressStmt->get_result();
                     <li><a class="dropdown-item" href="#" data-code="+66">TH (+66) Thailand</a></li>
                 </ul>
                 <input type="hidden" name="country_code" id="countryCode" value="+60">
-                <input type="tel" class="form-control" name="phone_number" required>
+                <input type="tel" class="form-control" name="phone_number" pattern="[0-9]*" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
             </div>
             <small class="form-text text-muted">Used for order updates and delivery contact</small>
         </div>
@@ -355,7 +480,13 @@ $addresses = $addressStmt->get_result();
         </div>
         <div class="form-group mb-3">
             <label for="postalCode">Postal Code</label>
-            <input type="text" class="form-control" name="postal_code" pattern="\d{5}" required>
+            <input type="text" 
+                   class="form-control" 
+                   name="postal_code" 
+                   pattern="[0-9]{5}"
+                   oninput="this.value = this.value.replace(/[^0-9]/g, '')" 
+                   maxlength="5"
+                   required>
             <small class="form-text text-muted">Please enter your 5-digit postal code, e.g. 50050</small>
         </div>
         <div class="button-group">
@@ -412,6 +543,42 @@ $addresses = $addressStmt->get_result();
         </div>
     </div>
     <!-- account section end -->
+    <!-- Begin: Deletion Confirmation Modal -->
+  <div id="deleteModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+       background: rgba(0,0,0,0.6); z-index: 9999; align-items: center; justify-content: center;">
+    <div style="background: #fff; padding: 2.5rem; border-radius: 12px; width: 90%; max-width: 600px;
+         text-align: left; position: relative; box-shadow: 0 4px 20px rgba(0,0,0,0.15);">
+      <h4 style="font-size: 2rem; margin-bottom: 1.5rem; color: #333; font-weight: 600; text-align: left;">Remove address?</h4>
+      <p id="deleteModalMsg" style="margin: 1.5rem 0; font-size: 1.4rem; color: #666; line-height: 1.6; text-align: left;"></p>
+      <div style="margin-top: 2rem; display: flex; gap: 1.5rem; justify-content: flex-start;">
+        <button id="confirmDeleteBtn" class="btn" style="
+          background-color: #df0951;
+          color: #FFFFFF;
+          padding: 15px 30px;
+          border-radius: 8px;
+          border: none;
+          font-size: 1.2rem;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          transition: all 0.2s ease;
+        ">
+          <i class="fa-solid fa-triangle-exclamation" style="font-size: 1.2rem;"></i>
+          Delete
+        </button>
+        <button id="cancelDeleteBtn" class="btn" style="
+          background-color: #FFFFFF;
+          color: #000000;
+          padding: 15px 30px;
+          border-radius: 8px;
+          border: 1px solid #000000;
+          font-size: 1.2rem;
+          transition: all 0.2s ease;
+        ">Cancel</button>
+      </div>
+    </div>
+  </div>
+  <!-- End: Deletion Confirmation Modal -->
     <!-- footer section start -->
    <div class="footer_section">
       <div class="container">
@@ -489,6 +656,233 @@ document.querySelectorAll('.country-dropdown .dropdown-item').forEach(item => {
         document.getElementById('countryCode').value = code;
     });
 });
+
+document.querySelectorAll('.edit-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const card = btn.closest('.address-card');
+    const editForm = card.querySelector('.edit-form');
+    if (editForm.style.display === 'block') {
+      editForm.style.display = 'none';
+    } else {
+      // Fill the form with existing data
+      document.getElementById('addressId').value = card.dataset.id;
+      document.querySelector('[name="full_name"]').value = card.dataset.full_name;
+      document.getElementById('countryCode').value = card.dataset.country_code;
+      document.getElementById('countryCodeBtn').textContent = ' ' + card.dataset.country_code + ' ';
+      document.querySelector('[name="phone_number"]').value = card.dataset.phone_number;
+      document.querySelector('[name="address"]').value = card.dataset.address;
+      document.querySelector('[name="postal_code"]').value = card.dataset.postal_code;
+      editForm.style.display = 'block';
+    }
+  });
+});
+
+// Assign a click handler to each "Cancel" button to close its form
+document.querySelectorAll('.cancel-edit-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const editForm = btn.closest('.edit-form');
+    editForm.style.display = 'none';
+  });
+});
+
+const deleteModal = document.getElementById('deleteModal');
+const deleteModalMsg = document.getElementById('deleteModalMsg');
+const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
+const cancelDeleteBtn = document.getElementById('cancelDeleteBtn');
+
+let targetCard = null; // to track which address card is being deleted
+
+document.querySelectorAll('.delete-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const card = btn.closest('.address-card');
+    targetCard = card;
+    const addressText = card.dataset.address;
+    deleteModalMsg.textContent = `Your address at "${addressText}" will be permanently removed.`;
+    deleteModal.style.display = 'flex';
+  });
+});
+
+confirmDeleteBtn.addEventListener('click', () => {
+  if (!targetCard) return;
+  const addressId = targetCard.dataset.id;
+  fetch('account.php', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+    body: new URLSearchParams({delete_address: addressId})
+  })
+  .then(response => response.json())
+  .then(result => {
+    if (result.success) {
+      targetCard.remove();
+    } else {
+      alert('Error deleting address.');
+    }
+    deleteModal.style.display = 'none';
+  })
+  .catch(() => {
+    alert('Error deleting address.');
+    deleteModal.style.display = 'none';
+  });
+});
+
+cancelDeleteBtn.addEventListener('click', () => {
+  deleteModal.style.display = 'none';
+});
+
+// Add hover effects for the modal buttons
+document.getElementById('confirmDeleteBtn').addEventListener('mouseenter', function() {
+  this.style.backgroundColor = '#cb043c';
+});
+document.getElementById('confirmDeleteBtn').addEventListener('mouseleave', function() {
+  this.style.backgroundColor = '#df0951';
+});
+
+document.getElementById('cancelDeleteBtn').addEventListener('mouseenter', function() {
+  this.style.backgroundColor = '#F5F5F5';
+});
+document.getElementById('cancelDeleteBtn').addEventListener('mouseleave', function() {
+  this.style.backgroundColor = '#FFFFFF';
+});
+
+// Add phone number validation
+document.querySelectorAll('input[name="phone_number"]').forEach(input => {
+    input.addEventListener('input', function(e) {
+        // Remove any non-numeric characters
+        this.value = this.value.replace(/[^0-9]/g, '');
+    });
+
+    input.addEventListener('invalid', function(e) {
+        // Custom validation message
+        if (this.validity.patternMismatch) {
+            e.target.setCustomValidity('Please enter numbers only');
+        } else {
+            e.target.setCustomValidity('');
+        }
+    });
+});
+
+// Add postal code validation
+document.querySelectorAll('input[name="postal_code"]').forEach(input => {
+    input.addEventListener('input', function(e) {
+        // Remove any non-numeric characters
+        this.value = this.value.replace(/[^0-9]/g, '');
+        
+        // Limit to 5 digits
+        if (this.value.length > 5) {
+            this.value = this.value.slice(0, 5);
+        }
+    });
+
+    input.addEventListener('invalid', function(e) {
+        if (this.validity.patternMismatch) {
+            e.target.setCustomValidity('Please enter exactly 5 numbers');
+        } else {
+            e.target.setCustomValidity('');
+        }
+    });
+});
+
+// Update form submission validation to include postal code
+document.querySelectorAll('form').forEach(form => {
+    form.addEventListener('submit', function(e) {
+        const phoneInput = this.querySelector('input[name="phone_number"]');
+        const postalInput = this.querySelector('input[name="postal_code"]');
+        
+        if (phoneInput && !/^[0-9]+$/.test(phoneInput.value)) {
+            e.preventDefault();
+            alert('Phone number must contain only numbers');
+            return;
+        }
+        
+        if (postalInput && !/^[0-9]{5}$/.test(postalInput.value)) {
+            e.preventDefault();
+            alert('Postal code must contain exactly 5 numbers');
+            return;
+        }
+    });
+});
+
+function toggleProfileEdit() {
+    const form = document.querySelector('.edit-profile-form');
+    form.style.display = form.style.display === 'none' ? 'block' : 'none';
+}
+
+document.querySelector('.profile-card .btn-outline-danger').addEventListener('click', toggleProfileEdit);
+
+document.getElementById('profileEditForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const emailInput = this.querySelector('[name="email"]');
+    if (!emailInput.checkValidity()) {
+        alert('Please enter a valid email address');
+        return;
+    }
+
+    fetch('account.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams({
+            update_profile: true,
+            full_name: this.querySelector('[name="full_name"]').value,
+            email: emailInput.value
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Update profile card
+            const name = this.querySelector('[name="full_name"]').value;
+            const email = this.querySelector('[name="email"]').value;
+            
+            // Update profile card
+            document.querySelector('.profile-card .card-title').textContent = name;
+            document.querySelector('.profile-card .card-text').textContent = email;
+            
+            // Update personal details tab
+            document.querySelector('.personal-info-section .user-name').textContent = name;
+            document.querySelector('.personal-info-section .user-email').textContent = email;
+            
+            // Update initials
+            const initials = name.split(' ').map(n => n[0]).join('').toUpperCase();
+            document.querySelector('.profile-initials').textContent = initials;
+            
+            toggleProfileEdit(); // Hide form
+        } else {
+            alert(data.message || 'Error updating profile');
+        }
+    })
+    .catch(error => {
+        alert('Error updating profile');
+        console.error('Error:', error);
+    });
+});
 </script>
+<style>
+.personal-info-section {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.info-group {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: baseline;
+}
+
+.info-group label {
+    font-weight: 600;
+    min-width: 120px;
+    color: #333;
+}
+
+.info-group span {
+    color: #666;
+    font-size: 1.1em;
+}
+</style>
 </body>
 </html>
