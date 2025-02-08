@@ -401,7 +401,7 @@
     </div>
     <script>
         function fetchStaffForDeletion() {
-        fetch('viewstaff.php')
+        fetch('deletstaff.php')
             .then(response => response.json())
             .then(data => {
                 const select = document.getElementById('staff-select');
