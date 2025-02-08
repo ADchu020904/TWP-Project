@@ -1178,11 +1178,15 @@ input.email_text::placeholder {
     text-transform: uppercase;
     letter-spacing: 1px;
     font-size: 14px;
-    padding: 12px 30px;
+    padding: 12px 0;
     transition: all 0.3s ease;
     font-weight: 500;
     margin: 5px auto;
     display: block;
+    display: flex; /* Added for better centering */
+    justify-content: center; /* Horizontal center */
+    align-items: center; /* Vertical center */
+    line-height: normal; /* Ensure consistent text height */
     text-align: center !important;
 }
 

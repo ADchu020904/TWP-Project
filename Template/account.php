@@ -185,8 +185,8 @@ if(isset($_POST['logout'])) {
                                     <input type="text" class="form-control" id="postalCode" required>
                                 </div>
                                 <div class="button-group">
-                                    <button type="submit" class="btn btn-outline-danger">Save Address</button>
-                                    <button type="button" class="btn btn-outline-danger" onclick="toggleAddressForm()">Cancel</button>
+                                    <button type="submit" class="btn btn-outline-danger" style="padding: 10px 20px !important; font-size: 16px !important;">Save Address</button>
+                                    <button type="button" class="btn btn-outline-danger" onclick="toggleAddressForm()" style="padding: 10px 20px !important; font-size: 16px !important;">Cancel</button>
                                 </div>
                             </form>
                         </div>
