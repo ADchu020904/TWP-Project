@@ -191,6 +191,57 @@
                     showSection('view-staff');
                 });
             });
+            function fetchStaffForDeletion() {
+    fetch('viewstaff.php')
+        .then(response => response.json())
+        .then(data => {
+            const select = document.getElementById('delete-staff-select'); // 更新这里的 ID
+            select.innerHTML = ''; // 清空已有选项
+
+            // 添加默认提示项
+            const defaultOption = document.createElement('option');
+            defaultOption.value = '';
+            defaultOption.textContent = 'Select Staff to Delete';
+            select.appendChild(defaultOption);
+
+            // 动态生成员工列表
+            data.forEach(staff => {
+                const option = document.createElement('option');
+                option.value = staff.id;
+                option.textContent = `${staff.name} (${staff.email})`;
+                select.appendChild(option);
+            });
+        });
+}
+
+function fetchStaffForUpdate() {
+    fetch('viewstaff.php')
+        .then(response => response.json())
+        .then(data => {
+            const select = document.getElementById('update-staff-select'); // 更新这里的 ID
+            select.innerHTML = ''; // 清空已有选项
+
+            // 添加默认提示项
+            const defaultOption = document.createElement('option');
+            defaultOption.value = '';
+            defaultOption.textContent = 'Select Staff to Update';
+            select.appendChild(defaultOption);
+
+            // 动态生成员工列表
+            data.forEach(staff => {
+                const option = document.createElement('option');
+                option.value = staff.id;
+                option.textContent = `${staff.name} (${staff.email})`;
+                select.appendChild(option);
+            });
+        });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    fetchStaffForDeletion();
+    fetchStaffForUpdate();
+});
+
         });
     </script>
 </head>
@@ -346,28 +397,9 @@
                 <button type="submit">Add Staff</button>
             </form>
         </div>
-        <script>
-    function fetchStaffForDeletion() {
-        fetch('viewstaff.php')
-            .then(response => response.json())
-            .then(data => {
-                const select = document.getElementById('staff-select');
-                select.innerHTML = ''; // Clear existing options
-                data.forEach(staff => {
-                    const option = document.createElement('option');
-                    option.value = staff.id;
-                    option.textContent = `${staff.name} (${staff.email})`;
-                    select.appendChild(option);
-                });
-            });
-    }
+        
 
-    document.addEventListener('DOMContentLoaded', function() {
-        fetchStaffForDeletion();
-    });
-</script>
-
-        <<div class="container" id="update-staff" style="display: none;">
+        <div class="container" id="update-staff" style="display: none;">
             <h1>Update Staff</h1>
             <form>
                 <label for="update-staff-select">Select Staff to Update</label>
@@ -387,10 +419,10 @@
                 <button type="submit">Update Staff</button>
             </form>
         </div>
-        
+
         <div class="container" id="delete-staff" style="display: none;">
             <h1>Delete Staff</h1>
-            <form>
+            <form method="POST" action="deletestaff.php">
                 <label for="delete-staff-select">Select Staff to Delete</label>
                 <select id="delete-staff-select" name="id" required>
                     <!-- Options will be loaded dynamically -->
@@ -398,26 +430,7 @@
                 <button type="submit">Delete Staff</button>
             </form>
         </div>
-    <script>
-        function fetchStaffForDeletion() {
-        fetch('viewstaff.php')
-            .then(response => response.json())
-            .then(data => {
-                const select = document.getElementById('staff-select');
-                select.innerHTML = ''; // Clear existing options
-                data.forEach(staff => {
-                    const option = document.createElement('option');
-                    option.value = staff.id;
-                    option.textContent = `${staff.name} (${staff.email})`;
-                    select.appendChild(option);
-                });
-            });
-    }
-
-    document.addEventListener('DOMContentLoaded', function() {
-        fetchStaffForDeletion();
-    });
-</script>
+    </div>
     </script>
 </body>
 </html>
