@@ -163,7 +163,7 @@ if(isset($_POST['logout'])) {
                         
                         <!-- Address Section -->
                         <h4 class="mt-4">Addresses</h4>
-                        <button class="btn btn-outline-danger mb-4" onclick="toggleAddressForm()">+ Add a New Address</button>
+                        <button class="btn btn-outline-danger mb-4" onclick="toggleAddressForm()">Add a New Address</button>
                         
                         <!-- Address Form (Hidden by default) -->
                         <div id="addressForm" style="display: none;">
