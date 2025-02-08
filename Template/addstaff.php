@@ -1,9 +1,7 @@
 <?php
-$conn = new mysqli('localhost', 'root', '', 'staff_management');
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+// filepath: /c:/xampp/htdocs/twp_project/TWP-Project/Template/addstaff.php
+<?php
+include 'connect.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $name = $_POST['name'];
@@ -12,14 +10,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $department = $_POST['department'];
     $description = $_POST['description'];
 
-    $sql = "INSERT INTO staff (name, email, position, department, description) VALUES ('$name', '$email', '$position', '$department', '$description')";
+    $stmt = $conn->prepare("INSERT INTO staff (name, email, position, department, description) VALUES (?, ?, ?, ?, ?)");
+    $stmt->bind_param("sssss", $name, $email, $position, $department, $description);
 
-    if ($conn->query($sql) === TRUE) {
-        echo "New record created successfully";
+    if ($stmt->execute()) {
+        echo "New staff added successfully";
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        echo "Error: " . $stmt->error;
     }
-}
 
-$conn->close();
+    $stmt->close();
+    $conn->close();
+}
 ?>
