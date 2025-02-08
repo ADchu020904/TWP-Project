@@ -68,10 +68,10 @@
          <p>PLEASE LOGIN TO ADMIN DASHBOARD</p>
          <!-- Display error message if login fails -->
          <?php 
-   if (isset($_GET['error'])) {
-      echo '<p style="color: red;">' . htmlspecialchars($_GET['error']) . '</p>';
-   }
-?>
+         if (isset($_GET['error'])) { 
+             echo '<p style="color: red; font-weight: bold;">' . htmlspecialchars($_GET['error']) . '</p>';
+         } 
+         ?>
          <form action="staff.php" method="POST">
             <div class="form-group">
                <label for="username">Username</label>
