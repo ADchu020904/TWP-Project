@@ -399,6 +399,7 @@
             </form>
         </div>
     </div>
+    
     <script>
         function fetchStaffForDeletion() {
         fetch('viewstaff.php')
@@ -413,19 +414,17 @@
                     select.appendChild(option);
                 });
             });
-    
-        fetch('deletestaff.php')
-            .then(response => response.json())
-            .then(data => {
-                const select = document.getElementById('staff-select');
-                select.innerHTML = ''; // Clear existing options
-                data.forEach(staff => {
-                    const option = document.createElement('option');
-                    option.value = staff.id;
-                    option.textContent = `${staff.name} (${staff.email})`;
-                    select.appendChild(option);
-                });
-            });
+            function loadStaffOptions() {
+    fetch('deletestaff.php')  // 从 deletestaff.php 获取数据
+        .then(response => response.text())  // 处理为纯文本
+        .then(data => {
+            const select = document.getElementById('staff-select');
+            select.innerHTML = data;  // 将 PHP 输出的选项插入到下拉菜单
+        })
+        .catch(error => console.error('Error:', error));  // 捕获错误
+}
+
+            
     }
 
     document.addEventListener('DOMContentLoaded', function() {
