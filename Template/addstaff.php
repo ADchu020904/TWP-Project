@@ -1,25 +1,24 @@
 <?php
-$conn = new mysqli('localhost', 'root', '', 'staff_management');
+// filepath: /c:/xampp/htdocs/twp_project/TWP-Project/Template/addstaff.php
+include 'connect.php';
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $position = $_POST['position'];
+    $department = $_POST['department'];
+    $description = $_POST['description'];
+
+    $stmt = $conn->prepare("INSERT INTO staff (name, email, position, department, description) VALUES (?, ?, ?, ?, ?)");
+    $stmt->bind_param("sssss", $name, $email, $position, $department, $description);
+
+    if ($stmt->execute()) {
+        echo "New staff added successfully";
+    } else {
+        echo "Error: " . $stmt->error;
+    }
+
+    $stmt->close();
+    $conn->close();
 }
-
-$name = $_POST['name'];
-$email = $_POST['email'];
-$position = $_POST['position'];
-$department = $_POST['department'];
-$description = $_POST['description'];
-
-// 插入数据到 staff 表
-$sql = "INSERT INTO staff (name, email, position, department, description) 
-        VALUES ('$name', '$email', '$position', '$department', '$description')";
-
-if ($conn->query($sql) === TRUE) {
-    echo json_encode(['status' => 'success']);
-} else {
-    echo json_encode(['status' => 'error', 'message' => $conn->error]);
-}
-
-$conn->close();
 ?>
