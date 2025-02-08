@@ -37,7 +37,44 @@ if(isset($_POST['logout'])) {
     header("Location: index.php");
     exit();
 }
+
+// Handle address form submission
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save_address'])) {
+    $full_name = $_POST['full_name'];
+                                $country_code = $_POST['country_code'];
+                                $phone_number = $_POST['phone_number'];
+                                $address = $_POST['address'];
+                                $postal_code = $_POST['postal_code'];
+                                
+                                // Validate inputs
+                                $errors = [];
+                                if (empty($full_name)) $errors[] = "Full name is required";
+                                if (empty($phone_number)) $errors[] = "Phone number is required";
+                                if (empty($address)) $errors[] = "Address is required";
+                                if (!preg_match('/^\d{5}$/', $postal_code)) $errors[] = "Invalid postal code format";
+                                
+                                if (empty($errors)) {
+                                    $stmt = $conn->prepare("INSERT INTO addresses (user_id, full_name, country_code, phone_number, address, postal_code) 
+                                                          VALUES ((SELECT id FROM users WHERE email = ?), ?, ?, ?, ?, ?)");
+                                    $stmt->bind_param("ssssss", $email, $full_name, $country_code, $phone_number, $address, $postal_code);
+                                    if ($stmt->execute()) {
+                                        echo '<div class="alert alert-success">Address saved successfully!</div>';
+                                    } else {
+                                        echo '<div class="alert alert-danger">Error saving address: ' . $conn->error . '</div>';
+                                    }
+                                } else {
+                                    echo '<div class="alert alert-danger">' . implode('<br>', $errors) . '</div>';
+                                }
+                            
+}
+
+// Fetch existing addresses
+$addressStmt = $conn->prepare("SELECT * FROM addresses WHERE user_id = (SELECT id FROM users WHERE email = ?)");
+$addressStmt->bind_param("s", $email);
+$addressStmt->execute();
+$addresses = $addressStmt->get_result();
 ?>
+
 <!DOCTYPE html>
 <html lang="en" style="margin: 0; padding: 0;">
 <head>
@@ -53,10 +90,10 @@ if(isset($_POST['logout'])) {
    <meta name="author" content="">
    <!-- bootstrap css -->
    <link rel="stylesheet" href="css/bootstrap.min.css">
-   <!-- style css -->
-   <link rel="stylesheet" href="css/style.css">
    <!-- Responsive-->
    <link rel="stylesheet" href="css/responsive.css">
+   <!-- style css -->
+   <link rel="stylesheet" href="css/style.css">
    <!-- fevicon -->
    <link rel="icon" href="images/vik.ico" type="image/gif" /> 
 </head>
@@ -125,9 +162,9 @@ if(isset($_POST['logout'])) {
    </nav>
 </div>
 <!-- End Header Section --> 
-    
-    <!-- account section start -->
-    <div class="container">
+
+  <!-- account section start -->
+  <div class="container">
         <div class="row">
             <div class="col-md-4">
                 <div class="profile-card">
@@ -156,48 +193,37 @@ if(isset($_POST['logout'])) {
                     </li>
                 </ul>
                 <div class="tab-content" id="accountTabsContent">
-                    <div class="tab-pane fade show active" id="personal-details" role="tabpanel" aria-labelledby="personal-details-tab">
-                        <h3 class="mt-3">Personal Details</h3>
-                        <p>Name: <?php echo htmlspecialchars($user['firstName'] . ' ' . $user['lastName']); ?></p>
+
+<div class="tab-pane fade show active" id="personal-details" role="tabpanel" aria-labelledby="personal-details-tab">
+    <h3 class="mt-3">Personal Details</h3>
+    <p>Name: <?php echo htmlspecialchars($user['firstName'] . ' ' . $user['lastName']); ?></p>
                         <p>Email: <?php echo htmlspecialchars($user['email']); ?></p>
-                        
-                        <!-- Address Section -->
-                        <h4 class="mt-4">Addresses</h4>
-                        <button class="btn btn-outline-danger mb-4" onclick="toggleAddressForm()">Add a New Address</button>
-                        
-                        <!-- Address Form (Hidden by default) -->
-                        <div id="addressForm" style="display: none;">
-                            <?php
-                            // Handle address form submission
-                            if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save_address'])) {
-                                $full_name = $_POST['full_name'];
-                                $country_code = $_POST['country_code'];
-                                $phone_number = $_POST['phone_number'];
-                                $address = $_POST['address'];
-                                $postal_code = $_POST['postal_code'];
-                                
-                                // Validate inputs
-                                $errors = [];
-                                if (empty($full_name)) $errors[] = "Full name is required";
-                                if (empty($phone_number)) $errors[] = "Phone number is required";
-                                if (empty($address)) $errors[] = "Address is required";
-                                if (!preg_match('/^\d{5}$/', $postal_code)) $errors[] = "Invalid postal code format";
-                                
-                                if (empty($errors)) {
-                                    $stmt = $conn->prepare("INSERT INTO addresses (user_id, full_name, country_code, phone_number, address, postal_code) 
-                                                          VALUES ((SELECT id FROM users WHERE email = ?), ?, ?, ?, ?, ?)");
-                                    $stmt->bind_param("ssssss", $email, $full_name, $country_code, $phone_number, $address, $postal_code);
-                                    if ($stmt->execute()) {
-                                        echo '<div class="alert alert-success">Address saved successfully!</div>';
-                                    } else {
-                                        echo '<div class="alert alert-danger">Error saving address: ' . $conn->error . '</div>';
-                                    }
-                                } else {
-                                    echo '<div class="alert alert-danger">' . implode('<br>', $errors) . '</div>';
-                                }
-                            }
-                            ?>
-                            <form method="POST" class="address-form">
+    
+      <!-- Address Section -->
+    <h4 class="mt-4">Addresses</h4>
+    
+    <div id="address-container" class="mb-4">
+        <?php while($address = $addresses->fetch_assoc()): ?>
+        <div class="address-card">
+            <div class="card-header">
+                <h5><?= htmlspecialchars($address['full_name']) ?></h5>
+                <div class="icon-group">
+                    <button class="icon-btn edit-btn"><i class="fa fa-pencil"></i></button>
+                    <button class="icon-btn delete-btn"><i class="fa fa-times"></i></button>
+                </div>
+            </div>
+            <div class="card-body">
+                <p><?= htmlspecialchars($address['address']) ?></p>
+                <p><?= htmlspecialchars($address['postal_code']) ?></p>
+                <p><?= htmlspecialchars($address['country_code'].' '.$address['phone_number']) ?></p>
+            </div>
+        </div>
+        <?php endwhile; ?>
+    </div>
+
+    <button class="btn btn-outline-danger mb-4" onclick="toggleAddressForm()">Add a New Address</button>
+    <div id="addressForm" style="display: none;">
+    <form method="POST" class="address-form">
                                 <div class="form-group mb-3">
                                     <label for="fullName">Full Name</label>
                                     <input type="text" class="form-control" name="full_name" required>
