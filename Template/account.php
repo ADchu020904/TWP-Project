@@ -150,7 +150,7 @@ $addresses = $addressStmt->get_result();
                </a>
                   <!-- Dropdown Menu -->
                   <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                     <a class="dropdown-item" href="account.html">My Account</a>
+                     <a class="dropdown-item" href="account.php">My Account</a>
                      <a class="dropdown-item" href="usersignup.php">Log in/Sign up</a>
                      <a class="dropdown-item" href="index.php">Log Out</a>
                      <a class="dropdown-item" href="admin-login.html">Admin Login</a>
