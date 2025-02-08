@@ -1310,7 +1310,8 @@ input.email_text::placeholder {
     padding: 0.75rem 1rem;
     font-size: 1rem;
     border-radius: 4px 0 0 4px;
-    width: 160px;
+    width: 25%; /* Takes 25% of the width */
+    max-width: unset;
     text-align: left;
     background-color: #fff;
     border: 1px solid #ced4da;
@@ -1334,7 +1335,7 @@ input.email_text::placeholder {
 }
 
 .country-dropdown {
-    width: 160px;
+    width: auto;
     border-radius: 4px;
     margin-top: 2px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
@@ -1355,15 +1356,33 @@ input.email_text::placeholder {
 /* Adjust input group spacing */
 .input-group .form-control {
     height: 46px;
-    flex: 1; /* Takes the remaining space */
+    flex: 0 0 75%; /* Takes 75% of the width */
     border-radius: 0 4px 4px 0;
     border: 1px solid #ced4da;
     border-left: none; /* To avoid double borders */
+    padding: 0.75rem;
+    font-size: 1rem;
 }
 
 .input-group {
+    display: flex;
     align-items: stretch;
+    width: 100%; /* Full-width for responsive design */
     flex-wrap: nowrap;
 }
 
+/* Add to your existing CSS */
+.input-group .dropdown-toggle {
+    margin: 0; /* Remove inherited margin from .btn */
+    align-self: center; /* Ensure vertical centering */
+}
+
+.input-group .form-control {
+    align-self: center; /* Ensure vertical centering */
+}
+
+/* Optional: If still misaligned, check box-sizing */
+.input-group > * {
+    box-sizing: border-box; /* Ensure consistent box model */
+}
 /* End Custom CSS from account.php - Consolidated and Adjusted */
