@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "your_database_name";
+$dbname = "stadd_management";
 
 // 创建连接
 $conn = new mysqli($servername, $username, $password, $dbname);
