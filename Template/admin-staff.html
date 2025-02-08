@@ -346,6 +346,26 @@
                 <button type="submit">Add Staff</button>
             </form>
         </div>
+        <script>
+            function fetchStaffForDeletion() {
+                fetch('viewstaff.php')
+                    .then(response => response.json())
+                    .then(data => {
+                        const select = document.getElementById('staff-select');
+                        select.innerHTML = ''; // Clear existing options
+                        data.forEach(staff => {
+                            const option = document.createElement('option');
+                            option.value = staff.id;
+                            option.textContent = `${staff.name} (${staff.email})`;
+                            select.appendChild(option);
+                        });
+                    });
+            }
+        
+            document.addEventListener('DOMContentLoaded', function() {
+                fetchStaffForDeletion();
+            });
+        </script>
 
         <div class="container" id="update-staff" style="display: none;">
             <h1>Update Staff</h1>
