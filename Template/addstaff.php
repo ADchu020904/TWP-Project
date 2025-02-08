@@ -1,6 +1,5 @@
 <?php
 // filepath: /c:/xampp/htdocs/twp_project/TWP-Project/Template/addstaff.php
-<?php
 include 'connect.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
