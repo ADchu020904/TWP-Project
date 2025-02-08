@@ -1,14 +1,75 @@
 <?php
+/**
+ * account.php
+ *
+ * This page displays the user's account information, including:
+ * - Profile details (name, email)
+ * - Address management (display, add, edit, delete)
+ * - Order history
+ * - Account settings (password change)
+ *
+ * It uses Bootstrap for styling and layout, and includes JavaScript for
+ * interactive elements.
+ */
+
+/* ============================================================================
+ *  Configuration
+ * ============================================================================ */
+
+// Start session for user authentication and message passing
 session_start();
+
+// Include database connection details
 include 'connect.php';
 
-// Check if user is logged in
+/* ============================================================================
+ *  Security Functions
+ * ============================================================================ */
+
+/**
+ * Sanitize Input Data
+ *
+ * This function sanitizes user input to prevent Cross-Site Scripting (XSS)
+ * attacks.
+ *
+ * @param string $data The data to be sanitized.
+ * @return string The sanitized data.
+ */
+function sanitizeInput($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+
+/* ============================================================================
+ *  Display Functions
+ * ============================================================================ */
+
+/**
+ * Display Session Message
+ *
+ * This function displays session messages (success or error) and then unsets
+ * the session variable to prevent displaying the message multiple times.
+ */
+function displayMessage() {
+    if(isset($_SESSION['message'])) {
+        echo $_SESSION['message'];
+        unset($_SESSION['message']);
+    }
+}
+
+/* ============================================================================
+ *  Authentication and User Data
+ * ============================================================================ */
+
+// Check if user is logged in; redirect to signup page if not
 if (!isset($_SESSION['email'])) {
     header("Location: usersignup.php");
     exit();
 }
 
-// Fetch user data
+// Fetch user data from the database
 $email = $_SESSION['email'];
 $stmt = $conn->prepare("SELECT firstName, lastName, email FROM users WHERE email = ?");
 $stmt->bind_param("s", $email);
@@ -16,63 +77,115 @@ $stmt->execute();
 $result = $stmt->get_result();
 $user = $result->fetch_assoc();
 
-// Handle password change
-if(isset($_POST['change_password'])) {
-    $current = $_POST['current-password'];
-    $new = $_POST['new-password'];
-    $confirm = $_POST['confirm-password'];
-    
-    if($new === $confirm) {
-        // Add password update logic here
-        $stmt = $conn->prepare("UPDATE users SET password = ? WHERE email = ?");
-        $hashedPassword = password_hash($new, PASSWORD_BCRYPT);
-        $stmt->bind_param("ss", $hashedPassword, $email);
-        $stmt->execute();
+/* ============================================================================
+ *  Form Handling Functions
+ * ============================================================================ */
+
+/**
+ * Handle Password Change Form Submission
+ *
+ * This function handles the submission of the password change form,
+ * validating the input and updating the user's password in the database.
+ */
+function handlePasswordChange($conn, $email) {
+    if(isset($_POST['change_password'])) {
+        $current = $_POST['current-password'];
+        $new = $_POST['new-password'];
+        $confirm = $_POST['confirm-password'];
+        
+        if($new === $confirm) {
+            // Add password update logic here
+            $stmt = $conn->prepare("UPDATE users SET password = ? WHERE email = ?");
+            $hashedPassword = password_hash($new, PASSWORD_BCRYPT);
+            $stmt->bind_param("ss", $hashedPassword, $email);
+            $stmt->execute();
+        }
     }
 }
 
-// Handle logout
-if(isset($_POST['logout'])) {
-    session_destroy();
-    header("Location: index.php");
-    exit();
+/**
+ * Handle Logout Form Submission
+ *
+ * This function handles the submission of the logout form, destroying the
+ * session and redirecting the user to the home page.
+ */
+function handleLogout() {
+    if(isset($_POST['logout'])) {
+        session_destroy();
+        header("Location: index.php");
+        exit();
+    }
 }
 
-// Handle address form submission
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save_address'])) {
-    $full_name = $_POST['full_name'];
-                                $country_code = $_POST['country_code'];
-                                $phone_number = $_POST['phone_number'];
-                                $address = $_POST['address'];
-                                $postal_code = $_POST['postal_code'];
-                                
-                                // Validate inputs
-                                $errors = [];
-                                if (empty($full_name)) $errors[] = "Full name is required";
-                                if (empty($phone_number)) $errors[] = "Phone number is required";
-                                if (empty($address)) $errors[] = "Address is required";
-                                if (!preg_match('/^\d{5}$/', $postal_code)) $errors[] = "Invalid postal code format";
-                                
-                                if (empty($errors)) {
-                                    $stmt = $conn->prepare("INSERT INTO addresses (user_id, full_name, country_code, phone_number, address, postal_code) 
-                                                          VALUES ((SELECT id FROM users WHERE email = ?), ?, ?, ?, ?, ?)");
-                                    $stmt->bind_param("ssssss", $email, $full_name, $country_code, $phone_number, $address, $postal_code);
-                                    if ($stmt->execute()) {
-                                        echo '<div class="alert alert-success">Address saved successfully!</div>';
-                                    } else {
-                                        echo '<div class="alert alert-danger">Error saving address: ' . $conn->error . '</div>';
-                                    }
-                                } else {
-                                    echo '<div class="alert alert-danger">' . implode('<br>', $errors) . '</div>';
-                                }
-                            
+/**
+ * Handle Address Form Submission
+ *
+ * This function handles the submission of the address form, validating the
+ * input and saving the address to the database.
+ */
+function handleAddressForm($conn, $email) {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save_address'])) {
+        // Sanitize and collect input data
+        $full_name = sanitizeInput($_POST['full_name']);
+        $country_code = sanitizeInput($_POST['country_code']);
+        $phone_number = sanitizeInput($_POST['phone_number']);
+        $address = sanitizeInput($_POST['address']);
+        $postal_code = sanitizeInput($_POST['postal_code']);
+        
+        // Validate inputs
+        $errors = [];
+        if (empty($full_name)) $errors[] = "Full name is required";
+        if (empty($phone_number)) $errors[] = "Phone number is required";
+        if (empty($address)) $errors[] = "Address is required";
+        if (!preg_match('/^\d{5}$/', $postal_code)) $errors[] = "Invalid postal code format";
+        
+        // If no validation errors, save the address to the database
+        if (empty($errors)) {
+            $stmt = $conn->prepare("INSERT INTO addresses (user_id, full_name, country_code, phone_number, address, postal_code) 
+                                      VALUES ((SELECT id FROM users WHERE email = ?), ?, ?, ?, ?, ?)");
+            $stmt->bind_param("ssssss", $email, $full_name, $country_code, $phone_number, $address, $postal_code);
+            if ($stmt->execute()) {
+                $_SESSION['message'] = '<div class="alert alert-success">Address saved successfully!</div>';
+            } else {
+                $_SESSION['message'] = '<div class="alert alert-danger">Error saving address. Please try again.</div>';
+                error_log("Database error saving address: " . $conn->error); // Log the error
+            }
+        } else {
+            $_SESSION['message'] = '<div class="alert alert-danger">' . implode('<br>', $errors) . '</div>';
+        }
+        header("Location: account.php"); // Redirect to clear the POST data
+        exit();            
+    }
 }
 
-// Fetch existing addresses
+/* ============================================================================
+ *  Form Processing
+ * ============================================================================ */
+
+// Process password change form
+handlePasswordChange($conn, $email);
+
+// Process logout form
+handleLogout();
+
+// Process address form
+handleAddressForm($conn, $email);
+
+/* ============================================================================
+ *  Data Retrieval
+ * ============================================================================
+ */
+
+// Fetch existing addresses for the user
 $addressStmt = $conn->prepare("SELECT * FROM addresses WHERE user_id = (SELECT id FROM users WHERE email = ?)");
 $addressStmt->bind_param("s", $email);
 $addressStmt->execute();
 $addresses = $addressStmt->get_result();
+
+/* ============================================================================
+ *  HTML Output
+ * ============================================================================
+ */
 ?>
 
 <!DOCTYPE html>
@@ -199,10 +312,14 @@ $addresses = $addressStmt->get_result();
 <div class="tab-pane fade show active" id="personal-details" role="tabpanel" aria-labelledby="personal-details-tab">
     <h3 class="mt-3">Personal Details</h3>
     <p>Name: <?php echo htmlspecialchars($user['firstName'] . ' ' . $user['lastName']); ?></p>
-                        <p>Email: <?php echo htmlspecialchars($user['email']); ?></p>
+    <p>Email: <?php echo htmlspecialchars($user['email']); ?></p>
     
-      <!-- Address Section -->
+    <!-- Address Section -->
     <h4 class="mt-4">Addresses</h4>
+    
+    <?php 
+        displayMessage(); // Display any session messages
+    ?>
     
     <div id="address-container" class="mb-4">
         <?php while($address = $addresses->fetch_assoc()): ?>
@@ -226,43 +343,43 @@ $addresses = $addressStmt->get_result();
     <button class="btn btn-outline-danger mb-4" onclick="toggleAddressForm()">Add a New Address</button>
     <div id="addressForm" style="display: none;">
     <form method="POST" class="address-form">
-                                <div class="form-group mb-3">
-                                    <label for="fullName">Full Name</label>
-                                    <input type="text" class="form-control" name="full_name" required>
-                                    <small class="form-text text-muted">Complete name of the person receiving the order</small>
-                                </div>
-                                <div class="form-group mb-3">
-                                    <label for="phone">Phone Number</label>
-                                    <div class="input-group">
-                                        <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false" id="countryCodeBtn" style="height: 46px;">
-                                            MY (+60)
-                                        </button>
-                                        <ul class="dropdown-menu country-dropdown">
-                                            <li><a class="dropdown-item" href="#" data-code="+60">MY (+60) Malaysia</a></li>
-                                            <li><a class="dropdown-item" href="#" data-code="+66">TH (+66) Thailand</a></li>
-                                        </ul>
-                                        <input type="hidden" name="country_code" id="countryCode" value="+60">
-                                        <input type="tel" class="form-control" name="phone_number" required>
-                                    </div>
-                                    <small class="form-text text-muted">Used for order updates and delivery contact</small>
-                                </div>
-                                <div class="form-group mb-3">
-                                    <label for="address">Address</label>
-                                    <textarea class="form-control" name="address" rows="3" required></textarea>
-                                    <small class="form-text text-muted">E.g. Unit/building name, street name</small>
-                                </div>
-                                <div class="form-group mb-3">
-                                    <label for="postalCode">Postal Code</label>
-                                    <input type="text" class="form-control" name="postal_code" pattern="\d{5}" required>
-                                    <small class="form-text text-muted">Please enter your 5-digit postal code, e.g. 50050</small>
-                                </div>
-                                <div class="button-group">
-                                    <button type="submit" name="save_address" class="btn btn-outline-danger" style="padding: 10px 20px !important; font-size: 16px !important;">Save Address</button>
-                                    <button type="button" class="btn btn-outline-danger" onclick="toggleAddressForm()" style="padding: 10px 20px !important; font-size: 16px !important;">Cancel</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
+        <div class="form-group mb-3">
+            <label for="fullName">Full Name</label>
+            <input type="text" class="form-control" name="full_name" required>
+            <small class="form-text text-muted">Complete name of the person receiving the order</small>
+        </div>
+        <div class="form-group mb-3">
+            <label for="phone">Phone Number</label>
+            <div class="input-group">
+                <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false" id="countryCodeBtn" style="height: 46px;">
+                    MY (+60)
+                </button>
+                <ul class="dropdown-menu country-dropdown">
+                    <li><a class="dropdown-item" href="#" data-code="+60">MY (+60) Malaysia</a></li>
+                    <li><a class="dropdown-item" href="#" data-code="+66">TH (+66) Thailand</a></li>
+                </ul>
+                <input type="hidden" name="country_code" id="countryCode" value="+60">
+                <input type="tel" class="form-control" name="phone_number" required>
+            </div>
+            <small class="form-text text-muted">Used for order updates and delivery contact</small>
+        </div>
+        <div class="form-group mb-3">
+            <label for="address">Address</label>
+            <textarea class="form-control" name="address" rows="3" required></textarea>
+            <small class="form-text text-muted">E.g. Unit/building name, street name</small>
+        </div>
+        <div class="form-group mb-3">
+            <label for="postalCode">Postal Code</label>
+            <input type="text" class="form-control" name="postal_code" pattern="\d{5}" required>
+            <small class="form-text text-muted">Please enter your 5-digit postal code, e.g. 50050</small>
+        </div>
+        <div class="button-group">
+            <button type="submit" name="save_address" class="btn btn-outline-danger" style="padding: 10px 20px !important; font-size: 16px !important;">Save Address</button>
+            <button type="button" class="btn btn-outline-danger" onclick="toggleAddressForm()" style="padding: 10px 20px !important; font-size: 16px !important;">Cancel</button>
+        </div>
+    </form>
+</div>
+</div>
                     <div class="tab-pane fade" id="order-history" role="tabpanel" aria-labelledby="order-history-tab">
                         <h3 class="mt-3">Order History</h3>
                         <table class="table">
