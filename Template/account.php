@@ -167,10 +167,40 @@ if(isset($_POST['logout'])) {
                         
                         <!-- Address Form (Hidden by default) -->
                         <div id="addressForm" style="display: none;">
+                            <?php
+                            // Handle address form submission
+                            if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save_address'])) {
+                                $full_name = $_POST['full_name'];
+                                $country_code = $_POST['country_code'];
+                                $phone_number = $_POST['phone_number'];
+                                $address = $_POST['address'];
+                                $postal_code = $_POST['postal_code'];
+                                
+                                // Validate inputs
+                                $errors = [];
+                                if (empty($full_name)) $errors[] = "Full name is required";
+                                if (empty($phone_number)) $errors[] = "Phone number is required";
+                                if (empty($address)) $errors[] = "Address is required";
+                                if (!preg_match('/^\d{5}$/', $postal_code)) $errors[] = "Invalid postal code format";
+                                
+                                if (empty($errors)) {
+                                    $stmt = $conn->prepare("INSERT INTO addresses (user_id, full_name, country_code, phone_number, address, postal_code) 
+                                                          VALUES ((SELECT id FROM users WHERE email = ?), ?, ?, ?, ?, ?)");
+                                    $stmt->bind_param("ssssss", $email, $full_name, $country_code, $phone_number, $address, $postal_code);
+                                    if ($stmt->execute()) {
+                                        echo '<div class="alert alert-success">Address saved successfully!</div>';
+                                    } else {
+                                        echo '<div class="alert alert-danger">Error saving address: ' . $conn->error . '</div>';
+                                    }
+                                } else {
+                                    echo '<div class="alert alert-danger">' . implode('<br>', $errors) . '</div>';
+                                }
+                            }
+                            ?>
                             <form method="POST" class="address-form">
                                 <div class="form-group mb-3">
                                     <label for="fullName">Full Name</label>
-                                    <input type="text" class="form-control" id="fullName" required>
+                                    <input type="text" class="form-control" name="full_name" required>
                                     <small class="form-text text-muted">Complete name of the person receiving the order</small>
                                 </div>
                                 <div class="form-group mb-3">
@@ -183,23 +213,23 @@ if(isset($_POST['logout'])) {
                                             <li><a class="dropdown-item" href="#" data-code="+60">MY (+60) Malaysia</a></li>
                                             <li><a class="dropdown-item" href="#" data-code="+66">TH (+66) Thailand</a></li>
                                         </ul>
-                                        <input type="hidden" name="countryCode" id="countryCode" value="+60">
-                                        <input type="tel" class="form-control" id="phone" required>
+                                        <input type="hidden" name="country_code" id="countryCode" value="+60">
+                                        <input type="tel" class="form-control" name="phone_number" required>
                                     </div>
                                     <small class="form-text text-muted">Used for order updates and delivery contact</small>
                                 </div>
                                 <div class="form-group mb-3">
                                     <label for="address">Address</label>
-                                    <textarea class="form-control" id="address" rows="3" required></textarea>
+                                    <textarea class="form-control" name="address" rows="3" required></textarea>
                                     <small class="form-text text-muted">E.g. Unit/building name, street name</small>
                                 </div>
                                 <div class="form-group mb-3">
                                     <label for="postalCode">Postal Code</label>
-                                    <input type="text" class="form-control" id="postalCode" required>
+                                    <input type="text" class="form-control" name="postal_code" pattern="\d{5}" required>
                                     <small class="form-text text-muted">Please enter your 5-digit postal code, e.g. 50050</small>
                                 </div>
                                 <div class="button-group">
-                                    <button type="submit" class="btn btn-outline-danger" style="padding: 10px 20px !important; font-size: 16px !important;">Save Address</button>
+                                    <button type="submit" name="save_address" class="btn btn-outline-danger" style="padding: 10px 20px !important; font-size: 16px !important;">Save Address</button>
                                     <button type="button" class="btn btn-outline-danger" onclick="toggleAddressForm()" style="padding: 10px 20px !important; font-size: 16px !important;">Cancel</button>
                                 </div>
                             </form>
@@ -332,4 +362,3 @@ document.querySelectorAll('.country-dropdown .dropdown-item').forEach(item => {
 </script>
 </body>
 </html>
-
