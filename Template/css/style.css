@@ -1255,4 +1255,36 @@ input.email_text::placeholder {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
 }
+
+/* Address form styles */
+.address-form {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.address-form .form-group {
+    margin-bottom: 1rem;
+}
+
+.address-form label {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.address-form .button-group {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-start;
+}
+
+.address-form .button-group .btn {
+    width: auto;
+    min-width: 120px;
+}
+
+/* End address form styles */
+
 /* End Custom CSS from account.php */

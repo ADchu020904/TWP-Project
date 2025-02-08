@@ -160,6 +160,36 @@ if(isset($_POST['logout'])) {
                         <h3 class="mt-3">Personal Details</h3>
                         <p>Name: <?php echo htmlspecialchars($user['firstName'] . ' ' . $user['lastName']); ?></p>
                         <p>Email: <?php echo htmlspecialchars($user['email']); ?></p>
+                        
+                        <!-- Address Section -->
+                        <h4 class="mt-4">Addresses</h4>
+                        <button class="btn btn-outline-danger mb-4" onclick="toggleAddressForm()">+ Add a New Address</button>
+                        
+                        <!-- Address Form (Hidden by default) -->
+                        <div id="addressForm" style="display: none;">
+                            <form method="POST" class="address-form">
+                                <div class="form-group mb-3">
+                                    <label for="fullName">Full Name</label>
+                                    <input type="text" class="form-control" id="fullName" required>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="phone">Phone Number</label>
+                                    <input type="tel" class="form-control" id="phone" required>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="address">Address</label>
+                                    <textarea class="form-control" id="address" rows="3" required></textarea>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="postalCode">Postal Code</label>
+                                    <input type="text" class="form-control" id="postalCode" required>
+                                </div>
+                                <div class="button-group">
+                                    <button type="submit" class="btn btn-outline-danger">Save Address</button>
+                                    <button type="button" class="btn btn-outline-danger" onclick="toggleAddressForm()">Cancel</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                     <div class="tab-pane fade" id="order-history" role="tabpanel" aria-labelledby="order-history-tab">
                         <h3 class="mt-3">Order History</h3>
@@ -270,6 +300,12 @@ if(isset($_POST['logout'])) {
    <!-- javascript --> 
    <script src="js/owl.carousel.js"></script>
    <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+   <script>
+function toggleAddressForm() {
+    const form = document.getElementById('addressForm');
+    form.style.display = form.style.display === 'none' ? 'block' : 'none';
+}
+</script>
 </body>
 </html>
 
