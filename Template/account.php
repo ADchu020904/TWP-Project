@@ -176,7 +176,7 @@ if(isset($_POST['logout'])) {
                                 <div class="form-group mb-3">
                                     <label for="phone">Phone Number</label>
                                     <div class="input-group">
-                                        <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false" id="countryCodeBtn">
+                                        <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false" id="countryCodeBtn" style="height: 46px;">
                                             MY (+60)
                                         </button>
                                         <ul class="dropdown-menu country-dropdown">
