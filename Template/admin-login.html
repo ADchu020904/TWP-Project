@@ -80,11 +80,11 @@
          <h2>Welcome</h2>
          <p>PLEASE LOGIN TO ADMIN DASHBOARD</p>
 
-         <?php
+         <?php 
          if (isset($_GET['error'])) {
-            echo "<p style='color:red;'>" . htmlspecialchars($_GET['error']) . "</p>";
+             echo "<p style='color:red;'>" . htmlspecialchars($_GET['error']) . "</p>";
          }
-         ?>
+     ?>
 
          <form action="admin_auth.php" method="POST">
             <div class="form-group">
