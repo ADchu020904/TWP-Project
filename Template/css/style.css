@@ -1183,7 +1183,7 @@ input.email_text::placeholder {
     font-weight: 500;
     margin: 5px auto;
     display: block;
-    text-align: center;
+    text-align: center !important;
 }
 
 .btn-primary {
