@@ -50,7 +50,7 @@ if(isset($_POST['login'])){
             // Start a session and redirect on success
             session_start();
             $_SESSION['email'] = $row['email'];
-            header("location: index.php");
+            header("location: account.php");
             exit();
         } else {
             // Invalid email or password
