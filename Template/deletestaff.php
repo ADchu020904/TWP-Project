@@ -1,5 +1,6 @@
 <?php
-include 'connect.php';
+$conn = new mysqli('localhost', 'root', '', 'userlogin');
+
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $id = $_POST['id'];
