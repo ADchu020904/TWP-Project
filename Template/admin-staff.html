@@ -152,6 +152,8 @@
 
         document.addEventListener('DOMContentLoaded', function() {
             fetchStaff();
+            fetchStaffForUpdate();
+            fetchStaffForDeletion();
 
             document.querySelector('#add-staff form').addEventListener('submit', function(event) {
                 event.preventDefault();
@@ -192,7 +194,7 @@
                 });
             });
             function fetchStaffForDeletion() {
-    fetch('viewstaff.php')
+        fetch('viewstaff.php')
         .then(response => response.json())
         .then(data => {
             const select = document.getElementById('delete-staff-select'); // 更新这里的 ID
