@@ -348,57 +348,59 @@
         </div>
         <script>
     function fetchStaffForDeletion() {
-        fetch('viewstaff.php')
-            .then(response => response.json())
-            .then(data => {
-                const select = document.getElementById('staff-select');
-                select.innerHTML = ''; // Clear existing options
-                data.forEach(staff => {
-                    const option = document.createElement('option');
-                    option.value = staff.id;
-                    option.textContent = `${staff.name} (${staff.email})`;
-                    select.appendChild(option);
-                });
+    fetch('viewstaff.php')
+        .then(response => response.json())
+        .then(data => {
+            const updateSelect = document.getElementById('update-staff-select');
+            const deleteSelect = document.getElementById('delete-staff-select');
+            updateSelect.innerHTML = ''; // Clear existing options
+            deleteSelect.innerHTML = ''; // Clear existing options
+            data.forEach(staff => {
+                const option = document.createElement('option');
+                option.value = staff.id;
+                option.textContent = `${staff.name} (${staff.email})`;
+                updateSelect.appendChild(option.cloneNode(true));
+                deleteSelect.appendChild(option.cloneNode(true));
             });
-    }
+        });
+}
 
-    document.addEventListener('DOMContentLoaded', function() {
-        fetchStaffForDeletion();
-    });
+document.addEventListener('DOMContentLoaded', function() {
+    fetchStaffForDeletion();
+});
 </script>
 
-        <div class="container" id="update-staff" style="display: none;">
-            <h1>Update Staff</h1>
-            <form>
-                <label for="staff-select">Select Staff to Update</label>
-                <select id="staff-select" name="id" required>
-                    <!-- Options will be loaded dynamically -->
-                </select>
-                <label for="staff-name">Name</label>
-                <input type="text" id="staff-name" name="name" required>
-                <label for="staff-email">Email</label>
-                <input type="email" id="staff-email" name="email" required>
-                <label for="staff-position">Position</label>
-                <input type="text" id="staff-position" name="position" required>
-                <label for="staff-department">Department</label>
-                <input type="text" id="staff-department" name="department" required>
-                <label for="staff-description">Description</label>
-                <textarea id="staff-description" name="description" rows="4" required></textarea>
-                <button type="submit">Update Staff</button>
-            </form>
-        </div>
+<div class="container" id="update-staff" style="display: none;">
+    <h1>Update Staff</h1>
+    <form>
+        <label for="update-staff-select">Select Staff to Update</label>
+        <select id="update-staff-select" name="id" required>
+            <!-- Options will be loaded dynamically -->
+        </select>
+        <label for="staff-name">Name</label>
+        <input type="text" id="staff-name" name="name" required>
+        <label for="staff-email">Email</label>
+        <input type="email" id="staff-email" name="email" required>
+        <label for="staff-position">Position</label>
+        <input type="text" id="staff-position" name="position" required>
+        <label for="staff-department">Department</label>
+        <input type="text" id="staff-department" name="department" required>
+        <label for="staff-description">Description</label>
+        <textarea id="staff-description" name="description" rows="4" required></textarea>
+        <button type="submit">Update Staff</button>
+    </form>
+</div>
 
-        <div class="container" id="delete-staff" style="display: none;">
-            <h1>Delete Staff</h1>
-            <form>
-                <label for="staff-select">Select Staff to Delete</label>
-                <select id="staff-select" name="id" required>
-                    <!-- Options will be loaded dynamically -->
-                </select>
-                <button type="submit">Delete Staff</button>
-            </form>
-        </div>
-    </div>
+<div class="container" id="delete-staff" style="display: none;">
+    <h1>Delete Staff</h1>
+    <form>
+        <label for="delete-staff-select">Select Staff to Delete</label>
+        <select id="delete-staff-select" name="id" required>
+            <!-- Options will be loaded dynamically -->
+        </select>
+        <button type="submit">Delete Staff</button>
+    </form>
+</div>
     
     <script>
         function fetchStaffForDeletion() {
@@ -414,16 +416,7 @@
                     select.appendChild(option);
                 });
             });
-            function loadStaffOptions() {
-    fetch('deletestaff.php')  // 从 deletestaff.php 获取数据
-        .then(response => response.text())  // 处理为纯文本
-        .then(data => {
-            const select = document.getElementById('staff-select');
-            select.innerHTML = data;  // 将 PHP 输出的选项插入到下拉菜单
-        })
-        .catch(error => console.error('Error:', error));  // 捕获错误
-}
-
+            
             
     }
 
