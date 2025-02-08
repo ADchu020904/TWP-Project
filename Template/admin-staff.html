@@ -117,29 +117,6 @@
         .add-btn:hover {
             background-color: #eadcdc;
         }
-        .login-left {
-            background-color: #c3baab;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: #fff;
-            width: 100%;
-            text-align: center;
-            position: relative;
-        }
-        .login-left img {
-            max-width: 200px;
-            margin-bottom: 20px;
-        }
-        .login-left h2 {
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-        .container {
-            margin-top: 50px; /* Add space above footer */
-        }
     </style>
     <script>
         function showSection(sectionId) {
@@ -148,6 +125,73 @@
             });
             document.getElementById(sectionId).style.display = 'block';
         }
+
+        function fetchStaff() {
+            fetch('viewstaff.php')
+                .then(response => response.json())
+                .then(data => {
+                    const tbody = document.querySelector('#view-staff tbody');
+                    tbody.innerHTML = '';
+                    data.forEach(staff => {
+                        const tr = document.createElement('tr');
+                        tr.innerHTML = `
+                            <td>${staff.name}</td>
+                            <td>${staff.email}</td>
+                            <td>${staff.position}</td>
+                            <td>${staff.department}</td>
+                            <td>${staff.description}</td>
+                            <td class="actions">
+                                <button class="edit-btn" onclick="showSection('update-staff')">Edit</button>
+                                <button class="delete-btn" onclick="showSection('delete-staff')">Delete</button>
+                            </td>
+                        `;
+                        tbody.appendChild(tr);
+                    });
+                });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            fetchStaff();
+
+            document.querySelector('#add-staff form').addEventListener('submit', function(event) {
+                event.preventDefault();
+                const formData = new FormData(this);
+                formData.append('action', 'add');
+                fetch('addstaff.php', {
+                    method: 'POST',
+                    body: formData
+                }).then(() => {
+                    fetchStaff();
+                    showSection('view-staff');
+                });
+            });
+
+            document.querySelector('#update-staff form').addEventListener('submit', function(event) {
+                event.preventDefault();
+                const formData = new FormData(this);
+                formData.append('action', 'update');
+                fetch('updatestaff.php', {
+                    method: 'POST',
+                    body: formData
+                }).then(() => {
+                    fetchStaff();
+                    showSection('view-staff');
+                });
+            });
+
+            document.querySelector('#delete-staff form').addEventListener('submit', function(event) {
+                event.preventDefault();
+                const formData = new FormData(this);
+                formData.append('action', 'delete');
+                fetch('deletestaff.php', {
+                    method: 'POST',
+                    body: formData
+                }).then(() => {
+                    fetchStaff();
+                    showSection('view-staff');
+                });
+            });
+        });
     </script>
 </head>
 <body class="bg-body-secondary">
@@ -225,6 +269,11 @@
                         <i class="nav-icon cil-chart"></i> Reports
                     </a>
                 </li>
+                <li class="nav-item mt-5">
+                    <a class="nav-link" href="https://coreui.io">
+                        <i class="nav-icon cil-cloud-download"></i> Download CoreUI
+                    </a>
+                </li>
             </ul>
             <div class="sidebar-footer border-top d-flex">
                 <button class="sidebar-toggler" type="button"></button>
@@ -242,7 +291,7 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.php">Home</a>
+                            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Features</a>
@@ -251,27 +300,7 @@
                             <a class="nav-link" href="#">Pricing</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " aria-disabled="true">Setting</a>
-                        </li>
-                    </ul>
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="cil-bell" style="font-size:21px;"></i></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="cil-envelope-open" style="font-size:21px;"></i></a>
-                        </li>
-                        <li class="nav-item d-flex align-items-center"></li>
-                            <div style="border-left: 1px solid #ccc; height: 30px; margin: auto 10px;"></div>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="cil-sun" style="font-size:22px;"></i></a>
-                        </li>
-                        <li class="nav-item d-flex align-items-center"></li>
-                            <div style="border-left: 1px solid #ccc; height: 30px; margin: auto 10px;"></div>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="cil-user" style="font-size:21px;"></i></a>
+                            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
                         </li>
                     </ul>
                 </div>
@@ -281,7 +310,6 @@
 
         <!-- Main Content Start -->
         <div class="container" id="view-staff">
-            
             <h1>View Staff</h1>
             <a href="#" class="add-btn" onclick="showSection('add-staff')">Add Staff</a>
             <table>
@@ -296,29 +324,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>John Doe</td>
-                        <td>john.doe@example.com</td>
-                        <td>Manager</td>
-                        <td>Sales</td>
-                        <td>Responsible for managing the sales team.</td>
-                        <td class="actions">
-                            <button class="edit-btn" onclick="showSection('update-staff')">Edit</button>
-                            <button class="delete-btn" onclick="showSection('delete-staff')">Delete</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Jane Smith</td>
-                        <td>jane.smith@example.com</td>
-                        <td>Developer</td>
-                        <td>IT</td>
-                        <td>Develops and maintains the company website.</td>
-                        <td class="actions">
-                            <button class="edit-btn" onclick="showSection('update-staff')">Edit</button>
-                            <button class="delete-btn" onclick="showSection('delete-staff')">Delete</button>
-                        </td>
-                    </tr>
-                    <!-- Repeat for other staff members -->
+                    <!-- Dynamic content will be loaded here -->
                 </tbody>
             </table>
         </div>
@@ -327,53 +333,47 @@
             <h1>Add Staff Member</h1>
             <form>
                 <label for="staff-name">Name</label>
-                <input type="text" id="staff-name" name="staff-name">
+                <input type="text" id="staff-name" name="name">
                 <label for="staff-email">Email</label>
-                <input type="email" id="staff-email" name="staff-email">
+                <input type="email" id="staff-email" name="email">
                 <label for="staff-position">Position</label>
-                <input type="text" id="staff-position" name="staff-position">
+                <input type="text" id="staff-position" name="position">
                 <label for="staff-department">Department</label>
-                <input type="text" id="staff-department" name="staff-department">
+                <input type="text" id="staff-department" name="department">
                 <label for="staff-description">Description</label>
-                <textarea id="staff-description" name="staff-description" rows="4"></textarea>
-                <input type="file" name="staff-image" id="staff-image">
+                <textarea id="staff-description" name="description" rows="4"></textarea>
+                <input type="file" name="image" id="staff-image">
                 <button type="submit">Add Staff</button>
             </form>
         </div>
 
         <div class="container" id="update-staff" style="display: none;">
             <h1>Update Staff</h1>
-            <form action="updatestaff.php" method="post">
+            <form>
                 <label for="staff-select">Select Staff to Update</label>
-                <select id="staff-select" name="staffname" required>
-                    <option value="" disabled selected>Select staff</option>
-                    <option value="John Doe">John Doe</option>
-                    <option value="Jane Smith">Jane Smith</option>
-                    <option value="Alice Johnson">Alice Johnson</option>
-                    <!-- Add more options as needed -->
+                <select id="staff-select" name="id" required>
+                    <!-- Options will be loaded dynamically -->
                 </select>
+                <label for="staff-name">Name</label>
+                <input type="text" id="staff-name" name="name" required>
                 <label for="staff-email">Email</label>
-                <input type="email" id="staff-email" name="staff-email" required>
+                <input type="email" id="staff-email" name="email" required>
                 <label for="staff-position">Position</label>
-                <input type="text" id="staff-position" name="staff-position" required>
+                <input type="text" id="staff-position" name="position" required>
                 <label for="staff-department">Department</label>
-                <input type="text" id="staff-department" name="staff-department" required>
+                <input type="text" id="staff-department" name="department" required>
                 <label for="staff-description">Description</label>
-                <textarea id="staff-description" name="staff-description" rows="4" required></textarea>
+                <textarea id="staff-description" name="description" rows="4" required></textarea>
                 <button type="submit">Update Staff</button>
             </form>
         </div>
 
         <div class="container" id="delete-staff" style="display: none;">
             <h1>Delete Staff</h1>
-            <form action="deletestaff.php" method="post">
+            <form>
                 <label for="staff-select">Select Staff to Delete</label>
-                <select id="staff-select" name="staffname">
-                    <option value="" disabled selected>Select staff</option>
-                    <option value="John Doe">John Doe</option>
-                    <option value="Jane Smith">Jane Smith</option>
-                    <option value="Alice Johnson">Alice Johnson</option>
-                    <!-- Add more options as needed -->
+                <select id="staff-select" name="id" required>
+                    <!-- Options will be loaded dynamically -->
                 </select>
                 <button type="submit">Delete Staff</button>
             </form>
