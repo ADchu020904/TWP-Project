@@ -1,7 +1,11 @@
 <?php
-// filepath: /c:/xampp/htdocs/twp_project/TWP-Project/Template/staff.php
+phpinfo();// filepath: /c:/xampp/htdocs/twp_project/TWP-Project/Template/staff.php
 <?php
 session_start();
+if (!isset($_SESSION['email'])) {
+    header("Location: admin-login.html?error=Please log in first");
+    exit();
+}
 include 'connect.php';
 
 // Check if user is logged in
