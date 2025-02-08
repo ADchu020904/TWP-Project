@@ -346,6 +346,26 @@
                 <button type="submit">Add Staff</button>
             </form>
         </div>
+        <script>
+    function fetchStaffForDeletion() {
+        fetch('viewstaff.php')
+            .then(response => response.json())
+            .then(data => {
+                const select = document.getElementById('staff-select');
+                select.innerHTML = ''; // Clear existing options
+                data.forEach(staff => {
+                    const option = document.createElement('option');
+                    option.value = staff.id;
+                    option.textContent = `${staff.name} (${staff.email})`;
+                    select.appendChild(option);
+                });
+            });
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        fetchStaffForDeletion();
+    });
+</script>
 
         <div class="container" id="update-staff" style="display: none;">
             <h1>Update Staff</h1>
@@ -370,7 +390,7 @@
 
         <div class="container" id="delete-staff" style="display: none;">
             <h1>Delete Staff</h1>
-            <form method="POST" action="deletestaff.php">
+            <form>
                 <label for="staff-select">Select Staff to Delete</label>
                 <select id="staff-select" name="id" required>
                     <!-- Options will be loaded dynamically -->
@@ -380,76 +400,38 @@
         </div>
     </div>
     <script>
-        function showSection(sectionId) {
-            document.querySelectorAll('.container').forEach(container => {
-                container.style.display = 'none';
-            });
-            document.getElementById(sectionId).style.display = 'block';
-        }
-    
-        function fetchStaff() {
-            fetch('viewstaff.php')
-                .then(response => response.json())
-                .then(data => {
-                    const tbody = document.querySelector('#view-staff tbody');
-                    tbody.innerHTML = '';
-                    data.forEach(staff => {
-                        const tr = document.createElement('tr');
-                        tr.innerHTML = `
-                            <td>${staff.name}</td>
-                            <td>${staff.email}</td>
-                            <td>${staff.position}</td>
-                            <td>${staff.department}</td>
-                            <td>${staff.description}</td>
-                            <td class="actions">
-                                <button class="edit-btn" onclick="showSection('update-staff')">Edit</button>
-                                <button class="delete-btn" onclick="showSection('delete-staff')">Delete</button>
-                            </td>
-                        `;
-                        tbody.appendChild(tr);
-                    });
-                });
-        }
-    
-        document.addEventListener('DOMContentLoaded', function() {
-            fetchStaff();
-    
-            document.querySelector('#add-staff form').addEventListener('submit', function(event) {
-                event.preventDefault();
-                const formData = new FormData(this);
-                fetch('addstaff.php', {
-                    method: 'POST',
-                    body: formData
-                }).then(() => {
-                    fetchStaff();
-                    showSection('view-staff');
+        function fetchStaffForDeletion() {
+        fetch('viewstaff.php')
+            .then(response => response.json())
+            .then(data => {
+                const select = document.getElementById('staff-select');
+                select.innerHTML = ''; // Clear existing options
+                data.forEach(staff => {
+                    const option = document.createElement('option');
+                    option.value = staff.id;
+                    option.textContent = `${staff.name} (${staff.email})`;
+                    select.appendChild(option);
                 });
             });
     
-            document.querySelector('#update-staff form').addEventListener('submit', function(event) {
-                event.preventDefault();
-                const formData = new FormData(this);
-                fetch('updatestaff.php', {
-                    method: 'POST',
-                    body: formData
-                }).then(() => {
-                    fetchStaff();
-                    showSection('view-staff');
+        fetch('deletestaff.php')
+            .then(response => response.json())
+            .then(data => {
+                const select = document.getElementById('staff-select');
+                select.innerHTML = ''; // Clear existing options
+                data.forEach(staff => {
+                    const option = document.createElement('option');
+                    option.value = staff.id;
+                    option.textContent = `${staff.name} (${staff.email})`;
+                    select.appendChild(option);
                 });
             });
-    
-            document.querySelector('#delete-staff form').addEventListener('submit', function(event) {
-                event.preventDefault();
-                const formData = new FormData(this);
-                fetch('deletestaff.php', {
-                    method: 'POST',
-                    body: formData
-                }).then(() => {
-                    fetchStaff();
-                    showSection('view-staff');
-                });
-            });
-        });
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        fetchStaffForDeletion();
+    });
+</script>
     </script>
 </body>
 </html>
