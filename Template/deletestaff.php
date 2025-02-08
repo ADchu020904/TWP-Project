@@ -1,22 +1,21 @@
 <?php
 $conn = new mysqli('localhost', 'root', '', 'userlogin');
 
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $id = $_POST['id'];
-
-    $stmt = $conn->prepare("DELETE FROM staff WHERE id = ?");
-    $stmt->bind_param("i", $id);
-
-    if ($stmt->execute()) {
-        echo "Staff member deleted successfully";
-    } else {
-        echo "Error: " . $stmt->error;
-    }
-
-    $stmt->close();
-    $conn->close();
-} else {
-    echo "Invalid request method.";
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
+
+$sql = "SELECT id, name FROM staff";  // 确保你查询了正确的字段
+$result = $conn->query($sql);
+
+$options = "";  // 存储下拉选项
+
+if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+        $options .= "<option value='{$row['id']}'>{$row['name']}</option>";
+    }
+}
+
+echo $options;  // 直接输出选项
+$conn->close();
 ?>
