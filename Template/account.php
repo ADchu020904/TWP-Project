@@ -88,6 +88,8 @@ $addresses = $addressStmt->get_result();
    <meta name="keywords" content="">
    <meta name="description" content="">
    <meta name="author" content="">
+   <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
    <!-- bootstrap css -->
    <link rel="stylesheet" href="css/bootstrap.min.css">
    <!-- Responsive-->
@@ -209,7 +211,7 @@ $addresses = $addressStmt->get_result();
                 <h5><?= htmlspecialchars($address['full_name']) ?></h5>
                 <div class="icon-group">
                     <button class="icon-btn edit-btn"><i class="fa fa-pencil"></i></button>
-                    <button class="icon-btn delete-btn"><i class="fa fa-times"></i></button>
+                    <button class="icon-btn delete-btn"><i class="fa fa-trash-can"></i></button>
                 </div>
             </div>
             <div class="card-body">
