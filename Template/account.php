@@ -58,80 +58,9 @@ if(isset($_POST['logout'])) {
    <!-- Responsive-->
    <link rel="stylesheet" href="css/responsive.css">
    <!-- fevicon -->
-   <link rel="icon" href="images/vik.ico" type="image/gif" />
-   <!-- custom css -->
-   <style>
-      /* Reset margins and paddings */
-
-      .profile-card {
-         background-color: #f8f9fa;
-         border-radius: 10px;
-         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-         padding: 20px;
-         text-align: center;
-         margin-bottom: 20px;
-         min-height: 600px
-      }
-      .profile-card img {
-         border-radius: 50%;
-         width: 150px;
-         height: 150px;
-         object-fit: cover;
-         margin-bottom: 15px;
-      }
-      .nav-tabs .nav-link {
-         transition: background-color 0.3s, color 0.3s;
-      }
-      .nav-tabs .nav-link:hover {
-         background-color: #e9ecef;
-         color: #007bff;
-      }
-      .nav-tabs .nav-link.active {
-         background-color: #007bff;
-         color: #fff;
-      }
-      .tab-content {
-         margin-top: 20px;
-      }
-      .tab-pane {
-         background-color: #fff;
-         border-radius: 10px;
-         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-         padding: 20px;
-      }
-      :root {
-         --primary-gradient-start: #007bff;
-         --primary-gradient-end: #0056b3;
-      }
-
-      .btn-primary {
-         background: linear-gradient(45deg, var(--primary-gradient-start), var(--primary-gradient-end));
-         border: none;
-         transition: background 0.3s;
-      }
-      .btn-primary:hover {
-         background: linear-gradient(45deg, #0056b3, #003d80);
-      }
-      .btn-primary i {
-         margin-right: 5px;
-      }
-      .form-group label {
-      .container {
-         max-width: 900px;
-         margin: auto;
-         padding: 20px;
-      }
-         padding: 20px;
-      }
-      .header_section {
-            margin-bottom: 50px; /* Add space below the header */
-        }
-      .footer_section {
-            margin-top: 50px; /* Add space above footer */
-        }
-   </style>
+   <link rel="icon" href="images/vik.ico" type="image/gif" /> 
 </head>
-<body style="margin: 0; padding: 0;">
+<body>
  <!-- Header Section -->
  <div class="header_section">
    <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -202,25 +131,61 @@ if(isset($_POST['logout'])) {
         <div class="row">
             <div class="col-md-4">
                 <div class="profile-card">
-                    <img src="images/random-guy.png" alt="Profile Picture" class="profile-pic">
+                    <?php
+                    $initials = strtoupper(substr($user['firstName'], 0, 1) . substr($user['lastName'], 0, 1));
+                    ?>
+                    <div class="profile-initials"><?php echo htmlspecialchars($initials); ?></div>
                     <h5 class="card-title"><?php echo htmlspecialchars($user['firstName'] . ' ' . $user['lastName']); ?></h5>
                     <p class="card-text"><?php echo htmlspecialchars($user['email']); ?></p>
-                    <button class="btn btn-primary"><i class="fa fa-edit"></i>Edit Details</button>
+                    <button class="btn btn-outline-danger">Edit Details</button>
                     <form method="POST" style="margin-top: 10px;">
-                        <button type="submit" name="logout" class="btn btn-danger">Logout</button>
+                        <button type="submit" name="logout" class="btn btn-outline-danger">Logout</button>
                     </form>
                 </div>
             </div>
             <div class="col-md-8">
-                <!-- ...existing tabs structure... -->
+                <ul class="nav nav-tabs" id="accountTabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="personal-details-tab" data-toggle="tab" href="#personal-details" role="tab" aria-controls="personal-details" aria-selected="true">Personal Details</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="order-history-tab" data-toggle="tab" href="#order-history" role="tab" aria-controls="order-history" aria-selected="false">Order History</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="account-settings-tab" data-toggle="tab" href="#account-settings" role="tab" aria-controls="account-settings" aria-selected="false">Account Settings</a>
+                    </li>
+                </ul>
                 <div class="tab-content" id="accountTabsContent">
-                    <div class="tab-pane fade show active" id="personal-details" role="tabpanel">
+                    <div class="tab-pane fade show active" id="personal-details" role="tabpanel" aria-labelledby="personal-details-tab">
                         <h3 class="mt-3">Personal Details</h3>
                         <p>Name: <?php echo htmlspecialchars($user['firstName'] . ' ' . $user['lastName']); ?></p>
                         <p>Email: <?php echo htmlspecialchars($user['email']); ?></p>
                     </div>
-                    <!-- ...existing order-history tab... -->
-                    <div class="tab-pane fade" id="account-settings" role="tabpanel">
+                    <div class="tab-pane fade" id="order-history" role="tabpanel" aria-labelledby="order-history-tab">
+                        <h3 class="mt-3">Order History</h3>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Order Number</th>
+                                    <th>Status</th>
+                                    <th>Total Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>#12345</td>
+                                    <td>Shipped</td>
+                                    <td>$100.00</td>
+                                </tr>
+                                <tr>
+                                    <td>#67890</td>
+                                    <td>Delivered</td>
+                                    <td>$150.00</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="tab-pane fade" id="account-settings" role="tabpanel" aria-labelledby="account-settings-tab">
                         <h3 class="mt-3">Account Settings</h3>
                         <form method="POST">
                             <div class="form-group">
@@ -235,7 +200,7 @@ if(isset($_POST['logout'])) {
                                 <label for="confirm-password">Confirm New Password</label>
                                 <input type="password" class="form-control" name="confirm-password" required>
                             </div>
-                            <button type="submit" name="change_password" class="btn btn-primary">Change Password</button>
+                            <button type="submit" name="change_password" class="btn btn-outline-danger">Change Password</button>
                         </form>
                     </div>
                 </div>

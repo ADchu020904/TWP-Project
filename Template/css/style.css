@@ -280,6 +280,7 @@ button {
 
 .header_section {
     margin: 0;
+    margin-bottom: 50px;
     padding: 0;
     width: 100%;
     float: left;
@@ -881,6 +882,7 @@ input.email_text::placeholder {
 
 .footer_section {
     width: 100%;
+    margin-top: 50px;
     float: left;
     background-color: #100703;
     height: auto;
@@ -1131,3 +1133,126 @@ input.email_text::placeholder {
 }
 
 /* copyright section end */
+
+/* Custom CSS from account.php */
+.profile-initials {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: #000000;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3em;
+    font-weight: bold;
+    margin: 0 auto 20px;
+}
+
+.profile-card {
+    background-color: #f8f9fa;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 30px;
+    text-align: center;
+    margin-bottom: 20px;
+    min-height: 600px;
+}
+
+.profile-card .card-title {
+    color: #111;
+    font-size: 24px;
+    margin-bottom: 15px;
+    font-weight: normal;
+}
+
+.profile-card .card-text {
+    color: #484848;
+    margin-bottom: 20px;
+}
+
+/* Reset and consolidate button styles */
+.btn {
+    width: 200px;
+    border-radius: 30px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 14px;
+    padding: 12px 30px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    margin: 5px auto;
+    display: block;
+    text-align: center;
+}
+
+.btn-primary {
+    background: none;
+    background-color: #000000 !important;
+    border: 1px solid #000000;
+    color: white;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+    background-color: white !important;
+    color: #000000 !important;
+    border: 1px solid #000000 !important;
+    box-shadow: none !important;
+}
+
+.btn-outline-danger {
+    background-color: white;
+    border: 1px solid #000000;
+    color: #000000;
+}
+
+.btn-outline-danger:hover,
+.btn-outline-danger:focus,
+.btn-outline-danger:active {
+    background-color: #000000 !important;
+    color: white !important;
+    border: 1px solid #000000 !important;
+    box-shadow: none !important;
+}
+
+/* Style the tab links */
+.nav-tabs .nav-link {
+    border: none;
+    color: #000;
+    background-color: #fff;
+    border-radius: 0;
+    margin-right: 5px;
+    transition: all 0.3s ease;
+}
+
+/* Style the active tab link */
+.nav-tabs .nav-link.active {
+    color: #fff;
+    background-color: #000;
+}
+
+/* Hover effect for tab links */
+.nav-tabs .nav-link:hover {
+    color: #fff;
+    background-color: #000;
+}
+
+/* Remove blue border on focus */
+.nav-tabs .nav-link:focus {
+    border-color: #000;
+    box-shadow: none;
+}
+
+.tab-content {
+    margin-top: 20px;
+}
+
+.tab-pane {
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+/* End Custom CSS from account.php */

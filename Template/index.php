@@ -43,7 +43,7 @@
 
    <body>
       <!-- Header Section -->
-      <div class="header_section">
+      <div class="header_section" style="margin-bottom: 0;">
          <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container">
                <!-- Brand Logo -->
