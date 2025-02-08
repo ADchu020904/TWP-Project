@@ -1134,7 +1134,7 @@ input.email_text::placeholder {
 
 /* copyright section end */
 
-/* Custom CSS from account.php */
+/* Custom CSS from account.php - Consolidated and Adjusted */
 .profile-initials {
     width: 150px;
     height: 150px;
@@ -1183,10 +1183,10 @@ input.email_text::placeholder {
     font-weight: 500;
     margin: 5px auto;
     display: block;
-    display: flex; /* Added for better centering */
-    justify-content: center; /* Horizontal center */
-    align-items: center; /* Vertical center */
-    line-height: normal; /* Ensure consistent text height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: normal;
     text-align: center !important;
 }
 
@@ -1264,7 +1264,7 @@ input.email_text::placeholder {
 .address-form {
     background-color: #f8f9fa;
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 4px;
     margin-top: 20px;
 }
 
@@ -1274,21 +1274,96 @@ input.email_text::placeholder {
 
 .address-form label {
     font-weight: 500;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.3rem;
     display: block;
+}
+
+.address-form .form-control {
+    border-radius: 4px;
+    padding: 0.75rem;
+    font-size: 1rem;
+}
+
+.address-form .form-text {
+    font-size: 0.8rem;
+    color: #6c757d;
+    margin-top: 0.2rem;
 }
 
 .address-form .button-group {
     display: flex;
     gap: 10px;
     justify-content: flex-start;
+    margin-top: 1rem;
 }
 
 .address-form .button-group .btn {
     width: auto;
     min-width: 120px;
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
 }
 
-/* End address form styles */
+/* Country code dropdown styling */
+.input-group .dropdown-toggle {
+    height: 46px;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border-radius: 4px 0 0 4px;
+    width: 160px;
+    text-align: left;
+    background-color: #fff;
+    border: 1px solid #ced4da;
+    color: #495057;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 
-/* End Custom CSS from account.php */
+.input-group .dropdown-toggle:hover,
+.input-group .dropdown-toggle:focus {
+    background-color: #fff;
+    border-color: #000000;
+    color: #495057;
+    box-shadow: none;
+}
+
+.input-group .dropdown-toggle::after {
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+.country-dropdown {
+    width: 160px;
+    border-radius: 4px;
+    margin-top: 2px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border: 1px solid #ced4da;
+}
+
+.country-dropdown .dropdown-item {
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    color: #495057;
+}
+
+.country-dropdown .dropdown-item:hover {
+    background-color: #f8f9fa;
+    color: #000000;
+}
+
+/* Adjust input group spacing */
+.input-group .form-control {
+    height: 46px;
+    flex: 1; /* Takes the remaining space */
+    border-radius: 0 4px 4px 0;
+    border: 1px solid #ced4da;
+    border-left: none; /* To avoid double borders */
+}
+
+.input-group {
+    align-items: stretch;
+    flex-wrap: nowrap;
+}
+
+/* End Custom CSS from account.php - Consolidated and Adjusted */

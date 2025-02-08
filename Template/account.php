@@ -171,18 +171,32 @@ if(isset($_POST['logout'])) {
                                 <div class="form-group mb-3">
                                     <label for="fullName">Full Name</label>
                                     <input type="text" class="form-control" id="fullName" required>
+                                    <small class="form-text text-muted">Complete name of the person receiving the order</small>
                                 </div>
                                 <div class="form-group mb-3">
                                     <label for="phone">Phone Number</label>
-                                    <input type="tel" class="form-control" id="phone" required>
+                                    <div class="input-group">
+                                        <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false" id="countryCodeBtn">
+                                            MY (+60)
+                                        </button>
+                                        <ul class="dropdown-menu country-dropdown">
+                                            <li><a class="dropdown-item" href="#" data-code="+60">MY (+60) Malaysia</a></li>
+                                            <li><a class="dropdown-item" href="#" data-code="+66">TH (+66) Thailand</a></li>
+                                        </ul>
+                                        <input type="hidden" name="countryCode" id="countryCode" value="+60">
+                                        <input type="tel" class="form-control" id="phone" required>
+                                    </div>
+                                    <small class="form-text text-muted">Used for order updates and delivery contact</small>
                                 </div>
                                 <div class="form-group mb-3">
                                     <label for="address">Address</label>
                                     <textarea class="form-control" id="address" rows="3" required></textarea>
+                                    <small class="form-text text-muted">E.g. Unit/building name, street name</small>
                                 </div>
                                 <div class="form-group mb-3">
                                     <label for="postalCode">Postal Code</label>
                                     <input type="text" class="form-control" id="postalCode" required>
+                                    <small class="form-text text-muted">Please enter your 5-digit postal code, e.g. 50050</small>
                                 </div>
                                 <div class="button-group">
                                     <button type="submit" class="btn btn-outline-danger" style="padding: 10px 20px !important; font-size: 16px !important;">Save Address</button>
@@ -305,6 +319,16 @@ function toggleAddressForm() {
     const form = document.getElementById('addressForm');
     form.style.display = form.style.display === 'none' ? 'block' : 'none';
 }
+
+document.querySelectorAll('.country-dropdown .dropdown-item').forEach(item => {
+    item.addEventListener('click', (e) => {
+        e.preventDefault();
+        const code = e.target.dataset.code;
+        const text = e.target.textContent.split(') ')[0] + ')';
+        document.getElementById('countryCodeBtn').textContent = text;
+        document.getElementById('countryCode').value = code;
+    });
+});
 </script>
 </body>
 </html>
