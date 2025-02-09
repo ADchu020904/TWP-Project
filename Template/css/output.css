@@ -1909,22 +1909,42 @@ span.flatpickr-weekday:is(.dark *),
 
 /* Dark mode styles */
 .dark body {
-  --tw-bg-opacity: 1;
   background-color: #1b222c;
-  --tw-text-opacity: 1;
-  color: rgb(203 213 225 / var(--tw-text-opacity, 1)); /* Light gray */
+  color: #ffffff;
 }
 
-.dark .navbar {
-  --tw-bg-opacity: 1;
-  background-color: rgb(20 31 51 / var(--tw-bg-opacity, 1)); /* Dark navy */
-  color: #fff;
+.dark header,
+.dark .sidebar,
+.dark .form-field-spacing,
+.dark .photo-section {
+  background-color: #23303f !important;
 }
 
 .dark .main-content {
-  --tw-bg-opacity: 1;
   background-color: #1b222c;
-  color: #eee;
+}
+
+.dark input,
+.dark textarea,
+.dark .stat-card {
+  background-color: #313d4a;
+  color: #ffffff;
+}
+
+.dark .stat-icon {
+  background-color: #23303f;
+}
+
+.dark .border-stroke {
+  border-color: #313d4a;
+}
+
+.dark .text-bodydark2 {
+  color: #ffffff;
+}
+
+.dark .fill-current {
+  fill: #ffffff;
 }
 
 .dark .stats-section {
@@ -1998,4 +2018,133 @@ textarea {
 .dark [class*="dark:bg-boxdark"] {
   --tw-bg-opacity: 1;
   background-color: #242b35;
+}
+
+/* Form fields styling */
+.form-field-spacing {
+  --light-bg: #ffffff;
+  --light-input-bg: #f5f7fa;
+  --light-border: #e2e8f0;
+  --light-text: #1a202c;
+  --dark-bg: #22303e;
+  --dark-input-bg: #313d4a; /* Updated input background color */
+  --dark-border: #313d4a; /* Remove border color */
+  --dark-text: #ffffff !important; /* Updated text color */
+}
+
+/* Personal Information Section Container */
+.form-field-spacing {
+  background-color: var(--light-bg);
+  transition: all 0.3s ease;
+}
+
+.dark .form-field-spacing {
+  background-color: var(--dark-bg);
+}
+
+/* Input Fields */
+.form-field-spacing input,
+.form-field-spacing textarea {
+  background-color: var(--light-input-bg);
+  border-color: var(--light-border);
+  color: var(--light-text);
+  transition: all 0.3s ease;
+}
+
+.dark .form-field-spacing input,
+.dark .form-field-spacing textarea {
+  background-color: var(--dark-input-bg);
+  border-color: var(--dark-border);
+  color: var(--dark-text);
+}
+
+/* Labels */
+.form-field-spacing label {
+  color: var(--light-text);
+  transition: color 0.3s ease;
+}
+
+.dark .form-field-spacing label {
+  color: var(--dark-text);
+}
+
+/* Focus states */
+.form-field-spacing input:focus,
+.form-field-spacing textarea:focus {
+  border-color: #3C50E0;
+  box-shadow: 0 0 0 3px rgba(60, 80, 224, 0.1);
+}
+
+.dark .form-field-spacing input:focus,
+.dark .form-field-spacing textarea:focus {
+  border-color: #3C50E0;
+  box-shadow: 0 0 0 3px rgba(60, 80, 224, 0.2);
+}
+
+/* Personal Information Section Header */
+.border-b.border-stroke {
+  border-color: var(--light-border);
+  transition: border-color 0.3s ease;
+}
+
+.dark .border-b.border-stroke {
+  border-color: var(--dark-border);
+}
+
+/* Icons in input fields */
+.form-field-spacing .fill-current {
+  color: #94a3b8;
+  transition: color 0.3s ease;
+}
+
+.dark .form-field-spacing .fill-current {
+  color: #64748b;
+}
+
+/* Button group spacing */
+.flex.justify-end.gap-4 {
+  margin-top: 2rem;
+}
+
+/* Save button */
+.button-save {
+  background-color: #3C50E0 !important;
+  color: #ffffff !important;
+  border: none;
+  transition: opacity 0.3s ease;
+}
+
+.button-save:hover {
+  opacity: 0.9;
+}
+
+/* Cancel button */
+.button-cancel {
+  background-color: #ffffff !important;
+  color: #283652 !important;
+  border: 1px solid #e2e8f0;
+  transition: all 0.3s ease;
+}
+
+.dark .button-cancel {
+  background-color: #2c3b4a !important;
+  color: #f1f5f9 !important;
+  border: 1px solid #3a4b5e;
+}
+
+.button-cancel:hover {
+  background-color: #f8fafc !important;
+}
+
+.dark .button-cancel:hover {
+  background-color: #34465a !important;
+}
+
+/* Box shadow adjustments */
+.shadow-default {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.dark .shadow-default {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }

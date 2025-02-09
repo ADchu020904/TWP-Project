@@ -119,3 +119,16 @@
 .dark .form-input {
     --border-color: rgba(255, 255, 255, 0.1);
 }
+
+/* Form fields styling */
+.form-field-spacing {
+    --light-bg: #ffffff;
+    --light-input-bg: #f5f7fa;
+    --light-border: #e2e8f0;
+    --light-text: #1a202c;
+    --dark-bg: #22303e;
+    --dark-input-bg: #313d4a; /* Updated input background color */
+    --dark-border: #313d4a; /* Remove border color */
+    --dark-text: #ffffff !important; /* Updated text color */
+  }
+  

@@ -416,6 +416,36 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque posuere fe
       <!-- ===== Content Area End ===== -->
     </div>
     <!-- ===== Page Wrapper End ===== -->
+  <!-- Dark Mode Script -->
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const htmlElement = document.documentElement;
+    
+    // Initialize from localStorage
+    const isDark = localStorage.getItem('darkMode') === 'true';
+    htmlElement.classList.toggle('dark', isDark);
+    
+    // Toggle handler
+    if(darkModeToggle) {
+      darkModeToggle.addEventListener('click', () => {
+        const isDarkMode = htmlElement.classList.toggle('dark');
+        localStorage.setItem('darkMode', isDarkMode);
+        
+        // Apply theme colors
+        document.querySelectorAll('.dark-theme').forEach(el => {
+          el.style.backgroundColor = isDarkMode ? '#23303f' : '';
+        });
+        document.querySelectorAll('.dark-content').forEach(el => {
+          el.style.backgroundColor = isDarkMode ? '#1b222c' : '';
+        });
+        document.querySelectorAll('input, textarea').forEach(el => {
+          el.style.backgroundColor = isDarkMode ? '#313d4a' : '';
+        });
+      });
+    }
+  });
+  </script>
   </body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jsvectormap/1.5.3/js/jsvectormap.min.js"></script>
             <script src="https://unpkg.com/jsvectormap@1.6.0/dist/maps/world.js"></script>
