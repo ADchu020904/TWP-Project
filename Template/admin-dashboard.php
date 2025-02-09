@@ -31,7 +31,7 @@
         <script defer src="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.2.0/dist/js/coreui.bundle.min.js"></script>
         
     </head>
-    <body class="bg-body-secondary">
+    <body x-data="{ darkMode: false, sidebarToggle: false, dropdownOpen: false }" class="bg-body-secondary">
         <!-- Layout Container -->
         <div class="d-flex">
             <!-- Sidebar Start -->
@@ -131,57 +131,7 @@
             <!-- Sidebar Finish -->
 
             <!-- Navbar Start -->
-            <nav class="navbar navbar-expand-lg bg-body-tertiary">
-                <div class="container-fluid">
-                    <!-- Menu Icon -->
-                    <i class="cil-menu" style="font-size: 25px;"></i>
-                    
-                    <!-- Navbar Toggle Button -->
-                    <button class="navbar-toggler" type="button" data-coreui-toggle="collapse" data-coreui-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    
-                    <!-- Navbar Items -->
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="index.php">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Features</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Pricing</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" aria-disabled="true">Setting</a>
-                            </li>
-                        </ul>
-                        
-                        <!-- Navbar Right Icons -->
-                        <ul class="navbar-nav ms-auto">
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"><i class="cil-bell" style="font-size:21px;"></i></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"><i class="cil-envelope-open" style="font-size:21px;"></i></a>
-                            </li>
-                            <li class="nav-item d-flex align-items-center">
-                                <div style="border-left: 1px solid #ccc; height: 30px; margin: auto 10px;"></div>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"><i class="cil-sun" style="font-size:22px;"></i></a>
-                            </li>
-                            <li class="nav-item d-flex align-items-center">
-                                <div style="border-left: 1px solid #ccc; height: 30px; margin: auto 10px;"></div>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"><i class="cil-user" style="font-size:21px;"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
+            <?php include('partials/header.html'); ?>
             <!-- Navbar Finish -->
             
             <!-- Main Content Start -->
