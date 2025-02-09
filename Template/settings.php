@@ -274,13 +274,13 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque posuere fe
                         <!-- Updated Photo Form Buttons -->
                         <div class="flex justify-end gap-4">
                           <button
-                            class="rounded-lg border border-stroke bg-gray py-2 px-4 font-medium text-black hover:border-primary hover:bg-primary hover:text-white focus:border-primary focus:shadow-none dark:border-strokedark dark:bg-boxdark dark:text-white dark:hover:border-primary dark:hover:bg-primary dark:hover:text-white"
+                            class="button-cancel"
                             type="submit"
                           >
                             Cancel
                           </button>
                           <button
-                            class="rounded-lg bg-primary py-2 px-4 font-medium text-white hover:bg-opacity-80 focus:shadow-none"
+                            class="button-save"
                             type="submit"
                           >
                             Save
