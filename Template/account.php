@@ -318,9 +318,9 @@ $addresses = $addressStmt->get_result();
                     <div class="profile-initials"><?php echo htmlspecialchars($initials); ?></div>
                     <h5 class="card-title"><?php echo htmlspecialchars($user['firstName'] . ' ' . $user['lastName']); ?></h5>
                     <p class="card-text"><?php echo htmlspecialchars($user['email']); ?></p>
-                    <button class="btn btn-outline-danger">Edit Details</button>
+                    <button class="btn btn-outline-danger"><i class="fa fa-pencil"></i>&nbsp;Edit Details</button>
                     <form method="POST" style="margin-top: 10px;">
-                        <button type="submit" name="logout" class="btn btn-outline-danger">Logout</button>
+                        <button type="submit" name="logout" class="btn btn-outline-danger"><i class="fa-solid fa-arrow-right-from-bracket"></i>&nbsp;Log out</button>
                     </form>
                     <div class="edit-profile-form" style="display: none; margin-top: 20px;">
                         <form id="profileEditForm" method="POST" class="text-left">
