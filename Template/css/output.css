@@ -13,12 +13,16 @@
 .navbar {
   background-color: #f8f8f9;
   color: black;
-  width: calc(100% - 250px); /* Match sidebar width */
+  width: calc(100% - 250px);
   position: fixed;
-  left: 250px; /* Align next to sidebar */
+  left: 250px;
   z-index: 1000;
   top: 0;
   height: 62px;
+  display: flex;
+  align-items: center;
+  padding: 0 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 .navbar .navbar-nav .nav-link {
   color: #5d6061; /* Navbar text color */
@@ -26,11 +30,12 @@
 
 /* Main Content Styling */
 .main-content {
-  margin-left: 0px;
-  margin-top: 62px; /* Account for fixed navbar height */
-  padding: 20px 190px 20px; /* Reduced top padding */
+  margin-left: 250px;
+  padding: 20px 40px;
   background-color: #f8f9fa;
   min-height: 100vh;
+  transition: all 0.3s;
+  padding-top: 82px; /* Combined margin-top into padding-top */
 }
 
 /* Stats Section Styling */
