@@ -12,8 +12,8 @@
         <link href="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.2.0/dist/css/coreui.min.css" rel="stylesheet">
         
         <!-- CoreUI Icons -->
-        <link rel="stylesheet" href="node_modules/@coreui/icons/css/all.min.css">
-        
+        <link rel="stylesheet" href="https://unpkg.com/@coreui/icons/css/all.min.css">
+                
         <!-- Tailwind CSS -->
         <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 
