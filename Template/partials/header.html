@@ -143,6 +143,8 @@
             class="relative flex h-8.5 w-8.5 items-center justify-center rounded-full border-[0.5px] border-stroke bg-gray hover:text-primary dark:border-strokedark dark:bg-meta-4 dark:text-white"
             href="#"
             @click.prevent="dropdownOpen = ! dropdownOpen; notifying = false"
+            aria-haspopup="true"
+            :aria-expanded="dropdownOpen"
           >
             <span
               :class="!notifying && 'hidden'"
@@ -171,7 +173,7 @@
           <!-- Dropdown Start -->
           <div
             x-show="dropdownOpen"
-            class="absolute -right-27 mt-2.5 flex h-90 w-75 flex-col rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark sm:right-0 sm:w-80"
+            class="dropdown-menu absolute -right-27 mt-2.5 flex h-90 w-75 flex-col rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark sm:right-0 sm:w-80"
           >
             <div class="px-4.5 py-3">
               <h5 class="text-sm font-medium text-bodydark2">Notification</h5>
@@ -257,6 +259,8 @@
             class="relative flex h-8.5 w-8.5 items-center justify-center rounded-full border-[0.5px] border-stroke bg-gray hover:text-primary dark:border-strokedark dark:bg-meta-4 dark:text-white"
             href="#"
             @click.prevent="dropdownOpen = ! dropdownOpen; notifying = false"
+            aria-haspopup="true"
+            :aria-expanded="dropdownOpen"
           >
             <span
               :class="!notifying && 'hidden'"
@@ -297,7 +301,7 @@
           <!-- Dropdown Start -->
           <div
             x-show="dropdownOpen"
-            class="absolute -right-16 mt-2.5 flex h-90 w-75 flex-col rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark sm:right-0 sm:w-80"
+            class="dropdown-menu absolute -right-16 mt-2.5 flex h-90 w-75 flex-col rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark sm:right-0 sm:w-80"
           >
             <div class="px-4.5 py-3">
               <h5 class="text-sm font-medium text-bodydark2">Messages</h5>

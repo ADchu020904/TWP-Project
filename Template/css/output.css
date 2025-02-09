@@ -1,9 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
-/* You may need to adjust the path based on your actual file structure */
 
 /* Sidebar Styling */
 .sidebar {
+  grid-area: sidebar;
   width: 250px;
   overflow-y: auto;
   min-height: 100vh;
@@ -14,10 +14,21 @@
   flex-shrink: 0; /* Prevent sidebar from shrinking */
 }
 
+.dashboard-container {
+  display: grid;
+  grid-template-columns: 250px 1fr; /* Sidebar (250px) + Main Content (auto) */
+  grid-template-rows: 62px 1fr;    /* Header (62px) + Content */
+  grid-template-areas:
+    "sidebar header"
+    "sidebar main";
+  min-height: 100vh;
+}
+
 /* Navbar Styling */
 header {
+  grid-area: header;
   width: calc(100% - 250px);
-  position: fixed;
+  position: sticky;
   left: 250px;
   z-index: 1000;
   top: 0;
@@ -27,6 +38,7 @@ header {
 
 /* Main Content Styling */
 .main-content {
+  grid-area: main;
   flex: 1; /* Make it take up the remaining space */
   padding: 20px; /* Reduced padding */
   background-color: #f8f9fa;
@@ -837,7 +849,8 @@ body{
 }
 
 .h-90{
-  height: 22.5rem;
+  height: auto; /* Allow content to determine height */
+  max-height: 450px; /* Set a maximum height */
 }
 
 .h-auto{
@@ -889,7 +902,9 @@ body{
 }
 
 .w-75{
-  width: 18.75rem;
+  width: auto; /* Allow content to determine width */
+  min-width: 200px; /* Set a minimum width */
+  max-width: 320px; /* Set a maximum width */
 }
 
 .w-8\.5{
@@ -1714,6 +1729,55 @@ span.flatpickr-weekday:is(.dark *),
 
 .dark\:hover\:fill-primary:hover:is(.dark *){
   fill: #3C50E0;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%; /* Position below the toggle */
+  left: auto; /* Reset left positioning */
+  right: 0; /* Align to the right edge */
+  z-index: 1000;
+  display: none; /* Hidden by default */
+  min-width: 200px;
+  padding: 0.5rem 0;
+  margin: 0.125rem 0 0;
+  font-size: 0.875rem;
+  color: #212529;
+  text-align: left;
+  list-style: none;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 0.25rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.dropdown-item {
+  display: block;
+  width: 100%;
+  padding: 0.25rem 1.5rem;
+  clear: both;
+  font-weight: 400;
+  color: #212529;
+  text-align: inherit;
+  white-space: nowrap;
+  background-color: transparent;
+  border: 0;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+  color: #16181b;
+  background-color: #f8f9fa;
+}
+
+.show > .dropdown-menu {
+  display: block;
 }
 
 @media (min-width: 375px){

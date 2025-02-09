@@ -33,10 +33,8 @@
     </head>
     <body x-data="{ darkMode: false, sidebarToggle: false, dropdownOpen: false }" class="bg-body-secondary">
         <!-- Layout Container -->
-        <div class="d-flex">
+        <div class="dashboard-container">
 
-
-        
             <!-- Sidebar Start -->
             <?php include('partials/sidebar.html'); ?>
             <!-- Sidebar Finish -->
