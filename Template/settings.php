@@ -57,7 +57,7 @@
               <div
                 class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"
               >
-                <h2 class="text-title-md2 font-bold text-black dark:text-white page-title">
+                <h2 class="text-title-md2 font-bold dark:text-white text-black  page-title">
                   Settings Page
                 </h2>
                 <nav>
@@ -76,17 +76,17 @@
                 <div class="col-span-5 xl:col-span-3">
                   <!-- Personal Information Section -->
                   <div
-                    class="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark"
+                    class="rounded-sm border border-stroke bg-white shadow-default"
                   >
                     <div
-                      class="border-b border-stroke px-7 py-4 dark:border-strokedark"
+                      class="border-b border-stroke px-7 py-4 dark:bg-boxdark dark:border-strokedark"
                     >
-                      <h3 class="font-medium text-black dark:text-white">
+                      <h3 class="font-medium dark:text-white text-black ">
                         Personal Information
                       </h3>
                     </div>
-                    <div class="p-7">
-                      <form action="#" class="form-field-spacing">
+                    <div class="p-7 dark:bg-boxdark">
+                      <form class="form-field-spacing" action="#" >
                         <!-- Form fields with consistent spacing -->
                         <div class="mb-4">
                           <!-- Full Name and Phone Number group -->

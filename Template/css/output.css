@@ -1690,12 +1690,12 @@ span.flatpickr-weekday:is(.dark *),
 
 .dark\:border-strokedark:is(.dark *){
   --tw-border-opacity: 1;
-  border-color: rgb(46 58 71 / var(--tw-border-opacity, 1));
+  border-color: rgb(226 232 240 / var(--tw-border-opacity, 1));
 }
 
 .dark\:bg-boxdark:is(.dark *){
   --tw-bg-opacity: 1;
-  background-color: rgb(36 48 63 / var(--tw-bg-opacity, 1));
+  background-color: #22303e;
 }
 
 .dark\:bg-meta-4:is(.dark *){
@@ -1714,7 +1714,7 @@ span.flatpickr-weekday:is(.dark *),
 
 .dark\:text-white:is(.dark *){
   --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1)) !important;
 }
 
 .dark\:drop-shadow-none:is(.dark *){
@@ -1909,15 +1909,17 @@ span.flatpickr-weekday:is(.dark *),
 
 /* Dark mode styles */
 .dark body {
-  background-color: #1b222c;
-  color: #ffffff;
+  background-color: #22303e !important;
+  color: #22303e !important;
+  border: none !important;  /* Completely removes the border */
+  outline: none !important;  /* Removes any outline that might act like a border */
 }
 
 .dark header,
 .dark .sidebar,
 .dark .form-field-spacing,
 .dark .photo-section {
-  background-color: #23303f !important;
+  background-color: #22303e !important;
 }
 
 .dark .main-content {
@@ -1936,7 +1938,8 @@ span.flatpickr-weekday:is(.dark *),
 }
 
 .dark .border-stroke {
-  border-color: #313d4a;
+  border-color: rgb(226 232 240 / var(--tw-border-opacity, 1));
+  ;
 }
 
 .dark .text-bodydark2 {
@@ -1969,7 +1972,8 @@ span.flatpickr-weekday:is(.dark *),
 
 .dark .border-stroke {
   --tw-border-opacity: 1;
-  border-color: rgb(71 85 105 / var(--tw-border-opacity, 1)); /* Subtle border */
+  border-color: rgb(226 232 240 / var(--tw-border-opacity, 1));
+
 }
 
 .dark .bg-gray {
@@ -2017,7 +2021,7 @@ textarea {
 .dark .bg-boxdark, 
 .dark [class*="dark:bg-boxdark"] {
   --tw-bg-opacity: 1;
-  background-color: #242b35;
+  background-color: #22303e;
 }
 
 /* Form fields styling */
@@ -2028,7 +2032,7 @@ textarea {
   --light-text: #1a202c;
   --dark-bg: #22303e;
   --dark-input-bg: #313d4a; /* Updated input background color */
-  --dark-border: #313d4a; /* Remove border color */
+  --dark-border: #22203e; /* Remove border color */
   --dark-text: #ffffff !important; /* Updated text color */
 }
 
