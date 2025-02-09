@@ -13,12 +13,12 @@
 .navbar {
   background-color: #f8f8f9;
   color: black;
-  width: calc(100% - 256px); /* Remaining width after sidebar */
-  margin-left: 256px; /* Align next to the sidebar */
+  width: calc(100% - 250px); /* Match sidebar width */
   position: fixed;
-  z-index: 1040;
+  left: 250px; /* Align next to sidebar */
+  z-index: 1000;
   top: 0;
-  height: 62px; /* Navbar height */
+  height: 62px;
 }
 .navbar .navbar-nav .nav-link {
   color: #5d6061; /* Navbar text color */
@@ -27,7 +27,8 @@
 /* Main Content Styling */
 .main-content {
   margin-left: 0px;
-  padding: 80px 190px 20px;
+  margin-top: 62px; /* Account for fixed navbar height */
+  padding: 20px 190px 20px; /* Reduced top padding */
   background-color: #f8f9fa;
   min-height: 100vh;
 }
