@@ -14,24 +14,26 @@
         <!-- CoreUI Icons -->
         <link rel="stylesheet" href="https://unpkg.com/@coreui/icons/css/all.min.css">
                 
-        <!-- Tailwind CSS -->
-        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-
         <!-- Custom CSS -->
         <link rel="stylesheet" href="css/satoshi.css" />
         <link rel="stylesheet" href="css/output.css" />
         
         <!-- Vector Map CSS -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsvectormap/1.5.3/css/jsvectormap.min.css" />
-        
+
         <!-- Alpine.js (for header interactivity) -->
         <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+
+        <!-- Tailwind CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
         
-        <!-- CoreUI JavaScript -->
-        <script defer src="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.2.0/dist/js/coreui.bundle.min.js"></script>
         
     </head>
-    <body x-data="{ darkMode: false, sidebarToggle: false, dropdownOpen: false }" class="bg-body-secondary">
+    <body  x-data="{ page: 'settings', 'loaded': true, 'darkMode': true, 'stickyMenu': false, 'sidebarToggle': false, 'scrollTop': false }"
+    x-init="
+      darkMode = JSON.parse(localStorage.getItem('darkMode'));
+      $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))"
+    :class="{'dark text-bodydark bg-boxdark-2': darkMode === true}">
         <!-- Layout Container -->
         <div class="dashboard-container">
 
@@ -105,8 +107,7 @@
             <script src="https://unpkg.com/jsvectormap@1.6.0/dist/maps/world.js"></script>
             
             <!-- Custom JavaScript -->
-            <script src="js/index.js"></script>
-            <script src="js/us-aea-en.js"></script>
+            
             
             <script>
                 // Chart configuration
@@ -163,6 +164,8 @@
                     },
                 });
             </script>
+            <script src="js/index.js"></script>
+            <script src="js/us-aea-en.js"></script>
         </div>
     </body>
 </html>

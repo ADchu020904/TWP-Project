@@ -1780,6 +1780,17 @@ span.flatpickr-weekday:is(.dark *),
   display: block;
 }
 
+/* Ensure consistent icon sizes and vertical alignment */
+.relative > span > svg {
+  height: 1.25rem; /* 20px */
+  width: 1.25rem; /* 20px */
+}
+
+/* Adjustments for textarea icons */
+.relative > span > svg.mt-1 {
+    margin-top: 0.25rem; /* 4px */
+}
+
 @media (min-width: 375px){
   .\32xsm\:gap-4{
     gap: 1rem;

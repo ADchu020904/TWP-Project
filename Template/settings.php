@@ -7,9 +7,11 @@
     <title>Settings | TailAdmin - Tailwind CSS Admin Dashboard Template</title>
 
 
+<!-- CoreUI CSS -->
+<link href="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.2.0/dist/css/coreui.min.css" rel="stylesheet">
 
-<!-- jsvectormap CSS (Library Styles) -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsvectormap/1.5.3/css/jsvectormap.min.css">
+<!-- CoreUI Icons -->
+<link rel="stylesheet" href="https://unpkg.com/@coreui/icons/css/all.min.css">
 
 <!-- Custom Styles (Overrides Tailwind and Library Styles) -->
 <link rel="stylesheet" href="css/satoshi.css">
@@ -23,6 +25,7 @@
 
     <!-- Add the new form CSS -->
     <link rel="stylesheet" href="css/form.css">
+
   </head>
 
   <body
@@ -31,13 +34,10 @@
       darkMode = JSON.parse(localStorage.getItem('darkMode'));
       $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))"
     :class="{'dark text-bodydark bg-boxdark-2': darkMode === true}"
-  >
+  ><div class="dashboard-container">
     <!-- ===== Preloader Start ===== -->
     <?php include "partials/preloader.html"; ?>
     <!-- ===== Preloader End ===== -->
-
-    <!-- ===== Page Wrapper Start ===== -->
-    <div class="flex h-screen overflow-hidden">
 
       <!-- ===== Sidebar Start ===== -->
       <?php include "./partials/sidebar.html"; ?>
@@ -45,7 +45,6 @@
 
       <!-- ===== Content Area Start ===== -->>
       <div
-        class="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden"
       >
        <!-- ===== Header Start ===== -->
         <?php include "./partials/header.html"; ?>
@@ -53,8 +52,7 @@
 
         <!-- ===== Main Content Start ===== -->
         <main>
-          <div class="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
-            <div class="mx-auto max-w-270">
+          <div class="main-content">
               <!-- Breadcrumb Start -->
               <div
                 class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"
@@ -62,7 +60,6 @@
                 <h2 class="text-title-md2 font-bold text-black dark:text-white page-title">
                   Settings Page
                 </h2>
-
                 <nav>
                   <ol class="flex items-center gap-2">
                     <li>
@@ -91,29 +88,29 @@
                     <div class="p-7">
                       <form action="#" class="form-field-spacing">
                         <!-- Form fields with consistent spacing -->
-                        <div class="input-group">
+                        <div class="mb-4">
                           <!-- Full Name and Phone Number group -->
-                          <div class="flex flex-col form-row-gap sm:flex-row">
+                          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
                             <!-- Full Name Field -->
-                            <div class="w-full sm:w-1/2">
+                            <div>
                               <label
-                                class="mb-3 block text-sm font-semibold text-black dark:text-white"
+                                class="mb-2 block text-sm font-semibold text-black dark:text-white"
                                 for="fullName"
                                 >Full Name</label
                               >
-                              <div class="relative input-with-icon">
+                              <div class="relative">
                                 <input
-                                  class="w-full rounded-lg border border-stroke bg-gray py-3.5 pr-4.5 font-medium text-black focus:border-primary focus-ring-2 focus:ring-primary/10 dark:border-strokedark dark:bg-boxdark dark:text-white"
+                                  class="w-full rounded-lg border border-stroke bg-gray py-2.5 pr-4.5 pl-9 font-medium text-black focus:border-primary focus-ring-2 focus:ring-primary/10 dark:border-strokedark dark:bg-boxdark dark:text-white""
                                   type="text"
                                   name="fullName"
                                   id="fullName"
                                   placeholder="Devid Jhon"
                                   value="Devid Jhon"
                                 />
-                                <span class="icon">
+                                <span class="absolute left-3 top-1/2 -translate-y-1/2 flex items-center">
                                   <!-- SVG Icon -->
                                   <svg
-                                    class="fill-current"
+                                    class="fill-current h-5 w-5"
                                     width="20"
                                     height="20"
                                     viewBox="0 0 20 20"
@@ -140,14 +137,14 @@
                             </div>
 
                             <!-- Phone Number Field -->
-                            <div class="w-full sm:w-1/2">
+                            <div>
                               <label
-                                class="mb-3 block text-sm font-semibold text-black dark:text-white"
+                                class="mb-2 block text-sm font-semibold text-black dark:text-white"
                                 for="phoneNumber"
                                 >Phone Number</label
                               >
                               <input
-                                class="w-full rounded border border-stroke bg-gray px-4.5 py-3 font-medium text-black focus:border-primary focus:ring-2 focus:ring-primary/10 focus-visible:outline-none dark:border-strokedark dark:bg-boxdark dark:border-strokedark dark:text-white dark:focus:border-primary"
+                                class="w-full rounded-lg border border-stroke bg-gray py-2.5 px-4.5 font-medium text-black focus:border-primary focus-ring-2 focus:ring-primary/10 dark:border-strokedark dark:bg-boxdark dark:text-white"
                                 type="text"
                                 name="phoneNumber"
                                 id="phoneNumber"
@@ -158,26 +155,26 @@
                           </div>
                         </div>
 
-                        <div class="input-group">
+                        <div class="mb-4">
                           <!-- Email Address Field -->
                           <label
-                            class="mb-3 block text-sm font-semibold text-black dark:text-white"
+                            class="mb-2 block text-sm font-semibold text-black dark:text-white"
                             for="emailAddress"
                             >Email Address</label
                           >
-                          <div class="relative input-with-icon">
+                          <div class="relative">
                             <input
-                              class="w-full rounded border border-stroke bg-gray py-3 pl-11.5 pr-4.5 font-medium text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-boxdark dark:border-strokedark dark:text-white dark:focus:border-primary"
+                              class="w-full rounded-lg border border-stroke bg-gray py-2.5 pl-9 pr-4.5 font-medium text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-boxdark dark:text-white dark:focus:border-primary""
                               type="email"
                               name="emailAddress"
                               id="emailAddress"
                               placeholder="devidjond45@gmail.com"
                               value="devidjond45@gmail.com"
                             />
-                            <span class="icon">
+                            <span class="absolute left-3 top-1/2 -translate-y-1/2 flex items-center">
                               <!-- SVG Icon -->
                               <svg
-                                class="fill-current"
+                                class="fill-current h-5 w-5"
                                 width="20"
                                 height="20"
                                 viewBox="0 0 20 20"
@@ -203,15 +200,15 @@
                           </div>
                         </div>
 
-                        <div class="input-group">
+                        <div class="mb-4">
                           <!-- Username Field -->
                           <label
-                            class="mb-3 block text-sm font-semibold text-black dark:text-white"
+                            class="mb-2 block text-sm font-semibold text-black dark:text-white"
                             for="Username"
                             >Username</label
                           >
                           <input
-                            class="w-full rounded border border-stroke bg-gray px-4.5 py-3 font-medium text-black focus:border-primary focus:ring-2 focus:ring-primary/10 focus-visible:outline-none dark:border-strokedark dark:bg-boxdark dark:border-strokedark dark:text-white dark:focus:border-primary"
+                            class="w-full rounded-lg border border-stroke bg-gray py-2.5 px-4.5 font-medium text-black focus:border-primary focus:ring-2 focus:ring-primary/10 focus-visible:outline-none dark:border-strokedark dark:bg-boxdark dark:text-white dark:focus:border-primary"
                             type="text"
                             name="Username"
                             id="Username"
@@ -220,27 +217,27 @@
                           />
                         </div>
 
-                        <div class="input-group">
+                        <div class="mb-4">
                           <!-- BIO Textarea -->
                           <label
-                            class="mb-3 block text-sm font-semibold text-black dark:text-white"
+                            class="mb-2 block text-sm font-semibold text-black dark:text-white"
                             for="Username"
                             >BIO</label
                           >
-                          <div class="relative input-with-icon">
+                          <div class="relative">
                             <textarea
-                              class=" min-h-[200px] w-full rounded border border-stroke bg-gray py-3 pl-11.5 pr-4.5 font-medium text-black focus:border-primary focus:ring-2 focus:ring-primary/10 focus-visible:outline-none dark:border-strokedark dark:bg-boxdark dark:border-strokedark dark:text-white dark:focus:border-primary focus:ring-2 focus:ring-primary/10"
+                              class="min-h-[150px] w-full rounded-lg border border-stroke bg-gray py-2.5 pl-9 pr-4.5 font-medium text-black focus:border-primary focus:ring-2 focus:ring-primary/10 focus-visible:outline-none dark:border-strokedark dark:bg-boxdark dark:text-white dark:focus:border-primary focus:ring-2 focus:ring-primary/10""
                               name="bio"
                               id="bio"
-                              rows="6"
+                              rows="4"
                               placeholder="Write your bio here"
                             >
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque posuere fermentum urna, eu condimentum mauris tempus ut. Donec fermentum blandit aliquet.
-                              </textarea>
-                            <span class="icon">
+                            </textarea>
+                            <span class="absolute left-3 top-3">
                               <!-- SVG Icon -->
                               <svg
-                                class="fill-current"
+                                class="fill-current h-5 w-5 mt-1"
                                 width="20"
                                 height="20"
                                 viewBox="0 0 20 20"
@@ -274,16 +271,16 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque posuere fe
                           </div>
                         </div>
 
-                        <!-- Updated Form Buttons -->
-                        <div class="button-wrapper">
+                        <!-- Updated Photo Form Buttons -->
+                        <div class="flex justify-end gap-4">
                           <button
-                            class="button-cancel dark:border-strokedark dark:text-white"
+                            class="rounded-lg border border-stroke bg-gray py-2 px-4 font-medium text-black hover:border-primary hover:bg-primary hover:text-white focus:border-primary focus:shadow-none dark:border-strokedark dark:bg-boxdark dark:text-white dark:hover:border-primary dark:hover:bg-primary dark:hover:text-white"
                             type="submit"
                           >
                             Cancel
                           </button>
                           <button
-                            class="button-save"
+                            class="rounded-lg bg-primary py-2 px-4 font-medium text-white hover:bg-opacity-80 focus:shadow-none"
                             type="submit"
                           >
                             Save
