@@ -1910,7 +1910,7 @@ span.flatpickr-weekday:is(.dark *),
 /* Dark mode styles */
 .dark body {
   --tw-bg-opacity: 1;
-  background-color: rgb(20 31 51 / var(--tw-bg-opacity, 1)); /* Dark navy */
+  background-color: #1b222c;
   --tw-text-opacity: 1;
   color: rgb(203 213 225 / var(--tw-text-opacity, 1)); /* Light gray */
 }
@@ -1923,7 +1923,7 @@ span.flatpickr-weekday:is(.dark *),
 
 .dark .main-content {
   --tw-bg-opacity: 1;
-  background-color: rgb(30 41 59 / var(--tw-bg-opacity, 1)); /* Slightly lighter navy */
+  background-color: #1b222c;
   color: #eee;
 }
 
@@ -1991,4 +1991,11 @@ body,
 input,
 textarea {
   transition: background-color 0.3s, color 0.3s;
+}
+
+/* Ensure form fields and cards maintain proper contrast */
+.dark .bg-boxdark, 
+.dark [class*="dark:bg-boxdark"] {
+  --tw-bg-opacity: 1;
+  background-color: #242b35;
 }
