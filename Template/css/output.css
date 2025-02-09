@@ -41,10 +41,10 @@ header {
   grid-area: main;
   flex: 1; /* Make it take up the remaining space */
   padding: 20px; /* Reduced padding */
-  background-color: #f8f9fa;
+  background-color: #e9ecef;
   min-height: calc(100vh - 62px); /* Reduce min-height by the height of the header */
   transition: all 0.3s;
-  margin-top: 62px; /* Add margin-top to avoid overlapping with the header */
+  margin-top: 0px; /* Add margin-top to avoid overlapping with the header */
 }
 
 /* Stats Section Styling */
