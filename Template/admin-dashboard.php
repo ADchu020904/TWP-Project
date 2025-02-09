@@ -8,6 +8,9 @@
         <!-- Title -->
         <title>Admin Dashboard</title>
 
+        <!-- jsvectormap CSS (Library Styles) -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsvectormap/1.5.3/css/jsvectormap.min.css">
+
         <!-- CoreUI CSS -->
         <link href="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.2.0/dist/css/coreui.min.css" rel="stylesheet">
         
@@ -35,6 +38,10 @@
         <!-- Layout Container -->
         <div class="dashboard-container">
 
+        <!-- Preloader start -->
+        <?php include('partials/preloader.html'); ?>
+
+            
             <!-- Sidebar Start -->
             <?php include('partials/sidebar.html'); ?>
             <!-- Sidebar Finish -->
