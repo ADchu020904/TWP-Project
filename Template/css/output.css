@@ -1,7 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
-/* You may need to adjust the path based on your actual file structure */
-
 /* Sidebar Styling */
 .sidebar {
   width: 250px;
@@ -11,23 +9,24 @@
 
 /* Navbar Styling */
 .navbar {
+  grid-area: ;
   background-color: #f8f8f9;
   color: black;
-  width: calc(100% - 256px); /* Remaining width after sidebar */
-  margin-left: 256px; /* Align next to the sidebar */
+  width: calc(100% - 250px); /* Match sidebar width */
   position: fixed;
   z-index: 1040;
   top: 0;
-  height: 62px; /* Navbar height */
+  height: 62px;
 }
+
 .navbar .navbar-nav .nav-link {
   color: #5d6061; /* Navbar text color */
 }
 
 /* Main Content Styling */
 .main-content {
-  margin-left: 0px;
-  padding: 80px 190px 20px;
+  margin-left: 250px; /* Match sidebar width */
+  padding: 80px 2rem 20px;
   background-color: #f8f9fa;
   min-height: 100vh;
 }
@@ -106,6 +105,49 @@
   }
 }
 
+/* Dashboard Container Styling */
+.dashboard-container {
+  display: grid;
+  grid-template-columns: 250px 1fr; /* Sidebar (250px) + Main Content (auto) */
+  grid-template-rows: 62px 1fr;    /* Header (62px) + Content */
+  grid-template-areas:
+    "sidebar header"
+    "sidebar main";
+  min-height: 100vh;
+}
+
+/* Sidebar Styling */
+.sidebar {
+  grid-area: sidebar;
+  width: 250px;
+  overflow-y: auto;
+  min-height: 100vh;
+}
+
+/* Navbar Styling */
+.navbar {
+  grid-area: header;
+  background-color: #f8f8f9;
+  color: black;
+  width: 100%; /* Occupy full width in the grid */
+  position: fixed;
+  z-index: 1040;
+  top: 0;
+  height: 62px;
+}
+
+.navbar .navbar-nav .nav-link {
+  color: #5d6061; /* Navbar text color */
+}
+
+/* Main Content Styling */
+.main-content {
+  grid-area: main;
+  margin-left: 0; /* Reset the margin, as grid layout handles positioning */
+  padding: 80px 2rem 20px;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+}
 
 *, ::before, ::after{
   --tw-border-spacing-x: 0;
