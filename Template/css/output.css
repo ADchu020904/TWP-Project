@@ -9,7 +9,7 @@
 
 /* Navbar Styling */
 .navbar {
-  grid-area: ;
+  grid-area: header;
   background-color: #f8f8f9;
   color: black;
   width: calc(100% - 250px); /* Match sidebar width */
