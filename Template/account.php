@@ -237,8 +237,16 @@ $addresses = $addressStmt->get_result();
  <?php include 'partials/user/userheader.html'; ?>
 <!-- End Header Section --> 
 
+<style>
+    /* Specific to account page */
+    .header_section {
+        margin-bottom: 30px !important;
+    }
+    
+</style>
+
   <!-- account section start -->
-  <div class="container">
+  <div class="container ">
         <div class="row">
             <div class="col-md-4">
                 <div class="profile-card">
