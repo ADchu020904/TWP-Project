@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Member Management</title>
 
-    <?php include('partials/style.html'); ?>
+    <?php include 'partials/style.html'; ?>
 
 </head>
 <body x-data="{ page: 'settings', 'loaded': true, 'darkMode': true, 'stickyMenu': false, 'sidebarToggle': false, 'scrollTop': false }"
@@ -16,11 +16,11 @@
    <!-- Layout Container -->
    <div class="dashboard-container">
         <!-- Sidebar Start -->
-        <?php include('partials/sidebar.html'); ?>
+        <?php include 'partials/sidebar.html'; ?>
         <!-- Sidebar Finish -->
 
         <!-- Navbar Start -->
-        <?php include('partials/header.html'); ?>
+        <?php include 'partials/header.html'; ?>
         <!-- Navbar Finish -->
 
         <!-- Main Content Start -->
@@ -117,7 +117,7 @@
     </div>
     
         <!-- Javascript -->
-        <?php include('partials/js.html'); ?>
+        <?php include 'partials/js.html'; ?>
 
         </div>
     
