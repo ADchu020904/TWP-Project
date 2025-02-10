@@ -2195,18 +2195,6 @@ textarea {
   background-color: #313D4A;
 }
 
-button[type="submit"] {
-  all: unset;
-  padding: 0.5rem;
-  background: transparent;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-button[type="submit"]:hover {
-  background-color: #e0f2fe;
-  border-radius: 4px;
-}
 
 .container {
   background-color: white;
