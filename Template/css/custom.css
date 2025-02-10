@@ -1,0 +1,32 @@
+#carouselExampleIndicators {
+    position: relative;
+  }
+  
+  /* Reduce the clickable area for both arrows */
+  #carouselExampleIndicators .carousel-control-prev,
+  #carouselExampleIndicators .carousel-control-next {
+    width: 35px !important;      /* Set the container width to 50px (adjust as needed) */
+    height: 50px !important;     /* Set a fixed height if desired */
+    padding: 0 !important;       /* Remove extra padding */
+    top: 50% !important;         /* Ensure they remain vertically centered */
+    transform: translateY(-50%) !important;
+  }
+  
+  /* Increase the arrow icon size */
+  #carouselExampleIndicators .carousel-control-prev-icon,
+  #carouselExampleIndicators .carousel-control-next-icon {
+    width: 35px;      /* Increase the icon’s width */
+    height: 35px;     /* Increase the icon’s height */
+    background-size: 35px 35px; /* Scale the background image (arrow) */
+    margin: auto;                /* Center the icon within its container */
+  }
+  
+  #carouselExampleIndicators .carousel-control-prev {
+    left: 20px !important;
+    right: auto !important;
+  }
+  
+  #carouselExampleIndicators .carousel-control-next {
+    right: 20px !important;
+    left: auto !important;
+  }
