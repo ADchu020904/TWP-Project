@@ -24,113 +24,69 @@
       <!-- Header Section end -->
 
       <!-- banner section start -->
-<div class="banner_section layout_padding">
-   <!-- First Slider -->
-   <div id="main_slider" class="carousel slide" data-ride="carousel">
-      <div class="carousel-inner">
-      <div class="carousel-item active">
-            <div class="container">
-                  <div class="row">
-                    <div class="col-md-6">
-                      <h1 class="banner_taital">Best <br> Design <br>of Furniture</h1>
-                      <p class="banner_text">High quality products.</p>
-                      <div class="btn_main">
-                        <div class="contact_bt"><a href="contact.html">Contact Us</a></div>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="image_1"><img src="images/img-1.png" alt="Modern Furniture Design showcasing a stylish chair"></div>
-                    </div>
-                  </div>
-               </div>
-             </div>
-             <div class="carousel-item">
-               <div class="container">
-                  <div class="row">
-                    <div class="col-md-6">
-                      <h1 class="banner_taital">Modern <br> Living <br> Solutions</h1>
-                      <p class="banner_text">Explore the finest designs crafted for elegance.</p>
-                      <div class="btn_main">
-                        <div class="contact_bt"><a href="about.html">Learn More</a></div>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="image_1"><img src="images/img-whitechair.png" alt="Modern white chair for living solutions" class="slider-image"></div>
-                    </div>
-                  </div>
-               </div>
-             </div>
-           </div>
-           
-         <!-- Indicators -->
-         <ol class="carousel-indicators">
-               <li data-target="#main_slider" data-slide-to="0" class="active"></li>
-               <li data-target="#main_slider" data-slide-to="1"></li>
-            </ol>
-            
-            <!-- Controls -->
-            <a class="carousel-control-prev" href="#main_slider" role="button" data-slide="prev">
-               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-               <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#main_slider" role="button" data-slide="next">
-               <span class="carousel-control-next-icon" aria-hidden="true"></span>
-               <span class="sr-only">Next</span>
-            </a>
-         </div>         
-         <!-- Second Slider -->
-         <div id="second_slider" class="carousel slide hidden" data-ride="carousel">
-           <div class="carousel-inner">
-             <div class="carousel-item active">
-               <div class="container">
-                  <div class="row">
-                    <div class="col-md-6">
-                      <h1 class="banner_taital">Exclusive <br> Designs</h1>
-                      <p class="banner_text">Discover timeless designs for your dream home.</p>
-                      <div class="btn_main">
-                        <div class="contact_bt"><a href="contact.html">Contact Us</a></div>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="image_1"><img src="images/img-1.png" alt="Exclusive Designs showcasing a stylish chair" class="slider-image"></div>
-                    </div>
-                  </div>
-               </div>
-             </div>
-         <div class="carousel-item">
-            <div class="container">
-               <div class="row">
-                  <div class="col-md-6">
-                     <h1 class="banner_taital">Elegant <br> Interiors</h1>
-                     <p class="banner_text">Crafted for beauty and functionality.</p>
-                     <div class="btn_main">
-                        <div class="contact_bt"><a href="about.html">Learn More</a></div>
+      <div class="banner_section layout_padding">
+         <!-- Main Slider -->
+         <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel">
+            <!-- Indicators -->
+            <div class="carousel-indicators">
+                  <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                  <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            </div>
+
+            <!-- Slides -->
+            <div class="carousel-inner">
+                  <!-- Slide 1 -->
+                  <div class="carousel-item active">
+                     <div class="container">
+                        <div class="row">
+                              <div class="col-md-6">
+                                 <h1 class="banner_taital">Best <br> Design <br>of Furniture</h1>
+                                 <p class="banner_text">High quality products.</p>
+                                 <div class="btn_main">
+                                    <div class="contact_bt"><a href="contact.html">Contact Us</a></div>
+                                 </div>
+                              </div>
+                              <div class="col-md-6">
+                                 <div class="image_1">
+                                    <img src="images/img-1.png" class="d-block w-100" alt="Modern Furniture Design">
+                                 </div>
+                              </div>
+                        </div>
                      </div>
                   </div>
-                  <div class="col-md-6">
-                     <div class="image_1"><img src="images/img-4.png" alt="Elegant interior design showcasing a modern living room"></div>
+
+                  <!-- Slide 2 -->
+                  <div class="carousel-item">
+                     <div class="container">
+                        <div class="row">
+                              <div class="col-md-6">
+                                 <h1 class="banner_taital">Modern <br> Living <br> Solutions</h1>
+                                 <p class="banner_text">Explore the finest designs crafted for elegance.</p>
+                                 <div class="btn_main">
+                                    <div class="contact_bt"><a href="about.html">Learn More</a></div>
+                                 </div>
+                              </div>
+                              <div class="col-md-6">
+                                 <div class="image_1">
+                                    <img src="images/img-whitechair.png" class="d-block w-100" alt="Modern White Chair">
+                                 </div>
+                              </div>
+                        </div>
+                     </div>
                   </div>
-               </div>
             </div>
+
+            <!-- Navigation Arrows -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+            </button>
          </div>
       </div>
-      
-      <!-- Indicators -->
-      <ol class="carousel-indicators">
-         <li data-target="#second_slider" data-slide-to="0" class="active"></li>
-         <li data-target="#second_slider" data-slide-to="1"></li>
-      </ol>
-      
-      <!-- Controls -->
-      <a class="carousel-control-prev" href="#second_slider" role="button" data-slide="prev">
-         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-         <span class="sr-only">Previous</span>
-      </a>
-      <a class="carousel-control-next" href="#second_slider" role="button" data-slide="next">
-         <span class="carousel-control-next-icon" aria-hidden="true"></span>
-         <span class="sr-only">Next</span>
-      </a>
-   </div>
       <!-- banner section end -->
       <!-- about section start -->
       <div class="about_section layout_padding">
