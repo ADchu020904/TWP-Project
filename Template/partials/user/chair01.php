@@ -8,8 +8,10 @@
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
-    <?php include '/Applications/XAMPP/xamppfiles/htdocs/TWP-Project/Template/partials/user/userstyle.html'; ?>
-    <style>
+    <?php include 'userstyle.html'; ?>
+   
+   <style>
+
         .product-container {
             max-width: 1000px;
             margin: 50px auto;
@@ -73,9 +75,71 @@
     </style>
 </head>
 <body>
-    <?php include 'TWP-Project/Template/partials/user/header.php'; ?>
-    
-    <div class="product-container"></div>
+<!-- Header Section -->
+<div class="header_section" style="margin-bottom: 0;">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+       <!-- Brand Logo -->
+       <a class="logo" href="index.php"><img src="/TWP-Project/Template/images/Vik.png"></a>
+
+       <!-- Mobile Menu Toggle -->
+       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" 
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+       <span class="navbar-toggler-icon"></span>
+       </button>
+
+       <!-- Navigation Items -->
+       <div class="collapse navbar-collapse" id="navbarSupportedContent">
+       <!-- Left-aligned Navigation Items -->
+       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+          <a class="nav-link" href="/TWP-Project/Template/index.php">Home</a>
+          </li>
+          <li class="nav-item">
+          <a class="nav-link" href="/TWP-Project/Template/about.html">About</a>
+          </li>
+          <li class="nav-item">
+          <a class="nav-link" href="/TWP-Project/Template/design.html">Our Design</a>
+          </li>
+          <li class="nav-item">
+          <a class="nav-link" href="/TWP-Project/Template/shop.php">Shop</a>
+          </li>
+          <li class="nav-item">
+          <a class="nav-link" href="/TWP-Project/Template/contact.html">Contact Us</a>
+          </li>
+       </ul>
+
+       <!-- Right-aligned Icons -->
+       <ul class="navbar-nav ms-auto">
+          <!-- Cart Icon -->
+          <li class="nav-item">
+          <a class="nav-link" href="/TWP-Project/Template/cart.html">
+              <!-- Added 'cart-icon' class for specific sizing -->
+              <img src="/TWP-Project/Template/images/cart.png" alt="Cart Icon" class="nav-icon cart-icon">
+          </a>
+         </li>
+          
+          <!-- User Dropdown -->
+          <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" 
+          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+           <img src="/TWP-Project/Template/images/user-icon.png" alt="User Icon" class="nav-icon user-icon">
+          </a>
+          <!-- Dropdown Menu -->
+          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+             <a class="dropdown-item" href="/TWP-Project/Template/account.php">My Account</a>
+             <a class="dropdown-item" href="/TWP-Project/Template/usersignup.php">Log in/Sign up</a>
+             <a class="dropdown-item" href="/TWP-Project/Template/index.php">Log Out</a>
+             <a class="dropdown-item" href="/TWP-Project/Template/admin-login.html">Admin Login</a>
+          </div>
+          </li>
+       </ul>
+       </div>
+    </div>
+    </nav>
+ </div>
+ <!-- End Header Section -->      
+    <div class="product-container">
         <img src="/TWP-Project/Template/images/img-8.png" alt="Chair 01" class="product-image">
         <div class="product-details">
             <h2>Chair 01</h2>
@@ -89,11 +153,12 @@
             </div>
             <p><strong>Stock:</strong> 20 units available</p>
             <button class="btn btn-addtocart">Add to Cart</button>
-            <a href="review.html" class="review-link">Give a Review</a>
-            <a href="shop.html" class="back-link">Go Back to Shop</a>
+            <a href="/TWP-Project/Template/review.html" class="review-link">Give a Review</a>
+            <a href="/TWP-Project/Template/shop.php" class="back-link">Go Back to Shop</a>
         </div>
     </div>
     <script src="/TWP-Project/Template/js/jquery.min.js"></script>
     <script src="/TWP-Project/Template/js/bootstrap.bundle.min.js"></script>
+    
 </body>
 </html>
