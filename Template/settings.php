@@ -79,7 +79,7 @@
                     class="rounded-sm border border-stroke bg-white shadow-default"
                   >
                     <div
-                      class="border-b border-stroke px-7 py-4 dark:bg-boxdark dark:border-strokedark"
+                      class="border-b border-stroke px-7 py-4 dark:bg-boxdark dark:border-transparent"
                     >
                       <h3 class="font-medium dark:text-white text-black ">
                         Personal Information
