@@ -95,22 +95,5 @@
 <!-- Category Section End -->
       <!-- footer section -->
        <?php include '/Applications/XAMPP/xamppfiles/htdocs/TWP-Project/Template/partials/user/userfooter.html'; ?>
-      <style>
-         .box_main {
-             display: flex;
-             flex-direction: column;
-             justify-content: space-between;
-             height: 100%;
-         }
-         .d-flex {
-             display: flex;
-         }
-         .flex-wrap {
-             flex-wrap: wrap;
-         }
-         .price_text {
-            text-align: center;
-         }
-         </style>
    </body>
 </html>
