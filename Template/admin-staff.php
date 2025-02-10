@@ -6,13 +6,15 @@
     <title>Admin Staff Management</title>
     <?php include 'partials/style.html'; ?>
 </head>
-<body class="bg-body-secondary">
+<body x-data ="{ page: 'settings', 'loaded': true, 'darkMode': true, 'stickyMenu': false, 'sidebarToggle': false, 'scrollTop': false }"
+    x-init="
+      darkMode = JSON.parse(localStorage.getItem('darkMode'));
+      $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))"
+    :class="{'dark text-bodydark bg-boxdark-2': darkMode === true}">
     <!-- Layout Container -->
     <div class="dashboard-container">
         <!-- Sidebar Start -->
-        <div class="sidebar sidebar-dark border-end">
-            <?php include 'partials/sidebar.html'; ?>
-        </div>
+        <?php include 'partials/sidebar.html'; ?>
         <!-- Sidebar Finish -->
 
         <!-- Navbar Start -->
@@ -20,9 +22,9 @@
         <!-- Navbar Finish -->
 
         <!-- Main Content Start -->
-        <div class="main-content" id="view-staff">
-            <h1>View Staff</h1>
-            <a href="#" class="add-btn" onclick="showSection('add-staff')">Add Staff</a>
+        <div class="main-content" id="view">
+            <h1 class="h1">View Staff</h1>
+            <a href="#" class="add-btn" onclick="setSection('add')">Add Staff</a>
             <table>
                 <thead>
                     <tr>
@@ -40,54 +42,54 @@
             </table>
         </div>
 
-        <div class="main-content" id="add-staff" style="display: none;">
-            <h1>Add Staff Member</h1>
+        <div class="main-content" id="add" style="display: none;">
+            <h1 class="h1">Add Staff Member</h1>
             <form method="POST" action="addstaff.php">
-                <label for="staff-name">Name</label>
-                <input type="text" id="staff-name" name="name">
-                <label for="staff-email">Email</label>
-                <input type="email" id="staff-email" name="email">
-                <label for="staff-position">Position</label>
-                <input type="text" id="staff-position" name="position">
-                <label for="staff-department">Department</label>
-                <input type="text" id="staff-department" name="department">
-                <label for="staff-description">Description</label>
-                <textarea id="staff-description" name="description" rows="4"></textarea>
+                <label class="label" for="staff-name">Name</label>
+                <input type="text" class="member-form-input" id="staff-name" name="name">
+                <label class="label" for="staff-email">Email</label>
+                <input type="email" class="member-form-input" id="staff-email" name="email">
+                <label class="label" for="staff-position">Position</label>
+                <input type="text" class="member-form-input" id="staff-position" name="position">
+                <label class="label" for="staff-department">Department</label>
+                <input type="text" class="member-form-input" id="staff-department" name="department">
+                <label class="label" for="staff-description">Description</label>
+                <textarea id="staff-description" class="member-form-input" name="description" rows="4"></textarea>
                 <input type="file" name="image" id="staff-image">
-                <button type="submit">Add Staff</button>
+                <button class="member-form-button" type="submit">Add Staff</button>
             </form>
         </div>
         
 
-        <div class="main-content" id="update-staff" style="display: none;">
-            <h1>Update Staff</h1>
+        <div class="main-content" id="update" style="display: none;">
+            <h1 class="h1">Update Staff</h1>
             <form>
-                <label for="update-staff-select">Select Staff to Update</label>
+                <label class="label" for="update-staff-select">Select Staff to Update</label>
                 <select id="update-staff-select" name="id" required>
                     <!-- Options will be loaded dynamically -->
                 </select>
-                <label for="staff-name">Name</label>
-                <input type="text" id="staff-name" name="name" required>
-                <label for="staff-email">Email</label>
-                <input type="email" id="staff-email" name="email" required>
-                <label for="staff-position">Position</label>
-                <input type="text" id="staff-position" name="position" required>
-                <label for="staff-department">Department</label>
-                <input type="text" id="staff-department" name="department" required>
-                <label for="staff-description">Description</label>
-                <textarea id="staff-description" name="description" rows="4" required></textarea>
-                <button type="submit">Update Staff</button>
+                <label class="label" for="staff-name">Name</label>
+                <input type="text" class="member-form-input" id="staff-name" name="name" required>
+                <label class="label" for="staff-email">Email</label>
+                <input type="email" class="member-form-input" id="staff-email" name="email" required>
+                <label class="label" for="staff-position">Position</label>
+                <input type="text" class="member-form-input" id="staff-position" name="position" required>
+                <label class="label" for="staff-department">Department</label>
+                <input type="text" class="member-form-input" id="staff-department" name="department" required>
+                <label class="label" for="staff-description">Description</label>
+                <textarea id="staff-description" class="member-form-input" name="description" rows="4" required></textarea>
+                <button class="member-form-button" type="submit">Update Staff</button>
             </form>
         </div>
 
-        <div class="main-content" id="delete-staff" style="display: none;">
-            <h1>Delete Staff</h1>
+        <div class="main-content" id="delete" style="display: none;">
+            <h1 class="h1">Delete Staff</h1>
             <form method="POST" action="deletestaff.php">
-                <label for="delete-staff-select">Select Staff to Delete</label>
+                <label class="label" for="delete-staff-select">Select Staff to Delete</label>
                 <select id="delete-staff-select" name="id" required>
                     <!-- Options will be loaded dynamically -->
                 </select>
-                <button type="submit">Delete Staff</button>
+                <button class="member-form-button" type="submit">Delete Staff</button>
             </form>
         </div>
     </div>
