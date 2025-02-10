@@ -233,174 +233,15 @@ $addresses = $addressStmt->get_result();
    <meta name="description" content="">
    <meta name="author" content="">
    <!-- font awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
    <!-- bootstrap css -->
    <link rel="stylesheet" href="/TWP-Project/Template/css/bootstrap.min.css">
-   <!-- style css -->
-   <link rel="stylesheet" href="/TWP-Project/Template/css/style.css">
    <!-- Responsive-->
    <link rel="stylesheet" href="/TWP-Project/Template/css/responsive.css">
+   <!-- style css -->
+   <link rel="stylesheet" href="/TWP-Project/Template/css/style.css">
    <!-- fevicon -->
    <link rel="icon" href="images/vik.ico" type="image/gif" /> 
-   <style>
-        /* Styles for profile card */
-        .profile-card {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-
-        .profile-initials {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background-color: #df0951;
-            color: white;
-            font-size: 2.5em;
-            line-height: 80px;
-            margin: 0 auto 20px;
-        }
-
-        .profile-card .card-title {
-            color: #333;
-            font-size: 1.5em;
-            margin-bottom: 5px;
-        }
-
-        .profile-card .card-text {
-            color: #666;
-            margin-bottom: 15px;
-        }
-
-        .profile-card .btn-outline-danger {
-            width: auto;
-            padding: 8px 20px;
-            font-size: 1em;
-        }
-
-        /* Styles for address cards */
-        .address-card {
-            background: #fff;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-        }
-
-        .address-card .card-header {
-            background: #f0f0f0;
-            padding: 10px 15px;
-            border-bottom: 1px solid #ddd;
-            border-radius: 7px 7px 0 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .address-card .card-header h5 {
-            margin: 0;
-            font-size: 1.2em;
-            color: #333;
-        }
-
-        .address-card .card-body {
-            padding: 15px;
-            color: #555;
-        }
-
-        .address-card .card-body p {
-            margin-bottom: 8px;
-        }
-
-        .address-card .icon-group {
-            display: flex;
-            gap: 5px;
-        }
-
-        .address-card .icon-btn {
-            background: none;
-            border: none;
-            color: #888;
-            cursor: pointer;
-            padding: 0;
-            font-size: 1em;
-            transition: color 0.3s;
-        }
-
-        .address-card .icon-btn:hover {
-            color: #df0951;
-        }
-
-        /* General form styles */
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            color: #333;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 1em;
-            color: #444;
-        }
-
-        .form-control:focus {
-            border-color: #df0951;
-            box-shadow: 0 0 5px rgba(223, 9, 81, 0.2);
-            outline: none;
-        }
-
-        .button-group {
-            margin-top: 20px;
-        }
-
-        .button-group .btn {
-            padding: 10px 20px;
-            font-size: 1em;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .button-group .btn-outline-danger {
-            color: #df0951;
-            border-color: #df0951;
-        }
-
-        .button-group .btn-outline-danger:hover {
-            background-color: #df0951;
-            color: white;
-        }
-
-        /* Alert messages */
-        .alert {
-            padding: 15px;
-            margin-bottom: 20px;
-            border: 1px solid transparent;
-            border-radius: 4px;
-        }
-
-        .alert-success {
-            color: #3c763d;
-            background-color: #dff0d8;
-            border-color: #d6e9c6;
-        }
-
-        .alert-danger {
-            color: #a94442;
-            background-color: #f2dede;
-            border-color: #ebccd1;
-        }
-    </style>
 </head>
 <body>
  <!-- Header Section -->
@@ -479,9 +320,9 @@ $addresses = $addressStmt->get_result();
                     <div class="profile-initials"><?php echo htmlspecialchars($initials); ?></div>
                     <h5 class="card-title"><?php echo htmlspecialchars($user['firstName'] . ' ' . $user['lastName']); ?></h5>
                     <p class="card-text"><?php echo htmlspecialchars($user['email']); ?></p>
-                    <button class="btn btn-outline-danger">Edit Details</button>
+                    <button class="btn btn-outline-danger"><i class="fa fa-pencil"></i>&nbsp;Edit Details</button>
                     <form method="POST" style="margin-top: 10px;">
-                        <button type="submit" name="logout" class="btn btn-outline-danger">Logout</button>
+                        <button type="submit" name="logout" class="btn btn-outline-danger"><i class="fa-solid fa-arrow-right-from-bracket"></i>&nbsp;Logout</button>
                     </form>
                     <div class="edit-profile-form" style="display: none; margin-top: 20px;">
                         <form id="profileEditForm" method="POST" class="text-left">
