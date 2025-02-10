@@ -1,11 +1,11 @@
 <div class="banner_section layout_padding">
     <!-- Main Slider -->
-    <div id="carouselExampleIndicators" class="carousel slide" data-coreui-ride="true">
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <!-- Indicators -->
-        <div class="carousel-indicators">
-            <button type="button" data-coreui-target="#carouselExampleIndicators" data-coreui-slide-to="0" aria-label="Slide 1" class="active" aria-current="true"></button>
-            <button type="button" data-coreui-target="#carouselExampleIndicators" data-coreui-slide-to="1" aria-label="Slide 2"></button>            
-        </div>
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        </ol>
 
         <!-- Slides -->
         <div class="carousel-inner">
@@ -53,13 +53,13 @@
         </div>
 
         <!-- Navigation Arrows -->
-        <button class="carousel-control-prev" type="button" data-coreui-target="#carouselExampleIndicators" data-coreui-slide="prev">
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-coreui-target="#carouselExampleIndicators" data-coreui-slide="next">
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
+            <span class="sr-only">Next</span>
+        </a>
     </div>
 </div>
