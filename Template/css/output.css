@@ -2152,3 +2152,12 @@ textarea {
 .dark .shadow-default {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
+
+/* Remove all borders in dark mode for the Personal Information section */
+.dark .border-strokedark,
+.dark .border-stroke,
+.dark .border-b {
+  border: none !important;       /* Removes all borders */
+  border-color: transparent !important; /* Ensures no border color appears */
+  border-width: 0 !important;    /* Resets the border width */
+}

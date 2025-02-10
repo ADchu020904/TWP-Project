@@ -294,16 +294,16 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque posuere fe
                 <!-- Your Photo Section -->
                 <div class="col-span-5 xl:col-span-2">
                   <div
-                    class="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark"
+                    class="dark:bg-boxdark dark:border-strokedark rounded-sm border border-stroke bg-white shadow-default"
                   >
                     <div
-                      class="border-b border-stroke px-7 py-4 dark:border-strokedark"
+                      class="dark:bg-boxdark dark:border-strokedark border-b border-stroke px-7 py-4 "
                     >
-                      <h3 class="font-medium text-black dark:text-white">
+                      <h3 class="dark:bg-boxdark font-medium text-black dark:text-white">
                         Your Photo
                       </h3>
                     </div>
-                    <div class="p-7 space-y-5.5">
+                    <div class="dark:bg-boxdark p-7 space-y-5.5">
                     <form action="#">
                         <!-- User Photo and Edit Options -->
                         <div class="mb-4 flex items-center gap-3">
@@ -312,7 +312,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque posuere fe
                           </div>
                           <div>
                             <span
-                              class="mb-1.5 font-medium text-black dark:text-white"
+                                class="mb-1.5 font-medium text-black dark:text-white dark:dark-input-bg"
                               >Edit your photo</span
                             >
                             <span class="flex gap-2.5">
@@ -333,7 +333,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque posuere fe
                         <!-- File Upload Section -->
                         <div
                           id="FileUpload"
-                          class="upload-box relative mb-5.5 block w-full cursor-pointer appearance-none rounded px-4 py-4 dark:bg-meta-4 sm:py-7.5"
+                          class="upload-box relative mb-5.5 block w-full cursor-pointer appearance-none rounded px-4 py-4 dark:text-white dark:bg-meta-4 sm:py-7.5"
                         >
                           <input
                             type="file"
