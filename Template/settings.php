@@ -76,12 +76,12 @@
                 <div class="col-span-5 xl:col-span-3">
                   <!-- Personal Information Section -->
                   <div
-                    class="rounded-sm border border-stroke bg-white shadow-default"
+                    class="personal-info-section rounded-sm border border-stroke bg-white shadow-default"
                   >
                     <div
-                      class="border-b border-stroke px-7 py-4 dark:bg-boxdark dark:border-transparent"
+                      class="personal-info-header border-b border-stroke px-7 py-4 dark:bg-boxdark dark:border-transparent"
                     >
-                      <h3 class="font-medium dark:text-white text-black ">
+                      <h3 class="personal-info-title font-medium dark:text-white text-black ">
                         Personal Information
                       </h3>
                     </div>
@@ -104,8 +104,8 @@
                                   type="text"
                                   name="fullName"
                                   id="fullName"
-                                  placeholder="Devid Jhon"
-                                  value="Devid Jhon"
+                                  placeholder=""
+                                  value=""
                                 />
                                 <span class="absolute left-3 top-1/2 -translate-y-1/2 flex items-center">
                                   <!-- SVG Icon -->
@@ -148,8 +148,8 @@
                                 type="text"
                                 name="phoneNumber"
                                 id="phoneNumber"
-                                placeholder="+990 3343 7865"
-                                value="+990 3343 7865"
+                                placeholder=""
+                                value=""
                               />
                             </div>
                           </div>
@@ -168,8 +168,8 @@
                               type="email"
                               name="emailAddress"
                               id="emailAddress"
-                              placeholder="devidjond45@gmail.com"
-                              value="devidjond45@gmail.com"
+                              placeholder=""
+                              value=""
                             />
                             <span class="absolute left-3 top-1/2 -translate-y-1/2 flex items-center">
                               <!-- SVG Icon -->
@@ -212,8 +212,8 @@
                             type="text"
                             name="Username"
                             id="Username"
-                            placeholder="devidjhon24"
-                            value="devidjhon24"
+                            placeholder=""
+                            value=""
                           />
                         </div>
 
@@ -232,7 +232,6 @@
                               rows="4"
                               placeholder="Write your bio here"
                             >
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque posuere fermentum urna, eu condimentum mauris tempus ut. Donec fermentum blandit aliquet.
                             </textarea>
                             <span class="absolute left-3 top-3">
                               <!-- SVG Icon -->
@@ -294,10 +293,10 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque posuere fe
                 <!-- Your Photo Section -->
                 <div class="col-span-5 xl:col-span-2">
                   <div
-                    class="dark:bg-boxdark dark:border-strokedark rounded-sm border border-stroke bg-white shadow-default"
+                    class="personal-info-section dark:bg-boxdark dark:border-strokedark rounded-sm border border-stroke bg-white shadow-default"
                   >
                     <div
-                      class="dark:bg-boxdark dark:border-strokedark border-b border-stroke px-7 py-4 "
+                      class="personal-info-header dark:bg-boxdark dark:border-strokedark border-b border-stroke px-7 py-4 "
                     >
                       <h3 class="dark:bg-boxdark font-medium text-black dark:text-white">
                         Your Photo
@@ -316,9 +315,9 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque posuere fe
                               >Edit your photo</span
                             >
                             <span class="flex gap-2.5">
-                              <button
+                                <button
                                 class="text-sm font-medium hover:text-primary"
-                              >
+                                >
                                 Delete
                               </button>
                               <button
@@ -333,7 +332,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque posuere fe
                         <!-- File Upload Section -->
                         <div
                           id="FileUpload"
-                          class="upload-box relative mb-5.5 block w-full cursor-pointer appearance-none rounded px-4 py-4 dark:text-white dark:bg-meta-4 sm:py-7.5"
+                          class="upload-box relative mb-5.5 block w-full cursor-pointer appearance-none rounded px-4 py-4  dark:bg-meta-4 sm:py-7.5"
                         >
                           <input
                             type="file"

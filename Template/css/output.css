@@ -1937,11 +1937,6 @@ span.flatpickr-weekday:is(.dark *),
   background-color: #23303f;
 }
 
-.dark .border-stroke {
-  border-color: rgb(226 232 240 / var(--tw-border-opacity, 1));
-  ;
-}
-
 .dark .text-bodydark2 {
   color: #ffffff;
 }
@@ -2091,9 +2086,6 @@ textarea {
   transition: border-color 0.3s ease;
 }
 
-.dark .border-b.border-stroke {
-  border-color: var(--dark-border);
-}
 
 /* Icons in input fields */
 .form-field-spacing .fill-current {
@@ -2160,4 +2152,8 @@ textarea {
   border: none !important;       /* Removes all borders */
   border-color: transparent !important; /* Ensures no border color appears */
   border-width: 0 !important;    /* Resets the border width */
+}
+
+.dark .personal-info-section .personal-info-header {
+  border-bottom: 1px solid #465A73 !important; /* Ensure a dark border appears under the header */
 }
