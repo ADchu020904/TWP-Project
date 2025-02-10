@@ -23,7 +23,7 @@
 
         <!-- Main Content Start -->
         <div class="main-content" id="view">
-            <h1 class="h1">View Products</h1>
+            <h1 class="h1 dark:text-white">View Products</h1>
             <a href="#" class="add-btn" onclick="setSection('add')">Add Product</a>
             <table>
                 <thead>
@@ -77,15 +77,15 @@
         </div>
 
         <div class="main-content" id="add" style="display: none;">
-            <h1 class="h1">Add Product</h1>
+            <h1 class="h1 dark:text-white">Add Product</h1>
             <form>
-                <label class="label" for="product-name">Product Name</label>
+                <label class="label dark:text-white" for="product-name">Product Name</label>
                 <input type="text" class="member-form-input" id="product-name" name="product-name">
-                <label class="label" for="product-price">Product Price</label>
+                <label class="label dark:text-white" for="product-price">Product Price</label>
                 <input type="number" class="member-form-input" id="product-price" name="product-price">
-                <label class="label" for="product-quantity">Quantity</label>
+                <label class="label dark:text-white" for="product-quantity">Quantity</label>
                 <input type="number" class="member-form-input" id="product-quantity" name="product-quantity" min="1" max="40">
-                <label class="label" for="product-description">Product Description</label>
+                <label class="label dark:text-white" for="product-description">Product Description</label>
                 <textarea id="product-description" class="member-form-input" name="product-description" rows="4"></textarea>
                 <input type="file" name="product-image" id="product-image">
                 <button class="member-form-button" type="submit">Add Product</button>
@@ -93,9 +93,9 @@
         </div>
 
         <div class="main-content" id="update" style="display: none;">
-            <h1 class="h1">Update Product</h1>
+            <h1 class="h1 dark:text-white">Update Product</h1>
             <form action="updateproduct.php" method="post">
-                <label class="label" for="product-select">Select Product to Update</label>
+                <label class="label dark:text-white" for="product-select">Select Product to Update</label>
                 <select id="product-select" name="productname" required>
                     <option value="" disabled selected>Select product</option>
                     <option value="Bed 3351">Bed 3351</option>
@@ -103,20 +103,20 @@
                     <option value="AL013-A/B">AL013-A/B</option>
                     <!-- Add more options as needed -->
                 </select>
-                <label class="label" for="product-quantity">Product Quantity</label>
+                <label class="label dark:text-white" for="product-quantity">Product Quantity</label>
                 <input type="number" class="member-form-input" id="product-quantity" name="product-quantity" required min="1" max="99">
-                <label class="label" for="product-price">Product Price</label>
+                <label class="label dark:text-white" for="product-price">Product Price</label>
                 <input type="number" class="member-form-input" id="product-price" name="product-price" required min="1" max="9999">
-                <label class="label" for="product-description">Product Description</label>
+                <label class="label dark:text-white" for="product-description">Product Description</label>
                 <textarea id="product-description" class="member-form-input" name="product-description" rows="4" required></textarea>
                 <button class="member-form-button" type="submit">Update Product</button>
             </form>
         </div>
 
         <div class="main-content" id="delete" style="display: none;">
-            <h1 class="h1">Delete Product</h1>
+            <h1 class="h1 dark:text-white">Delete Product</h1>
             <form action="deleteproduct.php" method="post">
-                <label class="label" for="product-select">Select Product to Delete</label>
+                <label class="label dark:text-white" for="product-select">Select Product to Delete</label>
                 <select id="product-select" name="productname">
                     <option value="" disabled selected>Select product</option>
                     <option value="Bed 3351">Bed 3351</option>

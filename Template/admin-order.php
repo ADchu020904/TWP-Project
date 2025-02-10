@@ -23,7 +23,7 @@
 
         <!-- Main Content Start -->
         <div class="main-content" id="view">
-            <h1 class="h1">View Orders</h1>
+            <h1 class="h1 dark:text-white">View Orders</h1>
             <a href="#" class="add-btn" onclick="setSection('add')">Add Order</a>
             <table>
                 <thead>
@@ -62,15 +62,15 @@
         </div>
 
         <div class="main-content" id="add" style="display: none;">
-            <h1 class="h1">Add Order</h1>
+            <h1 class="h1 dark:text-white">Add Order</h1>
             <form>
-                <label class="label" for="order-id">Order ID</label>
+                <label class="label dark:text-white" for="order-id">Order ID</label>
                 <input type="number" class="member-form-input" id="order-id" name="order-id">
-                <label class="label" for="customer-name">Customer Name</label>
+                <label class="label dark:text-white" for="customer-name">Customer Name</label>
                 <input type="text" class="member-form-input" id="customer-name" name="customer-name">
-                <label class="label" for="total-amount">Total Amount</label>
+                <label class="label dark:text-white" for="total-amount">Total Amount</label>
                 <input type="number" class="member-form-input" id="total-amount" name="total-amount">
-                <label class="label" for="status">Status</label>
+                <label class="label dark:text-white" for="status">Status</label>
                 <select id="status" name="status">
                     <option value="Pending">Pending</option>
                     <option value="Completed">Completed</option>
@@ -81,9 +81,9 @@
         </div>
 
         <div class="main-content" id="update" style="display: none;">
-            <h1 class="h1">Update Order</h1>
+            <h1 class="h1 dark:text-white">Update Order</h1>
             <form action="updateorder.php" method="post">
-                <label class="label" for="order-select">Select Order to Update</label>
+                <label class="label dark:text-white" for="order-select">Select Order to Update</label>
                 <select id="order-select" name="orderid" required>
                     <option value="" disabled selected>Select order</option>
                     <option value="1">Order 1</option>
@@ -91,11 +91,11 @@
                     <option value="3">Order 3</option>
                     <!-- Add more options as needed -->
                 </select>
-                <label class="label" for="customer-name">Customer Name</label>
+                <label class="label dark:text-white" for="customer-name">Customer Name</label>
                 <input type="text" class="member-form-input" id="customer-name" name="customer-name" required>
-                <label class="label" for="total-amount">Total Amount</label>
+                <label class="label dark:text-white" for="total-amount">Total Amount</label>
                 <input type="number" class="member-form-input" id="total-amount" name="total-amount" required>
-                <label class="label" for="status">Status</label>
+                <label class="label dark:text-white" for="status">Status</label>
                 <select id="status" name="status" required>
                     <option value="Pending">Pending</option>
                     <option value="Completed">Completed</option>
@@ -106,9 +106,9 @@
         </div>
 
         <div class="main-content" id="delete" style="display: none;">
-            <h1 class="h1">Delete Order</h1>
+            <h1 class="h1 dark:text-white">Delete Order</h1>
             <form action="deleteorder.php" method="post">
-                <label class="label" for="order-select">Select Order to Delete</label>
+                <label class="label dark:text-white" for="order-select">Select Order to Delete</label>
                 <select id="order-select" name="orderid">
                     <option value="" disabled selected>Select order</option>
                     <option value="1">Order 1</option>

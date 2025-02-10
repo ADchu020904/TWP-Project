@@ -23,7 +23,7 @@
 
         <!-- Main Content Start -->
         <div class="main-content" id="view">
-            <h1 class="h1">View Product Categories</h1>
+            <h1 class="h1 dark:text-white">View Product Categories</h1>
             <a href="#" class="add-btn" onclick="setSection('add')">Add Category</a>
             <table>
                 <thead>
@@ -72,20 +72,20 @@
         </div>
 
         <div class="main-content" id="add" style="display: none;">
-            <h1 class="h1">Add Product Category</h1>
+            <h1 class="h1 dark:text-white">Add Product Category</h1>
             <form>
-                <label class="label" for="category-name">Category Name</label>
+                <label class="label dark:text-white" for="category-name">Category Name</label>
                 <input type="text" class="member-form-input" id="category-name" name="category-name">
-                <label class="label" for="category-description">Category Description</label>
+                <label class="label dark:text-white" for="category-description">Category Description</label>
                 <textarea id="category-description" class="member-form-input" name="category-description" rows="4"></textarea>
                 <button class="member-form-button" type="submit">Add Category</button>
             </form>
         </div>
 
         <div class="main-content" id="update" style="display: none;">
-            <h1 class="h1">Update Product Category</h1>
+            <h1 class="h1 dark:text-white">Update Product Category</h1>
             <form action="updatecategory.php" method="post">
-                <label class="label" for="category-select">Select Category to Update</label>
+                <label class="label dark:text-white" for="category-select">Select Category to Update</label>
                 <select id="category-select" name="categoryname" required>
                     <option value="" disabled selected>Select category</option>
                     <option value="Beds">Beds</option>
@@ -94,18 +94,18 @@
                     <option value="Chairs">Chairs</option>
                     <!-- Add more options as needed -->
                 </select>
-                <label class="label" for="category-name">Category Name</label>
+                <label class="label dark:text-white" for="category-name">Category Name</label>
                 <input type="text" class="member-form-input" id="category-name" name="category-name" required>
-                <label class="label" for="category-description">Category Description</label>
+                <label class="label dark:text-white" for="category-description">Category Description</label>
                 <textarea id="category-description" class="member-form-input" name="category-description" rows="4" required></textarea>
                 <button class="member-form-button" type="submit">Update Category</button>
             </form>
         </div>
 
         <div class="main-content" id="delete" style="display: none;">
-            <h1 class="h1">Delete Product Category</h1>
+            <h1 class="h1 dark:text-white">Delete Product Category</h1>
             <form action="deletecategory.php" method="post">
-                <label class="label" for="category-select">Select Category to Delete</label>
+                <label class="label dark:text-white" for="category-select">Select Category to Delete</label>
                 <select id="category-select" name="categoryname">
                     <option value="" disabled selected>Select category</option>
                     <option value="Beds">Beds</option>
