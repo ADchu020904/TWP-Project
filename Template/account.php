@@ -2,7 +2,9 @@
 // ============================================================================
 //  Configuration and Setup
 // ============================================================================
-
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 // Start session for user authentication and message passing
 session_start();
 
@@ -233,11 +235,11 @@ $addresses = $addressStmt->get_result();
    <!-- font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
    <!-- bootstrap css -->
-   <link rel="stylesheet" href="../css/bootstrap.min.css">
+   <link rel="stylesheet" href="/TWP-Project/Template/css/bootstrap.min.css">
    <!-- style css -->
-   <link rel="stylesheet" href="../css/style.css">
+   <link rel="stylesheet" href="/TWP-Project/Template/css/style.css">
    <!-- Responsive-->
-   <link rel="stylesheet" href="../css/responsive.css">
+   <link rel="stylesheet" href="/TWP-Project/Template/css/responsive.css">
    <!-- fevicon -->
    <link rel="icon" href="images/vik.ico" type="image/gif" /> 
    <style>
@@ -798,7 +800,8 @@ $addresses = $addressStmt->get_result();
    <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
    <script src="js/custom.js"></script>
    <!-- javascript --> 
-   <script src="js/owl.carousel.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+</selection>
    <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
    <script>
 function toggleAddressForm() {
