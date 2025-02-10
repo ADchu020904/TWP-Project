@@ -2160,5 +2160,37 @@ textarea {
 
 /* Increase dropdown menu width for notifications */
 .dropdown-menu.notification-dropdown {
-  width: 1000px; /* Adjust width as needed */
+  width: 320px; /* Reasonable width for notifications */
+  max-height: 400px; /* Add max height */
+  overflow-y: auto; /* Allow scrolling */
+}
+
+/* Additional styling for notification dropdown */
+.notification-dropdown {
+  padding: 0;
+  margin-top: 8px;
+}
+
+.notification-dropdown .dropdown-item {
+  padding: 12px 16px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.notification-dropdown .dropdown-item:last-child {
+  border-bottom: none;
+}
+
+/* Dark mode styles */
+.dark .notification-dropdown {
+  background-color: #22303e;
+  border-color: #465A73;
+}
+
+.dark .notification-dropdown .dropdown-item {
+  color: #fff;
+  border-color: #465A73;
+}
+
+.dark .notification-dropdown .dropdown-item:hover {
+  background-color: #313D4A;
 }
