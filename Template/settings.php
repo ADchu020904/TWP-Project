@@ -221,18 +221,16 @@
                           <!-- BIO Textarea -->
                           <label
                             class="mb-2 block text-sm font-semibold text-black dark:text-white"
-                            for="Username"
+                            for="bio"
                             >BIO</label
                           >
                           <div class="relative">
                             <textarea
-                              class="min-h-[150px] w-full rounded-lg border border-stroke bg-gray py-2.5 pl-9 pr-4.5 font-medium text-black focus:border-primary focus:ring-2 focus:ring-primary/10 focus-visible:outline-none dark:border-strokedark dark:bg-boxdark dark:text-white dark:focus:border-primary focus:ring-2 focus:ring-primary/10""
+                              class="min-h-[150px] w-full rounded-lg border border-stroke bg-gray py-2.5 pl-9 pr-4.5 font-medium text-black focus:border-primary focus:ring-2 focus:ring-primary/10 focus-visible:outline-none dark:border-strokedark dark:bg-boxdark dark:text-white dark:focus:border-primary"
                               name="bio"
                               id="bio"
                               rows="4"
-                              placeholder="Write your bio here"
-                            >
-                            </textarea>
+                              placeholder="Write your bio here"></textarea>
                             <span class="absolute left-3 top-3">
                               <!-- SVG Icon -->
                               <svg
