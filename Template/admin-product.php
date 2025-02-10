@@ -6,13 +6,15 @@
     <title>Admin Product Management</title>
     <?php include 'partials/style.html'; ?>
 </head>
-<body class="bg-body-secondary">
+<body x-data ="{ page: 'settings', 'loaded': true, 'darkMode': true, 'stickyMenu': false, 'sidebarToggle': false, 'scrollTop': false }"
+    x-init="
+      darkMode = JSON.parse(localStorage.getItem('darkMode'));
+      $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))"
+    :class="{'dark text-bodydark bg-boxdark-2': darkMode === true}">
     <!-- Layout Container -->
     <div class="dashboard-container">
         <!-- Sidebar Start -->
-        <div class="sidebar sidebar-dark border-end">
-            <?php include 'partials/sidebar.html'; ?>
-        </div>
+        <?php include 'partials/sidebar.html'; ?>
         <!-- Sidebar Finish -->
 
         <!-- Navbar Start -->
@@ -20,9 +22,9 @@
         <!-- Navbar Finish -->
 
         <!-- Main Content Start -->
-        <div class="main-content" id="view-products">
-            <h1>View Products</h1>
-            <a href="#" class="add-btn" onclick="showSection('add-product')">Add Product</a>
+        <div class="main-content" id="view">
+            <h1 class="h1">View Products</h1>
+            <a href="#" class="add-btn" onclick="setSection('add')">Add Product</a>
             <table>
                 <thead>
                     <tr>
@@ -38,8 +40,8 @@
                         <td>$426.80</td>
                         <td>Single Bunk Bed</td>
                         <td class="actions">
-                            <button class="edit-btn" onclick="showSection('update-product')">Edit</button>
-                            <button class="delete-btn" onclick="showSection('delete-product')">Delete</button>
+                            <button class="edit-btn" onclick="setSection('update')">Edit</button>
+                            <button class="delete-btn" onclick="setSection('delete')">Delete</button>
                         </td>
                     </tr>
                     <tr>
@@ -47,8 +49,8 @@
                         <td>$352.00</td>
                         <td>Single Bunk Bed</td>
                         <td class="actions">
-                            <button class="edit-btn" onclick="showSection('update-product')">Edit</button>
-                            <button class="delete-btn" onclick="showSection('delete-product')">Delete</button>
+                            <button class="edit-btn" onclick="setSection('update')">Edit</button>
+                            <button class="delete-btn" onclick="setSection('delete')">Delete</button>
                         </td>
                     </tr>
                     <tr>
@@ -56,8 +58,8 @@
                         <td>$165.00</td>
                         <td>Single Bed</td>
                         <td class="actions">
-                            <button class="edit-btn" onclick="showSection('update-product')">Edit</button>
-                            <button class="delete-btn" onclick="showSection('delete-product')">Delete</button>
+                            <button class="edit-btn" onclick="setSection('update')">Edit</button>
+                            <button class="delete-btn" onclick="setSection('delete')">Delete</button>
                         </td>
                     </tr>
                     <tr>
@@ -65,8 +67,8 @@
                         <td>$280.00</td>
                         <td>5ft Bed</td>
                         <td class="actions">
-                            <button class="edit-btn" onclick="showSection('update-product')">Edit</button>
-                            <button class="delete-btn" onclick="showSection('delete-product')">Delete</button>
+                            <button class="edit-btn" onclick="setSection('update')">Edit</button>
+                            <button class="delete-btn" onclick="setSection('delete')">Delete</button>
                         </td>
                     </tr>
                     <!-- Repeat for other products -->
@@ -74,26 +76,26 @@
             </table>
         </div>
 
-        <div class="main-content" id="add-product" style="display: none;">
-            <h1>Add Product</h1>
+        <div class="main-content" id="add" style="display: none;">
+            <h1 class="h1">Add Product</h1>
             <form>
-                <label for="product-name">Product Name</label>
+                <label class="label" for="product-name">Product Name</label>
                 <input type="text" id="product-name" name="product-name">
-                <label for="product-price">Product Price</label>
+                <label class="label" for="product-price">Product Price</label>
                 <input type="number" id="product-price" name="product-price">
-                <label for="product-quantity">Quantity</label>
+                <label class="label" for="product-quantity">Quantity</label>
                 <input type="number" id="product-quantity" name="product-quantity" min="1" max="40">
-                <label for="product-description">Product Description</label>
+                <label class="label" for="product-description">Product Description</label>
                 <textarea id="product-description" name="product-description" rows="4"></textarea>
                 <input type="file" name="product-image" id="product-image">
-                <button type="submit">Add Product</button>
+                <button class="member-form-button" type="submit">Add Product</button>
             </form>
         </div>
 
-        <div class="main-content" id="update-product" style="display: none;">
-            <h1>Update Product</h1>
+        <div class="main-content" id="update" style="display: none;">
+            <h1 class="h1">Update Product</h1>
             <form action="updateproduct.php" method="post">
-                <label for="product-select">Select Product to Update</label>
+                <label class="label" for="product-select">Select Product to Update</label>
                 <select id="product-select" name="productname" required>
                     <option value="" disabled selected>Select product</option>
                     <option value="Bed 3351">Bed 3351</option>
@@ -101,18 +103,18 @@
                     <option value="AL013-A/B">AL013-A/B</option>
                     <!-- Add more options as needed -->
                 </select>
-                <label for="product-quantity">Product Quantity</label>
-                <input type="number" id="product-quantity" name="product-quantity" required min="1" max="99">
-                <label for="product-price">Product Price</label>
-                <input type="number" id="product-price" name="product-price" required min="1" max="9999">
-                <label for="product-description">Product Description</label>
-                <textarea id="product-description" name="product-description" rows="4" required></textarea>
-                <button type="submit">Update Product</button>
+                <label class="label" for="product-quantity">Product Quantity</label>
+                <input type="number" class="member-form-input" id="product-quantity" name="product-quantity" required min="1" max="99">
+                <label class="label" for="product-price">Product Price</label>
+                <input type="number" class="member-form-input" id="product-price" name="product-price" required min="1" max="9999">
+                <label class="label" for="product-description">Product Description</label>
+                <textarea id="product-description" class="member-form-input" name="product-description" rows="4" required></textarea>
+                <button class="member-form-button" type="submit">Update Product</button>
             </form>
         </div>
 
-        <div class="main-content" id="delete-product" style="display: none;">
-            <h1>Delete Product</h1>
+        <div class="main-content" id="delete" style="display: none;">
+            <h1 class="h1">Delete Product</h1>
             <form action="deleteproduct.php" method="post">
                 <label for="product-select">Select Product to Delete</label>
                 <select id="product-select" name="productname">
@@ -126,6 +128,7 @@
             </form>
         </div>
     </div>
+
     <?php include 'partials/js.html'; ?>
 </body>
 </html>
