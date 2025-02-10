@@ -12,87 +12,11 @@
       <meta name="keywords" content="">
       <meta name="description" content="">
       <meta name="author" content="">
-      <!-- bootstrap css -->
-      <link rel="stylesheet" href="css/bootstrap.min.css">
-      <!-- style css -->
-      <link rel="stylesheet" href="css/style.css">
-      <!-- Responsive-->
-      <link rel="stylesheet" href="css/responsive.css">
-      <!-- fevicon -->
-      <link rel="icon" href="images/vik.ico" type="image/gif" />
-      <!-- Scrollbar Custom CSS -->
-      <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
-      <!-- Tweaks for older IEs-->
-      <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-      <!-- owl stylesheets --> 
-      <link rel="stylesheet" href="css/owl.carousel.min.css">
-      <link rel="stylesheet" href="css/owl.theme.default.min.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+      <?php include 'partials/user/userstyle.html'; ?>
    </head>
    <body>
  <!-- Header Section -->
- <div class="header_section">
-   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container">
-         <!-- Brand Logo -->
-         <a class="logo" href="index.php"><img src="images/Vik.png"></a>
-
-         <!-- Mobile Menu Toggle -->
-         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" 
-                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-         </button>
-
-         <!-- Navigation Items -->
-         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <!-- Left-aligned Navigation Items -->
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-               <li class="nav-item">
-                  <a class="nav-link" href="index.php">Home</a>
-               </li>
-               <li class="nav-item">
-                  <a class="nav-link" href="about.html">About</a>
-               </li>
-               <li class="nav-item">
-                  <a class="nav-link" href="design.html">Our Design</a>
-               </li>
-               <li class="nav-item">
-                  <a class="nav-link" href="shop.html">Shop</a>
-               </li>
-               <li class="nav-item">
-                  <a class="nav-link" href="contact.html">Contact Us</a>
-               </li>
-            </ul>
-
-            <!-- Right-aligned Icons -->
-            <ul class="navbar-nav ms-auto">
-               <!-- Cart Icon -->
-               <li class="nav-item">
-                  <a class="nav-link" href="cart.html">
-                      <!-- Added 'cart-icon' class for specific sizing -->
-                      <img src="images/cart.png" alt="Cart Icon" class="nav-icon cart-icon">
-                  </a>
-              </li>
-               
-               <!-- User Dropdown -->
-               <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="userDropdown" 
-                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                   <img src="images/user-icon.png" alt="User Icon" class="nav-icon user-icon">
-               </a>
-                  <!-- Dropdown Menu -->
-                  <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                     <a class="dropdown-item" href="account.html">My Account</a>
-                     <a class="dropdown-item" href="usersignup.php">Log in/Sign up</a>
-                     <a class="dropdown-item" href="index.php">Log Out</a>
-                     <a class="dropdown-item" href="admin-login.html">Admin Login</a>
-                  </div>
-               </li>
-            </ul>
-         </div>
-      </div>
-   </nav>
-</div>
+ <?php include 'partials/user/userheader.html'; ?>
 <!-- End Header Section -->        <!--  design section start -->
       <div class="design_section layout_padding">
          <div id="my_slider" class="carousel slide" data-ride="carousel">
@@ -261,19 +185,9 @@
       </div>
       <!--  design section end -->
       
-      <!-- Javascript files-->
-      <script src="js/jquery.min.js"></script>
-      <script src="js/popper.min.js"></script>
-      <script src="js/bootstrap.bundle.min.js"></script>
-      <script src="js/jquery-3.0.0.min.js"></script>
-      <script src="js/plugin.js"></script>
-      <!-- sidebar -->
-      <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
-      <script src="js/custom.js"></script>
-      <!-- javascript --> 
-      <script src="js/owl.carousel.js"></script>
-      <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
-      <!--Added js-->
+     <!-- footer section start -->
+       <?php include 'partials/user/userfooter.html'; ?>
+         <!-- footer section end -->
       <script>
          $(document).ready(function() {
             $('.carousel').carousel({

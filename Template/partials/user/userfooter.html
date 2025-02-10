@@ -58,3 +58,246 @@
  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
  <!-- Fancybox -->
  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+ <script>
+   function toggleAddressForm() {
+       const form = document.getElementById('addressForm');
+       form.style.display = form.style.display === 'none' ? 'block' : 'none';
+   }
+   
+   document.querySelectorAll('.country-dropdown .dropdown-item').forEach(item => {
+       item.addEventListener('click', (e) => {
+           e.preventDefault();
+           const code = e.target.dataset.code;
+           const text = e.target.textContent.split(') ')[0] + ')';
+           document.getElementById('countryCodeBtn').textContent = text;
+           document.getElementById('countryCode').value = code;
+       });
+   });
+   
+   document.querySelectorAll('.edit-btn').forEach(btn => {
+     btn.addEventListener('click', () => {
+       const card = btn.closest('.address-card');
+       const editForm = card.querySelector('.edit-form');
+       if (editForm.style.display === 'block') {
+         editForm.style.display = 'none';
+       } else {
+         // Fill the form with existing data
+         document.getElementById('addressId').value = card.dataset.id;
+         document.querySelector('[name="full_name"]').value = card.dataset.full_name;
+         document.getElementById('countryCode').value = card.dataset.country_code;
+         document.getElementById('countryCodeBtn').textContent = ' ' + card.dataset.country_code + ' ';
+         document.querySelector('[name="phone_number"]').value = card.dataset.phone_number;
+         document.querySelector('[name="address"]').value = card.dataset.address;
+         document.querySelector('[name="postal_code"]').value = card.dataset.postal_code;
+         editForm.style.display = 'block';
+       }
+     });
+   });
+   
+   // Assign a click handler to each "Cancel" button to close its form
+   document.querySelectorAll('.cancel-edit-btn').forEach(btn => {
+     btn.addEventListener('click', () => {
+       const editForm = btn.closest('.edit-form');
+       editForm.style.display = 'none';
+     });
+   });
+   
+   const deleteModal = document.getElementById('deleteModal');
+   const deleteModalMsg = document.getElementById('deleteModalMsg');
+   const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
+   const cancelDeleteBtn = document.getElementById('cancelDeleteBtn');
+   
+   let targetCard = null; // to track which address card is being deleted
+   
+   document.querySelectorAll('.delete-btn').forEach(btn => {
+     btn.addEventListener('click', () => {
+       const card = btn.closest('.address-card');
+       targetCard = card;
+       const addressText = card.dataset.address;
+       deleteModalMsg.textContent = `Your address at "${addressText}" will be permanently removed.`;
+       deleteModal.style.display = 'flex';
+     });
+   });
+   
+   confirmDeleteBtn.addEventListener('click', () => {
+     if (!targetCard) return;
+     const addressId = targetCard.dataset.id;
+     fetch('account.php', {
+       method: 'POST',
+       headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+       body: new URLSearchParams({delete_address: addressId})
+     })
+     .then(response => response.json())
+     .then(result => {
+       if (result.success) {
+         targetCard.remove();
+       } else {
+         alert('Error deleting address.');
+       }
+       deleteModal.style.display = 'none';
+     })
+     .catch(() => {
+       alert('Error deleting address.');
+       deleteModal.style.display = 'none';
+     });
+   });
+   
+   cancelDeleteBtn.addEventListener('click', () => {
+     deleteModal.style.display = 'none';
+   });
+   
+   // Add hover effects for the modal buttons
+   document.getElementById('confirmDeleteBtn').addEventListener('mouseenter', function() {
+     this.style.backgroundColor = '#cb043c';
+   });
+   document.getElementById('confirmDeleteBtn').addEventListener('mouseleave', function() {
+     this.style.backgroundColor = '#df0951';
+   });
+   
+   document.getElementById('cancelDeleteBtn').addEventListener('mouseenter', function() {
+     this.style.backgroundColor = '#F5F5F5';
+   });
+   document.getElementById('cancelDeleteBtn').addEventListener('mouseleave', function() {
+     this.style.backgroundColor = '#FFFFFF';
+   });
+   
+   // Add phone number validation
+   document.querySelectorAll('input[name="phone_number"]').forEach(input => {
+       input.addEventListener('input', function(e) {
+           // Remove any non-numeric characters
+           this.value = this.value.replace(/[^0-9]/g, '');
+       });
+   
+       input.addEventListener('invalid', function(e) {
+           // Custom validation message
+           if (this.validity.patternMismatch) {
+               e.target.setCustomValidity('Please enter numbers only');
+           } else {
+               e.target.setCustomValidity('');
+           }
+       });
+   });
+   
+   // Add postal code validation
+   document.querySelectorAll('input[name="postal_code"]').forEach(input => {
+       input.addEventListener('input', function(e) {
+           // Remove any non-numeric characters
+           this.value = this.value.replace(/[^0-9]/g, '');
+           
+           // Limit to 5 digits
+           if (this.value.length > 5) {
+               this.value = this.value.slice(0, 5);
+           }
+       });
+   
+       input.addEventListener('invalid', function(e) {
+           if (this.validity.patternMismatch) {
+               e.target.setCustomValidity('Please enter exactly 5 numbers');
+           } else {
+               e.target.setCustomValidity('');
+           }
+       });
+   });
+   
+   // Update form submission validation to include postal code
+   document.querySelectorAll('form').forEach(form => {
+       form.addEventListener('submit', function(e) {
+           const phoneInput = this.querySelector('input[name="phone_number"]');
+           const postalInput = this.querySelector('input[name="postal_code"]');
+           
+           if (phoneInput && !/^[0-9]+$/.test(phoneInput.value)) {
+               e.preventDefault();
+               alert('Phone number must contain only numbers');
+               return;
+           }
+           
+           if (postalInput && !/^[0-9]{5}$/.test(postalInput.value)) {
+               e.preventDefault();
+               alert('Postal code must contain exactly 5 numbers');
+               return;
+           }
+       });
+   });
+   
+   function toggleProfileEdit() {
+       const form = document.querySelector('.edit-profile-form');
+       form.style.display = form.style.display === 'none' ? 'block' : 'none';
+   }
+   
+   document.querySelector('.profile-card .btn-outline-danger').addEventListener('click', toggleProfileEdit);
+   
+   document.getElementById('profileEditForm').addEventListener('submit', function(e) {
+       e.preventDefault();
+       
+       const emailInput = this.querySelector('[name="email"]');
+       if (!emailInput.checkValidity()) {
+           alert('Please enter a valid email address');
+           return;
+       }
+   
+       fetch('account.php', {
+           method: 'POST',
+           headers: {
+               'Content-Type': 'application/x-www-form-urlencoded',
+           },
+           body: new URLSearchParams({
+               update_profile: true,
+               full_name: this.querySelector('[name="full_name"]').value,
+               email: emailInput.value
+           })
+       })
+       .then(response => response.json())
+       .then(data => {
+           if (data.success) {
+               // Update profile card
+               const name = this.querySelector('[name="full_name"]').value;
+               const email = this.querySelector('[name="email"]').value;
+               
+               // Update profile card
+               document.querySelector('.profile-card .card-title').textContent = name;
+               document.querySelector('.profile-card .card-text').textContent = email;
+               
+               // Update personal details tab
+               document.querySelector('.personal-info-section .user-name').textContent = name;
+               document.querySelector('.personal-info-section .user-email').textContent = email;
+               
+               // Update initials
+               const initials = name.split(' ').map(n => n[0]).join('').toUpperCase();
+               document.querySelector('.profile-initials').textContent = initials;
+               
+               toggleProfileEdit(); // Hide form
+           } else {
+               alert(data.message || 'Error updating profile');
+           }
+       })
+       .catch(error => {
+           alert('Error updating profile');
+           console.error('Error:', error);
+       });
+   });
+   </script>
+   <style>
+   .personal-info-section {
+       background: #fff;
+       padding: 20px;
+       border-radius: 8px;
+       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+   }
+   
+   .info-group {
+       margin-bottom: 15px;
+       display: flex;
+       align-items: baseline;
+   }
+   
+   .info-group label {
+       font-weight: 600;
+       min-width: 120px;
+       color: #333;
+   }
+   
+   .info-group span {
+       color: #666;
+       font-size: 1.1em;
+   }
