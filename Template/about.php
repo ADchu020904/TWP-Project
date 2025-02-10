@@ -29,7 +29,7 @@
             <div class="col-md-6">
                <h1 class="about_taital">About Us</h1>
                <p class="about_text">We are a small team of indie furnishing company. We thrive to provide the best products and experiences for our customers. For more information click on Read More. </p>
-               <div class="readmore_bt"><a href="about-us.html">Read More</a></div>
+               <div class="readmore_bt"><a href="about-us.php">Read More</a></div>
             </div>
             </div>
          </div>
