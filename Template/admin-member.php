@@ -26,7 +26,7 @@
         <!-- Main Content Start -->
         <div class="main-content" id="view">
             <h1>View Members</h1>
-            <a href="#" class="add-btn" onclick="showSection('add')">Add Member</a>
+            <a href="#" class="add-btn" onclick="setSection('add')">Add Member</a>
             <table>
                 <thead>
                     <tr>
@@ -44,8 +44,8 @@
                         <td>john.doe@example.com</td>
                         <td>123-456-7890</td>
                         <td class="actions">
-                            <member-form-button class="edit-btn" onclick="showSection('update')">Edit</member-form-button>
-                            <member-form-button class="delete-btn" onclick="showSection('delete')">Delete</member-form-button>
+                            <member-form-button class="edit-btn" onclick="setSection('update')">Edit</member-form-button>
+                            <member-form-button class="delete-btn" onclick="setSection('delete')">Delete</member-form-button>
                         </td>
                     </tr>
                     <tr>
@@ -54,8 +54,8 @@
                         <td>jane.smith@example.com</td>
                         <td>098-765-4321</td>
                         <td class="actions">
-                            <member-form-button class="edit-btn" onclick="showSection('update')">Edit</member-form-button>
-                            <member-form-button class="delete-btn" onclick="showSection('delete')">Delete</member-form-button>
+                            <member-form-button class="edit-btn" onclick="setSection('update')">Edit</member-form-button>
+                            <member-form-button class="delete-btn" onclick="setSection('delete')">Delete</member-form-button>
                         </td>
                     </tr>
                     <!-- Repeat for other members -->
@@ -118,8 +118,14 @@
     
         <!-- Javascript -->
         <?php include 'partials/js.html'; ?>
-
-        </div>
+        <script>
+          function setSection(section) {
+            ['view', 'add', 'update', 'delete'].forEach(function(id) {
+              document.getElementById(id).style.display = 'none';
+            });
+            document.getElementById(section).style.display = 'block';
+          }
+        </script>
     
 </body>
 </html>
