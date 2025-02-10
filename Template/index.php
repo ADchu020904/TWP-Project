@@ -14,9 +14,6 @@
       
       <!-- Page Title and SEO Meta Tags -->
       <title>Vik</title>
-      <meta name="keywords" content="furniture, modern design, home decor">
-      <meta name="description" content="Premium furniture with contemporary designs">
-      <meta name="author" content="Your Name">
 
       <?php include 'partials/user/userstyle.html'; ?>
    </head>
@@ -31,7 +28,7 @@
    <!-- First Slider -->
    <div id="main_slider" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner">
-         <div class="carousel-item active">
+      <div class="carousel-item active">
             <div class="container">
                   <div class="row">
                     <div class="col-md-6">
@@ -64,14 +61,23 @@
                </div>
              </div>
            </div>
-           <a class="carousel-control-prev" href="#main_slider" role="button" data-slide="prev">
-             <i style="font-style: initial;">01</i>
-           </a>
-           <a class="carousel-control-next" id="show-second-slider" href="#main_slider" role="button" data-slide="next">
-             <i style="font-style: initial;">02</i>
-           </a>
-         </div>
-
+           
+         <!-- Indicators -->
+         <ol class="carousel-indicators">
+               <li data-target="#main_slider" data-slide-to="0" class="active"></li>
+               <li data-target="#main_slider" data-slide-to="1"></li>
+            </ol>
+            
+            <!-- Controls -->
+            <a class="carousel-control-prev" href="#main_slider" role="button" data-slide="prev">
+               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+               <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#main_slider" role="button" data-slide="next">
+               <span class="carousel-control-next-icon" aria-hidden="true"></span>
+               <span class="sr-only">Next</span>
+            </a>
+         </div>         
          <!-- Second Slider -->
          <div id="second_slider" class="carousel slide hidden" data-ride="carousel">
            <div class="carousel-inner">
@@ -108,14 +114,23 @@
             </div>
          </div>
       </div>
+      
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+         <li data-target="#second_slider" data-slide-to="0" class="active"></li>
+         <li data-target="#second_slider" data-slide-to="1"></li>
+      </ol>
+      
+      <!-- Controls -->
       <a class="carousel-control-prev" href="#second_slider" role="button" data-slide="prev">
-         <i style="font-style: initial;">01</i>
+         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+         <span class="sr-only">Previous</span>
       </a>
       <a class="carousel-control-next" href="#second_slider" role="button" data-slide="next">
-         <i style="font-style: initial;">02</i>
+         <span class="carousel-control-next-icon" aria-hidden="true"></span>
+         <span class="sr-only">Next</span>
       </a>
    </div>
-</div>
       <!-- banner section end -->
       <!-- about section start -->
       <div class="about_section layout_padding">

@@ -1,4 +1,7 @@
 <!-- CSS Imports -->
+      <!-- Core UI -->
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.2.0/dist/css/coreui.min.css">
+      <script defer src="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.2.0/dist/js/coreui.bundle.min.js"></script>
       <!-- Bootstrap Framework -->
       <link rel="stylesheet" href="/TWP-Project/Template/css/bootstrap.min.css">
       <!-- Custom Styles -->
@@ -22,3 +25,91 @@
       
       <!-- Favicon -->
       <link rel="icon" href="/TWP-Project/Template/images/vik.ico" type="image/x-icon">
+
+      <style>
+            /* Custom Carousel Controls */
+            .carousel-control-prev,
+            .carousel-control-next {
+            width: 50px;
+            height: 50px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+            }
+
+            .carousel-control-prev {
+            left: 0;
+            padding-left: 15px;
+            justify-content: flex-start;
+            }
+
+            .carousel-control-next {
+            right: 0;
+            padding-right: 15px;
+            justify-content: flex-end;
+            }
+
+            .carousel-control-prev-icon,
+            .carousel-control-next-icon {
+            background-image: none;
+            width: auto;
+            height: auto;
+            color: #7c2c0c;
+            font-size: 2.5rem;
+            font-weight: 300;
+            }
+
+            .carousel-control-prev-icon::before {
+            content: '‹';
+            }
+
+            .carousel-control-next-icon::before {
+            content: '›';
+            }
+
+            /* Flat Line Indicators */
+            .carousel-indicators {
+            bottom: 20px;
+            margin: 0;
+            padding: 0 15px;
+            }
+
+            .carousel-indicators [data-slide-to] {
+            width: 40px;
+            height: 4px;
+            border-radius: 2px;
+            background-color: rgba(124,44,12,0.3);
+            border: none;
+            margin: 0 5px;
+            transition: all 0.3s ease;
+            }
+
+            .carousel-indicators [data-slide-to].active {
+            background-color: #7c2c0c;
+            height: 5px;
+            margin-top: -1px;
+            }
+
+            /* Responsive Adjustments */
+            @media (max-width: 768px) {
+            .carousel-control-prev,
+            .carousel-control-next {
+            width: 40px;
+            height: 40px;
+            }
+            
+            .carousel-control-prev-icon,
+            .carousel-control-next-icon {
+            font-size: 2rem;
+            }
+
+            .carousel-indicators [data-slide-to] {
+            width: 30px;
+            height: 3px;
+            }
+            }
+            </style>
