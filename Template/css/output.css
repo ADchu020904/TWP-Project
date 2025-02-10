@@ -2196,14 +2196,15 @@ textarea {
 }
 
 
-.container {
-  background-color: white;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  margin: 20px auto;
-  width: 80%;
-}
+
+
+
+
+
+
+
+
+
 h1 {
   text-align: center;
   margin-bottom: 20px;
@@ -2242,16 +2243,6 @@ textarea {
   border: 1px solid #ccc;
   border-radius: 4px;
 }
-
-
-
-
-
-
-
-
-
-
 
 
 table {

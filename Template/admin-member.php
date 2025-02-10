@@ -25,7 +25,7 @@
 
         <!-- Main Content Start -->
         <div class="main-content" id="view">
-            <h1>View Members</h1>
+            <h1 class="h1">View Members</h1>
             <a href="#" class="add-btn" onclick="setSection('add')">Add Member</a>
             <table>
                 <thead>
@@ -44,8 +44,8 @@
                         <td>john.doe@example.com</td>
                         <td>123-456-7890</td>
                         <td class="actions">
-                            <member-form-button class="edit-btn" onclick="setSection('update')">Edit</member-form-button>
-                            <member-form-button class="delete-btn" onclick="setSection('delete')">Delete</member-form-button>
+                            <button class="edit-btn" onclick="setSection('update')">Edit</button>
+                            <button class="delete-btn" onclick="setSection('delete')">Delete</button>
                         </td>
                     </tr>
                     <tr>
@@ -54,8 +54,8 @@
                         <td>jane.smith@example.com</td>
                         <td>098-765-4321</td>
                         <td class="actions">
-                            <member-form-button class="edit-btn" onclick="setSection('update')">Edit</member-form-button>
-                            <member-form-button class="delete-btn" onclick="setSection('delete')">Delete</member-form-button>
+                            <button class="edit-btn" onclick="setSection('update')">Edit</button>
+                            <button class="delete-btn" onclick="setSection('delete')">Delete</button>
                         </td>
                     </tr>
                     <!-- Repeat for other members -->
@@ -63,25 +63,25 @@
             </table>
         </div>
 
-        <div class="container" id="add" style="display: none;">
-            <h1>Add Member</h1>
+        <div class="main-content" id="add" style="display: none;">
+            <h1 class="h1">Add Member</h1>
             <form>
-                <label for="member-id">Member ID</label>
-                <input type="number" id="member-id" name="member-id">
-                <label for="member-name">Name</label>
-                <input type="text" id="member-name" name="member-name">
-                <label for="member-email">Email</label>
-                <input type="email" id="member-email" name="member-email">
-                <label for="member-phone">Phone Number</label>
-                <input type="tel" id="member-phone" name="member-phone">
-                <member-form-button type="submit">Add Member</member-form-button>
+                <label class="label" for="member-id">Member ID</label>
+                <input type="number" class="member-form-input" id="member-id" name="member-id">
+                <label class="label" for="member-name">Name</label>
+                <input type="text" class="member-form-input" id="member-name" name="member-name">
+                <label class="label" for="member-email">Email</label>
+                <input type="email" class="member-form-input" id="member-email" name="member-email">
+                <label class="label" for="member-phone">Phone Number</label>
+                <input type="tel" class="member-form-input" id="member-phone" name="member-phone">
+                <button class="member-form-button" type="submit">Add Member</button>
             </form>
         </div>
 
-        <div class="container" id="update" style="display: none;">
-            <h1>Update Member</h1>
+        <div class="main-content" id="update" style="display: none;">
+            <h1 class="h1">Update Member</h1>
             <form action="updatemember.php" method="post">
-                <label for="member-select">Select Member to Update</label>
+                <label class="label" for="member-select">Select Member to Update</label>
                 <select id="member-select" name="membername" required>
                     <option value="" disabled selected>Select member</option>
                     <option value="John Doe">John Doe</option>
@@ -89,20 +89,20 @@
                     <option value="Alice Johnson">Alice Johnson</option>
                     <!-- Add more options as needed -->
                 </select>
-                <label for="member-email">Email</label>
-                <input type="email" id="member-email" name="member-email" required>
-                <label for="member-phone">Phone Number</label>
-                <input type="tel" id="member-phone" name="member-phone" required>
-                <label for="member-id">Member ID</label>
-                <input type="text" id="member-id" name="member-id" required>
-                <member-form-button type="submit">Update Member</member-form-button>
+                <label class="label" for="member-email">Email</label>
+                <input type="email" class="member-form-input" id="member-email" name="member-email" required>
+                <label class="label" for="member-phone">Phone Number</label>
+                <input type="tel" class="member-form-input" id="member-phone" name="member-phone" required>
+                <label class="label" for="member-id">Member ID</label>
+                <input type="text" class="member-form-input" id="member-id" name="member-id" required>
+                <button class="member-form-button" type="submit">Update Member</button>
             </form>
         </div>
 
-        <div class="container" id="delete" style="display: none;">
-            <h1>Delete Member</h1>
+        <div class="main-content" id="delete" style="display: none;">
+            <h1 class="h1">Delete Member</h1>
             <form action="deletemember.php" method="post">
-                <label for="member-select">Select Member to Delete</label>
+                <label class="label" for="member-select">Select Member to Delete</label>
                 <select id="member-select" name="membername">
                     <option value="" disabled selected>Select member</option>
                     <option value="John Doe">John Doe</option>
@@ -110,7 +110,7 @@
                     <option value="Alice Johnson">Alice Johnson</option>
                     <!-- Add more options as needed -->
                 </select>
-                <member-form-button type="submit">Delete Member</member-form-button>
+                <button class="member-form-button" type="submit">Delete Member</button>
             </form>
         </div>
         <!-- Main Content End -->
@@ -118,14 +118,6 @@
     
         <!-- Javascript -->
         <?php include 'partials/js.html'; ?>
-        <script>
-          function setSection(section) {
-            ['view', 'add', 'update', 'delete'].forEach(function(id) {
-              document.getElementById(id).style.display = 'none';
-            });
-            document.getElementById(section).style.display = 'block';
-          }
-        </script>
-    
+        
 </body>
 </html>

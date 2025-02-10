@@ -1,18 +1,18 @@
-<!-- Chart.js Script -->
+<!-- Third-party Libraries -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-            
-<!-- Vector Map JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jsvectormap/1.5.3/js/jsvectormap.min.js"></script>
 <script src="https://unpkg.com/jsvectormap@1.6.0/dist/maps/world.js"></script>
-
-<!-- Add CoreUI Bundle JS -->
 <script src="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.2.0/dist/js/coreui.bundle.min.js"></script>
 
-<!-- Initialize CoreUI Components -->
+<!-- Custom Scripts -->
+<script src="js/index.js"></script>
+<script src="js/us-aea-en.js"></script>
+
+<!-- CoreUI Initialization -->
 <script>
-    // Initialize all CoreUI components
     document.addEventListener('DOMContentLoaded', function() {
-        coreui.Dropdown.init();
+        const dropdowns = document.querySelectorAll('.dropdown-toggle');
+        dropdowns.forEach(dropdown => new coreui.Dropdown(dropdown));
     });
 </script>
 
@@ -72,5 +72,31 @@
         },
     });
 </script>
-<script src="js/index.js"></script>
-<script src="js/us-aea-en.js"></script>
+
+<!-- Section Management Script -->
+<script>
+    function setSection(section) {
+        ['view', 'add', 'update', 'delete'].forEach(function(id) {
+            document.getElementById(id).style.display = 'none';
+        });
+        const sectionElement = document.getElementById(section);
+        if (sectionElement) {
+            sectionElement.style.display = 'block';
+        } else {
+            document.getElementById('view').style.display = 'block'; // Default to 'view'
+        }
+    }
+</script>
+
+<!-- URL Hash Handling -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const section = window.location.hash.substring(1) || 'view';
+        setSection(section);
+    });
+
+    window.addEventListener("hashchange", function() {
+        const section = window.location.hash.substring(1) || 'view';
+        setSection(section);
+    });
+</script>
