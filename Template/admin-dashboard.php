@@ -106,8 +106,7 @@
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jsvectormap/1.5.3/js/jsvectormap.min.js"></script>
             <script src="https://unpkg.com/jsvectormap@1.6.0/dist/maps/world.js"></script>
             
-            <!-- Custom JavaScript -->
-            
+          
             
             <script>
                 // Chart configuration
