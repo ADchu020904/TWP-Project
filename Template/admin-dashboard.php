@@ -106,8 +106,18 @@
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jsvectormap/1.5.3/js/jsvectormap.min.js"></script>
             <script src="https://unpkg.com/jsvectormap@1.6.0/dist/maps/world.js"></script>
             
-          
+            <!-- Add CoreUI Bundle JS -->
+            <script src="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.2.0/dist/js/coreui.bundle.min.js"></script>
             
+            <!-- Initialize CoreUI Components -->
+            <script>
+                // Initialize all CoreUI components
+                document.addEventListener('DOMContentLoaded', function() {
+                    coreui.Dropdown.init();
+                });
+            </script>
+
+            <!-- Custom JavaScript -->
             <script>
                 // Chart configuration
                 const ctx = document.getElementById('visitorsChart').getContext('2d');

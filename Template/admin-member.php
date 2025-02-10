@@ -34,8 +34,13 @@
         }
     </script>
 </head>
-<body class="bg-body-secondary">
-    <div class="dashboard-container">
+<body x-data="{ page: 'settings', 'loaded': true, 'darkMode': true, 'stickyMenu': false, 'sidebarToggle': false, 'scrollTop': false }"
+    x-init="
+      darkMode = JSON.parse(localStorage.getItem('darkMode'));
+      $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))"
+    :class="{'dark text-bodydark bg-boxdark-2': darkMode === true}">
+   <!-- Layout Container -->
+   <div class="dashboard-container">
         <!-- Sidebar Start -->
         <?php include('partials/sidebar.html'); ?>
         <!-- Sidebar Finish -->
@@ -45,7 +50,7 @@
         <!-- Navbar Finish -->
 
         <!-- Main Content Start -->
-        <div class="main-content">
+        <div class="main-content" id="view">
             <h1>View Members</h1>
             <a href="#" class="add-btn" onclick="showSection('add')">Add Member</a>
             <table>
@@ -65,8 +70,8 @@
                         <td>john.doe@example.com</td>
                         <td>123-456-7890</td>
                         <td class="actions">
-                            <button class="edit-btn" onclick="showSection('update')">Edit</button>
-                            <button class="delete-btn" onclick="showSection('delete')">Delete</button>
+                            <member-form-button class="edit-btn" onclick="showSection('update')">Edit</member-form-button>
+                            <member-form-button class="delete-btn" onclick="showSection('delete')">Delete</member-form-button>
                         </td>
                     </tr>
                     <tr>
@@ -75,68 +80,79 @@
                         <td>jane.smith@example.com</td>
                         <td>098-765-4321</td>
                         <td class="actions">
-                            <button class="edit-btn" onclick="showSection('update')">Edit</button>
-                            <button class="delete-btn" onclick="showSection('delete')">Delete</button>
+                            <member-form-button class="edit-btn" onclick="showSection('update')">Edit</member-form-button>
+                            <member-form-button class="delete-btn" onclick="showSection('delete')">Delete</member-form-button>
                         </td>
                     </tr>
                     <!-- Repeat for other members -->
                 </tbody>
             </table>
-        
-            <div class="container" id="add" style="display: none;">
-                <h1>Add Member</h1>
-                <form>
-                    <label for="member-id">Member ID</label>
-                    <input type="number" id="member-id" name="member-id">
-                    <label for="member-name">Name</label>
-                    <input type="text" id="member-name" name="member-name">
-                    <label for="member-email">Email</label>
-                    <input type="email" id="member-email" name="member-email">
-                    <label for="member-phone">Phone Number</label>
-                    <input type="tel" id="member-phone" name="member-phone">
-                    <button type="submit">Add Member</button>
-                </form>
-            </div>
-        
-            <div class="container" id="update" style="display: none;">
-                <h1>Update Member</h1>
-                <form action="updatemember.php" method="post">
-                    <label for="member-select">Select Member to Update</label>
-                    <select id="member-select" name="membername" required>
-                        <option value="" disabled selected>Select member</option>
-                        <option value="John Doe">John Doe</option>
-                        <option value="Jane Smith">Jane Smith</option>
-                        <option value="Alice Johnson">Alice Johnson</option>
-                        <!-- Add more options as needed -->
-                    </select>
-                    <label for="member-email">Email</label>
-                    <input type="email" id="member-email" name="member-email" required>
-                    <label for="member-phone">Phone Number</label>
-                    <input type="tel" id="member-phone" name="member-phone" required>
-                    <label for="member-id">Member ID</label>
-                    <input type="text" id="member-id" name="member-id" required>
-                    <button type="submit">Update Member</button>
-                </form>
-            </div>
-        
-            <div class="container" id="delete" style="display: none;">
-                <h1>Delete Member</h1>
-                <form action="deletemember.php" method="post">
-                    <label for="member-select">Select Member to Delete</label>
-                    <select id="member-select" name="membername">
-                        <option value="" disabled selected>Select member</option>
-                        <option value="John Doe">John Doe</option>
-                        <option value="Jane Smith">Jane Smith</option>
-                        <option value="Alice Johnson">Alice Johnson</option>
-                        <!-- Add more options as needed -->
-                    </select>
-                    <button type="submit">Delete Member</button>
-                </form>
-            </div>
+        </div>
+
+        <div class="container" id="add" style="display: none;">
+            <h1>Add Member</h1>
+            <form>
+                <label for="member-id">Member ID</label>
+                <input type="number" id="member-id" name="member-id">
+                <label for="member-name">Name</label>
+                <input type="text" id="member-name" name="member-name">
+                <label for="member-email">Email</label>
+                <input type="email" id="member-email" name="member-email">
+                <label for="member-phone">Phone Number</label>
+                <input type="tel" id="member-phone" name="member-phone">
+                <member-form-button type="submit">Add Member</member-form-button>
+            </form>
+        </div>
+
+        <div class="container" id="update" style="display: none;">
+            <h1>Update Member</h1>
+            <form action="updatemember.php" method="post">
+                <label for="member-select">Select Member to Update</label>
+                <select id="member-select" name="membername" required>
+                    <option value="" disabled selected>Select member</option>
+                    <option value="John Doe">John Doe</option>
+                    <option value="Jane Smith">Jane Smith</option>
+                    <option value="Alice Johnson">Alice Johnson</option>
+                    <!-- Add more options as needed -->
+                </select>
+                <label for="member-email">Email</label>
+                <input type="email" id="member-email" name="member-email" required>
+                <label for="member-phone">Phone Number</label>
+                <input type="tel" id="member-phone" name="member-phone" required>
+                <label for="member-id">Member ID</label>
+                <input type="text" id="member-id" name="member-id" required>
+                <member-form-button type="submit">Update Member</member-form-button>
+            </form>
+        </div>
+
+        <div class="container" id="delete" style="display: none;">
+            <h1>Delete Member</h1>
+            <form action="deletemember.php" method="post">
+                <label for="member-select">Select Member to Delete</label>
+                <select id="member-select" name="membername">
+                    <option value="" disabled selected>Select member</option>
+                    <option value="John Doe">John Doe</option>
+                    <option value="Jane Smith">Jane Smith</option>
+                    <option value="Alice Johnson">Alice Johnson</option>
+                    <!-- Add more options as needed -->
+                </select>
+                <member-form-button type="submit">Delete Member</member-form-button>
+            </form>
         </div>
         <!-- Main Content End -->
     </div>
     <!-- Include JS from admin-dashboard.php -->
+
+     <!-- Add CoreUI Bundle JS -->
+     <script src="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.2.0/dist/js/coreui.bundle.min.js"></script>
+            
+            <!-- Initialize CoreUI Components -->
+            <script>
+                // Initialize all CoreUI components
+                document.addEventListener('DOMContentLoaded', function() {
+                    coreui.Dropdown.init();
+                });
+            </script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jsvectormap/1.5.3/js/jsvectormap.min.js"></script>
     <script src="https://unpkg.com/jsvectormap@1.6.0/dist/maps/world.js"></script>
