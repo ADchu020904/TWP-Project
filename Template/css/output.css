@@ -1719,7 +1719,7 @@ span.flatpickr-weekday:is(.dark *),
 
 .dark\:drop-shadow-none:is(.dark *){
   --tw-drop-shadow: drop-shadow(0 0 #0000);
-  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+  filter: var(--tw-blur) var(--tw-brightness) var (--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 
 .dark\:hover\:bg-meta-4:hover:is(.dark *){
@@ -2156,4 +2156,9 @@ textarea {
 
 .dark .personal-info-section .personal-info-header {
   border-bottom: 1px solid #465A73 !important; /* Ensure a dark border appears under the header */
+}
+
+/* Increase dropdown menu width for notifications */
+.dropdown-menu.notification-dropdown {
+  width: 1000px; /* Adjust width as needed */
 }
