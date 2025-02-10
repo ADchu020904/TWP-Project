@@ -1,6 +1,3 @@
-<!-- Core UI -->
-<link href="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.2.0/dist/css/coreui.min.css" rel="stylesheet">
-
 <div class="banner_section layout_padding">
     <!-- Main Slider -->
     <div id="carouselExampleIndicators" class="carousel slide" data-coreui-ride="true">
