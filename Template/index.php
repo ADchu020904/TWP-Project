@@ -18,94 +18,14 @@
       <meta name="description" content="Premium furniture with contemporary designs">
       <meta name="author" content="Your Name">
 
-      <!-- CSS Imports -->
-      <!-- Bootstrap Framework -->
-      <link rel="stylesheet" href="css/bootstrap.min.css">
-      <!-- Custom Styles -->
-      <link rel="stylesheet" href="css/style.css">
-      <!-- Responsive Styles -->
-      <link rel="stylesheet" href="css/responsive.css">
-      <!-- Custom Scrollbar -->
-      <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
-      <!-- Icon Fonts -->
-      <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-      <!-- Owl Carousel -->
-      <link rel="stylesheet" href="css/owl.carousel.min.css">
-      <link rel="stylesheet" href="css/owl.theme.default.min.css">
-      <!-- Fancybox -->
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
-      <!-- Custom Font -->
-      <link href="https://fonts.googleapis.com/css2?family=Londrina+Shadow&family=Londrina+Solid:wght@100;300;400;900&display=swap" rel="stylesheet">
-      
-      <!-- Favicon -->
-      <link rel="icon" href="images/vik.ico" type="image/x-icon">
+      <?php include 'partials/user/userstyle.html'; ?>
    </head>
 
    <body>
-      <!-- Header Section -->
-      <div class="header_section" style="margin-bottom: 0;">
-         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-         <div class="container">
-            <!-- Brand Logo -->
-            <a class="logo" href="index.php"><img src="images/Vik.png"></a>
+      <!-- Header Section start -->
+      <?php include 'partials/user/userheader.html'; ?>  
+      <!-- Header Section end -->
 
-            <!-- Mobile Menu Toggle -->
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" 
-                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <!-- Navigation Items -->
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <!-- Left-aligned Navigation Items -->
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-               <li class="nav-item">
-               <a class="nav-link" href="index.php">Home</a>
-               </li>
-               <li class="nav-item">
-               <a class="nav-link" href="about.html">About</a>
-               </li>
-               <li class="nav-item">
-               <a class="nav-link" href="design.html">Our Design</a>
-               </li>
-               <li class="nav-item">
-               <a class="nav-link" href="shop.html">Shop</a>
-               </li>
-               <li class="nav-item">
-               <a class="nav-link" href="contact.html">Contact Us</a>
-               </li>
-            </ul>
-
-            <!-- Right-aligned Icons -->
-            <ul class="navbar-nav ms-auto">
-               <!-- Cart Icon -->
-               <li class="nav-item">
-               <a class="nav-link" href="cart.html">
-                   <!-- Added 'cart-icon' class for specific sizing -->
-                   <img src="images/cart.png" alt="Cart Icon" class="nav-icon cart-icon">
-               </a>
-              </li>
-               
-               <!-- User Dropdown -->
-               <li class="nav-item dropdown">
-               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" 
-               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <img src="images/user-icon.png" alt="User Icon" class="nav-icon user-icon">
-               </a>
-               <!-- Dropdown Menu -->
-               <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                  <a class="dropdown-item" href="account.php">My Account</a>
-                  <a class="dropdown-item" href="usersignup.php">Log in/Sign up</a>
-                  <a class="dropdown-item" href="index.php">Log Out</a>
-                  <a class="dropdown-item" href="admin-login.html">Admin Login</a>
-               </div>
-               </li>
-            </ul>
-            </div>
-         </div>
-         </nav>
-      </div>
-      <!-- End Header Section -->     
       <!-- banner section start -->
 <div class="banner_section layout_padding">
    <!-- First Slider -->
@@ -412,71 +332,10 @@
          </div>
       </div>
       <!-- contact section end -->
+
       <!-- footer section start -->
-      <div class="footer_section">
-         <div class="container">
-            <div class="footer_location_text">
-               <ul>
-                  <li><img src="images/map-icon.png"><span class="padding_left_10"><a href="#">Our Official Website</a></span></li>
-                  <li><img src="images/call-icon.png"><span class="padding_left_10"><a href="#">Call : +1112223334</a></span></li>
-                  <li><img src="images/mail-icon.png"><span class="padding_left_10"><a href="#">demo@gmail.com</a></span></li>
-               </ul>
-            </div>
-            <div class="row">
-               <div class="col-lg-3 col-sm-6">
-                  <h2 class="useful_text">Useful link </h2>
-                  <div class="footer_menu">
-                     <ul>
-                        <li><a href="index.php">Home</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="design.html">Our Design</a></li>
-                        <li><a href="contact.html">Contact Us</a></li>
-                     </ul>
-                  </div>
-               </div>
-               <div class="col-lg-3 col-sm-6">
-                  <h2 class="useful_text">Repair</h2>
-                  <p class="lorem_text">If there're any problems regarding the products please head to our repair center</p>
-               </div>
-               <div class="col-lg-3 col-sm-6">
-                  <h2 class="useful_text">Social Media</h2>
-                  <div id="social">
-                     <a class="facebookBtn smGlobalBtn active" href="#" ></a>
-                     <a class="twitterBtn smGlobalBtn" href="#" ></a>
-                     <a class="googleplusBtn smGlobalBtn" href="#" ></a>
-                     <a class="linkedinBtn smGlobalBtn" href="#" ></a>
-                  </div>
-               </div>
-               <div class="col-sm-6 col-lg-3">
-                  <h1 class="useful_text">Our Repair center</h1>
-                  <p class="footer_text">Jalan Ayer Keroh Lama, 75450 Bukit Beruang, Melaka </p>
-               </div>
-            </div>
-         </div>
-      </div>
+      <?php include 'partials/user/userfooter.html'; ?>
       <!-- footer section end -->
-      <!-- copyright section start -->
-      <div class="copyright_section">
-         <div class="container">
-            <p class="copyright_text">2020 All Rights Reserved. Design by <a href="https://html.design">Free html  Templates</a></p>
-         </div>
-      </div>
-      <!-- copyright section end -->
-      <!-- JavaScript Files -->
-      <!-- jQuery -->
-      <script src="js/jquery.min.js"></script>
-      <!-- Popper.js -->
-      <script src="js/popper.min.js"></script>
-      <!-- Bootstrap -->
-      <script src="js/bootstrap.bundle.min.js"></script>
-      <!-- Custom Scripts -->
-      <script src="js/jquery-3.0.0.min.js"></script>
-      <script src="js/plugin.js"></script>
-      <!-- Scrollbar -->
-      <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
-      <!-- Owl Carousel -->
-      <script src="js/owl.carousel.js"></script>
-      <!-- Fancybox -->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+       
    </body>
 </html>
