@@ -4,263 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Product Management</title>
-    <link href="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.2.0/dist/css/coreui.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="node_modules/@coreui/icons/css/all.min.css">
-    <script defer src="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.2.0/dist/js/coreui.bundle.min.js"></script>
-    <style>
-        /* Sidebar Styling */
-        .container h1 {
-            margin-top: 40px; /* 调整这个值来增加或减少距离 */
-        }
-        .sidebar {
-            width: 250px;
-            overflow-y: auto;
-            min-height: 100vh;
-        }
-        /* Navbar Styling */
-        .navbar {
-            background-color: #f8f8f9;
-            color: black;
-            width: calc(100% - 256px); /* Remaining width after sidebar */
-            margin-left: 256px; /* Align next to the sidebar */
-            position: fixed;
-            z-index: 1040;
-            top: 0;
-            height: 62px; /* Navbar height */
-        }
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #efe4d1;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin: 20px auto;
-            width: 80%;
-        }
-        h1 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-        input[type="text"], input[type="email"], input[type="tel"], input[type="number"], textarea, select {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        textarea {
-            resize: vertical;
-        }
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: #FF6600;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        button:hover {
-            background-color: #FF4500;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-        }
-        table, th, td {
-            border: 1px solid #ccc;
-        }
-        th, td {
-            padding: 10px;
-            text-align: left;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-        .actions {
-            display: flex;
-            justify-content: space-around;
-        }
-        .actions button {
-            padding: 5px 10px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        .edit-btn {
-            background-color: #4CAF50;
-            color: white;
-        }
-        .delete-btn {
-            background-color: #f44336;
-            color: white;
-        }
-        .add-btn {
-            background-color: #fff;
-            border: 1px solid black;
-            color: black;
-            margin-bottom: 20px;
-            display: block;
-            width: 100px;
-            text-align: center;
-            text-decoration: none;
-        }
-        .add-btn:hover {
-            background-color: #eadcdc;
-        }
-    </style>
-    <script>
-        function showSection(sectionId) {
-            document.querySelectorAll('.container').forEach(container => {
-                container.style.display = 'none';
-            });
-            document.getElementById(sectionId).style.display = 'block';
-        }
-    </script>
+    <?php include 'partials/style.html'; ?>
 </head>
 <body class="bg-body-secondary">
     <!-- Layout Container -->
-    <div class="d-flex">
+    <div class="dashboard-container">
         <!-- Sidebar Start -->
         <div class="sidebar sidebar-dark border-end">
-            <div class="sidebar-header border-bottom">
-                <img class="sidebar-brand" src="images/Vik.png" alt="Vik Logo" style="width: 30px; height: 30px;">
-            </div>
-            <ul class="sidebar-nav">
-                <li class="nav-title">Navigation</li>
-                <li class="nav-item">
-                    <a class="nav-link" href="admin-dashboard.html">
-                        <i class="nav-icon cil-speedometer"></i> Dashboard
-                    </a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="memberDropdown" data-coreui-toggle="dropdown" aria-expanded="false">
-                        <i class="nav-icon cil-people"></i> Member
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="memberDropdown">
-                        <li><a class="dropdown-item" href="#" onclick="showSection('add-product')">Add</a></li>
-                        <li><a class="dropdown-item" href="#" onclick="showSection('view-products')">View</a></li>
-                        <li><a class="dropdown-item" href="#" onclick="showSection('delete-product')">Delete</a></li>
-                        <li><a class="dropdown-item" href="#" onclick="showSection('update-product')">Update</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="productDropdown" data-coreui-toggle="dropdown" aria-expanded="false">
-                        <i class="nav-icon cil-cart"></i> Product
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="productDropdown">
-                        <li><a class="dropdown-item" href="#" onclick="showSection('add-product')">Add</a></li>
-                        <li><a class="dropdown-item" href="#" onclick="showSection('view-products')">View</a></li>
-                        <li><a class="dropdown-item" href="#" onclick="showSection('delete-product')">Delete</a></li>
-                        <li><a class="dropdown-item" href="#" onclick="showSection('update-product')">Update</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="categoryDropdown" data-coreui-toggle="dropdown" aria-expanded="false">
-                        <i class="nav-icon cil-tags"></i> Category
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
-                        <li><a class="dropdown-item" href="admin-category.html#add">Add</a></li>
-                        <li><a class="dropdown-item" href="admin-category.html#view">View</a></li>
-                        <li><a class="dropdown-item" href="admin-category.html#delete">Delete</a></li>
-                        <li><a class="dropdown-item" href="admin-category.html#update">Update</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="orderDropdown" data-coreui-toggle="dropdown" aria-expanded="false">
-                        <i class="nav-icon cil-notes"></i> Order
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="orderDropdown">
-                        <li><a class="dropdown-item" href="admin-order.html#add">Add</a></li>
-                        <li><a class="dropdown-item" href="admin-order.html#view">View</a></li>
-                        <li><a class="dropdown-item" href="admin-order.html#delete">Delete</a></li>
-                        <li><a class="dropdown-item" href="admin-order.html#update">Update</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="staffDropdown" data-coreui-toggle="dropdown" aria-expanded="false">
-                        <i class="nav-icon cil-user"></i> Staff
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="staffDropdown">
-                        <li><a class="dropdown-item" href="admin-staff.html#add">Add</a></li>
-                        <li><a class="dropdown-item" href="admin-staff.html#view">View</a></li>
-                        <li><a class="dropdown-item" href="admin-staff.html#delete">Delete</a></li>
-                        <li><a class="dropdown-item" href="admin-staff.html#update">Update</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="admin-report.html">
-                        <i class="nav-icon cil-chart"></i> Reports
-                    </a>
-                </li>
-            </ul>
-            <div class="sidebar-footer border-top d-flex">
-                <button class="sidebar-toggler" type="button"></button>
-            </div>
+            <?php include 'partials/sidebar.html'; ?>
         </div>
         <!-- Sidebar Finish -->
 
         <!-- Navbar Start -->
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container-fluid">
-                <i class="cil-menu" style="font-size: 25px;"></i>
-                <button class="navbar-toggler" type="button" data-coreui-toggle="collapse" data-coreui-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.php">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Features</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Pricing</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " aria-disabled="true">Setting</a>
-                        </li>
-                    </ul>
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="cil-bell" style="font-size:21px;"></i></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="cil-envelope-open" style="font-size:21px;"></i></a>
-                        </li>
-                        <li class="nav-item d-flex align-items-center"></li>
-                            <div style="border-left: 1px solid #ccc; height: 30px; margin: auto 10px;"></div>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="cil-sun" style="font-size:22px;"></i></a>
-                        </li>
-                        <li class="nav-item d-flex align-items-center"></li>
-                            <div style="border-left: 1px solid #ccc; height: 30px; margin: auto 10px;"></div>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="cil-user" style="font-size:21px;"></i></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+        <?php include 'partials/header.html'; ?>
         <!-- Navbar Finish -->
 
         <!-- Main Content Start -->
-        <div class="container" id="view-products">
+        <div class="main-content" id="view-products">
             <h1>View Products</h1>
             <a href="#" class="add-btn" onclick="showSection('add-product')">Add Product</a>
             <table>
@@ -314,7 +74,7 @@
             </table>
         </div>
 
-        <div class="container" id="add-product" style="display: none;">
+        <div class="main-content" id="add-product" style="display: none;">
             <h1>Add Product</h1>
             <form>
                 <label for="product-name">Product Name</label>
@@ -330,7 +90,7 @@
             </form>
         </div>
 
-        <div class="container" id="update-product" style="display: none;">
+        <div class="main-content" id="update-product" style="display: none;">
             <h1>Update Product</h1>
             <form action="updateproduct.php" method="post">
                 <label for="product-select">Select Product to Update</label>
@@ -351,7 +111,7 @@
             </form>
         </div>
 
-        <div class="container" id="delete-product" style="display: none;">
+        <div class="main-content" id="delete-product" style="display: none;">
             <h1>Delete Product</h1>
             <form action="deleteproduct.php" method="post">
                 <label for="product-select">Select Product to Delete</label>
@@ -366,5 +126,6 @@
             </form>
         </div>
     </div>
+    <?php include 'partials/js.html'; ?>
 </body>
 </html>
