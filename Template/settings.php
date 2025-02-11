@@ -69,7 +69,23 @@
                       </h3>
                     </div>
                     <div class="p-7 dark:bg-boxdark">
-                      <form class="form-field-spacing" action="#" >
+                      <?php
+                      // Get current staff information
+                      if (isset($_SESSION['email'])) {
+                          $email = $_SESSION['email'];
+                          $stmt = $conn->prepare("SELECT * FROM staff WHERE email = ?");
+                          $stmt->bind_param("s", $email);
+                          $stmt->execute();
+                          $staff = $stmt->get_result()->fetch_assoc();
+                      } else {
+                          header("Location: admin.php");
+                          exit();
+                      }
+                      ?>
+                      <form class="form-field-spacing" action="partials/staff/updatestaff.php" method="POST" enctype="multipart/form-data">
+                        <!-- Add hidden id field required by updatestaff.php -->
+                        <input type="hidden" name="id" value="<?php echo htmlspecialchars($staff['id']); ?>">
+                        
                         <!-- Form fields with consistent spacing -->
                         <div class="mb-4">
                           <!-- Full Name and Phone Number group -->
@@ -85,10 +101,10 @@
                                 <input
                                   class="w-full rounded-lg border border-stroke bg-gray py-2.5 pr-4.5 pl-9 font-medium text-black focus:border-primary focus-ring-2 focus:ring-primary/10 dark:border-strokedark dark:bg-boxdark dark:text-white""
                                   type="text"
-                                  name="fullName"
+                                  name="name"
                                   id="fullName"
                                   placeholder=""
-                                  value=""
+                                  value="<?php echo htmlspecialchars($staff['name']); ?>"
                                 />
                                 <span class="absolute left-3 top-1/2 -translate-y-1/2 flex items-center">
                                   <!-- SVG Icon -->
@@ -129,10 +145,10 @@
                               <input
                                 class="w-full rounded-lg border border-stroke bg-gray py-2.5 px-4.5 font-medium text-black focus:border-primary focus-ring-2 focus:ring-primary/10 dark:border-strokedark dark:bg-boxdark dark:text-white"
                                 type="text"
-                                name="phoneNumber"
+                                name="phone_number"
                                 id="phoneNumber"
                                 placeholder=""
-                                value=""
+                                value="<?php echo htmlspecialchars($staff['phone_number']); ?>"
                               />
                             </div>
                           </div>
@@ -151,7 +167,7 @@
                             name="position"
                             id="position"
                             placeholder=""
-                            value=""
+                            value="<?php echo htmlspecialchars($staff['position']); ?>"
                           />
                         </div>
 
@@ -168,7 +184,7 @@
                             name="department"
                             id="department"
                             placeholder=""
-                            value=""
+                            value="<?php echo htmlspecialchars($staff['department']); ?>"
                           />
                         </div>
 
@@ -183,10 +199,10 @@
                             <input
                               class="w-full rounded-lg border border-stroke bg-gray py-2.5 pl-9 pr-4.5 font-medium text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-boxdark dark:text-white dark:focus:border-primary""
                               type="email"
-                              name="emailAddress"
+                              name="email"
                               id="emailAddress"
                               placeholder=""
-                              value=""
+                              value="<?php echo htmlspecialchars($staff['email']); ?>"
                             />
                             <span class="absolute left-3 top-1/2 -translate-y-1/2 flex items-center">
                               <!-- SVG Icon -->
@@ -218,23 +234,6 @@
                         </div>
 
                         <div class="mb-4">
-                          <!-- Username Field -->
-                          <label
-                            class="mb-2 block text-sm font-semibold text-black dark:text-white"
-                            for="Username"
-                            >Username</label
-                          >
-                          <input
-                            class="w-full rounded-lg border border-stroke bg-gray py-2.5 px-4.5 font-medium text-black focus:border-primary focus:ring-2 focus:ring-primary/10 focus-visible:outline-none dark:border-strokedark dark:bg-boxdark dark:text-white dark:focus:border-primary"
-                            type="text"
-                            name="Username"
-                            id="Username"
-                            placeholder=""
-                            value=""
-                          />
-                        </div>
-
-                        <div class="mb-4">
                           <!-- BIO Textarea -->
                           <label
                             class="mb-2 block text-sm font-semibold text-black dark:text-white"
@@ -247,7 +246,7 @@
                               name="bio"
                               id="bio"
                               rows="4"
-                              placeholder="Write your bio here"></textarea>
+                              placeholder="Write your bio here"><?php echo htmlspecialchars($staff['bio']); ?></textarea>
                             <span class="absolute left-3 top-3">
                               <!-- SVG Icon -->
                               <svg
@@ -287,16 +286,10 @@
 
                         <!-- Updated Photo Form Buttons -->
                         <div class="flex justify-end gap-4">
-                          <button
-                            class="button-cancel"
-                            type="submit"
-                          >
+                          <button class="button-cancel" type="button" onclick="window.location.reload();">
                             Cancel
                           </button>
-                          <button
-                            class="button-save"
-                            type="submit"
-                          >
+                          <button class="button-save" type="submit" name="update_profile">
                             Save
                           </button>
                         </div>

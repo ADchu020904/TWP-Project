@@ -43,7 +43,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if ($stmt->execute()) {
-        header("Location: ../../admin-staff.php"); // Redirect back to staff page
+        // Update session email if it was changed
+        if (isset($_SESSION['email']) && $_SESSION['email'] !== $email) {
+            $_SESSION['email'] = $email;
+        }
+        
+        // Check if request came from settings page
+        $referer = $_SERVER['HTTP_REFERER'] ?? '';
+        if (strpos($referer, 'settings.php') !== false) {
+            header("Location: ../../settings.php?success=1");
+        } else {
+            header("Location: ../../admin-staff.php");
+        }
         exit();
     } else {
         echo "Error: " . $stmt->error;
