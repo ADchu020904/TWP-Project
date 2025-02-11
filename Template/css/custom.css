@@ -63,17 +63,15 @@
     background-color: #fff;
 }
 
-/* Fixed position carousel indicators */
+/* Update carousel indicators to stay fixed at the bottom of the banner */
 .banner_section .carousel-indicators {
-    position: fixed;  /* Change from absolute to fixed */
-    bottom: 40px;    /* Adjust this value as needed */
+    position: absolute;    /* Use absolute positioning inside banner_section */
+    bottom: 0;          /* Adjust as needed to align at the bottom */
     left: 50%;
     transform: translateX(-50%);
     z-index: 9999;
-    width: auto;     /* Allow width to be determined by content */
     margin: 0;
-    padding: 10px;
-    border-radius: 20px;  /* Optional: rounds the corners */
+    padding: 0;
 }
 
 .banner_section .carousel-indicators li {
