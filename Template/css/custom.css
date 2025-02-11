@@ -3,92 +3,31 @@
   position: fixed;
   top: 35%;
   transform: translateY(-50%);
-  /* Reset default width */
   width: auto;
-  padding: 0 15px; /* Add some padding for better touch area */
-  color: #D3D3D3; /* Light gray color */
-  opacity: 0.7; /* Adjust opacity as needed */
+  padding: 0 15px;
+  color: #D3D3D3;
+  opacity: 0.7;
   transition: opacity 0.3s ease;
 }
 
 .carousel-control-prev {
-  left: 0; /* Align to the left edge */
+  left: 0;
 }
 
 .carousel-control-next {
-  right: 0; /* Align to the right edge */
+  right: 0;
 }
 
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
-  /* Set arrow size to 30px */
   height: 30px;
   width: 30px;
 }
 
-/* Custom carousel indicators */
-#carouselExampleIndicators .carousel-indicators {
-    z-index: 999; /* Increase z-index to ensure visibility */
-} 
-
-/* Style the carousel indicators */
-.carousel-indicators {
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 15;
-    display: flex;
-    justify-content: center;
-    padding: 0;
-    margin: 0;
-}
-
-.carousel-indicators li {
-    box-sizing: content-box;
-    flex: 0 1 auto;
-    width: 30px;
-    height: 3px;
-    margin-right: 3px;
-    margin-left: 3px;
-    text-indent: -999px;
-    cursor: pointer;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
-    background-clip: padding-box;
-    border-top: 10px solid transparent;
-    border-bottom: 10px solid transparent;
-}
-
-.carousel-indicators .active {
-    background-color: #fff;
-}
-
-/* Update carousel indicators to stay fixed at the bottom of the banner */
-.banner_section .carousel-indicators {
-    position: absolute;    /* Use absolute positioning inside banner_section */
-    bottom: 0;          /* Adjust as needed to align at the bottom */
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 9999;
-    margin: 0;
-    padding: 0;
-}
-
-.banner_section .carousel-indicators li {
-    width: 30px;
-    height: 3px;
-    border: none;
-    margin: 0 3px;
-    background-color: rgba(255, 255, 255, 0.5);
-}
-
-.banner_section .carousel-indicators .active {
-    background-color: #fff;
-}
-/* Option 1: Fixed Indicators moved outside the carousel container */
+/* Fixed Indicators */
 .fixed-indicators {
   position: fixed;
-  bottom: 0;            /* Fixed at the bottom of the banner */
+  bottom: 0;
   left: 50%;
   transform: translateX(-50%);
   z-index: 9999;
