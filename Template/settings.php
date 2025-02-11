@@ -1,3 +1,5 @@
+<?php include("partials/staff.php"); ?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
