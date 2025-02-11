@@ -89,10 +89,21 @@ if (isset($_GET['delete'])) {
         <input type="email" class="member-form-input" id="staff-email" name="email" required>
         
         <label class="label" for="staff-department">Department</label>
-        <input type="text" class="member-form-input" id="staff-department" name="department" required>
+        <select id="staff-department" name="department" class="member-form-input" onchange="updatePositions('staff-department','staff-position')">
+          <option value="">Select Department</option>
+          <option value="Sales">Sales</option>
+          <option value="Customer Service">Customer Service</option>
+          <option value="Operations">Operations</option>
+          <option value="Design & Development">Design & Development</option>
+          <option value="Marketing">Marketing</option>
+          <option value="Finance/Administration">Finance/Administration</option>
+          <option value="IT">IT</option>
+        </select>
         
         <label class="label" for="staff-position">Position</label>
-        <input type="text" class="member-form-input" id="staff-position" name="position" required>
+        <select id="staff-position" name="position" class="member-form-input">
+          <option value="">Select Position</option>
+        </select>
         
         <label class="label" for="staff-bio">Bio</label>
         <textarea id="staff-bio" class="member-form-input" name="bio" rows="4" required></textarea>
@@ -133,10 +144,21 @@ if (isset($_GET['delete'])) {
         <input type="email" class="member-form-input" id="update-staff-email" name="email" required>
         
         <label class="label" for="update-staff-department">Department</label>
-        <input type="text" class="member-form-input" id="update-staff-department" name="department" required>
+        <select id="update-staff-department" name="department" class="member-form-input" required onchange="updatePositions('update-staff-department','update-staff-position')">
+          <option value="">Select Department</option>
+          <option value="Sales">Sales</option>
+          <option value="Customer Service">Customer Service</option>
+          <option value="Operations">Operations</option>
+          <option value="Design & Development">Design & Development</option>
+          <option value="Marketing">Marketing</option>
+          <option value="Finance/Administration">Finance/Administration</option>
+          <option value="IT">IT</option>
+        </select>
         
         <label class="label" for="update-staff-position">Position</label>
-        <input type="text" class="member-form-input" id="update-staff-position" name="position" required>
+        <select id="update-staff-position" name="position" class="member-form-input" required>
+          <option value="">Select Position</option>
+        </select>
         
         <label class="label" for="update-staff-bio">Bio</label>
         <textarea id="update-staff-bio" class="member-form-input" name="bio" rows="4" required></textarea>
@@ -164,6 +186,30 @@ if (isset($_GET['delete'])) {
               document.getElementById('update-staff-bio').value = data.bio;
             })
             .catch(err => console.error('Error:', err));
+        }
+
+        const departmentPositions = {
+          "Sales": ["Store Manager","Sales Executive","Sales Assistant","Business Development Executive","Account Manager"],
+          "Customer Service": ["Customer Service Representative","Support Specialist","Returns & Exchanges Coordinator","Online Chat Specialist","After-Sales Support Specialist"],
+          "Operations": ["Warehouse Manager","Inventory Coordinator","Logistics Supervisor","Shipping & Receiving Clerk","Operations Analyst"],
+          "Design & Development": ["Product Designer","Industrial Designer","CAD Specialist","Prototype Engineer","R&D Manager"],
+          "Marketing": ["Marketing Manager","Social Media Specialist","Visual Merchandiser","Content Creator","Brand Strategist"],
+          "Finance/Administration": ["Accountant","Financial Analyst","Bookkeeper","Administrative Assistant","HR Manager"],
+          "IT": ["IT Manager","Software Developer","Web Developer","Network Administrator","Technical Support Specialist"]
+        };
+
+        function updatePositions(deptId, posId) {
+          const dept = document.getElementById(deptId).value;
+          const posSelect = document.getElementById(posId);
+          posSelect.innerHTML = '<option value="">Select Position</option>';
+          if (departmentPositions[dept]) {
+            departmentPositions[dept].forEach(position => {
+              const opt = document.createElement('option');
+              opt.value = position;
+              opt.textContent = position;
+              posSelect.appendChild(opt);
+            });
+          }
         }
       </script>
     </div>

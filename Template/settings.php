@@ -154,38 +154,97 @@
                           </div>
                         </div>
 
-                        <!-- New Department Field -->
-                        <div class="mb-4">
-                          <label
-                            class="mb-2 block text-sm font-semibold text-black dark:text-white"
-                            for="department"
-                            >Department</label
+                        <!-- Department Dropdown -->
+                        <!-- Remove the old <select id="department"> ... -->
+                        <div class="relative inline-block text-left mb-4">
+                          <input type="hidden" id="department" name="department" value="<?php echo htmlspecialchars($staff['department']); ?>" />
+                          <div>
+                            <button
+                              type="button"
+                              class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2
+                                     text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300
+                                     hover:bg-gray-50 shadow-xs focus:outline-none"
+                              onclick="document.getElementById('dept-menu').classList.toggle('hidden')"
+                            >
+                              <?php echo htmlspecialchars($staff['department'] ?: 'Select Department'); ?>
+                              <svg
+                                class="-mr-1 size-5 text-gray-400"
+                                viewBox="0 0 20 20"
+                                fill="currentColor"
+                                aria-hidden="true"
+                              >
+                                <path
+                                  fill-rule="evenodd"
+                                  d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75
+                                         0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06
+                                         0L5.22 9.28a.75.75 0 0 1 0-1.06Z"
+                                  clip-rule="evenodd"
+                                />
+                              </svg>
+                            </button>
+                          </div>
+                          <div
+                            id="dept-menu"
+                            class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white
+                                   ring-1 ring-black/5 shadow-lg focus:outline-none hidden"
                           >
-                          <input
-                            class="w-full rounded-lg border border-stroke bg-gray py-2.5 px-4.5 font-medium text-black focus:border-primary focus-ring-2 focus:ring-primary/10 dark:border-strokedark dark:bg-boxdark dark:text-white"
-                            type="text"
-                            name="department"
-                            id="department"
-                            placeholder=""
-                            value="<?php echo htmlspecialchars($staff['department']); ?>"
-                          />
+                            <div class="py-1">
+                              <!-- Example departments -->
+                              <?php
+                              foreach (["Sales","Customer Service","Operations","Design & Development","Marketing","Finance/Administration","IT"] as $deptVal) {
+                                echo "<button
+                                        type='button'
+                                        class='block w-full px-4 py-2 text-left text-sm text-gray-700'
+                                        onclick=\"document.getElementById('department').value='$deptVal'; this.closest('.relative').querySelector('button').innerText='$deptVal'; updatePositions('department','position'); document.getElementById('dept-menu').classList.add('hidden');\"
+                                      >$deptVal</button>";
+                              }
+                              ?>
+                            </div>
+                          </div>
                         </div>
 
-                        <!-- New Position Field -->
-                        <div class="mb-4">
-                          <label
-                            class="mb-2 block text-sm font-semibold text-black dark:text-white"
-                            for="position"
-                            >Position</label
+                        <!-- Position Dropdown -->
+                        <!-- Remove the old <select id="position"> ... -->
+                        <div class="relative inline-block text-left mb-4">
+                          <input type="hidden" id="position" name="position" value="<?php echo htmlspecialchars($staff['position']); ?>" />
+                          <div>
+                            <button
+                              type="button"
+                              class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2
+                                     text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300
+                                     hover:bg-gray-50 shadow-xs focus:outline-none"
+                              onclick="document.getElementById('pos-menu').classList.toggle('hidden')"
+                            >
+                              <?php echo htmlspecialchars($staff['position'] ?: 'Select Position'); ?>
+                              <svg
+                                class="-mr-1 size-5 text-gray-400"
+                                viewBox="0 0 20 20"
+                                fill="currentColor"
+                                aria-hidden="true"
+                              >
+                                <path
+                                  fill-rule="evenodd"
+                                  d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75
+                                         0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06
+                                         0L5.22 9.28a.75.75 0 0 1 0-1.06Z"
+                                  clip-rule="evenodd"
+                                />
+                              </svg>
+                            </button>
+                          </div>
+                          <div
+                            id="pos-menu"
+                            class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white
+                                   ring-1 ring-black/5 shadow-lg focus:outline-none hidden"
                           >
-                          <input
-                            class="w-full rounded-lg border border-stroke bg-gray py-2.5 px-4.5 font-medium text-black focus:border-primary focus-ring-2 focus:ring-primary/10 dark:border-strokedark dark:bg-boxdark dark:text-white"
-                            type="text"
-                            name="position"
-                            id="position"
-                            placeholder=""
-                            value="<?php echo htmlspecialchars($staff['position']); ?>"
-                          />
+                            <div class="py-1">
+                              <!-- Updated positions will be populated via updatePositions or directly in JS -->
+                              <!-- Option placeholders:
+                              <button type="button" ...>Position 1</button>
+                              <button type="button" ...>Position 2</button>
+                              -->
+                            </div>
+                          </div>
                         </div>
 
                         <div class="mb-4">
@@ -283,6 +342,8 @@
                             </span>
                           </div>
                         </div>
+
+                        
 
                         <!-- Updated Photo Form Buttons -->
                         <div class="flex justify-end gap-4">
@@ -421,6 +482,31 @@
         <!-- ===== Main Content End ===== -->
       </div>
     </div>
+    <script>
+      const departmentPositions = {
+        "Sales": ["Store Manager","Sales Executive","Sales Assistant","Business Development Executive","Account Manager"],
+        "Customer Service": ["Customer Service Representative","Support Specialist","Returns & Exchanges Coordinator","Online Chat Specialist","After-Sales Support Specialist"],
+        "Operations": ["Warehouse Manager","Inventory Coordinator","Logistics Supervisor","Shipping & Receiving Clerk","Operations Analyst"],
+        "Design & Development": ["Product Designer","Industrial Designer","CAD Specialist","Prototype Engineer","R&D Manager"],
+        "Marketing": ["Marketing Manager","Social Media Specialist","Visual Merchandiser","Content Creator","Brand Strategist"],
+        "Finance/Administration": ["Accountant","Financial Analyst","Bookkeeper","Administrative Assistant","HR Manager"],
+        "IT": ["IT Manager","Software Developer","Web Developer","Network Administrator","Technical Support Specialist"]
+      };
+
+      function updatePositions(deptId, posId) {
+        const dept = document.getElementById(deptId).value;
+        const posSelect = document.getElementById(posId);
+        posSelect.innerHTML = '<option value="">Select Position</option>';
+        if (departmentPositions[dept]) {
+          departmentPositions[dept].forEach(position => {
+            const opt = document.createElement('option');
+            opt.value = position;
+            opt.textContent = position;
+            posSelect.appendChild(opt);
+          });
+        }
+      }
+    </script>
   </body>
   <?php include "partials/js.html";?>
 </html>
