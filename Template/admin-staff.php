@@ -115,6 +115,7 @@ if (isset($_GET['delete'])) {
         <input type="file" class="member-form-input" id="staff-photo" name="photo" accept="image/*">
         
         <button class="member-form-button" type="submit">Add Staff</button>
+        <button type="submit" class="save-btn">Submit</button>
       </form>
     </div>
 
@@ -170,6 +171,7 @@ if (isset($_GET['delete'])) {
         <input type="file" class="member-form-input" id="update-staff-photo" name="photo" accept="image/*">
         
         <button class="member-form-button" type="submit">Update Staff</button>
+        <button type="submit" class="save-btn">Submit</button>
       </form>
       <script>
         function loadStaffData(staffId) {
@@ -178,39 +180,107 @@ if (isset($_GET['delete'])) {
             .then(response => response.json())
             .then(data => {
               if (!data) return;
+              // Set basic field values
               document.getElementById('update-staff-name').value = data.name;
               document.getElementById('update-staff-phone').value = data.phone_number;
               document.getElementById('update-staff-email').value = data.email;
-              document.getElementById('update-staff-position').value = data.position;
-              document.getElementById('update-staff-department').value = data.department;
               document.getElementById('update-staff-bio').value = data.bio;
+              
+              // Set department and trigger position update
+              const deptSelect = document.getElementById('update-staff-department');
+              deptSelect.value = data.department;
+              
+              // Update positions dropdown and set saved position
+              updatePositions('update-staff-department', 'update-staff-position');
+              
+              // Set the position after a small delay to ensure positions are populated
+              setTimeout(() => {
+                const posSelect = document.getElementById('update-staff-position');
+                posSelect.value = data.position;
+              }, 100);
             })
             .catch(err => console.error('Error:', err));
         }
 
         const departmentPositions = {
-          "Sales": ["Store Manager","Sales Executive","Sales Assistant","Business Development Executive","Account Manager"],
-          "Customer Service": ["Customer Service Representative","Support Specialist","Returns & Exchanges Coordinator","Online Chat Specialist","After-Sales Support Specialist"],
-          "Operations": ["Warehouse Manager","Inventory Coordinator","Logistics Supervisor","Shipping & Receiving Clerk","Operations Analyst"],
-          "Design & Development": ["Product Designer","Industrial Designer","CAD Specialist","Prototype Engineer","R&D Manager"],
-          "Marketing": ["Marketing Manager","Social Media Specialist","Visual Merchandiser","Content Creator","Brand Strategist"],
-          "Finance/Administration": ["Accountant","Financial Analyst","Bookkeeper","Administrative Assistant","HR Manager"],
-          "IT": ["IT Manager","Software Developer","Web Developer","Network Administrator","Technical Support Specialist"]
-        };
+    "Sales": [
+      "Store Manager",
+      "Sales Executive",
+      "Sales Assistant",
+      "Business Development Executive",
+      "Account Manager"
+    ],
+    "Customer Service": [
+      "Customer Service Representative",
+      "Support Specialist",
+      "Returns & Exchanges Coordinator",
+      "Online Chat Specialist",
+      "After-Sales Support Specialist"
+    ],
+    "Operations": [
+      "Warehouse Manager",
+      "Inventory Coordinator",
+      "Logistics Supervisor",
+      "Shipping & Receiving Clerk",
+      "Operations Analyst"
+    ],
+    "Design & Development": [
+      "Product Designer",
+      "Industrial Designer",
+      "CAD Specialist",
+      "Prototype Engineer",
+      "R&D Manager"
+    ],
+    "Marketing": [
+      "Marketing Manager",
+      "Social Media Specialist",
+      "Visual Merchandiser",
+      "Content Creator",
+      "Brand Strategist"
+    ],
+    "Finance/Administration": [
+      "Accountant",
+      "Financial Analyst",
+      "Bookkeeper",
+      "Administrative Assistant",
+      "HR Manager"
+    ],
+    "IT": [
+      "IT Manager",
+      "Software Developer",
+      "Web Developer",
+      "Network Administrator",
+      "Technical Support Specialist"
+    ]
+  };
 
-        function updatePositions(deptId, posId) {
-          const dept = document.getElementById(deptId).value;
-          const posSelect = document.getElementById(posId);
-          posSelect.innerHTML = '<option value="">Select Position</option>';
-          if (departmentPositions[dept]) {
-            departmentPositions[dept].forEach(position => {
-              const opt = document.createElement('option');
-              opt.value = position;
-              opt.textContent = position;
-              posSelect.appendChild(opt);
-            });
-          }
+  function updatePositions(deptSelectId, positionSelectId) {
+    const dept = document.getElementById(deptSelectId).value;
+    const posSelect = document.getElementById(positionSelectId);
+    const currentPosition = posSelect.value; // Store current position before clearing
+    
+    // Clear existing options
+    posSelect.innerHTML = '<option value="">Select Position</option>';
+    
+    // If there's a matching department, populate its positions
+    if (departmentPositions[dept]) {
+      departmentPositions[dept].forEach(pos => {
+        const option = document.createElement('option');
+        option.value = pos;
+        option.textContent = pos;
+        // Select if it matches the current position
+        if (pos === currentPosition) {
+          option.selected = true;
         }
+        posSelect.appendChild(option);
+      });
+    }
+  }
+
+  // On page load, trigger it once so position is pre-filled if editing
+  window.addEventListener('DOMContentLoaded', () => {
+    updatePositions('departmentSelect','positionSelect');
+  });
       </script>
     </div>
 
@@ -230,6 +300,7 @@ if (isset($_GET['delete'])) {
           ?>
         </select>
         <button class="member-form-button" type="submit">Delete Staff</button>
+        <button type="submit" class="save-btn">Confirm Delete</button>
       </form>
     </div>
 
