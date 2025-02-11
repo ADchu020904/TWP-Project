@@ -28,6 +28,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error = "Invalid email or password.";
     }
 }
+if ($result->num_rows > 0) {
+  $staff = $result->fetch_assoc();
+  echo 'DB Password: ' . $staff['password'] . '<br>';
+  echo 'Entered Password: ' . $password . '<br>';
+  
+  if (password_verify($password, $staff['password'])) {
+      $_SESSION['email'] = $staff['email'];
+      header("Location: admin-dashboard.php");
+      exit();
+  } else {
+      $error = "Invalid email or password.";
+  }
+}
 
 // Include staffinfo.php only if not already processing a login
 if (!defined('LOGIN_REQUIRED')) {
