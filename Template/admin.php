@@ -4,8 +4,7 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Admin Login</title>
-   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
-   <link rel="stylesheet" href="css/bootstrap.min.css">
+   <?php include 'partials/user/userstyle.html'; ?>
    <style>
       body {
          background-color: #efe4d1; /* Updated to match index.php */
@@ -115,12 +114,6 @@
       opacity: 1; /* Override default opacity */
    }
    </style>
-   <script>
-      function handleLogin(event) {
-         event.preventDefault(); // Prevent the default form submission
-         window.location.href = 'admin-dashboard.php'; // Redirect to admin dashboard
-      }
-   </script>
 </head>
 <body>
    <div class="login-container"> 
