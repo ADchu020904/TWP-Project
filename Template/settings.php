@@ -425,39 +425,7 @@
         </main>
         <!-- ===== Main Content End ===== -->
       </div>
-      <!-- ===== Content Area End ===== -->
     </div>
-    <!-- ===== Page Wrapper End ===== -->
-  <!-- Dark Mode Script -->
-  <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const darkModeToggle = document.getElementById('darkModeToggle');
-    const htmlElement = document.documentElement;
-    
-    // Initialize from localStorage
-    const isDark = localStorage.getItem('darkMode') === 'true';
-    htmlElement.classList.toggle('dark', isDark);
-    
-    // Toggle handler
-    if(darkModeToggle) {
-      darkModeToggle.addEventListener('click', () => {
-        const isDarkMode = htmlElement.classList.toggle('dark');
-        localStorage.setItem('darkMode', isDarkMode);
-        
-        // Apply theme colors
-        document.querySelectorAll('.dark-theme').forEach(el => {
-          el.style.backgroundColor = isDarkMode ? '#23303f' : '';
-        });
-        document.querySelectorAll('.dark-content').forEach(el => {
-          el.style.backgroundColor = isDarkMode ? '#1b222c' : '';
-        });
-        document.querySelectorAll('input, textarea').forEach(el => {
-          el.style.backgroundColor = isDarkMode ? '#313d4a' : '';
-        });
-      });
-    }
-  });
-  </script>
   </body>
   <?php include "partials/js.html";?>
 </html>
