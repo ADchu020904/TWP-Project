@@ -52,7 +52,9 @@
           <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
              <a class="dropdown-item" href="account.php">My Account</a>
              <a class="dropdown-item" href="usersignup.php">Log in/Sign up</a>
-             <a class="dropdown-item" href="index.php">Log Out</a>
+             <form method="POST">
+               <button type="submit" name="logout" class="dropdown-item">Log Out</button>
+             </form>
              <a class="dropdown-item" href="admin.php">Admin Login</a>
           </div>
           </li>
