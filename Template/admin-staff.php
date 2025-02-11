@@ -1,5 +1,5 @@
 <?php
-include 'partials/staffinfo.php';
+include 'partials/staff/staffinfo.php';
 // Delete Staff
 if (isset($_GET['delete'])) {
   $id = $_GET['delete'];
@@ -65,8 +65,8 @@ if (isset($_GET['delete'])) {
               <td>{$row['department']}</td>
               <td>{$row['bio']}</td>
               <td>
-                <a href='updatestaff.php?id={$row['id']}' class='edit-btn'>Edit</a>
-                <a href='admin-staff.php?delete={$row['id']}' class='delete-btn' onclick='return confirm(\"Are you sure you want to delete this staff?\");'>Delete</a>
+                <a href='partials/staff/updatestaff.php?id={$row['id']}' class='edit-btn'>Edit</a>
+                <a href='partials/staff/deletestaffphp?delete={$row['id']}' class='delete-btn' onclick='return confirm(\"Are you sure you want to delete this staff?\");'>Delete</a>
               </td>
             </tr>";
           }
@@ -78,7 +78,7 @@ if (isset($_GET['delete'])) {
     <!-- Add Staff Section -->
     <div class="main-content" id="add" style="display: none;">
       <h1 class="h1">Add Staff</h1>
-      <form method="POST" action="partials/addstaff.php" enctype="multipart/form-data">
+      <form method="POST" action="partials/staff/addstaff.php" enctype="multipart/form-data">
         <label class="label" for="staff-name">Name</label>
         <input type="text" class="member-form-input" id="staff-name" name="name" required>
         
@@ -110,7 +110,7 @@ if (isset($_GET['delete'])) {
     <!-- Update Staff Section -->
     <div class="main-content" id="update" style="display: none;">
       <h1 class="h1">Update Staff</h1>
-      <form method="POST" action="partials/updatestaff.php" enctype="multipart/form-data">
+      <form method="POST" action="partials/staff/updatestaff.php" enctype="multipart/form-data">
         <label class="label" for="update-staff-select">Select Staff to Update</label>
         <select id="update-staff-select" name="id" required>
           <!-- Options will be loaded dynamically -->
@@ -147,7 +147,7 @@ if (isset($_GET['delete'])) {
     <!-- Delete Staff Section -->
     <div class="main-content" id="delete" style="display: none;">
       <h1 class="h1">Delete Staff</h1>
-      <form method="POST" action="partials/deletestaff.php">
+      <form method="POST" action="partials/staff/deletestaff.php">
         <label class="label" for="delete-staff-select">Select Staff to Delete</label>
         <select id="delete-staff-select" name="id" required>
           <!-- Options will be loaded dynamically -->
