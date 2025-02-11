@@ -5,8 +5,8 @@
   /* Reduce the clickable area for both arrows */
   #carouselExampleIndicators .carousel-control-prev,
   #carouselExampleIndicators .carousel-control-next {
-    width: 35px !important;      /* Set the container width to 50px (adjust as needed) */
-    height: 50px !important;     /* Set a fixed height if desired */
+    width: 35px !important;      /* Set the container width to 35px (adjust as needed) */
+    height: 50px !important;     /* Set a fixed height to 50px */
     padding: 0 !important;       /* Remove extra padding */
     top: 50% !important;         /* Ensure they remain vertically centered */
     transform: translateY(-50%) !important;
@@ -15,9 +15,9 @@
   /* Increase the arrow icon size */
   #carouselExampleIndicators .carousel-control-prev-icon,
   #carouselExampleIndicators .carousel-control-next-icon {
-    width: 35px;      /* Increase the icon’s width */
-    height: 35px;     /* Increase the icon’s height */
-    background-size: 35px 35px; /* Scale the background image (arrow) */
+    width: 35px;      /* Set the icon’s width to 35px */
+    height: 35px;     /* Set the icon’s height to 35px */
+    background-size: 35px 35px; /* Set the background size to 35px by 35px */
     margin: auto;                /* Center the icon within its container */
   }
   
@@ -30,3 +30,63 @@
     right: 20px !important;
     left: auto !important;
   }
+
+.carousel-control-prev,
+.carousel-control-next {
+  position: absolute;
+  top: 25%;
+  transform: translateY(-50%);
+  /* Reset default width */
+  width: auto;
+  padding: 0 15px; /* Add some padding for better touch area */
+  color: #000; /* Adjust color as needed */
+  opacity: 0.7; /* Adjust opacity as needed */
+  transition: opacity 0.3s ease;
+}
+
+.carousel-control-prev {
+  left: 0; /* Align to the left edge */
+}
+
+.carousel-control-next {
+  right: 0; /* Align to the right edge */
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  /* Set arrow size to 30px */
+  height: 30px;
+  width: 30px;
+}
+
+/* Style the carousel indicators */
+.carousel-indicators {
+    position: absolute; /* Position them absolutely */
+    bottom: 10px; /* Adjust as needed */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Correct centering */
+    z-index: 2; /* Ensure they are above the images */
+    display: flex; /* Use flexbox for spacing */
+    justify-content: center; /* Center the dots */
+    padding: 0;
+    margin: 0;
+}
+
+.carousel-indicators li {
+    box-sizing: content-box;
+    flex: 0 1 auto;
+    width: 30px;
+    height: 3px;
+    margin-right: 3px;
+    margin-left: 3px;
+    text-indent: -999px;
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.5);
+    background-clip: padding-box;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+}
+
+.carousel-indicators .active {
+    background-color: #fff;
+}

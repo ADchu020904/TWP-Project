@@ -42,8 +42,8 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="image_1">
-                                    <img src="images/img-whitechair.png" class="d-block w-100" alt="Modern White Chair">
+                                <div>
+                                    <img src="images/img-whitechair.png" class="d-block w-100" alt="Modern White Chair" style="max-width: 70%; height: auto;">
                                 </div>
                             </div>
                         </div>
