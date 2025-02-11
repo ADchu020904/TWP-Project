@@ -17,6 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     if ($result->num_rows > 0) {
         $staff = $result->fetch_assoc();
+          
         if (password_verify($password, $staff['password'])) {
             $_SESSION['email'] = $staff['email'];
             header("Location: admin-dashboard.php");
@@ -27,6 +28,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         $error = "Invalid email or password.";
     }
+    if (password_verify($password, $staff['password'])) {
+      $_SESSION['email'] = $staff['email'];
+      
+      // Debugging output
+      echo "Session Set: " . $_SESSION['email'];
+      exit(); // Stop execution to see the debug output
+  }
+  
 }
 
 // Include staffinfo.php only if not already processing a login

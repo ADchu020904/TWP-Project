@@ -1,6 +1,3 @@
-<?php
-include_once dirname(__FILE__) . '/../connect.php';?>
-
 <header
   class="sticky top-0 z-999 flex w-full bg-white drop-shadow-1 dark:bg-boxdark dark:drop-shadow-none"
 >
@@ -420,39 +417,33 @@ include_once dirname(__FILE__) . '/../connect.php';?>
           @click.prevent="dropdownOpen = ! dropdownOpen"
         >
             <span class="hidden text-right lg:block">
-            <span class="block text-sm font-medium text-black dark:text-white">
-                <?php
-                if (session_status() === PHP_SESSION_NONE) {
-                    session_start();
-                }
-                // Use !empty() to ensure the email is not an empty string, and uncomment the debug line if needed.
-                if (!empty($_SESSION['email'])) {
-                    $email = $_SESSION['email'];
-                    $stmt = $conn->prepare("SELECT name, position FROM staff WHERE email = ?");
-                    $stmt->bind_param("s", $email);
-                    $stmt->execute();
-                    $result = $stmt->get_result();
-                    if ($row = $result->fetch_assoc()) {
-                        echo htmlspecialchars($row['name']);
-                    } else {
-                        echo "Staff Member";
-                    }
-                } else {
-                    echo "Guest";
-                    // Debug: Uncomment the next line to inspect session variables during development.
-                    var_dump($_SESSION);
-                }
-                ?>
-            </span>
-            <span class="block text-xs font-medium">
-                <?php
-                if (!empty($_SESSION['email'])) {
-                    // Assuming $row was obtained earlier in the session block above.
-                    echo !empty($row['position']) ? htmlspecialchars($row['position']) : "Staff";
-                } else {
-                    echo "";
-                }
-                ?>
+            <?php
+            include dirname(__FILE__) . '/../connect.php';
+
+            if (isset($_SESSION['email'])) {
+              $email = $_SESSION['email'];
+              $stmt = $conn->prepare("SELECT name, position FROM staff WHERE email = ?");
+              $stmt->bind_param("s", $email);
+              $stmt->execute();
+              $result = $stmt->get_result()->fetch_assoc();
+
+              $staffName = $result['name'] ?? 'Guest';
+              $staffPosition = $result['position'] ?? '';
+            } else {
+              $staffName = 'Guest';
+              $staffPosition = '';
+            }
+            ?>
+
+            <div class="user-info">
+              <span class="block text-sm font-medium text-black dark:text-white">
+                <?php echo htmlspecialchars($staffName); ?>
+              </span>
+              <span class="block text-xs font-medium">
+                <?php echo htmlspecialchars($staffPosition); ?>
+              </span>
+            </div>
+
             </span>
           </span>
 

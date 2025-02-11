@@ -24,7 +24,7 @@
             <!-- Sidebar Finish -->
 
             <!-- Navbar Start -->
-            <?php include('partials/header.php'); ?>
+            <?php session_start(); include('partials/header.php'); ?>
             <!-- Navbar Finish -->
             
             <!-- Main Content Start -->
