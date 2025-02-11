@@ -1,4 +1,39 @@
-<?php include("partials/staffinfo.php"); ?>
+<?php
+session_start();
+include 'connect.php';
+
+// Initialize error message
+$error = '';
+
+// Process login if form is submitted
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $email = trim($_POST['email']);
+    $password = trim($_POST['password']);
+    
+    $stmt = $conn->prepare("SELECT id, name, email, password FROM staff WHERE email = ?");
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    
+    if ($result->num_rows > 0) {
+        $staff = $result->fetch_assoc();
+        if (password_verify($password, $staff['password'])) {
+            $_SESSION['email'] = $staff['email'];
+            header("Location: admin-dashboard.php");
+            exit();
+        } else {
+            $error = "Invalid email or password.";
+        }
+    } else {
+        $error = "Invalid email or password.";
+    }
+}
+
+// Include staffinfo.php only if not already processing a login
+if (!defined('LOGIN_REQUIRED')) {
+    include 'partials/staffinfo.php';
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>

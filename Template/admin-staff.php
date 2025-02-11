@@ -1,3 +1,12 @@
+<?php
+include 'partials/staffinfo.php';
+
+// Check if the admin is logged in; if not, redirect to the login page.
+if (!isset($_SESSION['email'])) {
+    header("Location: admin.php");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,7 +47,33 @@
             <th>Actions</th>
           </tr>
         </thead>
-        <tbody>  
+        <tbody>
+          <?php
+          $sql = "SELECT id, name, phone_number, email, position, department, bio FROM staff";
+          $result = $conn->query($sql);
+          if ($result) {
+            if ($result->num_rows > 0) {
+              while ($row = $result->fetch_assoc()) {
+                echo "<tr>
+                  <td>{$row['name']}</td>
+                  <td>{$row['phone_number']}</td>
+                  <td>{$row['email']}</td>
+                  <td>{$row['position']}</td>
+                  <td>{$row['department']}</td>
+                  <td>" . nl2br(htmlspecialchars($row['bio'])) . "</td>
+                  <td>
+                    <a href='#' onclick=\"populateUpdateForm({$row['id']}, '{$row['name']}', '{$row['phone_number']}', '{$row['email']}', '{$row['position']}', '{$row['department']}', '{$row['bio']}')\">Edit</a> | 
+                    <a href='#' onclick=\"populateDeleteForm({$row['id']}, '{$row['name']}')\">Delete</a>
+                  </td>
+                </tr>";
+              }
+            } else {
+              echo "<tr><td colspan='7'>No staff members found</td></tr>";
+            }
+          } else {
+            echo "<tr><td colspan='7'>Error: " . $conn->error . "</td></tr>";
+          }
+          ?>        
         </tbody>
       </table>
     </div>
@@ -127,5 +162,33 @@
   </div>
 
   <?php include 'partials/js.html'; ?>
+  <script>
+    function setSection(section) {
+      // Hide all sections
+      document.getElementById('view').style.display = 'none';
+      document.getElementById('add').style.display = 'none';
+      document.getElementById('update').style.display = 'none';
+      document.getElementById('delete').style.display = 'none';
+      // Show the selected section
+      document.getElementById(section).style.display = 'block';
+      window.location.hash = section;
+    }
+
+    function populateUpdateForm(id, name, phone_number, email, position, department, bio) {
+      document.getElementById('update').style.display = 'block';
+      document.getElementById('update-staff-select').value = id;
+      document.getElementById('update-staff-name').value = name;
+      document.getElementById('update-staff-phone').value = phone_number;
+      document.getElementById('update-staff-email').value = email;
+      document.getElementById('update-staff-position').value = position;
+      document.getElementById('update-staff-department').value = department;
+      document.getElementById('update-staff-bio').value = bio;
+    }
+
+    function populateDeleteForm(id, name) {
+      document.getElementById('delete').style.display = 'block';
+      document.getElementById('delete-staff-select').value = id;
+    }
+  </script>
 </body>
 </html>
