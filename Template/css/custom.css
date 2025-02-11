@@ -1,11 +1,11 @@
 .carousel-control-prev,
 .carousel-control-next {
-  position: fixed;
-  top: 35%;
+  position: absolute;
+  top: 50%;
   transform: translateY(-50%);
   width: auto;
   padding: 0 15px;
-  color: #D3D3D3;
+  color: #666;
   opacity: 0.7;
   transition: opacity 0.3s ease;
 }
@@ -20,8 +20,16 @@
 
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
-  height: 30px;
-  width: 30px;
+  height: 60px;
+  width: 60px;
+}
+
+.carousel-control-prev-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23666' viewBox='0 0 16 16'%3E%3Cpath d='M9.5 3.5L8.09 2.09 3.18 7l4.91 4.91L9.5 10.5 6.09 7z'/%3E%3C/svg%3E");
+}
+
+.carousel-control-next-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23666' viewBox='0 0 16 16'%3E%3Cpath d='M6.5 3.5L7.91 2.09 12.82 7l-4.91 4.91L6.5 10.5 9.91 7z'/%3E%3C/svg%3E");
 }
 
 /* Fixed Indicators */
@@ -41,12 +49,12 @@
   width: 30px;
   height: 3px;
   margin: 0 3px;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(102, 102, 102, 0.5);
   cursor: pointer;
 }
 
 .fixed-indicators .active {
-  background-color: #fff;
+  background-color: #666;
 }
 
 .banner_section {
