@@ -2,8 +2,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-include '../../connect.php';
-
+include dirname(__FILE__) . '/../../connect.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = $_POST['name'];
     $phone_number = $_POST['phone_number'];

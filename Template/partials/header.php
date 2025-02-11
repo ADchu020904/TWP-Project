@@ -1,3 +1,6 @@
+<?php
+include_once dirname(__FILE__) . '/../connect.php';?>
+
 <header
   class="sticky top-0 z-999 flex w-full bg-white drop-shadow-1 dark:bg-boxdark dark:drop-shadow-none"
 >
@@ -418,10 +421,45 @@
         >
             <span class="hidden text-right lg:block">
             <span class="block text-sm font-medium text-black dark:text-white">
-              <?php include 'staff/staffinfo.php'; echo $staffName; ?>
-            </span
-            >
-            <span class="block text-xs font-medium">UX Designer</span>
+                <?php
+                // Ensure session is started
+                if (session_status() === PHP_SESSION_NONE) {
+                    session_start();
+                }
+                
+                // Get staff name from database using email in session
+                if(isset($_SESSION['email'])) {
+                    $email = $_SESSION['email'];
+                    $stmt = $conn->prepare("SELECT name FROM staff WHERE email = ?");
+                    $stmt->bind_param("s", $email);
+                    $stmt->execute();
+                    $result = $stmt->get_result();
+                    if($row = $result->fetch_assoc()) {
+                        echo htmlspecialchars($row['name']);
+                    } else {
+                        echo "Staff Member";
+                    }
+                } else {
+                    echo "Guest";
+                }
+                ?>
+            </span>
+            <span class="block text-xs font-medium">
+                <?php
+                // Get staff position
+                if(isset($_SESSION['email'])) {
+                    $stmt = $conn->prepare("SELECT position FROM staff WHERE email = ?");
+                    $stmt->bind_param("s", $email);
+                    $stmt->execute();
+                    $result = $stmt->get_result();
+                    if($row = $result->fetch_assoc()) {
+                        echo htmlspecialchars($row['position']);
+                    } else {
+                        echo "Staff";
+                    }
+                }
+                ?>
+            </span>
           </span>
 
           <span class="h-12 w-12 rounded-full">
