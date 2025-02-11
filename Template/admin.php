@@ -1,3 +1,4 @@
+<?php include("partials/staffinfo.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -10,10 +11,15 @@
     <div class="min-h-screen bg-gray-100 dark:bg-boxdark-2 flex items-center justify-center">
       <div class="bg-white dark:bg-boxdark rounded-lg shadow-default max-w-md w-full p-8">
         <h2 class="text-2xl font-bold text-center mb-6 dark:text-white">Admin</h2>
-        <form id="loginForm" method="POST" action="loginHandler.php">
+        <?php if ($error): ?>
           <div class="mb-4">
-            <label for="username" class="block text-gray-700 dark:text-gray-300">Username</label>
-            <input type="text" id="username" name="username" placeholder="Enter username" 
+            <p class="text-red-600 text-center"><?php echo htmlspecialchars($error); ?></p>
+          </div>
+        <?php endif; ?>
+        <form id="loginForm" method="POST" action="admin.php">
+          <div class="mb-4">
+            <label for="email" class="block text-gray-700 dark:text-gray-300">Email</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" 
               class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-primary dark:bg-boxdark dark:text-white" required>
           </div>
           <div class="mb-4">
