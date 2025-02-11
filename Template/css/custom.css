@@ -1,45 +1,12 @@
-#carouselExampleIndicators {
-    position: relative;
-  }
-  
-  /* Reduce the clickable area for both arrows */
-  #carouselExampleIndicators .carousel-control-prev,
-  #carouselExampleIndicators .carousel-control-next {
-    width: 35px !important;      /* Set the container width to 35px (adjust as needed) */
-    height: 50px !important;     /* Set a fixed height to 50px */
-    padding: 0 !important;       /* Remove extra padding */
-    top: 50% !important;         /* Ensure they remain vertically centered */
-    transform: translateY(-50%) !important;
-  }
-  
-  /* Increase the arrow icon size */
-  #carouselExampleIndicators .carousel-control-prev-icon,
-  #carouselExampleIndicators .carousel-control-next-icon {
-    width: 35px;      /* Set the icon’s width to 35px */
-    height: 35px;     /* Set the icon’s height to 35px */
-    background-size: 35px 35px; /* Set the background size to 35px by 35px */
-    margin: auto;                /* Center the icon within its container */
-  }
-  
-  #carouselExampleIndicators .carousel-control-prev {
-    left: 20px !important;
-    right: auto !important;
-  }
-  
-  #carouselExampleIndicators .carousel-control-next {
-    right: 20px !important;
-    left: auto !important;
-  }
-
 .carousel-control-prev,
 .carousel-control-next {
   position: absolute;
-  top: 25%;
+  top: 35%;
   transform: translateY(-50%);
   /* Reset default width */
   width: auto;
   padding: 0 15px; /* Add some padding for better touch area */
-  color: #000; /* Adjust color as needed */
+  color: #D3D3D3; /* Light gray color */
   opacity: 0.7; /* Adjust opacity as needed */
   transition: opacity 0.3s ease;
 }
@@ -59,15 +26,20 @@
   width: 30px;
 }
 
+/* Custom carousel indicators */
+#carouselExampleIndicators .carousel-indicators {
+    z-index: 999; /* Increase z-index to ensure visibility */
+} 
+
 /* Style the carousel indicators */
 .carousel-indicators {
-    position: absolute; /* Position them absolutely */
-    bottom: 10px; /* Adjust as needed */
-    left: 50%; /* Center horizontally */
-    transform: translateX(-50%); /* Correct centering */
-    z-index: 2; /* Ensure they are above the images */
-    display: flex; /* Use flexbox for spacing */
-    justify-content: center; /* Center the dots */
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 15;
+    display: flex;
+    justify-content: center;
     padding: 0;
     margin: 0;
 }
@@ -81,12 +53,37 @@
     margin-left: 3px;
     text-indent: -999px;
     cursor: pointer;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
     background-clip: padding-box;
     border-top: 10px solid transparent;
     border-bottom: 10px solid transparent;
 }
 
 .carousel-indicators .active {
+    background-color: #fff;
+}
+
+/* Fixed position carousel indicators */
+.banner_section .carousel-indicators {
+    position: fixed;  /* Change from absolute to fixed */
+    bottom: 40px;    /* Adjust this value as needed */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    width: auto;     /* Allow width to be determined by content */
+    margin: 0;
+    padding: 10px;
+    border-radius: 20px;  /* Optional: rounds the corners */
+}
+
+.banner_section .carousel-indicators li {
+    width: 30px;
+    height: 3px;
+    border: none;
+    margin: 0 3px;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.banner_section .carousel-indicators .active {
     background-color: #fff;
 }

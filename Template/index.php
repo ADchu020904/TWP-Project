@@ -14,7 +14,6 @@
       
       <!-- Page Title and SEO Meta Tags -->
       <title>Vik</title>
-
       <?php include 'partials/user/userstyle.html'; ?>
    </head>
 
