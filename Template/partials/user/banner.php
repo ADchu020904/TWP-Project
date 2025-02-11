@@ -43,6 +43,8 @@
           </div>
         </div>
       </div>
+    </div>
+
       
       <!-- Navigation Arrows (remain inside the carousel container) -->
       <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -53,7 +55,6 @@
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
       </a>
-    </div>
     
     <!-- Fixed Carousel Indicators outside the carousel container -->
     <ol class="carousel-indicators fixed-indicators">
