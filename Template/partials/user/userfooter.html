@@ -75,6 +75,21 @@
      text-align: center;
   }
   </style>
+  <script>
+    $(document).ready(function() {
+      $('#carouselExampleIndicators').on('slid.bs.carousel', function (e) {
+        // Get all fixed indicators
+        var indicators = $('.fixed-indicators li');
+        // Remove the active class from all indicators
+        indicators.removeClass('active');
+        // Get the new active slide index. e.relatedTarget is the newly active slide.
+        var newIndex = $(e.relatedTarget).index();
+        // Add active class to the corresponding indicator
+        $(indicators[newIndex]).addClass('active');
+      });
+    });
+    </script>
+    
  <script>
    function toggleAddressForm() {
        const form = document.getElementById('addressForm');

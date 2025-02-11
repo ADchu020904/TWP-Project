@@ -26,8 +26,8 @@
 
 /* Fixed Indicators */
 .fixed-indicators {
-  position: fixed;
-  bottom: 0;
+  position: absolute;
+  bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 9999;
@@ -48,3 +48,8 @@
 .fixed-indicators .active {
   background-color: #fff;
 }
+
+.banner_section {
+  position: relative;
+}
+
