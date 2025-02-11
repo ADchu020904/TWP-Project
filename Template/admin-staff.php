@@ -113,7 +113,14 @@ if (isset($_GET['delete'])) {
       <form method="POST" action="partials/staff/updatestaff.php" enctype="multipart/form-data">
         <label class="label" for="update-staff-select">Select Staff to Update</label>
         <select id="update-staff-select" name="id" required>
-          <!-- Options will be loaded dynamically -->
+          <option value="">Select a staff member</option>
+          <?php
+          $sql = "SELECT id, name FROM staff";
+          $result = $conn->query($sql);
+          while ($row = $result->fetch_assoc()) {
+            echo "<option value='" . $row['id'] . "'>" . htmlspecialchars($row['name']) . "</option>";
+          }
+          ?>
         </select>
         
         <label class="label" for="update-staff-name">Name</label>
@@ -150,7 +157,14 @@ if (isset($_GET['delete'])) {
       <form method="POST" action="partials/staff/deletestaff.php">
         <label class="label" for="delete-staff-select">Select Staff to Delete</label>
         <select id="delete-staff-select" name="id" required>
-          <!-- Options will be loaded dynamically -->
+          <option value="">Select a staff member</option>
+          <?php
+          $sql = "SELECT id, name FROM staff";
+          $result = $conn->query($sql);
+          while ($row = $result->fetch_assoc()) {
+            echo "<option value='" . $row['id'] . "'>" . htmlspecialchars($row['name']) . "</option>";
+          }
+          ?>
         </select>
         <button class="member-form-button" type="submit">Delete Staff</button>
       </form>

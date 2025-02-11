@@ -2,7 +2,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-include '../connect.php';
+include '../../connect.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = $_POST['name'];
@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->bind_param("ssssssss", $name, $phone_number, $email, $position, $department, $bio, $password, $photo);
 
     if ($stmt->execute()) {
-        header("Location: ../admin-staff.php"); // Correct path to redirect
+        header("Location: ../../admin-staff.php"); // Correct path to redirect
         exit();
     } else {
         echo "Error: " . $stmt->error;
