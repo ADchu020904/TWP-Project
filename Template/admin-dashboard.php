@@ -18,13 +18,12 @@
     :class="{'dark text-bodydark bg-boxdark-2': darkMode === true}">
         <!-- Layout Container -->
         <div class="dashboard-container">
-
             <!-- Sidebar Start -->
             <?php include('partials/sidebar.html'); ?>
             <!-- Sidebar Finish -->
 
             <!-- Navbar Start -->
-            <?php session_start(); include('partials/header.php'); ?>
+            <?php include('partials/header.php'); ?>
             <!-- Navbar Finish -->
             
             <!-- Main Content Start -->
