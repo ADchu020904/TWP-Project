@@ -1942,7 +1942,7 @@ span.flatpickr-weekday:is(.dark *),
 }
 
 .dark .fill-current {
-  fill: #ffffff;
+  fill: #ffffff !important;
 }
 
 .dark .stats-section {
@@ -2290,4 +2290,36 @@ th {
 }
 .add-btn:hover {
   background-color: #eadcdc;
+}
+
+.form-field-spacing select {
+  background-color: var(--light-input-bg);
+  border-color: var(--light-border);
+  color: var(--light-text);
+  transition: all 0.3s ease;
+}
+
+.dark .form-field-spacing select {
+  background-color: var(--dark-input-bg);
+  border-color: var(--dark-border);
+  color: var(--dark-text);
+}
+
+.form-field-spacing select {
+  background-color: var(--light-input-bg);
+  border-color: var(--light-border);
+  color: var(--light-text);
+  transition: all 0.3s ease;
+}
+
+.dark .form-field-spacing select {
+  background-color: var(--dark-input-bg);
+  border-color: var(--dark-border);
+  color: var(--dark-text);
+}
+
+/* Dark mode: icons become white */
+.dark .form-field-spacing .fill-current {
+  color: #ffffff !important; 
+  fill: #ffffff !important;
 }

@@ -154,98 +154,147 @@
                           </div>
                         </div>
 
-                        <!-- Department Dropdown -->
-                        <!-- Remove the old <select id="department"> ... -->
-                        <div class="relative inline-block text-left mb-4">
-                          <input type="hidden" id="department" name="department" value="<?php echo htmlspecialchars($staff['department']); ?>" />
-                          <div>
-                            <button
-                              type="button"
-                              class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2
-                                     text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300
-                                     hover:bg-gray-50 shadow-xs focus:outline-none"
-                              onclick="document.getElementById('dept-menu').classList.toggle('hidden')"
-                            >
-                              <?php echo htmlspecialchars($staff['department'] ?: 'Select Department'); ?>
-                              <svg
-                                class="-mr-1 size-5 text-gray-400"
-                                viewBox="0 0 20 20"
-                                fill="currentColor"
-                                aria-hidden="true"
-                              >
-                                <path
-                                  fill-rule="evenodd"
-                                  d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75
-                                         0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06
-                                         0L5.22 9.28a.75.75 0 0 1 0-1.06Z"
-                                  clip-rule="evenodd"
-                                />
-                              </svg>
-                            </button>
-                          </div>
-                          <div
-                            id="dept-menu"
-                            class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white
-                                   ring-1 ring-black/5 shadow-lg focus:outline-none hidden"
-                          >
-                            <div class="py-1">
-                              <!-- Example departments -->
-                              <?php
-                              foreach (["Sales","Customer Service","Operations","Design & Development","Marketing","Finance/Administration","IT"] as $deptVal) {
-                                echo "<button
-                                        type='button'
-                                        class='block w-full px-4 py-2 text-left text-sm text-gray-700'
-                                        onclick=\"document.getElementById('department').value='$deptVal'; this.closest('.relative').querySelector('button').innerText='$deptVal'; updatePositions('department','position'); document.getElementById('dept-menu').classList.add('hidden');\"
-                                      >$deptVal</button>";
-                              }
-                              ?>
-                            </div>
-                          </div>
-                        </div>
+<!-- ============================= -->
+<!-- DEPARTMENT Field -->
+<!-- ============================= -->
+<div class="mb-4">
+  <label
+    class="mb-2 block text-sm font-semibold text-black dark:text-white"
+    for="departmentSelect"
+  >
+    Department
+  </label>
+  <div class="relative">
+    <!-- Left Icon -->
+    <span class="absolute left-3 top-1/2 -translate-y-1/2 flex items-center fill-current">
+      <!-- Example: "Building" icon (Heroicons or your own) -->
+      <svg
+        class="h-5 w-5"
+        width="20"
+        height="20"
+        viewBox="0 0 20 20"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <g opacity="0.8">
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M2.5 2.5C2.5 2.22386 2.72386 2 3 2H9C9.27614 2 9.5 2.22386 9.5 2.5V6H11.5V2.5C11.5 2.22386 11.7239 2 12 2H17C17.2761 2 17.5 2.22386 17.5 2.5V17.5C17.5 17.7761 17.2761 18 17 18H12C11.7239 18 11.5 17.7761 11.5 17.5V14H9.5V17.5C9.5 17.7761 9.27614 18 9 18H3C2.72386 18 2.5 17.7761 2.5 17.5V2.5ZM4 3V17H8.5V13.5C8.5 13.2239 8.72386 13 9 13H11C11.2761 13 11.5 13.2239 11.5 13.5V17H16V3H12.5V6.5C12.5 6.77614 12.2761 7 12 7H9C8.72386 7 8.5 6.77614 8.5 6.5V3H4ZM5.5 5C5.5 4.72386 5.72386 4.5 6 4.5H7C7.27614 4.5 7.5 4.72386 7.5 5V6C7.5 6.27614 7.27614 6.5 7 6.5H6C5.72386 6.5 5.5 6.27614 5.5 6V5Z"
+            fill="currentColor"
+          />
+        </g>
+      </svg>
+    </span>
+    
+    <!-- The <select> itself -->
+    <select
+      id="departmentSelect"
+      name="department"
+      onchange="updatePositions('departmentSelect','positionSelect')"
+      class="appearance-none w-full rounded-lg border border-stroke
+             bg-gray py-2.5 pl-9 pr-10 font-medium text-black
+             focus:border-primary focus:ring-2 focus:ring-primary/10
+             dark:border-strokedark dark:bg-boxdark dark:text-white fill-current"
+    >
+      <option value="">Select Department</option>
+      <option value="Sales" <?= ($staff['department'] === 'Sales') ? 'selected' : '' ?>>Sales</option>
+      <option value="Customer Service" <?= ($staff['department'] === 'Customer Service') ? 'selected' : '' ?>>Customer Service</option>
+      <option value="Operations" <?= ($staff['department'] === 'Operations') ? 'selected' : '' ?>>Operations</option>
+      <option value="Design & Development" <?= ($staff['department'] === 'Design & Development') ? 'selected' : '' ?>>Design &amp; Development</option>
+      <option value="Marketing" <?= ($staff['department'] === 'Marketing') ? 'selected' : '' ?>>Marketing</option>
+      <option value="Finance/Administration" <?= ($staff['department'] === 'Finance/Administration') ? 'selected' : '' ?>>Finance/Administration</option>
+      <option value="IT" <?= ($staff['department'] === 'IT') ? 'selected' : '' ?>>IT</option>
+    </select>
 
-                        <!-- Position Dropdown -->
-                        <!-- Remove the old <select id="position"> ... -->
-                        <div class="relative inline-block text-left mb-4">
-                          <input type="hidden" id="position" name="position" value="<?php echo htmlspecialchars($staff['position']); ?>" />
-                          <div>
-                            <button
-                              type="button"
-                              class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2
-                                     text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300
-                                     hover:bg-gray-50 shadow-xs focus:outline-none"
-                              onclick="document.getElementById('pos-menu').classList.toggle('hidden')"
-                            >
-                              <?php echo htmlspecialchars($staff['position'] ?: 'Select Position'); ?>
-                              <svg
-                                class="-mr-1 size-5 text-gray-400"
-                                viewBox="0 0 20 20"
-                                fill="currentColor"
-                                aria-hidden="true"
-                              >
-                                <path
-                                  fill-rule="evenodd"
-                                  d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75
-                                         0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06
-                                         0L5.22 9.28a.75.75 0 0 1 0-1.06Z"
-                                  clip-rule="evenodd"
-                                />
-                              </svg>
-                            </button>
-                          </div>
-                          <div
-                            id="pos-menu"
-                            class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white
-                                   ring-1 ring-black/5 shadow-lg focus:outline-none hidden"
-                          >
-                            <div class="py-1">
-                              <!-- Updated positions will be populated via updatePositions or directly in JS -->
-                              <!-- Option placeholders:
-                              <button type="button" ...>Position 1</button>
-                              <button type="button" ...>Position 2</button>
-                              -->
-                            </div>
-                          </div>
-                        </div>
+    <!-- Right Chevron Icon -->
+    <span class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 fill-current">
+      <svg
+        class="h-5 w-5"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M5.23 7.21a.75.75 0 011.06.02L10 11.293l3.71-4.06
+             a.75.75 0 011.08 1.04l-4.25 4.65
+             a.75.75 0 01-1.08 0L5.25 8.27
+             a.75.75 0 01-.02-1.06z"
+          clip-rule="evenodd"
+        />
+      </svg>
+    </span>
+  </div>
+</div>
+
+<!-- ============================= -->
+<!-- POSITION Field -->
+<!-- ============================= -->
+<div class="mb-4">
+  <label
+    class="mb-2 block text-sm font-semibold text-black dark:text-white"
+    for="positionSelect"
+  >
+    Position
+  </label>
+  <div class="relative">
+    <!-- Left Icon -->
+    <span class="absolute left-3 top-1/2 -translate-y-1/2 flex items-center fill-current">
+      <!-- Example "Briefcase" icon -->
+      <svg
+        class="h-5 w-5"
+        width="20"
+        height="20"
+        viewBox="0 0 20 20"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <g opacity="0.8">
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M7 4V3C7 2.17157 7.67157 1.5 8.5 1.5H11.5C12.3284 1.5 13 2.17157 13 3V4H15.5C16.3284 4 17 4.67157 17 5.5V7C17 7.77614 16.7761 8.5 16 8.5H4C3.22386 8.5 3 7.77614 3 7V5.5C3 4.67157 3.67157 4 4.5 4H7ZM9 3C8.72386 3 8.5 3.22386 8.5 3.5V4H11.5V3.5C11.5 3.22386 11.2761 3 11 3H9ZM3 10.5C3 9.67157 3.67157 9 4.5 9H16C16.8284 9 17.5 9.67157 17.5 10.5V15.5C17.5 16.3284 16.8284 17 16 17H4.5C3.67157 17 3 16.3284 3 15.5V10.5Z"
+            fill="currentColor"
+          />
+        </g>
+      </svg>
+    </span>
+
+    <!-- The <select> for position -->
+    <select
+      id="positionSelect"
+      name="position"
+      class="appearance-none w-full rounded-lg border border-stroke
+             bg-gray py-2.5 pl-9 pr-10 font-medium text-black
+             focus:border-primary focus:ring-2 focus:ring-primary/10
+             dark:border-strokedark dark:bg-boxdark dark:text-white fill-current"
+    >
+      <!-- Populated by updatePositions() -->
+      <option value="">Select Position</option>
+    </select>
+
+    <!-- Right Chevron Icon -->
+    <span class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 fill-current">
+      <svg
+        class="h-5 w-5"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M5.23 7.21a.75.75 0 011.06.02L10 11.293l3.71-4.06
+             a.75.75 0 011.08 1.04l-4.25 4.65
+             a.75.75 0 01-1.08 0L5.25 8.27
+             a.75.75 0 01-.02-1.06z"
+          clip-rule="evenodd"
+        />
+      </svg>
+    </span>
+  </div>
+</div>
+
+
+
 
                         <div class="mb-4">
                           <!-- Email Address Field -->
@@ -256,7 +305,7 @@
                           >
                           <div class="relative">
                             <input
-                              class="w-full rounded-lg border border-stroke bg-gray py-2.5 pl-9 pr-4.5 font-medium text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-boxdark dark:text-white dark:focus:border-primary""
+                              class="w-full rounded-lg border border-stroke bg-gray py-2.5 pl-9 pr-4.5 font-medium text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-boxdark dark:text-white dark:focus:border-primary"
                               type="email"
                               name="email"
                               id="emailAddress"
@@ -483,30 +532,85 @@
       </div>
     </div>
     <script>
-      const departmentPositions = {
-        "Sales": ["Store Manager","Sales Executive","Sales Assistant","Business Development Executive","Account Manager"],
-        "Customer Service": ["Customer Service Representative","Support Specialist","Returns & Exchanges Coordinator","Online Chat Specialist","After-Sales Support Specialist"],
-        "Operations": ["Warehouse Manager","Inventory Coordinator","Logistics Supervisor","Shipping & Receiving Clerk","Operations Analyst"],
-        "Design & Development": ["Product Designer","Industrial Designer","CAD Specialist","Prototype Engineer","R&D Manager"],
-        "Marketing": ["Marketing Manager","Social Media Specialist","Visual Merchandiser","Content Creator","Brand Strategist"],
-        "Finance/Administration": ["Accountant","Financial Analyst","Bookkeeper","Administrative Assistant","HR Manager"],
-        "IT": ["IT Manager","Software Developer","Web Developer","Network Administrator","Technical Support Specialist"]
-      };
+  const departmentPositions = {
+    "Sales": [
+      "Store Manager",
+      "Sales Executive",
+      "Sales Assistant",
+      "Business Development Executive",
+      "Account Manager"
+    ],
+    "Customer Service": [
+      "Customer Service Representative",
+      "Support Specialist",
+      "Returns & Exchanges Coordinator",
+      "Online Chat Specialist",
+      "After-Sales Support Specialist"
+    ],
+    "Operations": [
+      "Warehouse Manager",
+      "Inventory Coordinator",
+      "Logistics Supervisor",
+      "Shipping & Receiving Clerk",
+      "Operations Analyst"
+    ],
+    "Design & Development": [
+      "Product Designer",
+      "Industrial Designer",
+      "CAD Specialist",
+      "Prototype Engineer",
+      "R&D Manager"
+    ],
+    "Marketing": [
+      "Marketing Manager",
+      "Social Media Specialist",
+      "Visual Merchandiser",
+      "Content Creator",
+      "Brand Strategist"
+    ],
+    "Finance/Administration": [
+      "Accountant",
+      "Financial Analyst",
+      "Bookkeeper",
+      "Administrative Assistant",
+      "HR Manager"
+    ],
+    "IT": [
+      "IT Manager",
+      "Software Developer",
+      "Web Developer",
+      "Network Administrator",
+      "Technical Support Specialist"
+    ]
+  };
 
-      function updatePositions(deptId, posId) {
-        const dept = document.getElementById(deptId).value;
-        const posSelect = document.getElementById(posId);
-        posSelect.innerHTML = '<option value="">Select Position</option>';
-        if (departmentPositions[dept]) {
-          departmentPositions[dept].forEach(position => {
-            const opt = document.createElement('option');
-            opt.value = position;
-            opt.textContent = position;
-            posSelect.appendChild(opt);
-          });
+  function updatePositions(deptSelectId, positionSelectId) {
+    const dept = document.getElementById(deptSelectId).value;
+    const posSelect = document.getElementById(positionSelectId);
+    // Clear existing options
+    posSelect.innerHTML = '<option value="">Select Position</option>';
+
+    // If there's a matching department, populate its positions
+    if (departmentPositions[dept]) {
+      departmentPositions[dept].forEach(pos => {
+        const option = document.createElement('option');
+        option.value = pos;
+        option.textContent = pos;
+        // If the staff had a saved position, set it as selected
+        if (pos === "<?php echo addslashes($staff['position']); ?>") {
+          option.selected = true;
         }
-      }
-    </script>
+        posSelect.appendChild(option);
+      });
+    }
+  }
+
+  // On page load, trigger it once so position is pre-filled if editing
+  window.addEventListener('DOMContentLoaded', () => {
+    updatePositions('departmentSelect','positionSelect');
+  });
+</script>
+
   </body>
   <?php include "partials/js.html";?>
 </html>
