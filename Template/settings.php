@@ -154,23 +154,6 @@
                           </div>
                         </div>
 
-                        <!-- New Position Field -->
-                        <div class="mb-4">
-                          <label
-                            class="mb-2 block text-sm font-semibold text-black dark:text-white"
-                            for="position"
-                            >Position</label
-                          >
-                          <input
-                            class="w-full rounded-lg border border-stroke bg-gray py-2.5 px-4.5 font-medium text-black focus:border-primary focus-ring-2 focus:ring-primary/10 dark:border-strokedark dark:bg-boxdark dark:text-white"
-                            type="text"
-                            name="position"
-                            id="position"
-                            placeholder=""
-                            value="<?php echo htmlspecialchars($staff['position']); ?>"
-                          />
-                        </div>
-
                         <!-- New Department Field -->
                         <div class="mb-4">
                           <label
@@ -185,6 +168,23 @@
                             id="department"
                             placeholder=""
                             value="<?php echo htmlspecialchars($staff['department']); ?>"
+                          />
+                        </div>
+
+                        <!-- New Position Field -->
+                        <div class="mb-4">
+                          <label
+                            class="mb-2 block text-sm font-semibold text-black dark:text-white"
+                            for="position"
+                            >Position</label
+                          >
+                          <input
+                            class="w-full rounded-lg border border-stroke bg-gray py-2.5 px-4.5 font-medium text-black focus:border-primary focus-ring-2 focus:ring-primary/10 dark:border-strokedark dark:bg-boxdark dark:text-white"
+                            type="text"
+                            name="position"
+                            id="position"
+                            placeholder=""
+                            value="<?php echo htmlspecialchars($staff['position']); ?>"
                           />
                         </div>
 

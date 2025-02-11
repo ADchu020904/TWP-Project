@@ -4,7 +4,7 @@ ini_set('display_errors', 1);
 
 include dirname(__FILE__) . '/../../connect.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $name = $_POST['name'];
+    $name = ucwords(strtolower($_POST['name']));
     $phone_number = $_POST['phone_number'];
     $email = $_POST['email'];
     $position = $_POST['position'];

@@ -88,11 +88,11 @@ if (isset($_GET['delete'])) {
         <label class="label" for="staff-email">Email</label>
         <input type="email" class="member-form-input" id="staff-email" name="email" required>
         
-        <label class="label" for="staff-position">Position</label>
-        <input type="text" class="member-form-input" id="staff-position" name="position" required>
-        
         <label class="label" for="staff-department">Department</label>
         <input type="text" class="member-form-input" id="staff-department" name="department" required>
+        
+        <label class="label" for="staff-position">Position</label>
+        <input type="text" class="member-form-input" id="staff-position" name="position" required>
         
         <label class="label" for="staff-bio">Bio</label>
         <textarea id="staff-bio" class="member-form-input" name="bio" rows="4" required></textarea>
@@ -112,7 +112,7 @@ if (isset($_GET['delete'])) {
       <h1 class="h1">Update Staff</h1>
       <form method="POST" action="partials/staff/updatestaff.php" enctype="multipart/form-data">
         <label class="label" for="update-staff-select">Select Staff to Update</label>
-        <select id="update-staff-select" name="id" required>
+        <select id="update-staff-select" name="id" required onchange="loadStaffData(this.value)">
           <option value="">Select a staff member</option>
           <?php
           $sql = "SELECT id, name FROM staff";
@@ -132,11 +132,11 @@ if (isset($_GET['delete'])) {
         <label class="label" for="update-staff-email">Email</label>
         <input type="email" class="member-form-input" id="update-staff-email" name="email" required>
         
-        <label class="label" for="update-staff-position">Position</label>
-        <input type="text" class="member-form-input" id="update-staff-position" name="position" required>
-        
         <label class="label" for="update-staff-department">Department</label>
         <input type="text" class="member-form-input" id="update-staff-department" name="department" required>
+        
+        <label class="label" for="update-staff-position">Position</label>
+        <input type="text" class="member-form-input" id="update-staff-position" name="position" required>
         
         <label class="label" for="update-staff-bio">Bio</label>
         <textarea id="update-staff-bio" class="member-form-input" name="bio" rows="4" required></textarea>
@@ -149,6 +149,23 @@ if (isset($_GET['delete'])) {
         
         <button class="member-form-button" type="submit">Update Staff</button>
       </form>
+      <script>
+        function loadStaffData(staffId) {
+          if (!staffId) return;
+          fetch('partials/staff/getstaffdata.php?id=' + staffId)
+            .then(response => response.json())
+            .then(data => {
+              if (!data) return;
+              document.getElementById('update-staff-name').value = data.name;
+              document.getElementById('update-staff-phone').value = data.phone_number;
+              document.getElementById('update-staff-email').value = data.email;
+              document.getElementById('update-staff-position').value = data.position;
+              document.getElementById('update-staff-department').value = data.department;
+              document.getElementById('update-staff-bio').value = data.bio;
+            })
+            .catch(err => console.error('Error:', err));
+        }
+      </script>
     </div>
 
     <!-- Delete Staff Section -->
