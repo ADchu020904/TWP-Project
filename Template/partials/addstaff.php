@@ -1,7 +1,6 @@
 <?php
-// addstaff.php - process the Add Staff form submission
-
-include 'staffinfo.php';  // This starts the session and connects to the DB
+session_start();
+include 'connect.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Retrieve and sanitize inputs
@@ -28,14 +27,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->bind_param("ssssssss", $name, $phone, $email, $position, $department, $bio, $hashedPass, $photoData);
     
     if ($stmt->execute()) {
-        header("Location: admin-staff.php?msg=Staff+added+successfully");
+        header("Location: ../admin-staff.php?msg=Staff+added+successfully");
         exit();
     } else {
         die("Error inserting staff: " . $stmt->error);
     }
 } else {
     // If the request is not POST, redirect back to admin-staff.php
-    header("Location: admin-staff.php");
+    header("Location: ../admin-staff.php");
     exit();
 }
 ?>

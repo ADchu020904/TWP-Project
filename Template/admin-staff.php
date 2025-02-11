@@ -30,10 +30,11 @@
         <thead>
           <tr>
             <th>Name</th>
+            <th>Phone Number</th>
             <th>Email</th>
             <th>Position</th>
             <th>Department</th>
-            <th>Description</th>
+            <th>Bio</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -46,7 +47,7 @@
     <!-- Add Staff Section -->
     <div class="main-content" id="add" style="display: none;">
       <h1 class="h1 dark:text-white">Add Staff Member</h1>
-      <form method="POST" action="addstaff.php" enctype="multipart/form-data">
+      <form method="POST" action="partials/addstaff.php" enctype="multipart/form-data">
         <label class="label dark:text-white" for="staff-name">Name</label>
         <input type="text" class="member-form-input" id="staff-name" name="name" required>
         
@@ -78,7 +79,7 @@
     <!-- Update Staff Section -->
     <div class="main-content" id="update" style="display: none;">
       <h1 class="h1 dark:text-white">Update Staff</h1>
-      <form method="POST" action="updatestaff.php">
+      <form method="POST" action="partials/updatestaff.php" enctype="multipart/form-data">
         <label class="label dark:text-white" for="update-staff-select">Select Staff to Update</label>
         <select id="update-staff-select" name="id" required>
           <!-- Options will be loaded dynamically -->
@@ -86,6 +87,9 @@
         
         <label class="label dark:text-white" for="update-staff-name">Name</label>
         <input type="text" class="member-form-input" id="update-staff-name" name="name" required>
+        
+        <label class="label dark:text-white" for="update-staff-phone">Phone Number</label>
+        <input type="text" class="member-form-input" id="update-staff-phone" name="phone_number" required>
         
         <label class="label dark:text-white" for="update-staff-email">Email</label>
         <input type="email" class="member-form-input" id="update-staff-email" name="email" required>
@@ -96,8 +100,14 @@
         <label class="label dark:text-white" for="update-staff-department">Department</label>
         <input type="text" class="member-form-input" id="update-staff-department" name="department" required>
         
-        <label class="label dark:text-white" for="update-staff-description">Description</label>
-        <textarea id="update-staff-description" class="member-form-input" name="description" rows="4" required></textarea>
+        <label class="label dark:text-white" for="update-staff-bio">Bio</label>
+        <textarea id="update-staff-bio" class="member-form-input" name="bio" rows="4" required></textarea>
+        
+        <label class="label dark:text-white" for="update-staff-password">Password (leave blank to keep unchanged)</label>
+        <input type="password" class="member-form-input" id="update-staff-password" name="password">
+        
+        <label class="label dark:text-white" for="update-staff-photo">Photo (optional)</label>
+        <input type="file" class="member-form-input" id="update-staff-photo" name="photo" accept="image/*">
         
         <button class="member-form-button" type="submit">Update Staff</button>
       </form>
@@ -106,7 +116,7 @@
     <!-- Delete Staff Section -->
     <div class="main-content" id="delete" style="display: none;">
       <h1 class="h1 dark:text-white">Delete Staff</h1>
-      <form method="POST" action="deletestaff.php">
+      <form method="POST" action="partials/deletestaff.php">
         <label class="label dark:text-white" for="delete-staff-select">Select Staff to Delete</label>
         <select id="delete-staff-select" name="id" required>
           <!-- Options will be loaded dynamically -->
@@ -118,5 +128,16 @@
   </div>
 
   <?php include 'partials/js.html'; ?>
+  <script>
+    function setSection(section) {
+      // Hide all sections
+      document.getElementById('view').style.display = 'none';
+      document.getElementById('add').style.display = 'none';
+      document.getElementById('update').style.display = 'none';
+      document.getElementById('delete').style.display = 'none';
+      // Show the selected section
+      document.getElementById(section).style.display = 'block';
+    }
+  </script>
 </body>
 </html>
