@@ -1,6 +1,6 @@
 .carousel-control-prev,
 .carousel-control-next {
-  position: absolute;
+  position: fixed;
   top: 35%;
   transform: translateY(-50%);
   /* Reset default width */
@@ -84,4 +84,28 @@
 
 .banner_section .carousel-indicators .active {
     background-color: #fff;
+}
+/* Option 1: Fixed Indicators moved outside the carousel container */
+.fixed-indicators {
+  position: fixed;
+  bottom: 0;            /* Fixed at the bottom of the banner */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.fixed-indicators li {
+  width: 30px;
+  height: 3px;
+  margin: 0 3px;
+  background-color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+}
+
+.fixed-indicators .active {
+  background-color: #fff;
 }
