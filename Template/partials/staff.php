@@ -41,29 +41,3 @@ if(isset($_POST['logout'])) {
     exit();
 }
 ?>
-<!DOCTYPE html>
-<html lang="en" style="margin: 0; padding: 0;">
-<head>
-   <!-- basic -->
-   <meta charset="utf-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <!-- mobile metas -->
-   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-   <!-- site metas -->
-   <title>Staff Account</title>
-   <!-- Style -->
-   <?php include 'partials/user/userstyle.html'; ?>
-   <style>
-   /* Specific to account page */
-    .header_section {
-        margin-bottom: 30px !important;
-    }
-    </style>
-</head>
-<!-- header section start -->
- <?php include 'partials/user/userheader.html'; ?>    
-     <!-- footer section start -->
-    <?php include 'partials/user/userfooter.html'; ?>
-    <!-- footer section end -->
-</body>
-</html>
