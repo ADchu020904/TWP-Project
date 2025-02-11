@@ -1,4 +1,3 @@
-<?php include 'partials/staffinfo.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +11,7 @@
     darkMode = JSON.parse(localStorage.getItem('darkMode'));
     $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))"
   :class="{'dark text-bodydark bg-boxdark-2': darkMode === true}">
+  
   <!-- Layout Container -->
   <div class="dashboard-container">
     <!-- Sidebar Start -->
@@ -38,8 +38,7 @@
             <th>Actions</th>
           </tr>
         </thead>
-        <tbody>
-          <!-- Dynamic content will be loaded here -->
+        <tbody>  
         </tbody>
       </table>
     </div>
@@ -128,16 +127,5 @@
   </div>
 
   <?php include 'partials/js.html'; ?>
-  <script>
-    function setSection(section) {
-      // Hide all sections
-      document.getElementById('view').style.display = 'none';
-      document.getElementById('add').style.display = 'none';
-      document.getElementById('update').style.display = 'none';
-      document.getElementById('delete').style.display = 'none';
-      // Show the selected section
-      document.getElementById(section).style.display = 'block';
-    }
-  </script>
 </body>
 </html>
