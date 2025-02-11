@@ -30,7 +30,7 @@
       <div
       >
        <!-- ===== Header Start ===== -->
-        <?php include "./partials/header.html"; ?>
+        <?php include "./partials/header.php"; ?>
         <!-- ===== Header End ===== -->
 
         <!-- ===== Main Content Start ===== -->

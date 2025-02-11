@@ -30,7 +30,7 @@ if (isset($_GET['delete'])) {
     <!-- Sidebar Finish -->
 
     <!-- Navbar Start -->
-    <?php include 'partials/header.html'; ?>
+    <?php include 'partials/header.php'; ?>
     <!-- Navbar Finish -->
 
 
