@@ -5,27 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Settings | TailAdmin - Tailwind CSS Admin Dashboard Template</title>
-
-
-<!-- CoreUI CSS -->
-<link href="https://cdn.jsdelivr.net/npm/@coreui/coreui@5.2.0/dist/css/coreui.min.css" rel="stylesheet">
-
-<!-- CoreUI Icons -->
-<link rel="stylesheet" href="https://unpkg.com/@coreui/icons/css/all.min.css">
-
-<!-- Custom Styles (Overrides Tailwind and Library Styles) -->
-<link rel="stylesheet" href="css/satoshi.css">
-<link rel="stylesheet" href="css/output.css">
-
- <!-- Tailwind CSS (Base Styles) -->
- <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-
-    <!-- Alpine.js (for header interactivity) -->
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
-
-    <!-- Add the new form CSS -->
-    <link rel="stylesheet" href="css/form.css">
-
+    <!-- CSS only -->
+     <?php include("partials/style.html"); ?>
   </head>
 
   <body
@@ -153,6 +134,40 @@
                               />
                             </div>
                           </div>
+                        </div>
+
+                        <!-- New Position Field -->
+                        <div class="mb-4">
+                          <label
+                            class="mb-2 block text-sm font-semibold text-black dark:text-white"
+                            for="position"
+                            >Position</label
+                          >
+                          <input
+                            class="w-full rounded-lg border border-stroke bg-gray py-2.5 px-4.5 font-medium text-black focus:border-primary focus-ring-2 focus:ring-primary/10 dark:border-strokedark dark:bg-boxdark dark:text-white"
+                            type="text"
+                            name="position"
+                            id="position"
+                            placeholder=""
+                            value=""
+                          />
+                        </div>
+
+                        <!-- New Department Field -->
+                        <div class="mb-4">
+                          <label
+                            class="mb-2 block text-sm font-semibold text-black dark:text-white"
+                            for="department"
+                            >Department</label
+                          >
+                          <input
+                            class="w-full rounded-lg border border-stroke bg-gray py-2.5 px-4.5 font-medium text-black focus:border-primary focus-ring-2 focus:ring-primary/10 dark:border-strokedark dark:bg-boxdark dark:text-white"
+                            type="text"
+                            name="department"
+                            id="department"
+                            placeholder=""
+                            value=""
+                          />
                         </div>
 
                         <div class="mb-4">
@@ -444,12 +459,5 @@
   });
   </script>
   </body>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jsvectormap/1.5.3/js/jsvectormap.min.js"></script>
-            <script src="https://unpkg.com/jsvectormap@1.6.0/dist/maps/world.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jsvectormap/1.5.3/js/jsvectormap.min.js"></script>
-  <!-- World Map -->
-  <script src="https://unpkg.com/jsvectormap@1.6.0/dist/maps/world.js"></script>
-  <!-- Linking JavaScript -->
-  <script src="../build/bundle.js"></script>
-  <script src="js/us-aea-en.js"></script>
+  <?php include "partials/js.html";?>
 </html>
