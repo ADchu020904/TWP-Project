@@ -45,8 +45,8 @@ if (isset($_GET['delete'])) {
             <th>Name</th>
             <th>Phone Number</th>
             <th>Email</th>
-            <th>Position</th>
             <th>Department</th>
+            <th>Position</th>
             <th>Bio</th>
             <th>Actions</th>
           </tr>
@@ -60,9 +60,9 @@ if (isset($_GET['delete'])) {
             echo "<tr>
               <td>{$row['name']}</td>
               <td>{$row['phone_number']}</td>
-              <td>{$row['email']}</td>
-              <td>{$row['position']}</td>
+              <td>{$row['email']}</td>              
               <td>{$row['department']}</td>
+              <td>{$row['position']}</td>
               <td>{$row['bio']}</td>
               <td>
                 <a href='partials/staff/updatestaff.php?id={$row['id']}' class='edit-btn'>Edit</a>
