@@ -44,7 +44,7 @@ if ($result->num_rows > 0) {
 
 // Include staffinfo.php only if not already processing a login
 if (!defined('LOGIN_REQUIRED')) {
-    include 'partials/staffinfo.php';
+    include 'partials/staff/staffinfo.php';
 }
 ?>
 <!DOCTYPE html>
