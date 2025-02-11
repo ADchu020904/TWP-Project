@@ -1,5 +1,4 @@
-<?php include ("partials/user/useraccount.php"); ?>
-
+<?php include 'partials/user/useraccount.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en" style="margin: 0; padding: 0;">
@@ -14,7 +13,7 @@
    <meta name="keywords" content="">
    <meta name="description" content="">
    <meta name="author" content="">
-   <?php include 'partials/user/userstyle.html'; ?>
+   <?php include "partials/user/userstyle.html"; ?>
 </head>
 <body>
  <!-- Header Section -->
