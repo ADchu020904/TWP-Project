@@ -38,3 +38,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
+
+<form action="process_addstaff.php" method="post" enctype="multipart/form-data">
+    <!-- ...existing fields like name, email, etc... -->
+    <div>
+        <label for="phone_number">Phone Number</label>
+        <input type="text" name="phone_number" id="phone_number" required>
+    </div>
+    <div>
+        <label for="bio">Bio</label>
+        <textarea name="bio" id="bio" rows="4"></textarea>
+    </div>
+    <div>
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" required>
+    </div>
+    <div>
+        <label for="profile_image">Profile Image</label>
+        <input type="file" name="profile_image" id="profile_image" accept="image/*">
+    </div>
+    <!-- ...existing submit button... -->
+</form>

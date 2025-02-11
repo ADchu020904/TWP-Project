@@ -50,3 +50,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
+
+<form action="process_updatestaff.php" method="post" enctype="multipart/form-data">
+    <!-- ...existing fields like name, email, etc... -->
+    <div>
+        <label for="phone_number">Phone Number</label>
+        <input type="text" name="phone_number" id="phone_number" value="<?php // echo current phone_number ?>" required>
+    </div>
+    <div>
+        <label for="bio">Bio</label>
+        <textarea name="bio" id="bio" rows="4"><?php // echo current bio ?></textarea>
+    </div>
+    <div>
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password">
+        <!-- Note: leave blank to keep current password -->
+    </div>
+    <div>
+        <label for="profile_image">Profile Image</label>
+        <input type="file" name="profile_image" id="profile_image" accept="image/*">
+    </div>
+    <!-- ...existing submit button... -->
+</form>
