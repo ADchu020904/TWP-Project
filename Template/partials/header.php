@@ -421,39 +421,28 @@ include_once dirname(__FILE__) . '/../connect.php';?>
         >
             <span class="hidden text-right lg:block">
             <span class="block text-sm font-medium text-black dark:text-white">
-                <?php
-                if (session_status() === PHP_SESSION_NONE) {
-                    session_start();
-                }
-                // Use !empty() to ensure the email is not an empty string, and uncomment the debug line if needed.
-                if (!empty($_SESSION['email'])) {
-                    $email = $_SESSION['email'];
-                    $stmt = $conn->prepare("SELECT name, position FROM staff WHERE email = ?");
-                    $stmt->bind_param("s", $email);
-                    $stmt->execute();
-                    $result = $stmt->get_result();
-                    if ($row = $result->fetch_assoc()) {
-                        echo htmlspecialchars($row['name']);
-                    } else {
-                        echo "Staff Member";
-                    }
-                } else {
-                    echo "Guest";
-                    // Debug: Uncomment the next line to inspect session variables during development.
-                    var_dump($_SESSION);
-                }
-                ?>
-            </span>
-            <span class="block text-xs font-medium">
-                <?php
-                if (!empty($_SESSION['email'])) {
-                    // Assuming $row was obtained earlier in the session block above.
-                    echo !empty($row['position']) ? htmlspecialchars($row['position']) : "Staff";
-                } else {
-                    echo "";
-                }
-                ?>
-            </span>
+            <?php
+              // --- header.php Fix ---
+              session_start();
+
+              if (isset($_SESSION['email'])) {
+                $email = $_SESSION['email'];
+                $stmt = $conn->prepare("SELECT name, position FROM staff WHERE email = ?");
+                $stmt->bind_param("s", $email);
+                $stmt->execute();
+                $result = $stmt->get_result()->fetch_assoc();
+
+                $staffName = $result['name'] ?? 'Guest';
+                $staffPosition = $result['position'] ?? '';
+              } else {
+                $staffName = 'Guest';
+                $staffPosition = '';
+              }
+              ?>
+
+              <div class="user-info">
+                <p><?php echo htmlspecialchars($staffName); ?> (<?php echo htmlspecialchars($staffPosition); ?>)</p>
+              </div>
           </span>
 
           <span class="h-12 w-12 rounded-full">
