@@ -1,12 +1,7 @@
 <?php
 include 'partials/staffinfo.php';
-
-// Check if the admin is logged in; if not, redirect to the login page.
-if (!isset($_SESSION['email'])) {
-    header("Location: admin.php");
-    exit();
-}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
