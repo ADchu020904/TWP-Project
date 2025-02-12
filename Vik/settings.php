@@ -430,8 +430,9 @@
                         <!-- User Photo and Edit Options -->
                         <div class="mb-4 flex items-center gap-3">
                           <div class="h-14 w-14 rounded-full">
-                            <img src="./images/user/user-03.png" alt="User" />
-                          </div>
+                            <?php include 'staff/photo.php'  ?>
+                            <img src="<?php echo htmlspecialchars($photo); ?>" alt="User" class="h-12 w-12 rounded-full object-cover" />
+                            </div>
                           <div>
                             <span
                                 class="mb-1.5 font-medium text-black dark:text-white dark:dark-input-bg"

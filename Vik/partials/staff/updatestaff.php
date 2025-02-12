@@ -60,6 +60,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo "Error: " . $stmt->error;
     }
 }
+
+if (isset($_POST['btn_save'])) {
+    // Process saving new photo, e.g. file upload
+} elseif (isset($_POST['btn_update'])) {
+    // Process updating existing photo
+} elseif (isset($_POST['btn_delete'])) {
+    // Process deleting existing photo
+}
+header("Location: /TWP-Project/Vik/settings.php");
+exit;
 ?>
 
 <form action="process_updatestaff.php" method="post" enctype="multipart/form-data">

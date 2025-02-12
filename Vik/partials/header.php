@@ -418,19 +418,17 @@
         >
             <span class="hidden text-right lg:block">
             <?php include 'staff/photo.php'  ?>
-
+            
               <!-- The HTML portion -->
-              <div class="user-info">
                 <span class="block text-sm font-medium text-black dark:text-white">
-                  <?php echo htmlspecialchars($staffName); ?>
-                </span>
+                  <?php echo htmlspecialchars(string: $staffName); ?> </span>
+
                 <span class="block text-xs font-medium">
-                  <?php echo htmlspecialchars($staffPosition); ?>
-                </span>
-              </div>
+                  <?php echo htmlspecialchars(string: $staffPosition); ?> </span>
+              </span>
 
               <span class="h-12 w-12 rounded-full">
-                <img src="<?php echo htmlspecialchars($photo); ?>" alt="User" />
+                <img src="<?php echo htmlspecialchars($photo); ?>" alt="User" class="h-12 w-12 rounded-full object-cover" />
               </span>
 
                         <svg
