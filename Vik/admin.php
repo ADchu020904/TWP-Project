@@ -1,6 +1,10 @@
 <?php
 include 'connect.php';
 
+// Comment out error reporting
+// error_reporting(0);
+// ini_set('display_errors', 0);
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = trim($_POST['email']);
     $password = trim($_POST['password']);
@@ -18,11 +22,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             header("Location: admin-dashboard.php");
             exit();
         } else {
+            // Generic error message for security
             $error = "Invalid email or password.";
+            // Comment out specific error messages
+            // $error = "Password verification failed for: " . $email;
         }
     } else {
+        // Generic error message for security
         $error = "Invalid email or password.";
+        // Comment out specific error messages
+        // $error = "No user found with email: " . $email;
     }
+    
+    // Comment out debugging logs
+    // error_log("Login attempt: " . $email);
 }
 
 if (!defined('LOGIN_REQUIRED')) {
