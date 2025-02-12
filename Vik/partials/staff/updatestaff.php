@@ -1,6 +1,6 @@
 <?php
 include dirname(__FILE__) . '/../../connect.php';
-session_start();
+session_start(); // Ensure session is started
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id           = $_POST['id'];
@@ -34,6 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $params[] = $photoData;
         $types .= "b"; // BLOB type
     }
+    // If no new photo is uploaded and no delete button is pressed, do nothing with the photo
 
     $sql .= " WHERE id=?";
     $params[] = $id;
