@@ -11,7 +11,7 @@
                 <h1 class="banner_taital">Best <br> Design <br> of Furniture</h1>
                 <p class="banner_text">High quality products.</p>
                 <div class="btn_main">
-                  <div class="contact_bt"><a href="contact.html">Contact Us</a></div>
+                  <div class="contact_bt"><a href="contact.php">Contact Us</a></div>
                 </div>
               </div>
               <div class="col-md-6">
@@ -31,7 +31,7 @@
                 <h1 class="banner_taital">Modern <br> Living <br> Solutions</h1>
                 <p class="banner_text">Explore the finest designs crafted for elegance.</p>
                 <div class="btn_main">
-                  <div class="contact_bt"><a href="about.html">Learn More</a></div>
+                  <div class="contact_bt"><a href="about.php">Learn More</a></div>
                 </div>
               </div>
               <div class="col-md-6">

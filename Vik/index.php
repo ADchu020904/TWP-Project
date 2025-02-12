@@ -37,7 +37,7 @@
                   <div class="col-md-6">
                      <h1 class="about_taital">About Us</h1>
                      <p class="about_text">Meet the team behind the scene.</p>
-                     <div class="readmore_bt"><a href="about.html">Read More</a></div>
+                     <div class="readmore_bt"><a href="about-us.php">Read More</a></div>
                   </div>
                </div>
             </div>
@@ -194,7 +194,7 @@
             </a>
          </div>
          <div class="container">
-            <div class="read_bt"><a href="design.html">Read More</a></div>
+            <div class="read_bt"><a href="design.php">Read More</a></div>
          </div>
       </div>
       <!--  design section end -->

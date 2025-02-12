@@ -70,13 +70,13 @@
             text-decoration: underline;
         }
         .header_section {
-            margin-bottom: 50px; /* Add space below the header */
+            margin-bottom: 50px !important; /* Add space below the header */
         }
     </style>
 </head>
 <body>
 <!-- Header Section -->
-<div class="header_section" style="margin-bottom: 0;">
+<div class="header_section">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
        <!-- Brand Logo -->
