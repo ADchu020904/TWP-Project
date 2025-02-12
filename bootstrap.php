@@ -1,11 +1,11 @@
 <?php
 // Enable full error reporting
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
+//error_reporting(E_ALL);
+//ini_set('display_errors', 1);
+//ini_set('display_startup_errors', 1);
 
 // DEBUG: Show the current directory
-echo "\n<!-- bootstrap.php: __DIR__ = " . __DIR__ . " -->\n";
+//echo "\n<!-- bootstrap.php: __DIR__ = " . __DIR__ . " -->\n";
 
 // Build the path to init.php using __DIR__
 $initFile = __DIR__ . '/init.php';

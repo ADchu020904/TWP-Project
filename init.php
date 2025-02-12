@@ -2,13 +2,13 @@
 ob_start(); // Start output buffering
 
 // Enable full error reporting
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
+//error_reporting(E_ALL);
+//ini_set('display_errors', 1);
+//ini_set('display_startup_errors', 1);
 
 // DEBUG: Output current directory and list files in it
-echo "\n<!-- init.php: __DIR__ = " . __DIR__ . " -->\n";
-echo "\n<!-- init.php: Files in __DIR__: " . implode(", ", scandir(__DIR__)) . " -->\n";
+//echo "\n<!-- init.php: __DIR__ = " . __DIR__ . " -->\n";
+//echo "\n<!-- init.php: Files in __DIR__: " . implode(", ", scandir(__DIR__)) . " -->\n";
 
 // Verify the session file exists and include it
 $sessionFile = __DIR__ . '/Vik/partials/session.php';
@@ -62,5 +62,5 @@ $conn->close();
 echo "\n<!-- init.php: Finished. -->\n";
 
 // Flush the output buffer so that the debug messages are sent to the browser
-ob_end_flush();
+//ob_end_flush();
 ?>
