@@ -1,26 +1,21 @@
 <?php
-// Enable full error reporting
-//error_reporting(E_ALL);
-//ini_set('display_errors', 1);
-//ini_set('display_startup_errors', 1);
-
-// DEBUG: Show the current directory
-//echo "\n<!-- bootstrap.php: __DIR__ = " . __DIR__ . " -->\n";
-
-// Build the path to init.php using __DIR__
+// Only output debug messages if the request is not expecting JSON
+if (!isset($_SERVER['HTTP_ACCEPT']) || strpos($_SERVER['HTTP_ACCEPT'], 'application/json') === false) {
+    echo "\n<!-- bootstrap.php: __DIR__ = " . __DIR__ . " -->\n";
+}
 $initFile = __DIR__ . '/init.php';
-
-// DEBUG: Check if init.php exists
 if (!file_exists($initFile)) {
-    echo "\n<!-- bootstrap.php ERROR: File $initFile does not exist -->\n";
+    if (!isset($_SERVER['HTTP_ACCEPT']) || strpos($_SERVER['HTTP_ACCEPT'], 'application/json') === false) {
+        echo "\n<!-- bootstrap.php ERROR: File $initFile does not exist -->\n";
+    }
     die("Error: init.php not found at $initFile");
 } else {
-    echo "\n<!-- bootstrap.php: Found init.php at $initFile -->\n";
+    if (!isset($_SERVER['HTTP_ACCEPT']) || strpos($_SERVER['HTTP_ACCEPT'], 'application/json') === false) {
+        echo "\n<!-- bootstrap.php: Found init.php at $initFile -->\n";
+    }
 }
-
-// Require init.php
 require_once $initFile;
-
-// DEBUG: Finished loading init.php
-echo "\n<!-- bootstrap.php finished loading init.php -->\n";
+if (!isset($_SERVER['HTTP_ACCEPT']) || strpos($_SERVER['HTTP_ACCEPT'], 'application/json') === false) {
+    echo "\n<!-- bootstrap.php finished loading init.php -->\n";
+}
 ?>

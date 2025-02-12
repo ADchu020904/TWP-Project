@@ -1,6 +1,11 @@
 <?php
 header('Content-Type: application/json');
 
+// Clear any output that may have been auto-prepended
+if (ob_get_length() > 0) {
+    ob_clean();
+}
+
 // Start session if needed
 if (!isset($_GET['id'])) {
     session_start();
