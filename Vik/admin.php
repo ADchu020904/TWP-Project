@@ -1,11 +1,6 @@
 <?php
 include 'connect.php';
 
-// Uncomment these lines for debugging
-// ini_set('display_errors', 1);
-// error_reporting(E_ALL);
-
-// Process login if form is submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = trim($_POST['email']);
     $password = trim($_POST['password']);
@@ -23,22 +18,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             header("Location: admin-dashboard.php");
             exit();
         } else {
-            // For security, use a generic error message
             $error = "Invalid email or password.";
-            // Comment out specific error messages
-            // $error = "Password verification failed.";
         }
     } else {
         $error = "Invalid email or password.";
-        // Comment out specific error messages
-        // $error = "No user found with this email.";
     }
-    
-    // Comment out detailed error information
-    // error_log("Login attempt failed for email: $email");
 }
 
-// Include staffinfo.php only if not already processing a login
 if (!defined('LOGIN_REQUIRED')) {
     include 'partials/staff/staffinfo.php';
 }
