@@ -68,10 +68,7 @@ if (isset($_POST['btn_save'])) {
 } elseif (isset($_POST['btn_delete'])) {
     // Process deleting existing photo
 }
-header("Location: /TWP-Project/Vik/settings.php");
-exit;
 ?>
-
 <form action="process_updatestaff.php" method="post" enctype="multipart/form-data">
     <!-- ...existing fields like name, email, etc... -->
     <div>
