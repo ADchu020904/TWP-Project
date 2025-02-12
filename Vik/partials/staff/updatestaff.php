@@ -1,6 +1,6 @@
 <?php
 include dirname(__FILE__) . '/../../connect.php';
-session_start(); // ensure session is started so we can update $_SESSION['email']
+session_start();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id           = $_POST['id'];
@@ -11,105 +11,53 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $department   = $_POST['department'];
     $bio          = $_POST['bio'] ?? '';
 
-    // Check if password is provided
-    $password = !empty($_POST['password'])
-        ? password_hash($_POST['password'], PASSWORD_DEFAULT)
-        : null;
+    $password = !empty($_POST['password']) ? password_hash($_POST['password'], PASSWORD_DEFAULT) : null;
 
-    // Build base update query
     $sql = "UPDATE staff SET name=?, phone_number=?, email=?, position=?, department=?, bio=?";
-
     $params = [$name, $phone_number, $email, $position, $department, $bio];
+    $types = "ssssss"; // All strings initially
 
-    // If password was entered, add it
     if ($password !== null) {
         $sql .= ", password=?";
         $params[] = $password;
+        $types .= "s";
     }
 
-    // Next handle the photo logic
-    // 1) If user clicked delete => set photo to NULL
+    // Handle photo deletion
     if (isset($_POST['btn_delete'])) {
         $sql .= ", photo=NULL";
     }
-    // 2) Else if user uploaded a new photo => read from $_FILES
+    // Handle photo upload
     else if (isset($_FILES['photo']) && $_FILES['photo']['error'] === UPLOAD_ERR_OK) {
         $photoData = file_get_contents($_FILES['photo']['tmp_name']);
         $sql .= ", photo=?";
         $params[] = $photoData;
+        $types .= "b"; // BLOB type
     }
 
-    // Finally add WHERE clause
     $sql .= " WHERE id=?";
     $params[] = $id;
+    $types .= "i"; // ID is an integer
 
-    // Prepare the statement
-    // We'll build the bind_param dynamically based on $params count
     $stmt = $conn->prepare($sql);
     if (!$stmt) {
         die("Prepare failed: " . $conn->error);
     }
 
-    // Build the type string: 
-    //   s for name, phone_number, email, position, department, bio 
-    //   s if password 
-    //   b if photo 
-    //   i for id
-    // But we can keep it simpler with 's' for everything except 'i' for the ID,
-    // because photo is binary => 'b' in bind_param
-    // However, a trick is to use 's' for everything except 'i' for the ID 
-    // and pass the photo as string data. This works if MySQLi is 
-    // configured for "blob as string" usage. 
-    // For clarity, let's do it properly with 'b' for the blob:
-    
-    // We'll build type string as we go
-    $types = "";
-    $bindArgs = [];
-
-    // For name, phone_number, email, position, department, bio => all strings
-    for ($i = 0; $i < 6; $i++) {
-        $types .= "s";
+    // Use a simpler bind_param approach
+    $bindParams = array_merge(array($types), $params);
+    $refs = array();
+    foreach ($bindParams as $key => $value) {
+        $refs[$key] = &$bindParams[$key];
     }
 
-    // If password => 's'
-    if ($password !== null) {
-        $types .= "s";
-    }
-
-    // If deleting => no photo param is appended
-    // If uploading => 'b'
-    if (isset($_POST['btn_delete'])) {
-        // do nothing, no param for photo
-    }
-    else if (isset($_FILES['photo']) && $_FILES['photo']['error'] === UPLOAD_ERR_OK) {
-        $types .= "b";
-    }
-
-    // And final param is id => 'i'
-    $types .= "i";
-
-    // Now we bind with call_user_func_array or a simpler approach
-    // We'll build $bindArgs to match $params
-    $bindArgs[] = &$types;
-
-    // Convert $params to references
-    foreach ($params as $key => $value) {
-        $bindArgs[] = &$params[$key];
-    }
-
-    // Example approach with call_user_func_array
-    call_user_func_array([$stmt, 'bind_param'], $bindArgs);
-
-    // For a real "b" param, we also might need send_long_data
-    // if the file is large. But for small images, it usually is fine.
+    call_user_func_array(array($stmt, 'bind_param'), $refs);
 
     if ($stmt->execute()) {
-        // Update session email if it was changed
         if (isset($_SESSION['email']) && $_SESSION['email'] !== $email) {
             $_SESSION['email'] = $email;
         }
-        
-        // Redirect
+
         $referer = $_SERVER['HTTP_REFERER'] ?? '';
         if (strpos($referer, 'settings.php') !== false) {
             header("Location: ../../settings.php?success=1");
@@ -122,18 +70,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
-<script>
-function previewPhoto(event) {
-  const fileInput = event.target;
-  const previewImg = document.getElementById('photoPreview');
-
-  if (fileInput.files && fileInput.files[0]) {
-    const reader = new FileReader();
-    reader.onload = function(e) {
-      previewImg.src = e.target.result;
-      previewImg.classList.remove('hidden'); // Show the preview
-    }
-    reader.readAsDataURL(fileInput.files[0]);
-  }
-}
-</script>
