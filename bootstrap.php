@@ -1,10 +1,10 @@
 <?php
-// bootstrap.php (located in TWP-Project/)
+// Enable full error reporting
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 
-// DEBUG: Output the current directory
+// DEBUG: Show the current directory
 echo "\n<!-- bootstrap.php: __DIR__ = " . __DIR__ . " -->\n";
 
 // Build the path to init.php using __DIR__
@@ -21,6 +21,6 @@ if (!file_exists($initFile)) {
 // Require init.php
 require_once $initFile;
 
-// DEBUG: End of bootstrap.php
+// DEBUG: Finished loading init.php
 echo "\n<!-- bootstrap.php finished loading init.php -->\n";
 ?>
