@@ -1,9 +1,6 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 
-include_once 'partials/session.php'; // Automatically start session for all pages
+include_once 'Vik/partials/session.php'; // Automatically start session for all pages
 
 $servername = 'localhost';
 $username   = 'root';
@@ -39,6 +36,6 @@ if ($result && $result->num_rows === 0) {
 // ... your existing code ...
 
 $conn->close();
-echo "init.php loaded successfully!";
+//echo "init.php loaded successfully!";
 ?>
 

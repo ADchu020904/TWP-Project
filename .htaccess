@@ -1,3 +1,3 @@
 <IfModule mod_php.c>
-    php_value auto_prepend_file "init.php"
+    php_value auto_prepend_file "../init.php"
 </IfModule>
