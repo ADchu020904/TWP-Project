@@ -18,7 +18,7 @@ $result = $conn->query("SHOW DATABASES LIKE '$dbname'");
 
 if ($result && $result->num_rows === 0) {
     // DB does not exist => import Vik.sql
-    $sqlFilePath = __DIR__ . 'Vik/Vik.sql';
+    $sqlFilePath = __DIR__ . '/Vik/Vik.sql';
     if (file_exists($sqlFilePath)) {
         $commands = file_get_contents($sqlFilePath);
         if ($conn->multi_query($commands)) {
