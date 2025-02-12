@@ -392,7 +392,7 @@ function updatePositions(deptSelectId, positionSelectId) {
   }
 }
 
-// New function to handle staff selection
+// Updated handleStaffSelect function
 function handleStaffSelect(staffId) {
     if (!staffId) {
         document.getElementById('updateForm').reset();
@@ -400,13 +400,12 @@ function handleStaffSelect(staffId) {
     }
 
     fetch(`partials/staff/getstaffdata.php?id=${staffId}`)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
+        .then(response => response.json())
         .then(data => {
+            if (data.error) {
+                throw new Error(data.error);
+            }
+            
             // Fill form fields
             document.getElementById('update-staff-id').value = data.id;
             document.getElementById('update-staff-name').value = data.name;
@@ -429,7 +428,8 @@ function handleStaffSelect(staffId) {
         })
         .catch(error => {
             console.error('Error:', error);
-            alert('Error loading staff data');
+            alert('Error loading staff data: ' + error.message);
+            document.getElementById('updateForm').reset();
         });
 }
 
