@@ -422,16 +422,18 @@
 
             if (isset($_SESSION['email'])) {
               $email = $_SESSION['email'];
-              $stmt = $conn->prepare("SELECT name, position FROM staff WHERE email = ?");
+              $stmt = $conn->prepare("SELECT name, position, photo FROM staff WHERE email = ?");
               $stmt->bind_param("s", $email);
               $stmt->execute();
               $result = $stmt->get_result()->fetch_assoc();
 
               $staffName = $result['name'] ?? 'Guest';
               $staffPosition = $result['position'] ?? '';
+              $photo = $result['photo'] ?? './images/user/default.png';
             } else {
               $staffName = 'Guest';
               $staffPosition = '';
+              $photo = './images/user/default.png';
             }
             ?>
 
@@ -448,7 +450,7 @@
           </span>
 
           <span class="h-12 w-12 rounded-full">
-            <img src="./images/user/user-01.png" alt="User" />
+            <img src="<?php echo htmlspecialchars($photo); ?>" alt="User" />
           </span>
 
           <svg
