@@ -16,7 +16,7 @@ if (!isset($_GET['id'])) {
         exit();
     }
 } else {
-    $id = $_GET['id'];
+    $id = (int)$_GET['id'];  // <--- Cast to integer here.
 }
 
 include dirname(__FILE__) . '/../../connect.php';

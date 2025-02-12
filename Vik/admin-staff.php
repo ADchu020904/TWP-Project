@@ -345,7 +345,7 @@ function setSection(section, staffId = 0) {
 function loadStaffData(staffId) {
   if (!staffId) return; // Don't proceed if no staff selected
 
-  fetch('partials/staff/getstaffdata.php?id=' + staffId)
+  fetch('Vik/partials/staff/getstaffdata.php?id=' + staffId)
     .then(response => response.json())
     .then(data => {
       if (!data) return;
@@ -406,25 +406,20 @@ function handleStaffSelect(staffId) {
                 throw new Error(data.error);
             }
             
-            // Fill form fields
-            document.getElementById('update-staff-id').value = data.id;
-            document.getElementById('update-staff-name').value = data.name;
+            // Fill in the update form fields
+            document.getElementById('update-staff-id').value    = data.id;
+            document.getElementById('update-staff-name').value  = data.name;
             document.getElementById('update-staff-phone').value = data.phone_number;
             document.getElementById('update-staff-email').value = data.email;
-            document.getElementById('update-staff-bio').value = data.bio;
-
-            // Handle department and position
+            document.getElementById('update-staff-bio').value   = data.bio;
+            
+            // Set the department and update the positions list accordingly
             const deptSelect = document.getElementById('update-staff-department');
             deptSelect.value = data.department;
-            
-            // Update positions dropdown
             updatePositions('update-staff-department', 'update-staff-position');
             
-            // Set position after a brief delay to ensure positions are populated
-            setTimeout(() => {
-                const posSelect = document.getElementById('update-staff-position');
-                posSelect.value = data.position;
-            }, 100);
+            // Now set the position field immediately
+            document.getElementById('update-staff-position').value = data.position;
         })
         .catch(error => {
             console.error('Error:', error);
@@ -432,6 +427,7 @@ function handleStaffSelect(staffId) {
             document.getElementById('updateForm').reset();
         });
 }
+
 
 // By default show "view" section
 setSection('view');

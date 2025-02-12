@@ -81,69 +81,7 @@
 </head>
 <body>
   <!-- Header Section -->
-  <div class="header_section">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container">
-        <!-- Brand Logo -->
-        <a class="logo" href="index.php">
-          <img src="images/Vik.png" alt="Vik Logo">
-        </a>
-
-        <!-- Mobile Menu Toggle -->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" 
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <!-- Navigation Items -->
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <!-- Left-aligned Navigation Items -->
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link" href="index.php">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="about.html">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="design.html">Our Design</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="shop.php">Shop</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="contact.html">Contact Us</a>
-            </li>
-          </ul>
-
-          <!-- Right-aligned Icons -->
-          <ul class="navbar-nav ms-auto">
-            <!-- Cart Icon -->
-            <li class="nav-item">
-              <a class="nav-link" href="cart.html">
-                <img src="images/cart.png" alt="Cart Icon" class="nav-icon cart-icon">
-              </a>
-            </li>
-            <!-- User Dropdown -->
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" 
-                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <img src="images/user-icon.png" alt="User Icon" class="nav-icon user-icon">
-              </a>
-              <!-- Dropdown Menu -->
-              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="account.php">My Account</a>
-                <a class="dropdown-item" href="usersignup.php">Log in/Sign up</a>
-                <a class="dropdown-item" href="index.php">Log Out</a>
-                <a class="dropdown-item" href="admin-login.html">Admin Login</a>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-  </div>
-  <!-- End Header Section -->
+    <?php include 'userheader.html'; ?>
   
   <!-- Product Details Section -->
   <div class="product-container">
