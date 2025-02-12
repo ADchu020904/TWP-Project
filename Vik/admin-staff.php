@@ -426,6 +426,18 @@ function handleStaffSelect(staffId) {
                 const posSelect = document.getElementById('update-staff-position');
                 posSelect.value = data.position;
             }, 100);
+
+            // Handle photo preview
+            const photoPreview = document.getElementById('update-photo-preview');
+            const previewImage = document.getElementById('update-preview-image');
+
+            if (data.photo) {
+                previewImage.src = 'data:image/jpeg;base64,' + data.photo;
+                photoPreview.style.display = 'block';
+            } else {
+                photoPreview.style.display = 'none';
+                previewImage.src = '#'; // Clear the src
+            }
         })
         .catch(error => {
             console.error('Error:', error);
