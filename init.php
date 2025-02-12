@@ -35,5 +35,10 @@ if ($result && $result->num_rows === 0) {
         echo "Vik.sql not found at $sqlFilePath<br>";
     }
 }
+
+// ... your existing code ...
+
 $conn->close();
+echo "init.php loaded successfully!";
 ?>
+
