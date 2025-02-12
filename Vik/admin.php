@@ -2,9 +2,6 @@
 session_start();
 include 'connect.php';
 
-// Initialize error message
-$error = '';
-
 // Process login if form is submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = trim($_POST['email']);
@@ -32,8 +29,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       $_SESSION['email'] = $staff['email'];
       
       // Debugging output
-      echo "Session Set: " . $_SESSION['email'];
-      exit(); // Stop execution to see the debug output
+      //echo "Session Set: " . $_SESSION['email'];
+      //exit(); // Stop execution to see the debug output
   }
   
 }
