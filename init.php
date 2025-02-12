@@ -1,4 +1,5 @@
 <?php
+ob_start();
 
 include_once 'Vik/partials/session.php'; // Automatically start session for all pages
 

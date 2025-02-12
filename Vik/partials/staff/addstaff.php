@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Execute the statement.
     if ($stmt->execute()) {
-        header("Location: ../../admin-staff.php");
+        header("Location: /../../admin-staff.php");
         exit();
     } else {
         echo "Error executing query: " . $stmt->error;
