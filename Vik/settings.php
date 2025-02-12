@@ -595,6 +595,27 @@
   }
 }
 </script>
+<style>
+  /* Bright mode (default): Set input background and icon color */
+  .personal-info-section input,
+  .personal-info-section textarea,
+  .personal-info-section select {
+    background-color: rgb(239 244 251 / var(--tw-bg-opacity, 1)) !important;
+  }
+  .personal-info-section .fill-current {
+    color: rgb(100 116 139 / var(--tw-text-opacity, 1)) !important;
+  }
+
+  /* Dark mode: Override input background and icon color */
+  .dark .personal-info-section input,
+  .dark .personal-info-section textarea,
+  .dark .personal-info-section select {
+    background-color: #313d4a !important;
+  }
+  .dark .personal-info-section .fill-current {
+    color: #fff !important;
+  }
+</style>
 
   </body>
   <?php include "partials/js.html";?>
