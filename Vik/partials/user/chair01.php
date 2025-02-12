@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chair 01 - Product Details</title>
-    <link rel="stylesheet" href="/TWP-Project/Template/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/TWP-Project/Vik/css/bootstrap.min.css">
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -80,7 +80,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
        <!-- Brand Logo -->
-       <a class="logo" href="index.php"><img src="/TWP-Project/Template/images/Vik.png"></a>
+       <a class="logo" href="index.php"><img src="/TWP-Project/Vik/images/Vik.png"></a>
 
        <!-- Mobile Menu Toggle -->
        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" 
@@ -93,19 +93,19 @@
        <!-- Left-aligned Navigation Items -->
        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-          <a class="nav-link" href="/TWP-Project/Template/index.php">Home</a>
+          <a class="nav-link" href="/TWP-Project/Vik/index.php">Home</a>
           </li>
           <li class="nav-item">
-          <a class="nav-link" href="/TWP-Project/Template/about.html">About</a>
+          <a class="nav-link" href="/TWP-Project/Vik/about.html">About</a>
           </li>
           <li class="nav-item">
-          <a class="nav-link" href="/TWP-Project/Template/design.html">Our Design</a>
+          <a class="nav-link" href="/TWP-Project/Vik/design.html">Our Design</a>
           </li>
           <li class="nav-item">
-          <a class="nav-link" href="/TWP-Project/Template/shop.php">Shop</a>
+          <a class="nav-link" href="/TWP-Project/Vik/shop.php">Shop</a>
           </li>
           <li class="nav-item">
-          <a class="nav-link" href="/TWP-Project/Template/contact.html">Contact Us</a>
+          <a class="nav-link" href="/TWP-Project/Vik/contact.html">Contact Us</a>
           </li>
        </ul>
 
@@ -113,9 +113,9 @@
        <ul class="navbar-nav ms-auto">
           <!-- Cart Icon -->
           <li class="nav-item">
-          <a class="nav-link" href="/TWP-Project/Template/cart.html">
+          <a class="nav-link" href="/TWP-Project/Vik/cart.html">
               <!-- Added 'cart-icon' class for specific sizing -->
-              <img src="/TWP-Project/Template/images/cart.png" alt="Cart Icon" class="nav-icon cart-icon">
+              <img src="/TWP-Project/Vik/images/cart.png" alt="Cart Icon" class="nav-icon cart-icon">
           </a>
          </li>
           
@@ -123,14 +123,14 @@
           <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="userDropdown" 
           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-           <img src="/TWP-Project/Template/images/user-icon.png" alt="User Icon" class="nav-icon user-icon">
+           <img src="/TWP-Project/Vik/images/user-icon.png" alt="User Icon" class="nav-icon user-icon">
           </a>
           <!-- Dropdown Menu -->
           <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-             <a class="dropdown-item" href="/TWP-Project/Template/account.php">My Account</a>
-             <a class="dropdown-item" href="/TWP-Project/Template/usersignup.php">Log in/Sign up</a>
-             <a class="dropdown-item" href="/TWP-Project/Template/index.php">Log Out</a>
-             <a class="dropdown-item" href="/TWP-Project/Template/admin-login.html">Admin Login</a>
+             <a class="dropdown-item" href="/TWP-Project/Vik/account.php">My Account</a>
+             <a class="dropdown-item" href="/TWP-Project/Vik/usersignup.php">Log in/Sign up</a>
+             <a class="dropdown-item" href="/TWP-Project/Vik/index.php">Log Out</a>
+             <a class="dropdown-item" href="/TWP-Project/Vik/admin-login.html">Admin Login</a>
           </div>
           </li>
        </ul>
@@ -140,7 +140,7 @@
  </div>
  <!-- End Header Section -->      
     <div class="product-container">
-        <img src="/TWP-Project/Template/images/img-8.png" alt="Chair 01" class="product-image">
+        <img src="/TWP-Project/Vik/images/img-8.png" alt="Chair 01" class="product-image">
         <div class="product-details">
             <h2>Chair 01</h2>
             <p><strong>Price:</strong> $100</p>
@@ -153,12 +153,12 @@
             </div>
             <p><strong>Stock:</strong> 20 units available</p>
             <button class="btn btn-addtocart">Add to Cart</button>
-            <a href="/TWP-Project/Template/review.html" class="review-link">Give a Review</a>
-            <a href="/TWP-Project/Template/shop.php" class="back-link">Go Back to Shop</a>
+            <a href="/TWP-Project/Vik/review.html" class="review-link">Give a Review</a>
+            <a href="/TWP-Project/Vik/shop.php" class="back-link">Go Back to Shop</a>
         </div>
     </div>
-    <script src="/TWP-Project/Template/js/jquery.min.js"></script>
-    <script src="/TWP-Project/Template/js/bootstrap.bundle.min.js"></script>
+    <script src="/TWP-Project/Vik/js/jquery.min.js"></script>
+    <script src="/TWP-Project/Vik/js/bootstrap.bundle.min.js"></script>
     
 </body>
 </html>

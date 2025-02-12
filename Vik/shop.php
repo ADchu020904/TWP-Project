@@ -13,7 +13,7 @@
       <meta name="description" content="">
       <meta name="author" content="">
       <!-- style -->
-       <?php include '/Applications/XAMPP/xamppfiles/htdocs/TWP-Project/Template/partials/user/userstyle.html'; ?>
+       <?php include '/Applications/XAMPP/xamppfiles/htdocs/TWP-Project/Vik/partials/user/userstyle.html'; ?>
        
       <style>
          .cart_product_image {
@@ -26,7 +26,7 @@
    </head>
    <body>
  <!-- header section -->
-  <?php include '/Applications/XAMPP/xamppfiles/htdocs/TWP-Project/Template/partials/user/userheader.html'; ?>
+  <?php include '/Applications/XAMPP/xamppfiles/htdocs/TWP-Project/Vik/partials/user/userheader.html'; ?>
 <!-- header section end -->
 
    <!-- Category Section -->
@@ -94,6 +94,6 @@
 </div>
 <!-- Category Section End -->
       <!-- footer section -->
-       <?php include '/Applications/XAMPP/xamppfiles/htdocs/TWP-Project/Template/partials/user/userfooter.html'; ?>
+       <?php include '/Applications/XAMPP/xamppfiles/htdocs/TWP-Project/Vik/partials/user/userfooter.html'; ?>
    </body>
 </html>
