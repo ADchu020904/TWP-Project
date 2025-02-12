@@ -408,7 +408,6 @@
                             Save
                           </button>
                         </div>
-                      </form>
                     </div>
                   </div>
                 </div>
@@ -595,10 +594,16 @@
     updatePositions('departmentSelect','positionSelect');
   });
 
-  function previewPhoto(input) {
-  const preview = document.getElementById('preview');
-  const previewImg = document.getElementById('previewImage');
+  function previewPhoto(fileInput) {
   const currentPhoto = document.getElementById('currentPhoto');
+  if (fileInput.files && fileInput.files[0]) {
+    const reader = new FileReader();
+    reader.onload = e => {
+      // Show the newly chosen image in the same <img> tag.
+      currentPhoto.src = e.target.result;
+    };
+    reader.readAsDataURL(fileInput.files[0]);
+  }
   
   if (input.files && input.files[0]) {
     const reader = new FileReader();
