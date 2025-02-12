@@ -4,7 +4,6 @@
 // ============================================================================
 
 // Start session for user authentication and message passing
-session_start();
 
 // Include database connection details
 include 'connect.php';
