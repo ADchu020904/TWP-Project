@@ -1,4 +1,20 @@
 <?php
+session_start();
+include dirname(__FILE__) . 'connect.php';
+
+// If the user is logged in (like in settings.php) and no ?delete or ?edit param
+if (isset($_SESSION['id']) && !isset($_GET['delete']) && !isset($_GET['edit'])) {
+    // Load $staff data from DB using session ID
+    $stmt = $conn->prepare("SELECT * FROM staff WHERE id=?");
+    $stmt->bind_param("i", $_SESSION['id']);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if ($result && $row = $result->fetch_assoc()) {
+        // Optionally store it in an array so your page can display default values
+        $loggedStaff = $row; 
+    }
+    $stmt->close();
+}
 
 // If "delete" is triggered by URL param ?delete=ID
 if (isset($_GET['delete'])) {
@@ -341,39 +357,6 @@ function setSection(section, staffId = 0) {
   }
 }
 
-// AJAX call to get staff data by ID, then fill form
-function loadStaffData(staffId) {
-  if (!staffId) return; // Don't proceed if no staff selected
-
-  fetch('Vik/partials/staff/getstaffdata.php?id=' + staffId)
-    .then(response => response.json())
-    .then(data => {
-      if (!data) return;
-
-      // Fill fields
-      document.getElementById('update-staff-id').value    = data.id;
-      document.getElementById('update-staff-name').value  = data.name;
-      document.getElementById('update-staff-phone').value = data.phone_number;
-      document.getElementById('update-staff-email').value = data.email;
-      document.getElementById('update-staff-bio').value   = data.bio;
-
-      // Department
-      const deptSelect = document.getElementById('update-staff-department');
-      deptSelect.value = data.department || '';
-
-      // Trigger position dropdown
-      updatePositions('update-staff-department','update-staff-position');
-
-      // Position
-      setTimeout(()=>{
-        const posSelect = document.getElementById('update-staff-position');
-        posSelect.value = data.position || '';
-      }, 100);
-
-    })
-    .catch(err => console.error('Error loading staff data:', err));
-}
-
 // This function updates the relevant position <select> given a department
 function updatePositions(deptSelectId, positionSelectId) {
   const deptValue = document.getElementById(deptSelectId).value;
@@ -400,37 +383,68 @@ function handleStaffSelect(staffId) {
     }
 
     fetch(`partials/staff/getstaffdata.php?id=${staffId}`)
-        .then(response => response.json())
-        .then(data => {
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.text(); // Get response as text first
+        })
+        .then(text => {
+            // Log the raw response for debugging
+            console.log('Raw response:', text);
+            
+            let data;
+            try {
+                data = JSON.parse(text); // Try to parse as JSON
+            } catch (e) {
+                console.error('JSON Parse Error:', e);
+                console.error('Received text:', text);
+                throw new Error('Server response was not valid JSON');
+            }
+
             if (data.error) {
                 throw new Error(data.error);
             }
+
+            // Fill form fields
+            document.getElementById('update-staff-id').value = data.id || '';
+            document.getElementById('update-staff-name').value = data.name || '';
+            document.getElementById('update-staff-phone').value = data.phone_number || '';
+            document.getElementById('update-staff-email').value = data.email || '';
+            document.getElementById('update-staff-bio').value = data.bio || '';
+            document.getElementById('update-staff-department').value = data.department || '';
             
-            // Fill in the update form fields
-            document.getElementById('update-staff-id').value    = data.id;
-            document.getElementById('update-staff-name').value  = data.name;
-            document.getElementById('update-staff-phone').value = data.phone_number;
-            document.getElementById('update-staff-email').value = data.email;
-            document.getElementById('update-staff-bio').value   = data.bio;
-            
-            // Set the department and update the positions list accordingly
-            const deptSelect = document.getElementById('update-staff-department');
-            deptSelect.value = data.department;
+            // Update positions dropdown
             updatePositions('update-staff-department', 'update-staff-position');
             
-            // Now set the position field immediately
-            document.getElementById('update-staff-position').value = data.position;
+            // Set position after positions are populated
+            setTimeout(() => {
+                document.getElementById('update-staff-position').value = data.position || '';
+            }, 100);
         })
         .catch(error => {
-            console.error('Error:', error);
-            alert('Error loading staff data: ' + error.message);
+            console.error('Error details:', error);
+            alert(`Failed to load staff data: ${error.message}`);
             document.getElementById('updateForm').reset();
         });
 }
 
-
 // By default show "view" section
 setSection('view');
+
+// If no staffId is picked, we can auto-load the logged-in staff
+window.addEventListener('DOMContentLoaded', () => {
+    // If there's a logged-in staff, set dropdown
+    // (This example only sets the dropdown if it's not already set)
+    const loggedInId = "<?php echo isset($loggedStaff['id']) ? $loggedStaff['id'] : ''; ?>";
+    if (loggedInId) {
+        const sel = document.getElementById('select-staff');
+        if (sel && !sel.value) {
+            sel.value = loggedInId;
+            handleStaffSelect(loggedInId);
+        }
+    }
+});
 </script>
 </body>
 </html>
