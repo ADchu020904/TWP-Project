@@ -1,6 +1,9 @@
 <?php
-session_start();
 include 'connect.php';
+
+// Uncomment these lines for debugging
+// ini_set('display_errors', 1);
+// error_reporting(E_ALL);
 
 // Process login if form is submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -20,19 +23,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             header("Location: admin-dashboard.php");
             exit();
         } else {
+            // For security, use a generic error message
             $error = "Invalid email or password.";
+            // Comment out specific error messages
+            // $error = "Password verification failed.";
         }
     } else {
         $error = "Invalid email or password.";
+        // Comment out specific error messages
+        // $error = "No user found with this email.";
     }
-    if (password_verify($password, $staff['password'])) {
-      $_SESSION['email'] = $staff['email'];
-      
-      // Debugging output
-      //echo "Session Set: " . $_SESSION['email'];
-      //exit(); // Stop execution to see the debug output
-  }
-  
+    
+    // Comment out detailed error information
+    // error_log("Login attempt failed for email: $email");
 }
 
 // Include staffinfo.php only if not already processing a login

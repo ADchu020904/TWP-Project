@@ -1,6 +1,5 @@
 <?php
 // staffinfo.php - common code for admin pages
-session_start();
 
 // Fix the path to connect.php (go up two levels from current directory)
 include dirname(__FILE__) . '/../../connect.php';
